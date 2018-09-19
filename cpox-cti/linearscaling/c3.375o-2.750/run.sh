@@ -5,4 +5,4 @@
 #SBATCH -n1
 #SBATCH --mem=10Gb
 
-jupyter nbconvert --to notebook --execute copyme.ipynb --output=alldone.ipynb
+jupyter nbconvert --ExecutePreprocessor.timeout=9999 --to notebook --execute copyme.ipynb --output=alldone.ipynb
