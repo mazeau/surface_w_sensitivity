@@ -1,0 +1,19 @@
+[NbConvertApp] Converting notebook copyme.ipynb to notebook
+[NbConvertApp] Executing notebook with kernel: python2
+Error in sys.exitfunc:
+Traceback (most recent call last):
+  File "/home/mazeau.e/anaconda2/envs/rmg_env/lib/python2.7/atexit.py", line 24, in _run_exitfuncs
+    func(*targs, **kargs)
+  File "/home/mazeau.e/anaconda2/envs/rmg_env/lib/python2.7/site-packages/IPython/core/interactiveshell.py", line 3231, in atexit_operations
+    self.history_manager.end_session()
+  File "/home/mazeau.e/anaconda2/envs/rmg_env/lib/python2.7/site-packages/IPython/core/history.py", line 580, in end_session
+    self.writeout_cache()
+  File "<decorator-gen-23>", line 2, in writeout_cache
+  File "/home/mazeau.e/anaconda2/envs/rmg_env/lib/python2.7/site-packages/IPython/core/history.py", line 60, in needs_sqlite
+    return f(self, *a, **kw)
+  File "/home/mazeau.e/anaconda2/envs/rmg_env/lib/python2.7/site-packages/IPython/core/history.py", line 786, in writeout_cache
+    self._writeout_input_cache(conn)
+  File "/home/mazeau.e/anaconda2/envs/rmg_env/lib/python2.7/site-packages/IPython/core/history.py", line 770, in _writeout_input_cache
+    (self.session_number,)+line)
+OperationalError: attempt to write a readonly database
+[NbConvertApp] Writing 1177509 bytes to alldone.ipynb
