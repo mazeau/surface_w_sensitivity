@@ -735,7 +735,7 @@ reaction('CH3(10) + C2H5(13) <=> CH4(2) + C2H4(18)', [6.570000e+14, -0.68, 0.0],
          id='gas-8')
 
 # Reaction 9
-reaction('HCO(15) + OH(17) <=> H2O(5) + CO(7)', [1.240000e+23, -3.29, 2.355],
+reaction('OH(17) + HCO(15) <=> H2O(5) + CO(7)', [1.240000e+23, -3.29, 2.355],
          id='gas-9')
 
 # Reaction 10
@@ -771,11 +771,11 @@ reaction('H(12) + C2H5(13) <=> H2(6) + C2H4(18)', [1.083000e+13, 0.0, 0.0],
          id='gas-17')
 
 # Reaction 18
-reaction('C2H5(13) + HCO(15) <=> CO(7) + C2H6(8)', [4.300000e+13, 0.0, 0.0],
+reaction('C2H5(13) + HCO(15) <=> C2H6(8) + CO(7)', [4.300000e+13, 0.0, 0.0],
          id='gas-18')
 
 # Reaction 19
-reaction('HCO(15) + HCO(15) <=> CO(7) + CH2O(9)', [1.800000e+13, 0.0, 0.0],
+reaction('HCO(15) + HCO(15) <=> CH2O(9) + CO(7)', [1.800000e+13, 0.0, 0.0],
          id='gas-19')
 
 # Reaction 20
@@ -803,7 +803,7 @@ reaction('H(12) + CH3O(58) <=> H2(6) + CH2O(9)', [5.430000e+13, 0.0, 0.0],
          id='gas-25')
 
 # Reaction 26
-reaction('HCO(15) + CH3O(58) <=> CO(7) + CH3OH(14)', [9.030000e+13, 0.0, 0.0],
+reaction('HCO(15) + CH3O(58) <=> CH3OH(14) + CO(7)', [9.030000e+13, 0.0, 0.0],
          id='gas-26')
 
 # Reaction 27
@@ -843,7 +843,7 @@ reaction('C2H5(13) + CH3O(58) <=> CH3OH(14) + C2H4(18)', [7.230000e+13, 0.0, 0.0
          id='gas-35')
 
 # Reaction 36
-reaction('CH4(2) + O2(3) <=> CH3(10) + HO2(52)', [2.030000e+05, 2.745, 55.339],
+reaction('O2(3) + CH4(2) <=> CH3(10) + HO2(52)', [2.030000e+05, 2.745, 55.339],
          id='gas-36')
 
 # Reaction 37
@@ -895,7 +895,7 @@ reaction('H(12) + CH2OH(57) <=> H2(6) + CH2O(9)', [2.000000e+13, 0.0, 0.0],
          id='gas-48')
 
 # Reaction 49
-reaction('HCO(15) + CH2OH(57) <=> CO(7) + CH3OH(14)', [1.000000e+13, 0.0, 0.0],
+reaction('HCO(15) + CH2OH(57) <=> CH3OH(14) + CO(7)', [1.000000e+13, 0.0, 0.0],
          id='gas-49')
 
 # Reaction 50
@@ -975,7 +975,7 @@ reaction('CH2(T)(29) + HO2(52) <=> O2(3) + CH3(10)', [1.298078e+08, 0.805, 1.37]
          id='gas-67')
 
 # Reaction 68
-reaction('HCO(15) + CH2(T)(29) <=> CO(7) + CH3(10)', [3.010000e+13, 0.0, 0.0],
+reaction('HCO(15) + CH2(T)(29) <=> CH3(10) + CO(7)', [3.010000e+13, 0.0, 0.0],
          id='gas-68')
 
 # Reaction 69
@@ -1047,7 +1047,7 @@ reaction('CH2O2(160) <=> CH2O2(69)', [7.796000e+11, 0.486, 5.464],
          id='gas-85')
 
 # Reaction 86
-reaction('CH3(10) + HOCO(53) <=> CH4(2) + CO2(4)', [1.165504e+10, 0.935, 1.05],
+reaction('CH3(10) + HOCO(53) <=> CO2(4) + CH4(2)', [1.165504e+10, 0.935, 1.05],
          id='gas-86')
 
 # Reaction 87
@@ -1159,7 +1159,7 @@ reaction('CH2O(9) + HO2(52) <=> HCO(15) + HOOH(136)', [4.120000e+04, 2.5, 10.21]
          id='gas-113')
 
 # Reaction 114
-reaction('CH2(T)(29) + HOOH(136) <=> CH3(10) + HO2(52)', [1.740000e+13, 0.0, 4.75],
+reaction('HOOH(136) + CH2(T)(29) <=> CH3(10) + HO2(52)', [1.740000e+13, 0.0, 4.75],
          id='gas-114')
 
 # Reaction 115
@@ -1199,7 +1199,7 @@ reaction('HOCO(53) + HO2(52) <=> CO2(4) + HOOH(136)', [5.964394e+08, 1.345, -0.8
          id='gas-123')
 
 # Reaction 124
-reaction('CH3(10) + CHO2(54) <=> CH4(2) + CO2(4)', [6.439354e+10, 0.46, 1.313],
+reaction('CH3(10) + CHO2(54) <=> CO2(4) + CH4(2)', [6.439354e+10, 0.46, 1.313],
          id='gas-124')
 
 # Reaction 125

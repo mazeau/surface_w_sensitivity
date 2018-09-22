@@ -1136,7 +1136,7 @@ reaction('CH3(10) + C2H5(13) <=> CH4(2) + C2H4(18)', [6.570000e+14, -0.68, 0.0],
          id='gas-8')
 
 # Reaction 9
-reaction('HCO(15) + OH(17) <=> H2O(5) + CO(7)', [1.240000e+23, -3.29, 2.355],
+reaction('OH(17) + HCO(15) <=> H2O(5) + CO(7)', [1.240000e+23, -3.29, 2.355],
          id='gas-9')
 
 # Reaction 10
@@ -1172,11 +1172,11 @@ reaction('H(12) + C2H5(13) <=> H2(6) + C2H4(18)', [1.083000e+13, 0.0, 0.0],
          id='gas-17')
 
 # Reaction 18
-reaction('C2H5(13) + HCO(15) <=> CO(7) + C2H6(8)', [4.300000e+13, 0.0, 0.0],
+reaction('C2H5(13) + HCO(15) <=> C2H6(8) + CO(7)', [4.300000e+13, 0.0, 0.0],
          id='gas-18')
 
 # Reaction 19
-reaction('HCO(15) + HCO(15) <=> CO(7) + CH2O(9)', [1.800000e+13, 0.0, 0.0],
+reaction('HCO(15) + HCO(15) <=> CH2O(9) + CO(7)', [1.800000e+13, 0.0, 0.0],
          id='gas-19')
 
 # Reaction 20
@@ -1204,7 +1204,7 @@ reaction('H(12) + CH2OH(57) <=> H2(6) + CH2O(9)', [2.000000e+13, 0.0, 0.0],
          id='gas-25')
 
 # Reaction 26
-reaction('HCO(15) + CH2OH(57) <=> CO(7) + CH3OH(14)', [1.000000e+13, 0.0, 0.0],
+reaction('HCO(15) + CH2OH(57) <=> CH3OH(14) + CO(7)', [1.000000e+13, 0.0, 0.0],
          id='gas-26')
 
 # Reaction 27
@@ -1244,7 +1244,7 @@ reaction('C2H5(13) + CH2OH(57) <=> CH3OH(14) + C2H4(18)', [8.670000e+12, 0.0, 0.
          id='gas-35')
 
 # Reaction 36
-reaction('CH4(2) + O2(3) <=> CH3(10) + HO2(52)', [2.030000e+05, 2.745, 55.339],
+reaction('O2(3) + CH4(2) <=> CH3(10) + HO2(52)', [2.030000e+05, 2.745, 55.339],
          id='gas-36')
 
 # Reaction 37
@@ -1288,7 +1288,7 @@ reaction('CH3(10) + CH3O(58) <=> CH4(2) + CH2O(9)', [6.877790e+10, 0.595, -0.555
          id='gas-46')
 
 # Reaction 47
-reaction('CH3O(58) + HO2(52) <=> O2(3) + CH3OH(14)', [1.400000e+11, 0.0, 0.0],
+reaction('HO2(52) + CH3O(58) <=> O2(3) + CH3OH(14)', [1.400000e+11, 0.0, 0.0],
          id='gas-47')
 
 # Reaction 48
@@ -1300,7 +1300,7 @@ reaction('H(12) + CH3O(58) <=> H2(6) + CH2O(9)', [5.430000e+13, 0.0, 0.0],
          id='gas-49')
 
 # Reaction 50
-reaction('HCO(15) + CH3O(58) <=> CO(7) + CH3OH(14)', [9.030000e+13, 0.0, 0.0],
+reaction('HCO(15) + CH3O(58) <=> CH3OH(14) + CO(7)', [9.030000e+13, 0.0, 0.0],
          id='gas-50')
 
 # Reaction 51
@@ -1412,7 +1412,7 @@ reaction('HO2(52) + HO2(52) <=> O2(3) + HOOH(136)', [1.750000e+10, 0.0, -3.275],
          id='gas-76')
 
 # Reaction 77
-reaction('CH3O(58) + HO2(52) <=> CH2O(9) + HOOH(136)', [1.247681e+07, 2.018, -1.2],
+reaction('HO2(52) + CH3O(58) <=> CH2O(9) + HOOH(136)', [1.247681e+07, 2.018, -1.2],
          id='gas-77')
 
 # Reaction 78
@@ -1420,7 +1420,7 @@ reaction('C3H7(62) + HO2(52) <=> O2(3) + C3H8(11)', [1.578290e-06, 4.95, 4.58],
          id='gas-78')
 
 # Reaction 79
-reaction('HCO(15) + C3H7(62) <=> CO(7) + C3H8(11)', [1.200000e+14, 0.0, 0.0],
+reaction('HCO(15) + C3H7(62) <=> C3H8(11) + CO(7)', [1.200000e+14, 0.0, 0.0],
          id='gas-79')
 
 # Reaction 80
@@ -1436,7 +1436,7 @@ reaction('CH3(10) + C3H8(11) <=> CH4(2) + C3H7(62)', [1.710594e-04, 4.725, 5.845
          id='gas-82')
 
 # Reaction 83
-reaction('C3H8(11) + H(12) <=> H2(6) + C3H7(62)', [2.594027e+03, 3.022, 4.246],
+reaction('H(12) + C3H8(11) <=> H2(6) + C3H7(62)', [2.594027e+03, 3.022, 4.246],
          id='gas-83')
 
 # Reaction 84
@@ -1536,11 +1536,11 @@ surface_reaction('HX(19) + CHX(26) <=> X(1) + CH2X(134)', [9.770000e+24, -0.087,
                  id='surface1-17')
 
 # surface1 Reaction 18
-surface_reaction('HOX(23) + CHX(26) <=> OX(20) + CH2X(134)', [4.400000e+22, 0.101, 21.53],
+surface_reaction('CHX(26) + HOX(23) <=> OX(20) + CH2X(134)', [4.400000e+22, 0.101, 21.53],
                  id='surface1-18')
 
 # surface1 Reaction 19
-surface_reaction('CH2X(134) + CH2X(134) <=> CH3X(22) + CHX(26)', [1.000000e+22, 0.0, 9.56],
+surface_reaction('CH2X(134) + CH2X(134) <=> CHX(26) + CH3X(22)', [1.000000e+22, 0.0, 9.56],
                  id='surface1-19')
 
 # surface1 Reaction 20
@@ -1552,7 +1552,7 @@ surface_reaction('X(1) + C2H6(8) <=> C2H6X(39)', stick(1.000000e-01, 0.0, 0.0),
                  id='surface1-21')
 
 # surface1 Reaction 22
-surface_reaction('X(1) + X(1) + CH3OH(14) <=> HX(19) + CH3OX(45)', stick(3.000000e-02, 0.0, 10.0),
+surface_reaction('X(1) + X(1) + CH3OH(14) <=> CH3OX(45) + HX(19)', stick(3.000000e-02, 0.0, 10.0),
                  id='surface1-22')
 
 # surface1 Reaction 23
@@ -1572,7 +1572,7 @@ surface_reaction('X(1) + HO2X(135) <=> OX(20) + HOX(23)', [1.000000e+21, 0.0, 91
                  id='surface1-26')
 
 # surface1 Reaction 27
-surface_reaction('OX(20) + CH3OX(45) <=> HO2X(135) + CH2X(134)', [1.000000e+19, 0.0, 19.12],
+surface_reaction('CH3OX(45) + OX(20) <=> HO2X(135) + CH2X(134)', [1.000000e+19, 0.0, 19.12],
                  id='surface1-27')
 
 # surface1 Reaction 28
@@ -1584,11 +1584,11 @@ surface_reaction('X(1) + H2(6) <=> H2X(36)', stick(1.000000e-01, 0.0, 0.0),
                  id='surface1-29')
 
 # surface1 Reaction 30
-surface_reaction('OX(20) + CHX(26) <=> X(1) + CXHO(27)', [4.590000e+20, 0.0, 26.267],
+surface_reaction('CHX(26) + OX(20) <=> X(1) + CXHO(27)', [4.590000e+20, 0.0, 26.267],
                  id='surface1-30')
 
 # surface1 Reaction 31
-surface_reaction('X(1) + X(1) + CH2O(9) <=> HX(19) + CXHO(27)', stick(2.000000e-02, 0.0, 10.0),
+surface_reaction('X(1) + X(1) + CH2O(9) <=> CXHO(27) + HX(19)', stick(2.000000e-02, 0.0, 10.0),
                  id='surface1-31')
 
 # surface1 Reaction 32
@@ -1648,7 +1648,7 @@ surface_reaction('X(1) + C2H5X(38) <=> CH3X(22) + CH2X(134)', [1.000000e+21, 0.0
                  id='surface1-45')
 
 # surface1 Reaction 46
-surface_reaction('X(1) + X(1) + OCO(140) <=> HOX(23) + CH3OX(45)', stick(4.000000e-02, 0.0, 41.718),
+surface_reaction('X(1) + X(1) + OCO(140) <=> CH3OX(45) + HOX(23)', stick(4.000000e-02, 0.0, 41.718),
                  id='surface1-46')
 
 # surface1 Reaction 47
@@ -1656,7 +1656,7 @@ surface_reaction('X(1) + OCO(140) <=> SX(168)', stick(1.000000e-01, 0.0, 0.0),
                  id='surface1-47')
 
 # surface1 Reaction 48
-surface_reaction('X(1) + SX(139) <=> OX(20) + CH3OX(45)', [1.000000e+21, 0.0, 120.589],
+surface_reaction('X(1) + SX(139) <=> CH3OX(45) + OX(20)', [1.000000e+21, 0.0, 120.589],
                  id='surface1-48')
 
 # surface1 Reaction 49
@@ -1668,7 +1668,7 @@ surface_reaction('X(1) + X(1) + OCO(140) <=> HX(19) + SX(167)', stick(2.000000e-
                  id='surface1-50')
 
 # surface1 Reaction 51
-surface_reaction('X(1) + X(1) + CH3OH(14) <=> HX(19) + CH3OX(44)', stick(1.000000e-02, 0.0, 16.607),
+surface_reaction('X(1) + X(1) + CH3OH(14) <=> CH3OX(44) + HX(19)', stick(1.000000e-02, 0.0, 16.607),
                  id='surface1-51')
 
 # surface1 Reaction 52
@@ -1676,7 +1676,7 @@ surface_reaction('X(1) + CH3OX(44) <=> OX(20) + CH3X(22)', [1.000000e+21, 0.0, 8
                  id='surface1-52')
 
 # surface1 Reaction 53
-surface_reaction('C2H5X(38) + OX(20) <=> CH2X(134) + CH3OX(44)', [1.000000e+19, 0.0, 19.12],
+surface_reaction('C2H5X(38) + OX(20) <=> CH3OX(44) + CH2X(134)', [1.000000e+19, 0.0, 19.12],
                  id='surface1-53')
 
 # surface1 Reaction 54
@@ -1696,7 +1696,7 @@ surface_reaction('X(1) + HOCXO(25) <=> OCX(21) + HOX(23)', [1.460000e+24, -0.213
                  id='surface1-57')
 
 # surface1 Reaction 58
-surface_reaction('HOCXO(25) + CH2X(134) <=> OCX(21) + CH3OX(45)', [1.000000e+19, 0.0, 19.12],
+surface_reaction('HOCXO(25) + CH2X(134) <=> CH3OX(45) + OCX(21)', [1.000000e+19, 0.0, 19.12],
                  id='surface1-58')
 
 # surface1 Reaction 59
@@ -1744,7 +1744,7 @@ surface_reaction('X(1) + X(1) + CH4O3(186) <=> HX(19) + SX(184)', stick(3.000000
                  id='surface1-69')
 
 # surface1 Reaction 70
-surface_reaction('X(1) + X(1) + C2H6O(98) <=> CH3X(22) + CH3OX(45)', stick(2.000000e-02, 0.0, 32.754),
+surface_reaction('X(1) + X(1) + C2H6O(98) <=> CH3OX(45) + CH3X(22)', stick(2.000000e-02, 0.0, 32.754),
                  id='surface1-70')
 
 # surface1 Reaction 71
@@ -1756,7 +1756,7 @@ surface_reaction('X(1) + C2H6O(98) <=> SX(273)', stick(1.000000e-01, 0.0, 0.0),
                  id='surface1-72')
 
 # surface1 Reaction 73
-surface_reaction('X(1) + X(1) + C2H6O(98) <=> SX(272) + HX(19)', stick(2.000000e-02, 0.0, 10.0),
+surface_reaction('X(1) + X(1) + C2H6O(98) <=> HX(19) + SX(272)', stick(2.000000e-02, 0.0, 10.0),
                  id='surface1-73')
 
 # surface1 Reaction 74
@@ -1764,7 +1764,7 @@ surface_reaction('X(1) + X(1) + COCO(177) <=> CH3X(22) + SX(139)', stick(2.00000
                  id='surface1-74')
 
 # surface1 Reaction 75
-surface_reaction('X(1) + X(1) + COCO(177) <=> CH3OX(45) + CH3OX(44)', stick(2.000000e-02, 0.0, 36.853),
+surface_reaction('X(1) + X(1) + COCO(177) <=> CH3OX(44) + CH3OX(45)', stick(2.000000e-02, 0.0, 36.853),
                  id='surface1-75')
 
 # surface1 Reaction 76
@@ -1772,7 +1772,7 @@ surface_reaction('X(1) + COCO(177) <=> SX(303)', stick(1.000000e-01, 0.0, 0.0),
                  id='surface1-76')
 
 # surface1 Reaction 77
-surface_reaction('X(1) + SX(178) <=> SX(139) + CH2X(134)', [1.000000e+21, 0.0, 91.11],
+surface_reaction('X(1) + SX(178) <=> CH2X(134) + SX(139)', [1.000000e+21, 0.0, 91.11],
                  id='surface1-77')
 
 # surface1 Reaction 78
@@ -1856,7 +1856,7 @@ surface_reaction('C2H5X(38) + OCX(21) <=> C2H3OX(47) + CH2X(134)', [1.000000e+19
                  id='surface1-97')
 
 # surface1 Reaction 98
-surface_reaction('OCX(21) + CH3OX(44) <=> OX(20) + C2H3OX(47)', [1.000000e+19, 0.0, 19.12],
+surface_reaction('CH3OX(44) + OCX(21) <=> OX(20) + C2H3OX(47)', [1.000000e+19, 0.0, 19.12],
                  id='surface1-98')
 
 # surface1 Reaction 99
@@ -1880,7 +1880,7 @@ surface_reaction('X(1) + X(1) + S(185) <=> CH3X(22) + SX(167)', stick(2.000000e-
                  id='surface1-103')
 
 # surface1 Reaction 104
-surface_reaction('X(1) + X(1) + S(185) <=> SX(272) + HOX(23)', stick(4.000000e-02, 0.0, 10.0),
+surface_reaction('X(1) + X(1) + S(185) <=> HOX(23) + SX(272)', stick(4.000000e-02, 0.0, 10.0),
                  id='surface1-104')
 
 # surface1 Reaction 105
