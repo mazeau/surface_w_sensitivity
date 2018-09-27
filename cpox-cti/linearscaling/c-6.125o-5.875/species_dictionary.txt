@@ -149,11 +149,6 @@ CH3X(22)
 4 H u0 p0 c0 {1,S}
 5 X u0 p0 c0 {1,S}
 
-HOX(23)
-1 O u0 p2 c0 {2,S} {3,S}
-2 H u0 p0 c0 {1,S}
-3 X u0 p0 c0 {1,S}
-
 HX(19)
 1 H u0 p0 c0 {2,S}
 2 X u0 p0 c0 {1,S}
@@ -180,6 +175,11 @@ CXHO(27)
 3 H u0 p0 c0 {2,S}
 4 X u0 p0 c0 {2,S}
 
+HOX(23)
+1 O u0 p2 c0 {2,S} {3,S}
+2 H u0 p0 c0 {1,S}
+3 X u0 p0 c0 {1,S}
+
 OCX(21)
 1 O u0 p2 c0 {2,D}
 2 C u0 p0 c0 {1,D} {3,D}
@@ -190,11 +190,9 @@ COX(37)
 2 C u0 p1 c-1 {1,T}
 3 X u0 p0 c0
 
-CO2X(34)
-1 O u0 p2 c0 {3,D}
-2 O u0 p2 c0 {3,D}
-3 C u0 p0 c0 {1,D} {2,D}
-4 X u0 p0 c0
+CX(24)
+1 C u0 p0 c0 {2,Q}
+2 X u0 p0 c0 {1,Q}
 
 H2OX(35)
 1 O u0 p2 c0 {2,S} {3,S}
@@ -202,20 +200,15 @@ H2OX(35)
 3 H u0 p0 c0 {1,S}
 4 X u0 p0 c0
 
-HO2X(135)
+CO2X(34)
+1 O u0 p2 c0 {3,D}
+2 O u0 p2 c0 {3,D}
+3 C u0 p0 c0 {1,D} {2,D}
+4 X u0 p0 c0
+
+HO2X(139)
 1 O u0 p2 c0 {2,S} {4,S}
 2 O u0 p2 c0 {1,S} {3,S}
 3 H u0 p0 c0 {2,S}
 4 X u0 p0 c0 {1,S}
-
-C2H6X(39)
-1 C u0 p0 c0 {2,S} {3,S} {4,S} {5,S}
-2 C u0 p0 c0 {1,S} {6,S} {7,S} {8,S}
-3 H u0 p0 c0 {1,S}
-4 H u0 p0 c0 {1,S}
-5 H u0 p0 c0 {1,S}
-6 H u0 p0 c0 {2,S}
-7 H u0 p0 c0 {2,S}
-8 H u0 p0 c0 {2,S}
-9 X u0 p0 c0
 

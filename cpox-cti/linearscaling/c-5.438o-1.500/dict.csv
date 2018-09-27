@@ -1,255 +1,544 @@
-0,OCO + 2 [Ni] <=> [Ni] + OC(O)[Ni],7.89626000731
-1,CO + 2 [Ni] <=> OC[Ni] + [Ni],6.5357372588
-2,O[Ni] + [Ni] <=> [Ni] + O=[Ni],5.39505016199
-3,[OH] + [Ni] <=> O[Ni],2.47452152919
-4,OCO + 2 [Ni] <=> OC[Ni] + O[Ni],1.6971050498
-5,C[Ni] + [Ni] <=> C + 2 [Ni],1.2246166447
-6,CCO + 2 [Ni] <=> [Ni] + CC(O)[Ni],0.910851183375
-7,C#[Ni] + OC(O)=[Ni] <=> OC=[Ni] + OC#[Ni],0.416861554161
-8,OCCO + 2 [Ni] <=> [Ni] + OCC(O)[Ni],0.279385146917
-9,CCO + 2 [Ni] <=> OC[Ni] + C[Ni],0.270535903599
-10,OC=[Ni] + OC#[Ni] <=> C~[Ni] + OC(O)[Ni],0.209947355228
-11,2 OC=[Ni] <=> OC[Ni] + OC#[Ni],0.123727602591
-12,OC[Ni] + C#[Ni] <=> OC=[Ni] + C=[Ni],0.0832174226115
-13,[O]O + [Ni] <=> OO[Ni],0.066137460312
-14,[CH2]O + [Ni] <=> OC[Ni],0.0604387270997
-15,CC + 2 [Ni] <=> 2 C[Ni],0.0405342099433
-16,C=C + 2 [Ni] <=> C=C[Ni] + [Ni],0.0402090835054
-17,OCCO + 2 [Ni] <=> 2 OC[Ni],0.0371110970203
-18,OC=[Ni] + C#[Ni] <=> C=[Ni] + OC#[Ni],0.0359505866944
-19,OC(O)=[Ni] + [Ni] <=> OC#[Ni] + O[Ni],0.0195946823595
-20,OC=[Ni] + C=[Ni] <=> OC[Ni] + C#[Ni],0.0133558296505
-21,C#[Ni] + O[Ni] <=> C=[Ni] + O=[Ni],0.0115282905285
-22,OO + 2 [Ni] <=> OO[Ni] + [Ni],0.00304034178416
-23,C~[Ni] + OC(O)=[Ni] <=> 2 OC#[Ni],0.00244518654499
-24,OO + 2 [Ni] <=> 2 O[Ni],0.00220987648852
-25,CC(O)=[Ni] + [Ni] <=> C[Ni] + OC#[Ni],0.000554396679747
-26,CC[Ni] + C#[Ni] <=> CC=[Ni] + C=[Ni],0.000554092567734
-27,O=CO + 2 [Ni] <=> O=C(O)[Ni] + [Ni],0.000542220191532
-28,OCC(O)=[Ni] + [Ni] <=> OC[Ni] + OC#[Ni],0.000294478348308
-29,C=[Ni] + OC(O)=[Ni] <=> OC[Ni] + OC#[Ni],0.000213869672632
-30,CC#[Ni] + OC=[Ni] <=> C~[Ni] + CC(O)[Ni],0.000130759195013
-31,O=[Ni] + OCC(O)[Ni] <=> OC=[Ni] + OCO[Ni],0.000115482249586
-32,OC(O)[Ni] + [Ni] <=> OC=[Ni] + O[Ni],0.000111272552642
-33,CCO + 2 [Ni] <=> CC[Ni] + O[Ni],5.92544806548e-05
-34,C=[Ni] + O[Ni] <=> C[Ni] + O=[Ni],5.37737758765e-05
-35,OC#[Ni] + O=[Ni] <=> C~[Ni] + OO[Ni],4.84586101296e-05
-36,CC=[Ni] + OC(O)[Ni] <=> OC=[Ni] + CC(O)[Ni],4.10282814057e-05
-37,C=[Ni] + OC[Ni] <=> OC=[Ni] + C[Ni],3.20571329584e-05
-38,OC=[Ni] + [Ni] <=> OC#[Ni] + [Ni],1.24155965741e-05
-39,OC=[Ni] + O=[Ni] <=> OC#[Ni] + O[Ni],1.18257333775e-05
-40,CC=[Ni] + OC#[Ni] <=> CC#[Ni] + OC=[Ni],1.15504153087e-05
-41,OC=[Ni] + C=[Ni] <=> C[Ni] + OC#[Ni],9.77696489371e-06
-42,OC(O)[Ni] + CC(O)=[Ni] <=> CC(O)[Ni] + OC(O)=[Ni],7.85410993149e-06
-43,2 OC=[Ni] <=> C#[Ni] + OC(O)[Ni],7.3576850924e-06
-44,C#[Ni] + [Ni] <=> C=[Ni] + [Ni],5.84120225377e-06
-45,CC#[Ni] + O=C=[Ni] <=> CC(=O)[Ni] + C~[Ni],4.86278752888e-06
-46,CC#[Ni] + CC(O)[Ni] <=> CC=[Ni] + CC(O)=[Ni],4.69294440044e-06
-47,C~[Ni] + O[Ni] <=> C#[Ni] + O=[Ni],3.98855970373e-06
-48,OC#[Ni] + O=C(O)[Ni] <=> O=C=[Ni] + OC(O)=[Ni],3.71533269473e-06
-49,OC#[Ni] + CC(O)=[Ni] <=> CC#[Ni] + OC(O)=[Ni],2.73196478028e-06
-50,OCCO + 2 [Ni] <=> O[Ni] + OCC[Ni],2.35561041173e-06
-51,OC=[Ni] + [Ni] <=> C#[Ni] + O[Ni],2.09369455154e-06
-52,CC=[Ni] + C#[Ni] <=> CC#[Ni] + C=[Ni],2.00522346569e-06
-53,CC(O)[Ni] + [Ni] <=> OC=[Ni] + C[Ni],1.58501101572e-06
-54,O[CH]O + [Ni] <=> OC(O)[Ni],1.40798819171e-06
-55,CC=[Ni] + OC=[Ni] <=> CC[Ni] + OC#[Ni],1.40660572261e-06
-56,OC[Ni] + OC(O)=[Ni] <=> OC=[Ni] + OC(O)[Ni],1.20057796806e-06
-57,CC=[Ni] + OO[Ni] <=> O=[Ni] + CC(O)[Ni],5.6711860036e-07
-58,O=C[Ni] + [Ni] <=> [Ni] + O=C=[Ni],4.64563384331e-07
-59,CC=[Ni] + C=[Ni] <=> CC[Ni] + C#[Ni],2.98519121204e-07
-60,OC[Ni] + OCC(O)=[Ni] <=> OC=[Ni] + OCC(O)[Ni],2.91998922095e-07
-61,OC[Ni] + O=[Ni] <=> OC=[Ni] + O[Ni],2.91434121437e-07
-62,C=[Ni] + CC(O)=[Ni] <=> CC[Ni] + OC#[Ni],2.04481916595e-07
-63,CC[Ni] + C=[Ni] <=> CC=[Ni] + C[Ni],1.35324608872e-07
-64,O=C([Ni])OO + [Ni] <=> OO[Ni] + O=C=[Ni],1.09500306102e-07
-65,OCC(O)[Ni] + [Ni] <=> OC=[Ni] + OC[Ni],1.08662364102e-07
-66,OC=[Ni] + OC[Ni] <=> C=[Ni] + OC(O)[Ni],8.65233251042e-08
-67,OCCO + [Ni] <=> OCCO.[Ni],7.28101126623e-08
-68,O=[Ni] + CC(O)=[Ni] <=> CC#[Ni] + OO[Ni],6.63995479255e-08
-69,CC=[Ni] + [Ni] <=> C[Ni] + C#[Ni],4.93968445084e-08
-70,CC=[Ni] + O=C(O)[Ni] <=> O=C=[Ni] + CC(O)[Ni],4.27932882654e-08
-71,CCO + 2 [Ni] <=> [Ni] + OCC[Ni],4.06663804852e-08
-72,O + [Ni] <=> O.[Ni],3.6937575725e-08
-73,CC=O + 2 [Ni] <=> C[Ni] + O=C[Ni],3.54502312752e-08
-74,C=[Ni] + OOC(O)=[Ni] <=> C#[Ni] + OOC(O)[Ni],3.54350108011e-08
-75,CC[Ni] + OOC(O)=[Ni] <=> CC=[Ni] + OOC(O)[Ni],3.52539939703e-08
-76,OOC(O)[Ni] + [Ni] <=> [Ni] + OOC(O)=[Ni],3.02529845311e-08
-77,OC[Ni] + CC(O)=[Ni] <=> OC=[Ni] + CC(O)[Ni],2.9541391112e-08
-78,OC[Ni] + [Ni] <=> OC=[Ni] + [Ni],2.94359023567e-08
-79,O=C[Ni] + O[Ni] <=> O=C(O)[Ni] + [Ni],2.09879195431e-08
-80,O=C(O)[Ni] + O=[Ni] <=> OO[Ni] + O=C=[Ni],2.08686462797e-08
-81,[C-]#[O+] + [Ni] <=> [C-]#[O+].[Ni],1.87837601266e-08
-82,CC[Ni] + OCC(O)=[Ni] <=> CC=[Ni] + OCC(O)[Ni],1.86218263751e-08
-83,CC=[Ni] + OC[Ni] <=> CC[Ni] + OC=[Ni],1.7771840001e-08
-84,CC=[Ni] + C~[Ni] <=> CC#[Ni] + C#[Ni],1.52380479215e-08
-85,O=C[Ni] + OOC(O)=[Ni] <=> O=C=[Ni] + OOC(O)[Ni],1.30742468728e-08
-86,CC(=O)[Ni] + [Ni] <=> C[Ni] + O=C=[Ni],1.29662875733e-08
-87,CO + [Ni] <=> CO.[Ni],1.05314508128e-08
-88,OC#[Ni] + OCC[Ni] <=> C=[Ni] + OCC(O)=[Ni],5.96207284175e-09
-89,CC(O)[Ni] + [Ni] <=> [Ni] + CC(O)=[Ni],5.1251639448e-09
-90,O=C[Ni] + O=[Ni] <=> O[Ni] + O=C=[Ni],2.57560095391e-09
-91,C=O + [Ni] <=> C=O.[Ni],8.18989654086e-10
-92,CCC[Ni] + [Ni] <=> CC[Ni] + C=[Ni],-7.50171083361e-10
-93,CC[Ni] + [Ni] <=> C=[Ni] + C[Ni],-1.02115950593e-09
-94,O=C=[Ni] + OOC(O)=[Ni] <=> O=C([Ni])OO + OC#[Ni],-1.99339275186e-09
-95,CC(C)[Ni] + C~[Ni] <=> CC#[Ni] + CC=[Ni],-2.10945825848e-09
-96,OO + [Ni] <=> OO.[Ni],-2.37328323839e-09
-97,CC[Ni] + CC(O)=[Ni] <=> CC=[Ni] + CC(O)[Ni],-2.58720959622e-09
-98,OC[Ni] + O=[Ni] <=> C=[Ni] + OO[Ni],-3.06696247272e-09
-99,O=C([Ni])C(O)CO + [Ni] <=> O=C=[Ni] + OCC(O)[Ni],-4.25341171158e-09
-100,CO[Ni] + C~[Ni] <=> CC#[Ni] + O=[Ni],-4.76324600044e-09
-101,CC=[Ni] + OC=[Ni] <=> C#[Ni] + CC(O)[Ni],-4.79827062966e-09
-102,CO[Ni] + [Ni] <=> C[Ni] + O=[Ni],-5.72109855993e-09
-103,CC=[Ni] + O=[Ni] <=> CC#[Ni] + O[Ni],-7.31824932542e-09
-104,CC=[Ni] + O=C=[Ni] <=> CC#[Ni] + O=C[Ni],-7.78376203475e-09
-105,CC[Ni] + C~[Ni] <=> CC#[Ni] + C=[Ni],-9.62545679638e-09
-106,CCC + 2 [Ni] <=> CCC[Ni] + [Ni],-1.08376276726e-08
-107,C~[Ni] + O[Ni] <=> [Ni] + O=C=[Ni],-1.11741823886e-08
-108,OCC(O)[Ni] + [Ni] <=> [Ni] + OCC(O)=[Ni],-1.2767568792e-08
-109,O=C=[Ni] + O=[Ni] <=> O=C=O + 2 [Ni],-1.27911699921e-08
-110,CC=[Ni] + CC(O)=[Ni] <=> CC#[Ni] + CC(O)[Ni],-1.30175080409e-08
-111,CC=[Ni] + OC#[Ni] <=> C~[Ni] + CC(O)[Ni],-1.39614629472e-08
-112,O=[Ni] + CC(O)=[Ni] <=> CO[Ni] + OC#[Ni],-1.53303313184e-08
-113,OC=[Ni] + CO[Ni] <=> O=[Ni] + CC(O)[Ni],-1.54653281055e-08
-114,C=[Ni] + O=C[Ni] <=> C[Ni] + O=C=[Ni],-1.58849161945e-08
-115,OO[Ni] + [Ni] <=> O[Ni] + O=[Ni],-1.75282266062e-08
-116,2 CC=[Ni] <=> CC(C)[Ni] + C#[Ni],-1.83243434817e-08
-117,CCC + [Ni] <=> CCC.[Ni],-1.89440506333e-08
-118,C~[Ni] + O=C(O)[Ni] <=> OC#[Ni] + O=C=[Ni],-2.08234726691e-08
-119,OCO + [Ni] <=> OCO.[Ni],-2.18044748559e-08
-120,OCC[Ni] + [Ni] <=> C=[Ni] + OC[Ni],-2.2192548311e-08
-121,CC[Ni] + O=[Ni] <=> CC=[Ni] + O[Ni],-2.3054378485e-08
-122,CC=[Ni] + CC(O)=[Ni] <=> CC(C)[Ni] + OC#[Ni],-2.42250739101e-08
-123,OC(=[Ni])C(O)O + [Ni] <=> OC#[Ni] + OC(O)[Ni],-2.69028710392e-08
-124,CC#[Ni] + [Ni] <=> C[Ni] + C~[Ni],-2.72454928396e-08
-125,C=[Ni] + O=C(O)[Ni] <=> OC[Ni] + O=C=[Ni],-2.73887211213e-08
-126,CC + [Ni] <=> CC.[Ni],-2.76427386101e-08
-127,C#[Ni] + O=[Ni] <=> O=C[Ni] + [Ni],-3.0817090432e-08
-128,CC=[Ni] + OOC(O)=[Ni] <=> CC#[Ni] + OOC(O)[Ni],-3.25500420552e-08
-129,CO + 2 [Ni] <=> CO[Ni] + [Ni],-3.34752120563e-08
-130,CC(O)[Ni] + [Ni] <=> CC=[Ni] + O[Ni],-3.49792904159e-08
-131,O=C=[Ni] + OC(=[Ni])C(O)O <=> OC#[Ni] + O=C([Ni])C(O)O,-3.52743929225e-08
-132,CC=[Ni] + OC[Ni] <=> C=[Ni] + CC(O)[Ni],-3.53419526912e-08
-133,2 CC=[Ni] <=> CC#[Ni] + CC[Ni],-3.91719686254e-08
-134,CC(O)C(=O)[Ni] + [Ni] <=> O=C=[Ni] + CC(O)[Ni],-3.93695994697e-08
-135,C~[Ni] + CC(O)=[Ni] <=> CC#[Ni] + OC#[Ni],-4.21110449651e-08
-136,O=C=[Ni] + [Ni] <=> C~[Ni] + O=[Ni],-4.21835608684e-08
-137,OC=[Ni] + CC(O)=[Ni] <=> CC#[Ni] + OC(O)[Ni],-4.26330739931e-08
-138,O=C=[Ni] + CC(O)=[Ni] <=> CC(=O)[Ni] + OC#[Ni],-4.28896715292e-08
-139,O=C=[Ni] + CC(O)=[Ni] <=> CC#[Ni] + O=C(O)[Ni],-4.55489048449e-08
-140,CC=[Ni] + O=C[Ni] <=> CC[Ni] + O=C=[Ni],-4.78378533599e-08
-141,CC=[Ni] + [Ni] <=> CC#[Ni] + [Ni],-4.81957043852e-08
-142,OC[Ni] + [Ni] <=> C=[Ni] + O[Ni],-4.84290516885e-08
-143,CC=[Ni] + O=[Ni] <=> CO[Ni] + C#[Ni],-5.06861236559e-08
-144,CC(C)[Ni] + OC=[Ni] <=> CC=[Ni] + CC(O)[Ni],-5.08768625627e-08
-145,O=C[Ni] + OC(O)=[Ni] <=> O=C=[Ni] + OC(O)[Ni],-5.21622503023e-08
-146,OC#[Ni] + [Ni] <=> C~[Ni] + O[Ni],-5.23161867962e-08
-147,CCC + 2 [Ni] <=> CC(C)[Ni] + [Ni],-5.31661254678e-08
-148,CC(C)[Ni] + O=C=[Ni] <=> CC(=O)[Ni] + CC=[Ni],-5.33073518062e-08
-149,OCO[Ni] + [Ni] <=> OC[Ni] + O=[Ni],-5.40006683832e-08
-150,OC=[Ni] + OCC[Ni] <=> C=[Ni] + OCC(O)[Ni],-5.41089406853e-08
-151,CC=[Ni] + OC#[Ni] <=> C#[Ni] + CC(O)=[Ni],-5.57736731674e-08
-152,CC=[Ni] + O=C=[Ni] <=> CC(=O)[Ni] + C#[Ni],-5.57765338085e-08
-153,CC=[Ni] + OCC(O)=[Ni] <=> CC#[Ni] + OCC(O)[Ni],-5.72418702775e-08
-154,[H][H] + [Ni] <=> [H][H].[Ni],-6.03455598073e-08
-155,CC=O + 2 [Ni] <=> CC(=O)[Ni] + [Ni],-6.12422726334e-08
-156,O=CO + [Ni] <=> O=CO.[Ni],-6.1629404182e-08
-157,CCO + [Ni] <=> CCO.[Ni],-6.19468532882e-08
-158,C#[Ni] + O=C[Ni] <=> C=[Ni] + O=C=[Ni],-6.33096789832e-08
-159,O=C([Ni])C(O)O + [Ni] <=> O=C=[Ni] + OC(O)[Ni],-6.54644784944e-08
-160,O=C=O + [Ni] <=> O=C=O.[Ni],-6.70867741904e-08
-161,C~[Ni] + O=C[Ni] <=> C#[Ni] + O=C=[Ni],-6.76187866929e-08
-162,OC=[Ni] + O=C[Ni] <=> OC[Ni] + O=C=[Ni],-6.85113647465e-08
-163,C[Ni] + OOC(O)=[Ni] <=> C=[Ni] + OOC(O)[Ni],-6.86597358278e-08
-164,CC[Ni] + O=C=[Ni] <=> CC(=O)[Ni] + C=[Ni],-6.93025487233e-08
-165,2 O=C=[Ni] <=> O=C=O + C~[Ni] + [Ni],-7.15926580964e-08
-166,OC=[Ni] + O=C([Ni])OO <=> O=C=[Ni] + OOC(O)[Ni],-7.48796818756e-08
-167,CC=[Ni] + OC(O)=[Ni] <=> CC#[Ni] + OC(O)[Ni],-7.62210456128e-08
-168,C=[Ni] + CC(O)=[Ni] <=> CC#[Ni] + OC[Ni],-7.6814355192e-08
-169,CC=[Ni] + C=[Ni] <=> CC#[Ni] + C[Ni],-7.86617422798e-08
-170,O[Ni] + OOC(O)=[Ni] <=> O=[Ni] + OOC(O)[Ni],-7.88804191222e-08
-171,CO[Ni] + O=C=[Ni] <=> CC(=O)[Ni] + O=[Ni],-7.91697190526e-08
-172,CC=[Ni] + OC=[Ni] <=> CC#[Ni] + OC[Ni],-8.00784346685e-08
-173,C[Ni] + CC(O)=[Ni] <=> C=[Ni] + CC(O)[Ni],-8.13793031953e-08
-174,C=C + [Ni] <=> C=C.[Ni],-8.30457860045e-08
-175,OC=[Ni] + O=C(O)[Ni] <=> O=C=[Ni] + OC(O)[Ni],-8.37022247812e-08
-176,CC[Ni] + O=[Ni] <=> C=[Ni] + CO[Ni],-8.42685234395e-08
-177,O=[Ni] + OCC[Ni] <=> C=[Ni] + OCO[Ni],-8.6052362111e-08
-178,OC[Ni] + C~[Ni] <=> C=[Ni] + OC#[Ni],-8.65306058643e-08
-179,CC[Ni] + OC=[Ni] <=> C=[Ni] + CC(O)[Ni],-8.66696558508e-08
-180,CC=[Ni] + OC(O)=[Ni] <=> OC#[Ni] + CC(O)[Ni],-9.68675087024e-08
-181,OC(O)[Ni] + [Ni] <=> [Ni] + OC(O)=[Ni],-1.00026036834e-07
-182,O=[Ni] + OCC(O)=[Ni] <=> OC#[Ni] + OCO[Ni],-1.01704905366e-07
-183,C#[Ni] + CC(O)=[Ni] <=> CC#[Ni] + OC=[Ni],-1.04597622282e-07
-184,C#[Ni] + O=C(O)[Ni] <=> OC=[Ni] + O=C=[Ni],-1.09737237193e-07
-185,C + [Ni] <=> C.[Ni],-1.12276662565e-07
-186,CC(C)[Ni] + O=[Ni] <=> CC=[Ni] + CO[Ni],-1.141793527e-07
-187,CC[Ni] + [Ni] <=> CC=[Ni] + [Ni],-1.14370838835e-07
-188,OC[Ni] + OOC(O)=[Ni] <=> OC=[Ni] + OOC(O)[Ni],-1.28919773826e-07
-189,CC[Ni] + OC(O)=[Ni] <=> CC=[Ni] + OC(O)[Ni],-1.34599165206e-07
-190,O=C[Ni] + CC(O)=[Ni] <=> O=C=[Ni] + CC(O)[Ni],-1.35878464119e-07
-191,CC(C)[Ni] + [Ni] <=> CC=[Ni] + C[Ni],-1.43213866557e-07
-192,O=C[Ni] + OCC(O)=[Ni] <=> O=C=[Ni] + OCC(O)[Ni],-1.55827022689e-07
-193,C=[Ni] + CC(O)=[Ni] <=> C#[Ni] + CC(O)[Ni],-1.65788811443e-07
-194,CC(O)=[Ni] + [Ni] <=> CC#[Ni] + O[Ni],-1.6914259082e-07
-195,OC=[Ni] + OOC(O)=[Ni] <=> OC#[Ni] + OOC(O)[Ni],-1.9716498078e-07
-196,CC=[Ni] + CC[Ni] <=> CC(C)[Ni] + C=[Ni],-1.98099031614e-07
-197,OC#[Ni] + O=C[Ni] <=> OC=[Ni] + O=C=[Ni],-2.00897075377e-07
-198,CC(=O)[Ni] + OC=[Ni] <=> O=C=[Ni] + CC(O)[Ni],-2.01879046067e-07
-199,O=CO + 2 [Ni] <=> O=C[Ni] + O[Ni],-2.83791507899e-07
-200,OC=[Ni] + O=[Ni] <=> C#[Ni] + OO[Ni],-2.843927081e-07
-201,2 O[Ni] <=> O + O=[Ni] + [Ni],-2.87272634421e-07
-202,CC[Ni] + C~[Ni] <=> CC=[Ni] + C#[Ni],-2.94253994998e-07
-203,O[Ni] + CC(O)=[Ni] <=> O=[Ni] + CC(O)[Ni],-3.01320140503e-07
-204,OC=[Ni] + C~[Ni] <=> OC#[Ni] + C#[Ni],-4.04201249333e-07
-205,OC=[Ni] + CC(O)=[Ni] <=> OC#[Ni] + CC(O)[Ni],-4.24175260826e-07
-206,C=[Ni] + OCC(O)=[Ni] <=> C#[Ni] + OCC(O)[Ni],-5.41006382379e-07
-207,CCC + 2 [Ni] <=> CC[Ni] + C[Ni],-5.60238571572e-07
-208,C[Ni] + OCC(O)=[Ni] <=> C=[Ni] + OCC(O)[Ni],-5.69545432956e-07
-209,C=[Ni] + OC(O)=[Ni] <=> C#[Ni] + OC(O)[Ni],-7.58023467811e-07
-210,OCC(O)[Ni] + CC(O)=[Ni] <=> CC(O)[Ni] + OCC(O)=[Ni],-1.08759996149e-06
-211,2 C=[Ni] <=> C[Ni] + C#[Ni],-1.20963953668e-06
-212,C[Ni] + OC(O)=[Ni] <=> C=[Ni] + OC(O)[Ni],-1.21328188755e-06
-213,O[Ni] + OCC(O)=[Ni] <=> O=[Ni] + OCC(O)[Ni],-1.29214324097e-06
-214,O=[Ni] + OC(O)=[Ni] <=> OC#[Ni] + OO[Ni],-3.23819336262e-06
-215,OC=[Ni] + OCC(O)=[Ni] <=> OC#[Ni] + OCC(O)[Ni],-3.24952039691e-06
-216,O[Ni] + OC(O)=[Ni] <=> O=[Ni] + OC(O)[Ni],-4.3886859611e-06
-217,O=C(O)[Ni] + [Ni] <=> O=C=O + [Ni] + [Ni],-5.46877791454e-06
-218,OC#[Ni] + OOC(O)[Ni] <=> OC=[Ni] + OOC(O)=[Ni],-6.33402266815e-06
-219,OC=[Ni] + OC(O)=[Ni] <=> OC#[Ni] + OC(O)[Ni],-6.74668409136e-06
-220,OC#[Ni] + CC(O)[Ni] <=> OC=[Ni] + CC(O)=[Ni],-7.59842962364e-06
-221,OC#[Ni] + OCC(O)[Ni] <=> OC=[Ni] + OCC(O)=[Ni],-1.13618983814e-05
-222,OCC(O)[Ni] + OOC(O)=[Ni] <=> OCC(O)=[Ni] + OOC(O)[Ni],-1.39135655067e-05
-223,[CH]=O + [Ni] <=> O=C[Ni],-1.46209383431e-05
-224,CC(O)=[Ni] + OOC(O)[Ni] <=> CC(O)[Ni] + OOC(O)=[Ni],-2.31200722142e-05
-225,OCC(O)[Ni] + OC(O)=[Ni] <=> OC(O)[Ni] + OCC(O)=[Ni],-2.38401640217e-05
-226,CC + 2 [Ni] <=> CC[Ni] + [Ni],-2.81117568263e-05
-227,C#[Ni] + OOC(O)=[Ni] <=> C~[Ni] + OOC(O)[Ni],-7.39768487112e-05
-228,C~[Ni] + [Ni] <=> C#[Ni] + [Ni],-0.000115526727142
-229,OOC(O)[Ni] + [Ni] <=> OC=[Ni] + OO[Ni],-0.000154819866369
-230,OC#[Ni] + OC(O)[Ni] <=> OC=[Ni] + OC(O)=[Ni],-0.000333990314082
-231,[C-]#[O+] + [Ni] <=> O=C=[Ni],-0.000335277981406
-232,OC(O)=[Ni] + OOC(O)[Ni] <=> OC(O)[Ni] + OOC(O)=[Ni],-0.000404866397094
-233,C#[Ni] + CC(O)=[Ni] <=> C~[Ni] + CC(O)[Ni],-0.00042450556248
-234,CC#[Ni] + C#[Ni] <=> CC=[Ni] + C~[Ni],-0.000426948616595
-235,OC[Ni] + C~[Ni] <=> OC=[Ni] + C#[Ni],-0.0020241234875
-236,O=C(O)[Ni] + [Ni] <=> O[Ni] + O=C=[Ni],-0.00247167108026
-237,C#[Ni] + OCC(O)=[Ni] <=> C~[Ni] + OCC(O)[Ni],-0.00251727055561
-238,[O][O] + 2 [Ni] <=> 2 O=[Ni],-0.00301485256312
-239,[H][H] + 2 [Ni] <=> 2 [Ni],-0.0031004622716
-240,OOC(O)=[Ni] + [Ni] <=> OC#[Ni] + OO[Ni],-0.00578985696073
-241,C#[Ni] + OC(O)=[Ni] <=> C~[Ni] + OC(O)[Ni],-0.00772019718617
-242,OCO + 2 [Ni] <=> [Ni] + OCO[Ni],-0.00832849129796
-243,[H] + [Ni] <=> [Ni],-0.0103025724721
-244,C=[Ni] + [Ni] <=> C[Ni] + [Ni],-0.0232970858648
-245,C[Ni] + C~[Ni] <=> C=[Ni] + C#[Ni],-0.0243189515747
-246,C=[Ni] + C~[Ni] <=> 2 C#[Ni],-0.041312081367
-247,C=O + 2 [Ni] <=> O=C[Ni] + [Ni],-0.0728186146664
-248,C[CH2] + [Ni] <=> CC[Ni],-0.0729703337388
-249,OC=[Ni] + OO[Ni] <=> O=[Ni] + OC(O)[Ni],-0.218488873286
-250,OC#[Ni] + C#[Ni] <=> OC=[Ni] + C~[Ni],-0.365492605834
-251,[CH3] + [Ni] <=> C[Ni],-1.35859113412
-252,CO + 2 [Ni] <=> C[Ni] + O[Ni],-1.94178433986
-253,O[Ni] + [Ni] <=> O + 2 [Ni],-2.31937559718
-254,C[Ni] + O[Ni] <=> C + O=[Ni] + [Ni],-22.5318090817
+0,OCO + 2 [Ni] <=> [Ni] + OC(O)[Ni],7.48573832017
+1,CO + 2 [Ni] <=> OC[Ni] + [Ni],6.53365771085
+2,O[Ni] + [Ni] <=> [Ni] + O=[Ni],5.44388163071
+3,[OH] + [Ni] <=> O[Ni],2.73944496439
+4,OCO + 2 [Ni] <=> OC[Ni] + O[Ni],1.52521793328
+5,C[Ni] + [Ni] <=> C + 2 [Ni],1.19292055894
+6,CCO + 2 [Ni] <=> [Ni] + CC(O)[Ni],0.850450129658
+7,C#[Ni] + OC(O)=[Ni] <=> OC=[Ni] + OC#[Ni],0.388159525617
+8,CCO + 2 [Ni] <=> OC[Ni] + C[Ni],0.336944155132
+9,OCCO + 2 [Ni] <=> [Ni] + OCC(O)[Ni],0.249735814202
+10,OC=[Ni] + OC#[Ni] <=> C~[Ni] + OC(O)[Ni],0.198299074488
+11,2 OC=[Ni] <=> OC[Ni] + OC#[Ni],0.122955666633
+12,OCCO + 2 [Ni] <=> 2 OC[Ni],0.0861280425953
+13,OC[Ni] + C#[Ni] <=> OC=[Ni] + C=[Ni],0.0842468278437
+14,[O]O + [Ni] <=> OO[Ni],0.0736800944921
+15,CC + 2 [Ni] <=> 2 C[Ni],0.0574981340284
+16,[CH2]O + [Ni] <=> OC[Ni],0.0561754513189
+17,C=C + 2 [Ni] <=> C=C[Ni] + [Ni],0.0387038606795
+18,OC=[Ni] + C#[Ni] <=> C=[Ni] + OC#[Ni],0.0363013132053
+19,OC(O)=[Ni] + [Ni] <=> OC#[Ni] + O[Ni],0.0189189789899
+20,O=C(O)[Ni] + [Ni] <=> O=C=O + [Ni] + [Ni],0.018627501949
+21,OCOC(O)=[Ni] + [Ni] <=> OC#[Ni] + OCO[Ni],0.0163167423818
+22,OC=[Ni] + OOC(O)[Ni] <=> OC(O)[Ni] + OOC=[Ni],0.0137793733507
+23,OC=[Ni] + C=[Ni] <=> OC[Ni] + C#[Ni],0.0135217465111
+24,C#[Ni] + O[Ni] <=> C=[Ni] + O=[Ni],0.0116557170561
+25,CC=O + 2 [Ni] <=> CC(=O)[Ni] + [Ni],0.00350455469547
+26,O=CCO + 2 [Ni] <=> [Ni] + O=CC(O)[Ni],0.00322832673342
+27,OC=[Ni] + OCOC(O)[Ni] <=> OC(O)[Ni] + OCOC=[Ni],0.00256387504368
+28,C~[Ni] + OC(O)=[Ni] <=> 2 OC#[Ni],0.00229482435902
+29,OO + 2 [Ni] <=> OO[Ni] + [Ni],0.00220592818417
+30,O=CCO + 2 [Ni] <=> [Ni] + O=C([Ni])CO,0.00150048418423
+31,OO + 2 [Ni] <=> 2 O[Ni],0.00135069342814
+32,OCOC=[Ni] + [Ni] <=> C#[Ni] + OCO[Ni],0.00102239292333
+33,CC[Ni] + C#[Ni] <=> CC=[Ni] + C=[Ni],0.000970133625297
+34,OC#[Ni] + OC(O)[Ni] <=> OC=[Ni] + OC(O)=[Ni],0.000680439382428
+35,O=CO + 2 [Ni] <=> O=C(O)[Ni] + [Ni],0.000552312111242
+36,CC(O)=[Ni] + [Ni] <=> C[Ni] + OC#[Ni],0.000530100633312
+37,OC=[Ni] + O=CC(O)[Ni] <=> OC(O)[Ni] + O=CC=[Ni],0.000316465226029
+38,OC=[Ni] + OC(O)(O)[Ni] <=> OC(O)[Ni] + OC(O)=[Ni],0.000313479139024
+39,OCC(O)=[Ni] + [Ni] <=> OC[Ni] + OC#[Ni],0.000278082881448
+40,C=[Ni] + O=CC=[Ni] <=> O=CC[Ni] + C#[Ni],0.000238941754865
+41,O=CC[Ni] + OC#[Ni] <=> OC=[Ni] + O=CC=[Ni],0.000214736735
+42,C=[Ni] + OC(O)=[Ni] <=> OC[Ni] + OC#[Ni],0.000200260181946
+43,OCOC[Ni] + [Ni] <=> C=[Ni] + OCO[Ni],0.000180655482439
+44,O=[Ni] + OCC(O)[Ni] <=> OC=[Ni] + OCO[Ni],0.00010841480849
+45,OC(O)[Ni] + [Ni] <=> OC=[Ni] + O[Ni],0.000107684566434
+46,OCOC(O)[Ni] + [Ni] <=> OC=[Ni] + OCO[Ni],0.000102255310678
+47,CC=O + 2 [Ni] <=> O=CC[Ni] + [Ni],7.23120302122e-05
+48,O=C(O)OC(O)=[Ni] + [Ni] <=> O=C(O)O[Ni] + OC#[Ni],6.85909380567e-05
+49,CC=[Ni] + OC(O)[Ni] <=> OC=[Ni] + CC(O)[Ni],6.7651772854e-05
+50,CCO + 2 [Ni] <=> CC[Ni] + O[Ni],6.39663453021e-05
+51,OC=[Ni] + OCC(O)(O)[Ni] <=> OC(O)[Ni] + OCC(O)=[Ni],5.94651044634e-05
+52,C=[Ni] + O[Ni] <=> C[Ni] + O=[Ni],5.43087813563e-05
+53,OC#[Ni] + O=[Ni] <=> C~[Ni] + OO[Ni],4.71707783308e-05
+54,OC#[Ni] + OC(O)=[Ni] <=> C~[Ni] + OC(O)(O)[Ni],3.6540882023e-05
+55,C=[Ni] + OC[Ni] <=> OC=[Ni] + C[Ni],3.24488456996e-05
+56,CC#[Ni] + OC=[Ni] <=> C~[Ni] + CC(O)[Ni],3.02899767636e-05
+57,OC=[Ni] + OCC(O)(O)[Ni] <=> OC(O)=[Ni] + OCC(O)[Ni],2.97167332909e-05
+58,CC=[Ni] + OC#[Ni] <=> CC#[Ni] + OC=[Ni],2.29482231387e-05
+59,OC#[Ni] + CC(O)[Ni] <=> OC=[Ni] + CC(O)=[Ni],1.50808819656e-05
+60,OC=[Ni] + OC(O)=[Ni] <=> OC#[Ni] + OC(O)[Ni],1.36879161382e-05
+61,OC=[Ni] + [Ni] <=> OC#[Ni] + [Ni],1.25324786016e-05
+62,O=CC#[Ni] + OC=[Ni] <=> C~[Ni] + O=CC(O)[Ni],1.24016405902e-05
+63,OC=[Ni] + O=[Ni] <=> OC#[Ni] + O[Ni],1.19748764751e-05
+64,OC(O)[Ni] + CC(O)=[Ni] <=> OC(O)=[Ni] + CC(O)[Ni],1.19576210875e-05
+65,OC#[Ni] + OCC(O)[Ni] <=> OC=[Ni] + OCC(O)=[Ni],1.12477865596e-05
+66,CC#[Ni] + CC(O)[Ni] <=> CC=[Ni] + CC(O)=[Ni],1.05697119575e-05
+67,OC=[Ni] + C=[Ni] <=> C[Ni] + OC#[Ni],9.71473580322e-06
+68,OC#[Ni] + OCC(O)=[Ni] <=> C~[Ni] + OCC(O)(O)[Ni],8.30830155558e-06
+69,CC=[Ni] + C#[Ni] <=> CC#[Ni] + C=[Ni],7.88211217758e-06
+70,2 OC=[Ni] <=> C#[Ni] + OC(O)[Ni],7.02395007655e-06
+71,OC#[Ni] + CC(O)=[Ni] <=> CC#[Ni] + OC(O)=[Ni],6.88659627937e-06
+72,C#[Ni] + [Ni] <=> C=[Ni] + [Ni],5.91503367605e-06
+73,OC#[Ni] + O=CC(O)=[Ni] <=> O=CC#[Ni] + OC(O)=[Ni],5.0580456119e-06
+74,C~[Ni] + O[Ni] <=> C#[Ni] + O=[Ni],4.16665614991e-06
+75,OC#[Ni] + O=C(O)[Ni] <=> O=C=[Ni] + OC(O)=[Ni],3.58983704518e-06
+76,OC#[Ni] + OOC(O)[Ni] <=> OC=[Ni] + OOC(O)=[Ni],3.4065584468e-06
+77,OC(O)[Ni] + OC(=[Ni])C(O)O <=> OC(O)=[Ni] + OC(O)C(O)[Ni],3.40593123914e-06
+78,OCCO + 2 [Ni] <=> O[Ni] + OCC[Ni],3.37804910313e-06
+79,OC=[Ni] + OCC(O)=[Ni] <=> OC#[Ni] + OCC(O)[Ni],3.27201298891e-06
+80,CC#[Ni] + O=C=[Ni] <=> CC(=O)[Ni] + C~[Ni],3.26994328576e-06
+81,OC(O)C(O)[Ni] + [Ni] <=> OC=[Ni] + OC(O)[Ni],3.18695103563e-06
+82,C#[Ni] + OOC[Ni] <=> C=[Ni] + OOC=[Ni],3.12671883049e-06
+83,C=[Ni] + OC(O)=[Ni] <=> C#[Ni] + OC(O)[Ni],2.68093268733e-06
+84,CC=[Ni] + OC=[Ni] <=> CC[Ni] + OC#[Ni],2.57577105152e-06
+85,OOC[Ni] + [Ni] <=> C=[Ni] + OO[Ni],2.52743230922e-06
+86,C#[Ni] + OCOC[Ni] <=> C=[Ni] + OCOC=[Ni],2.37389649708e-06
+87,C[Ni] + OC(O)=[Ni] <=> C=[Ni] + OC(O)[Ni],2.35107376731e-06
+88,OC=[Ni] + [Ni] <=> C#[Ni] + O[Ni],2.13992919787e-06
+89,OC(O)=[Ni] + OCOC(O)[Ni] <=> OC(O)[Ni] + OCOC(O)=[Ni],2.11351540053e-06
+90,OC#[Ni] + O=CC=[Ni] <=> O=CC#[Ni] + OC=[Ni],2.05193612374e-06
+91,CC(O)[Ni] + [Ni] <=> OC=[Ni] + C[Ni],1.67451630394e-06
+92,OC[Ni] + OC(O)=[Ni] <=> OC=[Ni] + OC(O)[Ni],1.4636181727e-06
+93,O[CH]O + [Ni] <=> OC(O)[Ni],1.36637314534e-06
+94,O=CC(O)=[Ni] + [Ni] <=> O=CC#[Ni] + O[Ni],1.35683702137e-06
+95,OC#[Ni] + OCOC(O)[Ni] <=> OC=[Ni] + OCOC(O)=[Ni],1.33963836152e-06
+96,OOC[Ni] + OC(O)=[Ni] <=> OC(O)[Ni] + OOC=[Ni],1.16984865601e-06
+97,OCOC=[Ni] + OC(O)(O)[Ni] <=> OC(O)=[Ni] + OCOC(O)[Ni],9.28649873835e-07
+98,OC=[Ni] + CC(O)=[Ni] <=> OC#[Ni] + CC(O)[Ni],7.56947216599e-07
+99,OOC=[Ni] + OC(O)(O)[Ni] <=> OC(O)=[Ni] + OOC(O)[Ni],7.08632860625e-07
+100,C=[Ni] + OCC(O)=[Ni] <=> C#[Ni] + OCC(O)[Ni],6.96192714193e-07
+101,CC=[Ni] + C=[Ni] <=> CC[Ni] + C#[Ni],6.57842804777e-07
+102,C[Ni] + OCC(O)=[Ni] <=> C=[Ni] + OCC(O)[Ni],5.64903781287e-07
+103,OOC[Ni] + OCC(O)=[Ni] <=> OOC=[Ni] + OCC(O)[Ni],4.64757061213e-07
+104,C#[Ni] + O=CC(O)=[Ni] <=> O=CC#[Ni] + OC=[Ni],4.46297275239e-07
+105,O=C(O)OC(O)[Ni] + [Ni] <=> OC=[Ni] + O=C(O)O[Ni],4.30904028297e-07
+106,OC[Ni] + OCC(O)=[Ni] <=> OC=[Ni] + OCC(O)[Ni],4.23862428952e-07
+107,OC=[Ni] + O=CC(O)=[Ni] <=> OC#[Ni] + O=CC(O)[Ni],4.05304677021e-07
+108,OC[Ni] + O=[Ni] <=> OC=[Ni] + O[Ni],3.98484191985e-07
+109,OC(O)C(O)[Ni] + CC(O)=[Ni] <=> CC(O)[Ni] + OC(=[Ni])C(O)O,3.73130529009e-07
+110,OCOC=[Ni] + OCC(O)(O)[Ni] <=> OCOC(O)[Ni] + OCC(O)=[Ni],3.72970428954e-07
+111,C#[Ni] + O=CC(O)=[Ni] <=> OC#[Ni] + O=CC=[Ni],3.66714298273e-07
+112,O=C[Ni] + [Ni] <=> [Ni] + O=C=[Ni],3.5886625059e-07
+113,CC[Ni] + C=[Ni] <=> CC=[Ni] + C[Ni],3.43464043366e-07
+114,CC=[Ni] + OO[Ni] <=> O=[Ni] + CC(O)[Ni],3.01203309362e-07
+115,O=CC[Ni] + O=CC#[Ni] <=> 2 O=CC=[Ni],2.9788732427e-07
+116,OOC=[Ni] + OCC(O)(O)[Ni] <=> OOC(O)[Ni] + OCC(O)=[Ni],2.97013433472e-07
+117,C[Ni] + O=CC(O)=[Ni] <=> C=[Ni] + O=CC(O)[Ni],2.71869249383e-07
+118,OCOC(O)[Ni] + CC(O)=[Ni] <=> CC(O)[Ni] + OCOC(O)=[Ni],2.5437590547e-07
+119,C#[Ni] + O=CC=[Ni] <=> O=CC#[Ni] + C=[Ni],2.46939742243e-07
+120,C=[Ni] + CC(O)=[Ni] <=> CC[Ni] + OC#[Ni],2.4616152891e-07
+121,OC=[Ni] + O=CC=[Ni] <=> O=CC#[Ni] + OC[Ni],2.44884645206e-07
+122,C=[Ni] + CC(O)=[Ni] <=> C#[Ni] + CC(O)[Ni],2.2805355255e-07
+123,C[Ni] + CC(O)=[Ni] <=> C=[Ni] + CC(O)[Ni],2.0185669533e-07
+124,C[Ni] + OOC=[Ni] <=> C=[Ni] + OOC[Ni],1.87001560594e-07
+125,OCC(O)[Ni] + OC(=[Ni])C(O)O <=> OC(O)C(O)[Ni] + OCC(O)=[Ni],1.85634917601e-07
+126,OC#[Ni] + O=CC(O)[Ni] <=> OC=[Ni] + O=CC(O)=[Ni],1.82860806487e-07
+127,OC=[Ni] + OOC=[Ni] <=> OC#[Ni] + OOC[Ni],1.73998243592e-07
+128,O=[Ni] + O=CC(O)[Ni] <=> OC=[Ni] + O=CO[Ni],1.67884268528e-07
+129,O=C([Ni])OO + [Ni] <=> OO[Ni] + O=C=[Ni],1.6645857134e-07
+130,OCOC[Ni] + OC(O)=[Ni] <=> OC(O)[Ni] + OCOC=[Ni],1.58977955338e-07
+131,CC=[Ni] + [Ni] <=> C[Ni] + C#[Ni],1.49940125874e-07
+132,CC=[Ni] + OC(=[Ni])C(O)O <=> CC#[Ni] + OC(O)C(O)[Ni],1.4613965849e-07
+133,OC=[Ni] + OCOC=[Ni] <=> OC#[Ni] + OCOC[Ni],1.44619266997e-07
+134,OC=[Ni] + OOC(O)=[Ni] <=> OC#[Ni] + OOC(O)[Ni],1.42553552818e-07
+135,C=[Ni] + OCOC(O)=[Ni] <=> C#[Ni] + OCOC(O)[Ni],1.37727755096e-07
+136,[H][H] + [Ni] <=> [H][H].[Ni],1.3534643438e-07
+137,OC[Ni] + OCOC=[Ni] <=> C=[Ni] + OCOC(O)[Ni],1.34496356243e-07
+138,O=C=[Ni] + CC(O)=[Ni] <=> CC#[Ni] + O=C(O)[Ni],1.30472979338e-07
+139,CC=[Ni] + [Ni] <=> CC#[Ni] + [Ni],1.26817974916e-07
+140,OOC[Ni] + OCOC(O)=[Ni] <=> OOC=[Ni] + OCOC(O)[Ni],1.25435372689e-07
+141,OCOC(O)[Ni] + [Ni] <=> O[Ni] + OCOC=[Ni],1.25381663987e-07
+142,O=C(O)[Ni] + O=[Ni] <=> OO[Ni] + O=C=[Ni],1.2376264372e-07
+143,OC=[Ni] + OC[Ni] <=> C=[Ni] + OC(O)[Ni],1.23267436064e-07
+144,O=C[Ni] + O=CC=[Ni] <=> O=CC[Ni] + O=C=[Ni],1.21071683825e-07
+145,O=CC[Ni] + OCOC(O)=[Ni] <=> OCOC(O)[Ni] + O=CC=[Ni],1.20197985204e-07
+146,OC(O)=[Ni] + O=CC=[Ni] <=> OC#[Ni] + O=CC(O)[Ni],1.19144877064e-07
+147,CC[Ni] + OC(=[Ni])C(O)O <=> CC=[Ni] + OC(O)C(O)[Ni],1.17139201339e-07
+148,OCC(O)[Ni] + [Ni] <=> OC=[Ni] + OC[Ni],1.16727214094e-07
+149,OC[Ni] + OOC(O)=[Ni] <=> OC=[Ni] + OOC(O)[Ni],1.14139883421e-07
+150,CC=[Ni] + O=C[Ni] <=> CC[Ni] + O=C=[Ni],1.138370005e-07
+151,CC=[Ni] + OC(O)=[Ni] <=> CC#[Ni] + OC(O)[Ni],1.13639018022e-07
+152,OOC(O)=[Ni] + O=CC=[Ni] <=> O=CC#[Ni] + OOC(O)[Ni],1.12848250866e-07
+153,O=CC[Ni] + O=C(O)OC(O)=[Ni] <=> O=CC=[Ni] + O=C(O)OC(O)[Ni],1.12768690737e-07
+154,OCOC[Ni] + CC(O)=[Ni] <=> OCOC=[Ni] + CC(O)[Ni],1.12336197837e-07
+155,CC(C)[Ni] + OC=[Ni] <=> CC=[Ni] + CC(O)[Ni],1.12067012833e-07
+156,C=C + [Ni] <=> C=C.[Ni],1.10199117594e-07
+157,O=C[Ni] + OOC=[Ni] <=> O=C=[Ni] + OOC[Ni],1.09950683725e-07
+158,OCOC[Ni] + O=C(O)OC(O)=[Ni] <=> OCOC=[Ni] + O=C(O)OC(O)[Ni],1.09834516014e-07
+159,OOC(O)=[Ni] + O=C(O)OC(O)[Ni] <=> OOC(O)[Ni] + O=C(O)OC(O)=[Ni],1.09718821362e-07
+160,OC#[Ni] + O=C(O)OC(O)[Ni] <=> OC=[Ni] + O=C(O)OC(O)=[Ni],1.0921028665e-07
+161,C=[Ni] + OC(=[Ni])C(O)O <=> C#[Ni] + OC(O)C(O)[Ni],1.09185509175e-07
+162,OOC=[Ni] + OCOC(O)[Ni] <=> OCOC=[Ni] + OOC(O)[Ni],1.08008243751e-07
+163,OCOC=[Ni] + CC(O)=[Ni] <=> CC#[Ni] + OCOC(O)[Ni],1.070023326e-07
+164,OC#[Ni] + OCC[Ni] <=> C=[Ni] + OCC(O)=[Ni],1.06845222856e-07
+165,CC=[Ni] + O=[Ni] <=> CC#[Ni] + O[Ni],1.06532175977e-07
+166,OCC(O)=[Ni] + O=CC=[Ni] <=> O=CC#[Ni] + OCC(O)[Ni],1.05696056921e-07
+167,C=O + [Ni] <=> C=O.[Ni],1.05509961471e-07
+168,OCO + [Ni] <=> OCO.[Ni],1.05338841774e-07
+169,CC(O)[Ni] + [Ni] <=> [Ni] + CC(O)=[Ni],1.05328849387e-07
+170,OC(O)=[Ni] + O=C(O)OC(O)[Ni] <=> OC(O)[Ni] + O=C(O)OC(O)=[Ni],1.05291306397e-07
+171,O=CC=[Ni] + O=CC(O)=[Ni] <=> O=CC#[Ni] + O=CC(O)[Ni],1.05185719426e-07
+172,CC(O)C(O)=[Ni] + [Ni] <=> OC#[Ni] + CC(O)[Ni],1.04914195684e-07
+173,C=[Ni] + OOC=[Ni] <=> C#[Ni] + OOC[Ni],1.0475410772e-07
+174,OCC(O)=[Ni] + O=CC(O)[Ni] <=> O=CC=[Ni] + OCC(O)(O)[Ni],1.03041034863e-07
+175,C=[Ni] + O=CC(O)=[Ni] <=> O=CC#[Ni] + OC[Ni],1.02896591131e-07
+176,O=[Ni] + OCC[Ni] <=> C=[Ni] + OCO[Ni],1.02830340909e-07
+177,CC=[Ni] + O=CC(O)=[Ni] <=> CC#[Ni] + O=CC(O)[Ni],1.0231706185e-07
+178,O=CC[Ni] + CC=[Ni] <=> CC[Ni] + O=CC=[Ni],1.02130273742e-07
+179,CC=[Ni] + C=[Ni] <=> CC#[Ni] + C[Ni],1.0110280566e-07
+180,CC=[Ni] + OCOC(O)[Ni] <=> OCOC=[Ni] + CC(O)[Ni],1.00768427068e-07
+181,OCC(O)(O)[Ni] + [Ni] <=> OC[Ni] + OC(O)=[Ni],1.0066975958e-07
+182,OC(=[Ni])C(O)O + O=CC=[Ni] <=> O=CC#[Ni] + OC(O)C(O)[Ni],1.0036689813e-07
+183,OC=[Ni] + O=C([Ni])C(O)O <=> O=C=[Ni] + OC(O)C(O)[Ni],1.00356684102e-07
+184,OOC[Ni] + CC(O)=[Ni] <=> OOC=[Ni] + CC(O)[Ni],9.87802965868e-08
+185,CCO + 2 [Ni] <=> [Ni] + OCC[Ni],9.82451647261e-08
+186,O=CC#[Ni] + [Ni] <=> C~[Ni] + O=C[Ni],9.66548829222e-08
+187,C~[Ni] + O=CC(O)=[Ni] <=> O=CC#[Ni] + OC#[Ni],9.62833893346e-08
+188,C + [Ni] <=> C.[Ni],9.60089755651e-08
+189,CC=[Ni] + OC(O)=[Ni] <=> OC#[Ni] + CC(O)[Ni],9.57008308914e-08
+190,CCO + [Ni] <=> CCO.[Ni],9.53053712184e-08
+191,O=CC[Ni] + OOC=[Ni] <=> OOC[Ni] + O=CC=[Ni],9.49509565567e-08
+192,O=CC[Ni] + OC=[Ni] <=> C=[Ni] + O=CC(O)[Ni],9.44629019397e-08
+193,CO[Ni] + [Ni] <=> C[Ni] + O=[Ni],9.40793058383e-08
+194,OC[Ni] + OOC=[Ni] <=> C=[Ni] + OOC(O)[Ni],9.40747680023e-08
+195,CCC + 2 [Ni] <=> CC(C)[Ni] + [Ni],9.38468506764e-08
+196,C=[Ni] + O=CC(O)=[Ni] <=> C#[Ni] + O=CC(O)[Ni],9.36863391548e-08
+197,C~[Ni] + CC(O)=[Ni] <=> CC#[Ni] + OC#[Ni],9.29388507289e-08
+198,O=CC[Ni] + OC(=[Ni])C(O)O <=> OC(O)C(O)[Ni] + O=CC=[Ni],9.20088193135e-08
+199,O=CC[Ni] + OC(O)=[Ni] <=> OC(O)[Ni] + O=CC=[Ni],9.15869598384e-08
+200,CC[Ni] + O=[Ni] <=> CC=[Ni] + O[Ni],9.14540912458e-08
+201,OC[Ni] + OCC(O)=[Ni] <=> C=[Ni] + OCC(O)(O)[Ni],9.08558738142e-08
+202,OC[Ni] + CC(O)=[Ni] <=> OC=[Ni] + CC(O)[Ni],9.07064593586e-08
+203,O=C=[Ni] + OCC(O)C(O)=[Ni] <=> OC#[Ni] + O=C([Ni])C(O)CO,9.03993047776e-08
+204,OO[Ni] + [Ni] <=> O[Ni] + O=[Ni],8.94743270255e-08
+205,CC=[Ni] + O=CC(O)=[Ni] <=> O=CC#[Ni] + CC(O)[Ni],8.8830472342e-08
+206,O=C=[Ni] + O=CC(O)=[Ni] <=> O=CC#[Ni] + O=C(O)[Ni],8.8684594009e-08
+207,OOC(O)[Ni] + OC(=[Ni])C(O)O <=> OC(O)C(O)[Ni] + OOC(O)=[Ni],8.82231773718e-08
+208,CC[Ni] + O=CC(O)=[Ni] <=> CC=[Ni] + O=CC(O)[Ni],8.80997553111e-08
+209,OCOC(O)[Ni] + OC(=[Ni])C(O)O <=> OC(O)C(O)[Ni] + OCOC(O)=[Ni],8.7133518025e-08
+210,C=[Ni] + OOC(O)=[Ni] <=> C#[Ni] + OOC(O)[Ni],8.69946398558e-08
+211,O=CC[Ni] + C=[Ni] <=> C[Ni] + O=CC=[Ni],8.68265776413e-08
+212,OOC[Ni] + OC(=[Ni])C(O)O <=> OOC=[Ni] + OC(O)C(O)[Ni],8.6335366749e-08
+213,C=[Ni] + OCOC=[Ni] <=> C#[Ni] + OCOC[Ni],8.57512360745e-08
+214,CC[Ni] + C~[Ni] <=> CC#[Ni] + C=[Ni],8.56202307453e-08
+215,O=[Ni] + CC(O)=[Ni] <=> CC#[Ni] + OO[Ni],8.55522492612e-08
+216,OC=[Ni] + CO[Ni] <=> O=[Ni] + CC(O)[Ni],8.52796660384e-08
+217,OC(=[Ni])C(O)O + [Ni] <=> OC#[Ni] + OC(O)[Ni],8.52706388827e-08
+218,CC=[Ni] + O=CC(O)[Ni] <=> CC(O)[Ni] + O=CC=[Ni],8.40428943492e-08
+219,OC[Ni] + OCOC=[Ni] <=> OC=[Ni] + OCOC[Ni],8.40222953379e-08
+220,C~[Ni] + O=C(O)[Ni] <=> OC#[Ni] + O=C=[Ni],8.38787459113e-08
+221,CCC + 2 [Ni] <=> CCC[Ni] + [Ni],8.35429984916e-08
+222,OOC=[Ni] + O=CC(O)[Ni] <=> OOC(O)[Ni] + O=CC=[Ni],8.32302227954e-08
+223,OCC(O)[Ni] + O=C(O)OC(O)=[Ni] <=> OCC(O)=[Ni] + O=C(O)OC(O)[Ni],8.25163098324e-08
+224,OC(O)=[Ni] + O=CC(O)=[Ni] <=> O=CC#[Ni] + OC(O)(O)[Ni],8.23975801042e-08
+225,C=[Ni] + O=C([Ni])OO <=> O=C=[Ni] + OOC[Ni],8.22312693658e-08
+226,O=CC(O)[Ni] + [Ni] <=> [Ni] + O=CC(O)=[Ni],8.22208732692e-08
+227,CC=[Ni] + OOC(O)[Ni] <=> OOC=[Ni] + CC(O)[Ni],8.20647546483e-08
+228,OCC(O)=[Ni] + O=CC(O)=[Ni] <=> O=CC#[Ni] + OCC(O)(O)[Ni],8.17581588336e-08
+229,OOC=[Ni] + O=CC(O)=[Ni] <=> O=CC#[Ni] + OOC(O)[Ni],8.17215499972e-08
+230,OC(O)=[Ni] + CC(O)=[Ni] <=> CC#[Ni] + OC(O)(O)[Ni],8.14156656497e-08
+231,CC(O)=[Ni] + O=C(O)OC(O)[Ni] <=> CC(O)[Ni] + O=C(O)OC(O)=[Ni],8.10563052075e-08
+232,OC#[Ni] + O=CC=[Ni] <=> C~[Ni] + O=CC(O)[Ni],8.06454783892e-08
+233,O=CC[Ni] + O=[Ni] <=> C=[Ni] + O=CO[Ni],8.06237879294e-08
+234,CC(O)[Ni] + [Ni] <=> CC=[Ni] + O[Ni],8.0377989553e-08
+235,C~[Ni] + O[Ni] <=> [Ni] + O=C=[Ni],8.01382525097e-08
+236,CC[Ni] + OC=[Ni] <=> C=[Ni] + CC(O)[Ni],7.96535957619e-08
+237,OC=[Ni] + OC(=[Ni])C(O)O <=> OC#[Ni] + OC(O)C(O)[Ni],7.92914238288e-08
+238,CC=[Ni] + CC(O)=[Ni] <=> CC(C)[Ni] + OC#[Ni],7.87028368299e-08
+239,OCC(O)[Ni] + OCOC(O)=[Ni] <=> OCOC(O)[Ni] + OCC(O)=[Ni],7.87019282223e-08
+240,OC(=[Ni])C(O)O + O=CC(O)[Ni] <=> OC(O)C(O)[Ni] + O=CC(O)=[Ni],7.76687988981e-08
+241,O=CC#[Ni] + O=C[Ni] <=> O=C=[Ni] + O=CC=[Ni],7.7590769074e-08
+242,CC[Ni] + OOC(O)=[Ni] <=> CC=[Ni] + OOC(O)[Ni],7.71371800197e-08
+243,O=CC[Ni] + C~[Ni] <=> C#[Ni] + O=CC=[Ni],7.70117743384e-08
+244,OCOC=[Ni] + OC(O)=[Ni] <=> OC#[Ni] + OCOC(O)[Ni],7.68993521682e-08
+245,O=CC#[Ni] + O=CC(O)[Ni] <=> O=CC=[Ni] + O=CC(O)=[Ni],7.62066753835e-08
+246,O=CC[Ni] + O=CC(O)=[Ni] <=> O=CC=[Ni] + O=CC(O)[Ni],7.60713075718e-08
+247,O[Ni] + O=C(O)OC(O)=[Ni] <=> O=[Ni] + O=C(O)OC(O)[Ni],7.5961591959e-08
+248,CC[Ni] + OCOC(O)=[Ni] <=> CC=[Ni] + OCOC(O)[Ni],7.55437273206e-08
+249,OC[Ni] + OC(=[Ni])C(O)O <=> OC=[Ni] + OC(O)C(O)[Ni],7.5249457308e-08
+250,[C-]#[O+] + [Ni] <=> [C-]#[O+].[Ni],7.48798612543e-08
+251,O=CC[Ni] + [Ni] <=> [Ni] + O=CC=[Ni],7.45010429049e-08
+252,C[Ni] + OOC(O)=[Ni] <=> C=[Ni] + OOC(O)[Ni],7.44890662532e-08
+253,OC[Ni] + [Ni] <=> C=[Ni] + O[Ni],7.44379875338e-08
+254,C=[Ni] + O=C(O)OC(O)=[Ni] <=> C#[Ni] + O=C(O)OC(O)[Ni],7.40982360915e-08
+255,O=C[Ni] + OCC(O)=[Ni] <=> O=C=[Ni] + OCC(O)[Ni],7.3837522107e-08
+256,C#[Ni] + OCOC(O)=[Ni] <=> OC#[Ni] + OCOC=[Ni],7.36887280629e-08
+257,OOC=[Ni] + O=CC=[Ni] <=> O=CC#[Ni] + OOC[Ni],7.36542675796e-08
+258,O=C[Ni] + OOC(O)=[Ni] <=> O=C=[Ni] + OOC(O)[Ni],7.36230145268e-08
+259,C~[Ni] + O=C[Ni] <=> C#[Ni] + O=C=[Ni],7.30735345581e-08
+260,C~[Ni] + O=CC=[Ni] <=> O=CC#[Ni] + C#[Ni],7.29694282335e-08
+261,OC=[Ni] + O=C[Ni] <=> OC[Ni] + O=C=[Ni],7.29038272502e-08
+262,OCOC=[Ni] + O=CC(O)[Ni] <=> OCOC(O)[Ni] + O=CC=[Ni],7.17664382607e-08
+263,O=C(CO)C(O)=[Ni] + [Ni] <=> OC#[Ni] + O=C([Ni])CO,7.17429280749e-08
+264,O=C(O)O + [Ni] <=> O=C(O)O.[Ni],7.16657068676e-08
+265,OC(O)=[Ni] + O=CC=[Ni] <=> O=CC#[Ni] + OC(O)[Ni],7.16639853152e-08
+266,OCOC=[Ni] + O=CC(O)=[Ni] <=> O=CC#[Ni] + OCOC(O)[Ni],7.15871798117e-08
+267,C=[Ni] + O=C[Ni] <=> C[Ni] + O=C=[Ni],7.13845355286e-08
+268,OOC[Ni] + [Ni] <=> [Ni] + OOC=[Ni],7.13669665218e-08
+269,O=C=[Ni] + OOC(O)=[Ni] <=> O=C([Ni])OO + OC#[Ni],7.12878231458e-08
+270,OCO[Ni] + [Ni] <=> OC[Ni] + O=[Ni],7.07667098472e-08
+271,OOC[Ni] + OCOC=[Ni] <=> OOC=[Ni] + OCOC[Ni],7.07616153459e-08
+272,O=C=O + [Ni] <=> O=C=O.[Ni],7.03873209723e-08
+273,O=CC=[Ni] + OC(O)(O)[Ni] <=> OC(O)=[Ni] + O=CC(O)[Ni],6.98662464051e-08
+274,O=CC(O)=[Ni] + [Ni] <=> OC#[Ni] + O=C[Ni],6.98153097916e-08
+275,C[Ni] + OCOC=[Ni] <=> C=[Ni] + OCOC[Ni],6.97178022672e-08
+276,OC=[Ni] + O=C(O)OC(O)=[Ni] <=> OC#[Ni] + O=C(O)OC(O)[Ni],6.97009025401e-08
+277,OC#[Ni] + OC(O)C(O)[Ni] <=> OC=[Ni] + OC(=[Ni])C(O)O,6.93702713039e-08
+278,CC=[Ni] + OC=[Ni] <=> C#[Ni] + CC(O)[Ni],6.92365613629e-08
+279,CC=[Ni] + OC#[Ni] <=> C~[Ni] + CC(O)[Ni],6.8722754876e-08
+280,O=C=[Ni] + OCC[Ni] <=> C=[Ni] + O=C([Ni])CO,6.86279875688e-08
+281,OOC[Ni] + O=C(O)OC(O)=[Ni] <=> OOC=[Ni] + O=C(O)OC(O)[Ni],6.82516819445e-08
+282,CC=[Ni] + C~[Ni] <=> CC#[Ni] + C#[Ni],6.80318354011e-08
+283,C#[Ni] + CC(O)=[Ni] <=> CC#[Ni] + OC=[Ni],6.74754962578e-08
+284,OCC[Ni] + [Ni] <=> C=[Ni] + OC[Ni],6.7399502434e-08
+285,O=C=[Ni] + OC(=[Ni])C(O)O <=> OC#[Ni] + O=C([Ni])C(O)O,6.71698324337e-08
+286,CC=[Ni] + CC(O)=[Ni] <=> CC#[Ni] + CC(O)[Ni],6.68880359377e-08
+287,O=C([Ni])C(O)CO + [Ni] <=> O=C=[Ni] + OCC(O)[Ni],6.68219257652e-08
+288,C[Ni] + O=C(O)OC(O)=[Ni] <=> C=[Ni] + O=C(O)OC(O)[Ni],6.61351629958e-08
+289,CC(C)[Ni] + [Ni] <=> CC=[Ni] + C[Ni],6.56294715927e-08
+290,O=C=[Ni] + OOC=[Ni] <=> O=C([Ni])OO + C#[Ni],6.52146275687e-08
+291,CC=[Ni] + OC=[Ni] <=> CC#[Ni] + OC[Ni],6.42587734333e-08
+292,OC=[Ni] + OOC=[Ni] <=> C#[Ni] + OOC(O)[Ni],6.38396975776e-08
+293,O=C[Ni] + O[Ni] <=> O=C(O)[Ni] + [Ni],6.37898663393e-08
+294,OC(O)[Ni] + [Ni] <=> [Ni] + OC(O)=[Ni],6.37795437662e-08
+295,OC=[Ni] + O=CC(O)=[Ni] <=> O=CC#[Ni] + OC(O)[Ni],6.3767683418e-08
+296,CC(O)C(=O)[Ni] + [Ni] <=> O=C=[Ni] + CC(O)[Ni],6.36218653864e-08
+297,O=[Ni] + CC(O)=[Ni] <=> CO[Ni] + OC#[Ni],6.32138169118e-08
+298,CC=[Ni] + OCC(O)(O)[Ni] <=> CC(O)[Ni] + OCC(O)=[Ni],6.29022497943e-08
+299,O[Ni] + OOC(O)=[Ni] <=> O=[Ni] + OOC(O)[Ni],6.23025149485e-08
+300,O=C(O)[Ni] + OCC(O)=[Ni] <=> O=C=[Ni] + OCC(O)(O)[Ni],6.20887173534e-08
+301,O=[Ni] + O=CC=[Ni] <=> O=CC#[Ni] + O[Ni],6.1201713131e-08
+302,O=CC(O)[Ni] + O=C(O)OC(O)=[Ni] <=> O=CC(O)=[Ni] + O=C(O)OC(O)[Ni],6.10072764367e-08
+303,CC=[Ni] + O=CC=[Ni] <=> O=CC[Ni] + CC#[Ni],6.10008240913e-08
+304,OC[Ni] + OCOC(O)=[Ni] <=> OC=[Ni] + OCOC(O)[Ni],6.09940312396e-08
+305,CC[Ni] + OC(O)=[Ni] <=> CC=[Ni] + OC(O)[Ni],6.08069418001e-08
+306,O=[Ni] + O=CC(O)=[Ni] <=> O=CO[Ni] + OC#[Ni],6.08049713922e-08
+307,O=C(O)OC(O)[Ni] + [Ni] <=> [Ni] + O=C(O)OC(O)=[Ni],6.03690016155e-08
+308,O=[Ni] + O=CC(O)=[Ni] <=> O=CC#[Ni] + OO[Ni],5.85971280038e-08
+309,OCC(O)=[Ni] + OC(O)(O)[Ni] <=> OC(O)=[Ni] + OCC(O)(O)[Ni],5.85110861852e-08
+310,CC=[Ni] + OCC(O)=[Ni] <=> CC#[Ni] + OCC(O)[Ni],5.82465695795e-08
+311,CC(O)=[Ni] + O=CC=[Ni] <=> CC#[Ni] + O=CC(O)[Ni],5.7511360747e-08
+312,CC=[Ni] + OC(O)(O)[Ni] <=> OC(O)=[Ni] + CC(O)[Ni],5.70631541532e-08
+313,O=C=[Ni] + CC(O)=[Ni] <=> CC(=O)[Ni] + OC#[Ni],5.69928061682e-08
+314,CC=[Ni] + OOC(O)=[Ni] <=> CC#[Ni] + OOC(O)[Ni],5.63325091322e-08
+315,CC=[Ni] + OC#[Ni] <=> C#[Ni] + CC(O)=[Ni],5.63024745223e-08
+316,CC + [Ni] <=> CC.[Ni],5.62570674563e-08
+317,C#[Ni] + O=C[Ni] <=> C=[Ni] + O=C=[Ni],5.612514105e-08
+318,O=CC[Ni] + [Ni] <=> C=[Ni] + O=C[Ni],5.60503239366e-08
+319,CC=[Ni] + O=C=[Ni] <=> CC#[Ni] + O=C[Ni],5.56354493162e-08
+320,CC=[Ni] + OCOC=[Ni] <=> CC#[Ni] + OCOC[Ni],5.51903995943e-08
+321,OCC(O)C(O)=[Ni] + [Ni] <=> OC#[Ni] + OCC(O)[Ni],5.44132334536e-08
+322,O=C=[Ni] + O=[Ni] <=> O=C=O + 2 [Ni],5.41290570226e-08
+323,CC[Ni] + OOC=[Ni] <=> CC=[Ni] + OOC[Ni],5.4128644475e-08
+324,CCC[Ni] + [Ni] <=> CC[Ni] + C=[Ni],5.40427661745e-08
+325,O=CC[Ni] + OCC(O)=[Ni] <=> OCC(O)[Ni] + O=CC=[Ni],5.38854119662e-08
+326,CO[Ni] + C~[Ni] <=> CC#[Ni] + O=[Ni],5.36851893297e-08
+327,O=[Ni] + O=C([Ni])CO <=> O=C=[Ni] + OCO[Ni],5.34341235102e-08
+328,OC=[Ni] + OCOC=[Ni] <=> C#[Ni] + OCOC(O)[Ni],5.33372877557e-08
+329,C#[Ni] + OC(=[Ni])C(O)O <=> C~[Ni] + OC(O)C(O)[Ni],5.2836102764e-08
+330,O=C[Ni] + OC(=[Ni])C(O)O <=> O=C=[Ni] + OC(O)C(O)[Ni],5.22535751148e-08
+331,2 CC=[Ni] <=> CC(C)[Ni] + C#[Ni],5.18075670113e-08
+332,OC=[Ni] + CC(O)=[Ni] <=> CC#[Ni] + OC(O)[Ni],5.17881464966e-08
+333,CC=[Ni] + CC[Ni] <=> CC(C)[Ni] + C=[Ni],5.07038215668e-08
+334,CC=[Ni] + OCOC(O)=[Ni] <=> CC#[Ni] + OCOC(O)[Ni],5.03113195534e-08
+335,O=CC=[Ni] + O=C(O)OC(O)=[Ni] <=> O=CC#[Ni] + O=C(O)OC(O)[Ni],5.00977493247e-08
+336,O=C([Ni])C(O)O + [Ni] <=> O=C=[Ni] + OC(O)[Ni],5.00477849716e-08
+337,OC=[Ni] + OCC(O)=[Ni] <=> C#[Ni] + OCC(O)(O)[Ni],4.99466597517e-08
+338,OC(O)(O)[Ni] + [Ni] <=> O[Ni] + OC(O)=[Ni],4.93243598464e-08
+339,O=C[Ni] + OC(O)=[Ni] <=> O=C=[Ni] + OC(O)[Ni],4.91647098237e-08
+340,CC[Ni] + CC(O)=[Ni] <=> CC=[Ni] + CC(O)[Ni],4.89399087586e-08
+341,C#[Ni] + O=C(O)OC(O)=[Ni] <=> C~[Ni] + O=C(O)OC(O)[Ni],4.87141203557e-08
+342,OC=[Ni] + OCOC(O)=[Ni] <=> OC#[Ni] + OCOC(O)[Ni],4.82829561101e-08
+343,O=C[Ni] + O=C(O)OC(O)=[Ni] <=> O=C=[Ni] + O=C(O)OC(O)[Ni],4.80627358111e-08
+344,OCOC[Ni] + [Ni] <=> [Ni] + OCOC=[Ni],4.78319444983e-08
+345,OC(=[Ni])C(O)O + O=C(O)OC(O)[Ni] <=> OC(O)C(O)[Ni] + O=C(O)OC(O)=[Ni],4.75882440138e-08
+346,C=[Ni] + OOC(O)=[Ni] <=> OC#[Ni] + OOC[Ni],4.75533844274e-08
+347,CC=[Ni] + O=[Ni] <=> CO[Ni] + C#[Ni],4.72298960729e-08
+348,CC=[Ni] + OC[Ni] <=> CC[Ni] + OC=[Ni],4.66544679392e-08
+349,CO[Ni] + O=C=[Ni] <=> CC(=O)[Ni] + O=[Ni],4.66050665991e-08
+350,OC[Ni] + [Ni] <=> OC=[Ni] + [Ni],4.657818237e-08
+351,OCOC=[Ni] + O=CC=[Ni] <=> O=CC#[Ni] + OCOC[Ni],4.61761919909e-08
+352,OC[Ni] + O=C(O)OC(O)=[Ni] <=> OC=[Ni] + O=C(O)OC(O)[Ni],4.61390646228e-08
+353,O=CCO + [Ni] <=> O=CCO.[Ni],4.54699757034e-08
+354,O=C[Ni] + OCOC=[Ni] <=> O=C=[Ni] + OCOC[Ni],4.51416777093e-08
+355,OCOC(O)=[Ni] + O=CC=[Ni] <=> O=CC#[Ni] + OCOC(O)[Ni],4.49613056251e-08
+356,OCOC(O)=[Ni] + O=C(O)OC(O)[Ni] <=> OCOC(O)[Ni] + O=C(O)OC(O)=[Ni],4.49600390589e-08
+357,O=C(O)[Ni] + OC(O)=[Ni] <=> O=C=[Ni] + OC(O)(O)[Ni],4.46510414369e-08
+358,CC[Ni] + [Ni] <=> CC=[Ni] + [Ni],4.41521628783e-08
+359,OC#[Ni] + OCOC=[Ni] <=> C~[Ni] + OCOC(O)[Ni],4.41301871137e-08
+360,O=CO + [Ni] <=> O=CO.[Ni],4.37280628238e-08
+361,O=C(O)[Ni] + O=CC=[Ni] <=> O=C=[Ni] + O=CC(O)[Ni],4.35657003611e-08
+362,OC#[Ni] + OOC=[Ni] <=> C~[Ni] + OOC(O)[Ni],4.33187099181e-08
+363,O=CO[Ni] + [Ni] <=> O=C[Ni] + O=[Ni],4.31049021451e-08
+364,OCOC[Ni] + OCOC(O)=[Ni] <=> OCOC=[Ni] + OCOC(O)[Ni],4.25120858449e-08
+365,OC[Ni] + OC(O)=[Ni] <=> C=[Ni] + OC(O)(O)[Ni],4.24628732032e-08
+366,O=C(O)[Ni] + OCOC=[Ni] <=> O=C=[Ni] + OCOC(O)[Ni],4.18557890806e-08
+367,O=CC=[Ni] + [Ni] <=> C#[Ni] + O=C[Ni],4.18189330821e-08
+368,O[Ni] + OCOC=[Ni] <=> O=[Ni] + OCOC[Ni],4.16520087544e-08
+369,O=CC[Ni] + OOC(O)=[Ni] <=> OOC(O)[Ni] + O=CC=[Ni],4.16373023553e-08
+370,CC=[Ni] + O=C(O)OC(O)=[Ni] <=> CC#[Ni] + O=C(O)OC(O)[Ni],4.0526715791e-08
+371,C=[Ni] + O=C(O)[Ni] <=> OC[Ni] + O=C=[Ni],4.0321597362e-08
+372,2 OC(O)=[Ni] <=> OC#[Ni] + OC(O)(O)[Ni],3.97929167525e-08
+373,CC[Ni] + O=[Ni] <=> C=[Ni] + CO[Ni],3.95210695521e-08
+374,CC=[Ni] + OOC=[Ni] <=> CC#[Ni] + OOC[Ni],3.88686785954e-08
+375,C#[Ni] + O=[Ni] <=> O=C[Ni] + [Ni],3.8654291359e-08
+376,OC#[Ni] + [Ni] <=> C~[Ni] + O[Ni],3.65780147256e-08
+377,OC[Ni] + OOC=[Ni] <=> OC=[Ni] + OOC[Ni],3.65137402203e-08
+378,CC(C)[Ni] + C~[Ni] <=> CC#[Ni] + CC=[Ni],3.63207527263e-08
+379,CC(=O)[Ni] + [Ni] <=> C[Ni] + O=C=[Ni],3.62617371461e-08
+380,CC(O)=[Ni] + [Ni] <=> CC#[Ni] + O[Ni],3.61504728066e-08
+381,OO + [Ni] <=> OO.[Ni],3.60953893064e-08
+382,O=CC(O)[Ni] + [Ni] <=> OC=[Ni] + O=C[Ni],3.60591691372e-08
+383,O=C[Ni] + CC(O)=[Ni] <=> O=C=[Ni] + CC(O)[Ni],3.53423210742e-08
+384,CC[Ni] + OCC(O)=[Ni] <=> CC=[Ni] + OCC(O)[Ni],3.5245992619e-08
+385,CC[Ni] + O=C=[Ni] <=> CC(=O)[Ni] + C=[Ni],3.52013408935e-08
+386,C=[Ni] + OCOC(O)=[Ni] <=> OC#[Ni] + OCOC[Ni],3.32735270257e-08
+387,CC(C)[Ni] + O=[Ni] <=> CC=[Ni] + CO[Ni],3.31618462183e-08
+388,O=CC=[Ni] + [Ni] <=> O=CC#[Ni] + [Ni],3.22492714165e-08
+389,OOC(O)[Ni] + [Ni] <=> [Ni] + OOC(O)=[Ni],3.22005246323e-08
+390,O=CCO + 2 [Ni] <=> O=CC[Ni] + O[Ni],3.14418692965e-08
+391,C=[Ni] + CC(O)=[Ni] <=> CC#[Ni] + OC[Ni],3.04344847029e-08
+392,O=C[Ni] + O=[Ni] <=> O[Ni] + O=C=[Ni],3.03966397456e-08
+393,OC=[Ni] + O=C([Ni])OO <=> O=C=[Ni] + OOC(O)[Ni],2.98346677836e-08
+394,CC=[Ni] + O=C(O)[Ni] <=> O=C=[Ni] + CC(O)[Ni],2.96580894793e-08
+395,OOC=[Ni] + CC(O)=[Ni] <=> CC#[Ni] + OOC(O)[Ni],2.8757978705e-08
+396,CCC + [Ni] <=> CCC.[Ni],2.85919929862e-08
+397,C[Ni] + OC(=[Ni])C(O)O <=> C=[Ni] + OC(O)C(O)[Ni],2.84719925613e-08
+398,O=C=[Ni] + CC(O)C(O)=[Ni] <=> OC#[Ni] + CC(O)C(=O)[Ni],2.80539569886e-08
+399,O=CC[Ni] + OC#[Ni] <=> C=[Ni] + O=CC(O)=[Ni],2.72795247338e-08
+400,OC=[Ni] + O=CC=[Ni] <=> C#[Ni] + O=CC(O)[Ni],2.6283611948e-08
+401,OC[Ni] + O=[Ni] <=> C=[Ni] + OO[Ni],2.56785808816e-08
+402,CC#[Ni] + [Ni] <=> C[Ni] + C~[Ni],2.52387973184e-08
+403,OC[Ni] + C~[Ni] <=> C=[Ni] + OC#[Ni],2.50786908638e-08
+404,O=CC[Ni] + O=[Ni] <=> O[Ni] + O=CC=[Ni],2.39158068682e-08
+405,OOC(O)[Ni] + [Ni] <=> O[Ni] + OOC=[Ni],2.31245137551e-08
+406,CC(O)=[Ni] + O=CC=[Ni] <=> O=CC#[Ni] + CC(O)[Ni],2.1375096457e-08
+407,O[Ni] + OCOC(O)=[Ni] <=> O=[Ni] + OCOC(O)[Ni],2.13161235217e-08
+408,O=CC[Ni] + C~[Ni] <=> O=CC#[Ni] + C=[Ni],1.98564220582e-08
+409,O=C=[Ni] + OCC(O)=[Ni] <=> OC#[Ni] + O=C([Ni])CO,1.98417234977e-08
+410,O=CC(O)[Ni] + [Ni] <=> O[Ni] + O=CC=[Ni],1.80051223895e-08
+411,OCOC(O)[Ni] + [Ni] <=> [Ni] + OCOC(O)=[Ni],1.76832627639e-08
+412,CC[Ni] + [Ni] <=> C=[Ni] + C[Ni],1.73069952744e-08
+413,O=CC[Ni] + C#[Ni] <=> C=[Ni] + O=CC=[Ni],1.45226211822e-08
+414,O=CC[Ni] + OCOC=[Ni] <=> OCOC[Ni] + O=CC=[Ni],1.31731273209e-08
+415,O=C[Ni] + O=CC(O)=[Ni] <=> O=C=[Ni] + O=CC(O)[Ni],1.24331508124e-08
+416,OC(O)=[Ni] + OCC(O)=[Ni] <=> OC#[Ni] + OCC(O)(O)[Ni],1.18340482611e-08
+417,OCOC[Ni] + OC(=[Ni])C(O)O <=> OCOC=[Ni] + OC(O)C(O)[Ni],1.13823397199e-08
+418,CC=[Ni] + OC[Ni] <=> C=[Ni] + CC(O)[Ni],1.11933573239e-08
+419,O=[Ni] + OCC(O)=[Ni] <=> OC#[Ni] + OCO[Ni],1.09998539409e-08
+420,CC=[Ni] + O=C=[Ni] <=> CC(=O)[Ni] + C#[Ni],1.09327252271e-08
+421,O=C(O)O[Ni] + [Ni] <=> O=C(O)[Ni] + O=[Ni],9.7093498331e-09
+422,O[Ni] + OOC=[Ni] <=> O=[Ni] + OOC[Ni],9.21276098111e-09
+423,OC(O)C(O)[Ni] + [Ni] <=> [Ni] + OC(=[Ni])C(O)O,7.50125814587e-09
+424,OCC(O)(O)[Ni] + [Ni] <=> O[Ni] + OCC(O)=[Ni],6.71534994051e-09
+425,OC[Ni] + O=CC=[Ni] <=> C=[Ni] + O=CC(O)[Ni],6.326989988e-09
+426,CC[Ni] + OCOC=[Ni] <=> CC=[Ni] + OCOC[Ni],5.32680401331e-09
+427,O + [Ni] <=> O.[Ni],4.4521635855e-09
+428,OCC[Ni] + OC(O)=[Ni] <=> C=[Ni] + OCC(O)(O)[Ni],4.33824488356e-09
+429,O=[Ni] + O=CC=[Ni] <=> O=CO[Ni] + C#[Ni],2.79319206493e-09
+430,OCCO + [Ni] <=> OCCO.[Ni],1.02651662873e-09
+431,OCOC[Ni] + OCC(O)=[Ni] <=> OCOC=[Ni] + OCC(O)[Ni],6.5769506278e-10
+432,2 O=C=[Ni] <=> O=C=O + C~[Ni] + [Ni],0.0
+433,OCC(O)[Ni] + [Ni] <=> [Ni] + OCC(O)=[Ni],-1.80208654847e-10
+434,CC[Ni] + O=C(O)OC(O)=[Ni] <=> CC=[Ni] + O=C(O)OC(O)[Ni],-6.1999311687e-10
+435,C#[Ni] + O=C(O)[Ni] <=> OC=[Ni] + O=C=[Ni],-2.6534803635e-09
+436,OC[Ni] + O=CC(O)=[Ni] <=> OC=[Ni] + O=CC(O)[Ni],-5.14326212704e-09
+437,C=[Ni] + O=CC=[Ni] <=> O=CC#[Ni] + C[Ni],-6.3030871941e-09
+438,C[Ni] + OCOC(O)=[Ni] <=> C=[Ni] + OCOC(O)[Ni],-6.38750291167e-09
+439,O[Ni] + OC(=[Ni])C(O)O <=> O=[Ni] + OC(O)C(O)[Ni],-7.63331797254e-09
+440,CO + [Ni] <=> CO.[Ni],-7.67688439546e-09
+441,O=C[Ni] + OCOC(O)=[Ni] <=> O=C=[Ni] + OCOC(O)[Ni],-7.68547648298e-09
+442,O=CC[Ni] + CC(O)=[Ni] <=> CC(O)[Ni] + O=CC=[Ni],-7.69889047333e-09
+443,CC(C)[Ni] + O=C=[Ni] <=> CC(=O)[Ni] + CC=[Ni],-7.70918393556e-09
+444,O=CC#[Ni] + O=[Ni] <=> O=CO[Ni] + C~[Ni],-1.06201229002e-08
+445,CC(O)=[Ni] + OCC(O)=[Ni] <=> CC#[Ni] + OCC(O)(O)[Ni],-1.3426970702e-08
+446,O=C=[Ni] + [Ni] <=> C~[Ni] + O=[Ni],-1.38761447836e-08
+447,OCOC(O)=[Ni] + O=CC(O)[Ni] <=> OCOC(O)[Ni] + O=CC(O)=[Ni],-1.44261015353e-08
+448,CC=O + [Ni] <=> CC=O.[Ni],-1.9326697133e-08
+449,OOC=[Ni] + OC(O)=[Ni] <=> OC#[Ni] + OOC(O)[Ni],-2.94935949638e-08
+450,2 CC=[Ni] <=> CC#[Ni] + CC[Ni],-3.25247216784e-08
+451,O=C([Ni])CO + [Ni] <=> OC[Ni] + O=C=[Ni],-3.2934563561e-08
+452,OCOC[Ni] + OOC(O)=[Ni] <=> OCOC=[Ni] + OOC(O)[Ni],-3.44314337404e-08
+453,O[CH]CO + [Ni] <=> OCC(O)[Ni],-3.90546297406e-08
+454,O=CC[Ni] + OC=[Ni] <=> OC[Ni] + O=CC=[Ni],-4.00261350571e-08
+455,CC(=O)C(O)=[Ni] + [Ni] <=> CC(=O)[Ni] + OC#[Ni],-4.1108604081e-08
+456,OC=[Ni] + OC(O)=[Ni] <=> C#[Ni] + OC(O)(O)[Ni],-4.41361214781e-08
+457,OC=[Ni] + O=C(O)[Ni] <=> O=C=[Ni] + OC(O)[Ni],-4.47639337351e-08
+458,OCOC=[Ni] + O=CC(O)[Ni] <=> OCOC[Ni] + O=CC(O)=[Ni],-4.48632362626e-08
+459,O=C(O)[Ni] + OOC=[Ni] <=> O=C=[Ni] + OOC(O)[Ni],-4.57212553426e-08
+460,C#[Ni] + OOC(O)=[Ni] <=> OC#[Ni] + OOC=[Ni],-4.69607371913e-08
+461,O=[Ni] + OCC(O)(O)[Ni] <=> OCO[Ni] + OC(O)=[Ni],-5.87927327554e-08
+462,O[Ni] + O=CC(O)=[Ni] <=> O=[Ni] + O=CC(O)[Ni],-6.29987033096e-08
+463,OC=[Ni] + OCC[Ni] <=> C=[Ni] + OCC(O)[Ni],-6.3770738325e-08
+464,C[CH]O + [Ni] <=> CC(O)[Ni],-6.39806501383e-08
+465,CC=[Ni] + O=CC=[Ni] <=> CC[Ni] + O=CC#[Ni],-6.72437370816e-08
+466,OC=[Ni] + O=[Ni] <=> C#[Ni] + OO[Ni],-6.80647558752e-08
+467,O=CO + 2 [Ni] <=> O=C[Ni] + O[Ni],-7.14034665144e-08
+468,OOC[Ni] + OOC(O)=[Ni] <=> OOC=[Ni] + OOC(O)[Ni],-8.37426540141e-08
+469,OOC(O)[Ni] + OCOC(O)=[Ni] <=> OCOC(O)[Ni] + OOC(O)=[Ni],-1.05696001292e-07
+470,OOC=[Ni] + O=CC(O)[Ni] <=> OOC[Ni] + O=CC(O)=[Ni],-1.17868123284e-07
+471,O[Ni] + CC(O)=[Ni] <=> O=[Ni] + CC(O)[Ni],-1.48696186749e-07
+472,OC#[Ni] + O=C[Ni] <=> OC=[Ni] + O=C=[Ni],-1.67288860148e-07
+473,O=C([Ni])CO + OC(O)=[Ni] <=> O=C=[Ni] + OCC(O)(O)[Ni],-1.76703565616e-07
+474,2 O[Ni] <=> O + O=[Ni] + [Ni],-2.12917298231e-07
+475,CCC + 2 [Ni] <=> CC[Ni] + C[Ni],-2.17782789629e-07
+476,OOC(O)=[Ni] + O=CC(O)[Ni] <=> OOC(O)[Ni] + O=CC(O)=[Ni],-2.30067621043e-07
+477,OCC(O)[Ni] + CC(O)=[Ni] <=> CC(O)[Ni] + OCC(O)=[Ni],-2.96013993873e-07
+478,OC=[Ni] + C~[Ni] <=> OC#[Ni] + C#[Ni],-3.5447400519e-07
+479,CC[Ni] + C~[Ni] <=> CC=[Ni] + C#[Ni],-4.97774622153e-07
+480,CC(O)=[Ni] + O=CC(O)[Ni] <=> CC(O)[Ni] + O=CC(O)=[Ni],-5.76016494685e-07
+481,O=CO + 2 [Ni] <=> O=CO[Ni] + [Ni],-6.02222880269e-07
+482,O[Ni] + OCC(O)=[Ni] <=> O=[Ni] + OCC(O)[Ni],-7.38846842714e-07
+483,O=C(O)O + 2 [Ni] <=> O=C(O)O[Ni] + [Ni],-8.52154409478e-07
+484,2 C=[Ni] <=> C[Ni] + C#[Ni],-1.12867016512e-06
+485,CC=[Ni] + O=CC#[Ni] <=> CC#[Ni] + O=CC=[Ni],-1.65762274348e-06
+486,CO + 2 [Ni] <=> CO[Ni] + [Ni],-2.49644664156e-06
+487,C#[Ni] + OCOC(O)=[Ni] <=> C~[Ni] + OCOC(O)[Ni],-2.94599699051e-06
+488,O[Ni] + OC(O)=[Ni] <=> O=[Ni] + OC(O)[Ni],-2.99630843597e-06
+489,OCC(O)[Ni] + OOC(O)=[Ni] <=> OOC(O)[Ni] + OCC(O)=[Ni],-3.30836637288e-06
+490,OCC(O)=[Ni] + O=CC(O)[Ni] <=> OCC(O)[Ni] + O=CC(O)=[Ni],-3.38466073171e-06
+491,CC#[Ni] + O=CC(O)=[Ni] <=> O=CC#[Ni] + CC(O)=[Ni],-3.49252253121e-06
+492,O=[Ni] + OC(O)=[Ni] <=> OC#[Ni] + OO[Ni],-3.73848019618e-06
+493,OO[Ni] + OCOC=[Ni] <=> O=[Ni] + OCOC(O)[Ni],-3.83113851462e-06
+494,OOC(O)[Ni] + CC(O)=[Ni] <=> CC(O)[Ni] + OOC(O)=[Ni],-4.1190633876e-06
+495,C#[Ni] + OCOC=[Ni] <=> C~[Ni] + OCOC[Ni],-5.9799941885e-06
+496,OC=[Ni] + OCOC[Ni] <=> C=[Ni] + OCOC(O)[Ni],-8.23534314388e-06
+497,OC(O)=[Ni] + OCC(O)[Ni] <=> OC(O)[Ni] + OCC(O)=[Ni],-8.2973203587e-06
+498,OO[Ni] + O=CC=[Ni] <=> O=[Ni] + O=CC(O)[Ni],-1.00118542657e-05
+499,OOC(O)[Ni] + [Ni] <=> OC=[Ni] + OO[Ni],-1.07724930469e-05
+500,OC(O)=[Ni] + O=CC(O)[Ni] <=> OC(O)[Ni] + O=CC(O)=[Ni],-1.1892075723e-05
+501,[CH]=O + [Ni] <=> O=C[Ni],-1.38464440824e-05
+502,OC=[Ni] + OOC[Ni] <=> C=[Ni] + OOC(O)[Ni],-1.51500517103e-05
+503,C#[Ni] + OOC(O)=[Ni] <=> C~[Ni] + OOC(O)[Ni],-1.71490586309e-05
+504,OO[Ni] + OOC=[Ni] <=> O=[Ni] + OOC(O)[Ni],-2.95605938273e-05
+505,CC + 2 [Ni] <=> CC[Ni] + [Ni],-3.38927183529e-05
+506,OC=[Ni] + O=C([Ni])CO <=> O=C=[Ni] + OCC(O)[Ni],-3.71713379092e-05
+507,C#[Ni] + OOC=[Ni] <=> C~[Ni] + OOC[Ni],-4.09034544367e-05
+508,OC(O)=[Ni] + OOC(O)[Ni] <=> OC(O)[Ni] + OOC(O)=[Ni],-8.02440247372e-05
+509,O=CC#[Ni] + C#[Ni] <=> C~[Ni] + O=CC=[Ni],-8.33191515548e-05
+510,OOC=[Ni] + [Ni] <=> C#[Ni] + OO[Ni],-8.43870434796e-05
+511,CC(=O)[Ni] + OC=[Ni] <=> O=C=[Ni] + CC(O)[Ni],-9.19327858804e-05
+512,C#[Ni] + CC(O)=[Ni] <=> C~[Ni] + CC(O)[Ni],-0.000115353841566
+513,C~[Ni] + [Ni] <=> C#[Ni] + [Ni],-0.00011694296579
+514,C#[Ni] + O=CC(O)=[Ni] <=> C~[Ni] + O=CC(O)[Ni],-0.000151187977921
+515,O=CCO + 2 [Ni] <=> OC[Ni] + O=C[Ni],-0.000214051784626
+516,CC#[Ni] + C#[Ni] <=> CC=[Ni] + C~[Ni],-0.000276964096685
+517,CC=O + 2 [Ni] <=> C[Ni] + O=C[Ni],-0.000295665783425
+518,[C-]#[O+] + [Ni] <=> O=C=[Ni],-0.00033626310742
+519,OO[Ni] + OCC(O)=[Ni] <=> O=[Ni] + OCC(O)(O)[Ni],-0.000381907688479
+520,C#[Ni] + OCC(O)=[Ni] <=> C~[Ni] + OCC(O)[Ni],-0.00067981452667
+521,OO[Ni] + OC(O)=[Ni] <=> O=[Ni] + OC(O)(O)[Ni],-0.00118173064026
+522,OC[Ni] + C~[Ni] <=> OC=[Ni] + C#[Ni],-0.00200162080551
+523,C#[Ni] + OC(O)=[Ni] <=> C~[Ni] + OC(O)[Ni],-0.00211448510942
+524,O=C(O)[Ni] + [Ni] <=> O[Ni] + O=C=[Ni],-0.00236381940338
+525,[O][O] + 2 [Ni] <=> 2 O=[Ni],-0.00294137055099
+526,[O]CO + [Ni] <=> OCO[Ni],-0.00298699997921
+527,OOC(O)=[Ni] + [Ni] <=> OC#[Ni] + OO[Ni],-0.00302380991642
+528,[H][H] + 2 [Ni] <=> 2 [Ni],-0.00311750576702
+529,OCO + 2 [Ni] <=> [Ni] + OCO[Ni],-0.00816536990817
+530,[H] + [Ni] <=> [Ni],-0.00971171289471
+531,O=C(O)O + 2 [Ni] <=> O=C(O)[Ni] + O[Ni],-0.0188164223283
+532,C[O] + [Ni] <=> CO[Ni],-0.0227271188971
+533,C=[Ni] + [Ni] <=> C[Ni] + [Ni],-0.023279735511
+534,C[Ni] + C~[Ni] <=> C=[Ni] + C#[Ni],-0.024619071861
+535,C=[Ni] + C~[Ni] <=> 2 C#[Ni],-0.0419078439737
+536,C=O + 2 [Ni] <=> O=C[Ni] + [Ni],-0.0666153695678
+537,C[CH2] + [Ni] <=> CC[Ni],-0.0716495088649
+538,OC=[Ni] + OO[Ni] <=> O=[Ni] + OC(O)[Ni],-0.225065489518
+539,OC#[Ni] + C#[Ni] <=> OC=[Ni] + C~[Ni],-0.36703885046
+540,[CH3] + [Ni] <=> C[Ni],-1.57107893954
+541,CO + 2 [Ni] <=> C[Ni] + O[Ni],-2.018325908
+542,O[Ni] + [Ni] <=> O + 2 [Ni],-2.31320210745
+543,C[Ni] + O[Ni] <=> C + O=[Ni] + [Ni],-22.1948916906
