@@ -21,3 +21,8 @@ for x in files:
         os.remove(x + '/alldone.ipynb')
     except:
         pass
+    # removing past data
+    try:
+	os.remove(x + '/dict.csv')
+    except:
+	pass
