@@ -26,3 +26,7 @@ for x in files:
 	os.remove(x + '/dict.csv')
     except:
 	pass
+    try:
+	os.remove(x + '/time.txt')
+    except:
+	pass
