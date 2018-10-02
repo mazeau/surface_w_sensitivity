@@ -1,5 +1,34 @@
 [NbConvertApp] Converting notebook copyme.ipynb to notebook
 [NbConvertApp] Executing notebook with kernel: python2
+[IPKernelApp] ERROR | Failed to create history session in /home/mazeau.e/.ipython/profile_default/history.sqlite. History will not be saved.
+Traceback (most recent call last):
+  File "/home/mazeau.e/anaconda2/envs/rmg_env/lib/python2.7/site-packages/IPython/core/history.py", line 549, in __init__
+    self.new_session()
+  File "<decorator-gen-22>", line 2, in new_session
+  File "/home/mazeau.e/anaconda2/envs/rmg_env/lib/python2.7/site-packages/IPython/core/history.py", line 60, in needs_sqlite
+    return f(self, *a, **kw)
+  File "/home/mazeau.e/anaconda2/envs/rmg_env/lib/python2.7/site-packages/IPython/core/history.py", line 575, in new_session
+    NULL, "") """, (datetime.datetime.now(),))
+OperationalError: attempt to write a readonly database
+Error in sys.exitfunc:
+Traceback (most recent call last):
+  File "/home/mazeau.e/anaconda2/envs/rmg_env/lib/python2.7/atexit.py", line 24, in _run_exitfuncs
+    func(*targs, **kargs)
+  File "/home/mazeau.e/anaconda2/envs/rmg_env/lib/python2.7/site-packages/IPython/core/interactiveshell.py", line 3231, in atexit_operations
+    self.history_manager.end_session()
+  File "/home/mazeau.e/anaconda2/envs/rmg_env/lib/python2.7/site-packages/IPython/core/history.py", line 580, in end_session
+    self.writeout_cache()
+  File "<decorator-gen-23>", line 2, in writeout_cache
+  File "/home/mazeau.e/anaconda2/envs/rmg_env/lib/python2.7/site-packages/IPython/core/history.py", line 60, in needs_sqlite
+    return f(self, *a, **kw)
+  File "/home/mazeau.e/anaconda2/envs/rmg_env/lib/python2.7/site-packages/IPython/core/history.py", line 788, in writeout_cache
+    self.new_session(conn)
+  File "<decorator-gen-22>", line 2, in new_session
+  File "/home/mazeau.e/anaconda2/envs/rmg_env/lib/python2.7/site-packages/IPython/core/history.py", line 60, in needs_sqlite
+    return f(self, *a, **kw)
+  File "/home/mazeau.e/anaconda2/envs/rmg_env/lib/python2.7/site-packages/IPython/core/history.py", line 575, in new_session
+    NULL, "") """, (datetime.datetime.now(),))
+OperationalError: attempt to write a readonly database
 [NbConvertApp] ERROR | Error while converting 'copyme.ipynb'
 Traceback (most recent call last):
   File "/home/mazeau.e/anaconda2/envs/rmg_env/lib/python2.7/site-packages/nbconvert/nbconvertapp.py", line 393, in export_single_notebook
@@ -24,83 +53,16 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, out)
 CellExecutionError: An error occurred while executing the following cell:
 ------------------
-# Set the value of the perturbation
-dk = 1.0e-2
-# create the array to hold the sensitivty at each time step
-Sensitivity = np.zeros([surf.n_reactions,len(rxn_time)])
-
-rxns = []
-sens = []
-
-#cycle through each reaction
-for m in range(surf.n_reactions):
-    surf.set_multiplier(1.0) # reset all multipliers  
-    surf.set_multiplier(1+dk, m) # perturb reaction m
-    
-    gas.TPX = T0, P0 * ct.one_atm, {'CH4(2)':CH4_0, 'O2(3)':O2_0, 'N2':N2_0}
-              #Temp, Pressure, mole fraction
-    surf.TP = T0, P0 * ct.one_atm
-    surf.coverages = {'X(1)':1.0}
-    
-    r = ct.IdealGasConstPressureReactor(gas, energy='off')
-    r.volume = volume
-    rsurf = ct.ReactorSurface(surf, r, A=cat_area) # A=cat_area
-
-
-    sim = ct.ReactorNet([r])
-    sim.max_err_test_fails = 12
-
-
-    # set relative and absolute tolerances on the simulation
-    sim.rtol = 1.0e-12
-    sim.atol = 1.0e-18
-    gas_mole_fracs = np.zeros([gas.n_species, len(rxn_time)])
-    temperature = np.zeros(len(rxn_time))    
-    pressure = np.zeros(len(rxn_time))   
-
-    for i in range(len(rxn_time)):
-        time = rxn_time[i] #define time in the reactor
-        sim.advance(time) #Advance the simulation to next set time
-        temperature[i] = gas.T
-        pressure[i] = gas.P/ct.one_atm
-        gas_mole_fracs[:,i] = gas.X #[mol.frac,nth reactor]
-    # here is the new output
-#     CH4_new = gas_mole_fracs[i_ch4,:]
-
-    O2_new = gas_mole_fracs[i_o2,:]
-    zipped = zip(gas_mole_fracs[i_o2,:],rxn_time)
-    zipped = [list(z) for z in zipped]
-    for z in zipped:
-        if z[0] <= O2_0 * .05:
-            O2_new_time = z[1]
-            break
-
-#     Sens = (CH4_new-CH4_ref)/(CH4_ref*dk)
-    Sens = (O2_ref_time - O2_new_time)/(O2_ref_time*dk) # positive if it speeds up the reaction
-#     max_sensitivity = max(max(Sens),-min(Sens))
-#    if (1==0):
-#        if (max_sensitivity>0.01):
-#            print "%d %s %.2F"%( m, surf.reaction_equations()[m],  max_sensitivity)
-#    else:
-#     print "%d %s %.2F"%( m, surf.reaction_equations()[m],  max_sensitivity)
-    print "%d %s %.2F"%( m, surf.reaction_equations()[m],  Sens)
-#     Sensitivity[m,:] = Sens
-    rxns.append(surf.reaction_equations()[m])
-    sens.append(Sens)
-surf.set_multiplier(1.0)
-
- 
+with open('time.txt','w') as f:
+    f.write(str(O2_ref_time))
 ------------------
 
 [0;31m[0m
 [0;31mNameError[0mTraceback (most recent call last)
-[0;32m<ipython-input-3-9b412ff01d96>[0m in [0;36m<module>[0;34m()[0m
-[1;32m     51[0m [0;34m[0m[0m
-[1;32m     52[0m [0;31m#     Sens = (CH4_new-CH4_ref)/(CH4_ref*dk)[0m[0;34m[0m[0;34m[0m[0m
-[0;32m---> 53[0;31m     [0mSens[0m [0;34m=[0m [0;34m([0m[0mO2_ref_time[0m [0;34m-[0m [0mO2_new_time[0m[0;34m)[0m[0;34m/[0m[0;34m([0m[0mO2_ref_time[0m[0;34m*[0m[0mdk[0m[0;34m)[0m [0;31m# positive if it speeds up the reaction[0m[0;34m[0m[0m
-[0m[1;32m     54[0m [0;31m#     max_sensitivity = max(max(Sens),-min(Sens))[0m[0;34m[0m[0;34m[0m[0m
-[1;32m     55[0m [0;31m#    if (1==0):[0m[0;34m[0m[0;34m[0m[0m
-
+[0;32m<ipython-input-3-0ee7ec5e45eb>[0m in [0;36m<module>[0;34m()[0m
+[1;32m      1[0m [0;32mwith[0m [0mopen[0m[0;34m([0m[0;34m'time.txt'[0m[0;34m,[0m[0;34m'w'[0m[0;34m)[0m [0;32mas[0m [0mf[0m[0;34m:[0m[0;34m[0m[0m
+[0;32m----> 2[0;31m     [0mf[0m[0;34m.[0m[0mwrite[0m[0;34m([0m[0mstr[0m[0;34m([0m[0mO2_ref_time[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0m
+[0m
 [0;31mNameError[0m: name 'O2_ref_time' is not defined
 NameError: name 'O2_ref_time' is not defined
 

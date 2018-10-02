@@ -4,6 +4,6 @@
 #SBATCH -n1
 #SBATCH --output=output.log
 #SBATCH --mem=15Gb
-#SBATCH --time=12:00:00
+#SBATCH --time=2:00:00
 
-jupyter nbconvert --ExecutePreprocessor.timeout=40000 --to notebook --execute plots.ipynb --output=plotsdone.ipynb
+jupyter nbconvert --ExecutePreprocessor.timeout=4000 --to notebook --execute plots.ipynb --output=plotsdone.ipynb
