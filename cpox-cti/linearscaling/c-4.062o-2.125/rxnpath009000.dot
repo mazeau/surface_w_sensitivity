@@ -1,0 +1,43 @@
+digraph reaction_paths {
+center=1;
+s5 -> s36[fontname="Helvetica", penwidth=4.13, arrowsize=2.07, color="0.7, 0.584, 0.9"
+, label=" 0.0842"];
+s36 -> s39[fontname="Helvetica", penwidth=3.01, arrowsize=1.5, color="0.7, 0.519, 0.9"
+, label=" 0.019"];
+s36 -> s42[fontname="Helvetica", penwidth=3.96, arrowsize=1.98, color="0.7, 0.567, 0.9"
+, label=" 0.0666"];
+s39 -> s19[fontname="Helvetica", penwidth=3.03, arrowsize=1.52, color="0.7, 0.52, 0.9"
+, label=" 0.0197"];
+s16 -> s53[fontname="Helvetica", penwidth=2.89, arrowsize=1.44, color="0.7, 0.516, 0.9"
+, label=" 0.0162"];
+s57 -> s29[fontname="Helvetica", penwidth=2.85, arrowsize=1.42, color="0.7, 0.515, 0.9"
+, label=" 0.0154"];
+s21 -> s56[fontname="Helvetica", penwidth=4.79, arrowsize=2.4, color="0.7, 0.702, 0.9"
+, label=" 0.202"];
+s37 -> s9[fontname="Helvetica", penwidth=4.76, arrowsize=2.38, color="0.7, 0.695, 0.9"
+, label=" 0.195"];
+s47 -> s9[fontname="Helvetica", penwidth=3.23, arrowsize=1.62, color="0.7, 0.526, 0.9"
+, label=" 0.0256"];
+s42 -> s37[fontname="Helvetica", penwidth=3.95, arrowsize=1.98, color="0.7, 0.567, 0.9"
+, label=" 0.0665"];
+s65 -> s27[fontname="Helvetica", penwidth=3.52, arrowsize=1.76, color="0.7, 0.537, 0.9"
+, label=" 0.0373"];
+s5 [ fontname="Helvetica", label="O2(3)"];
+s9 [ fontname="Helvetica", label="CO(7)"];
+s16 [ fontname="Helvetica", label="CH3OH(14)"];
+s19 [ fontname="Helvetica", label="OH(17)"];
+s21 [ fontname="Helvetica", label="HO2(52)"];
+s27 [ fontname="Helvetica", label="HOOH(136)"];
+s29 [ fontname="Helvetica", label="CH3O2(146)"];
+s36 [ fontname="Helvetica", label="OX(20)"];
+s37 [ fontname="Helvetica", label="OCX(21)"];
+s39 [ fontname="Helvetica", label="HOX(23)"];
+s42 [ fontname="Helvetica", label="CXHO(27)"];
+s47 [ fontname="Helvetica", label="COX(37)"];
+s53 [ fontname="Helvetica", label="CH3OHX(46)"];
+s56 [ fontname="Helvetica", label="HO2X(135)"];
+s57 [ fontname="Helvetica", label="SX(139)"];
+s65 [ fontname="Helvetica", label="HOOHX(307)"];
+ label = "Scale = 1e-10\l Reaction path diagram following O";
+ fontname = "Helvetica";
+}

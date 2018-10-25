@@ -1,0 +1,43 @@
+digraph reaction_paths {
+center=1;
+s5 -> s36[fontname="Helvetica", penwidth=4.56, arrowsize=2.28, color="0.7, 0.648, 0.9"
+, label=" 0.148"];
+s36 -> s39[fontname="Helvetica", penwidth=2.81, arrowsize=1.41, color="0.7, 0.515, 0.9"
+, label=" 0.0147"];
+s36 -> s42[fontname="Helvetica", penwidth=4.49, arrowsize=2.24, color="0.7, 0.635, 0.9"
+, label=" 0.135"];
+s39 -> s19[fontname="Helvetica", penwidth=2.84, arrowsize=1.42, color="0.7, 0.515, 0.9"
+, label=" 0.0152"];
+s16 -> s53[fontname="Helvetica", penwidth=2.97, arrowsize=1.49, color="0.7, 0.518, 0.9"
+, label=" 0.0181"];
+s57 -> s29[fontname="Helvetica", penwidth=3.39, arrowsize=1.69, color="0.7, 0.531, 0.9"
+, label=" 0.0314"];
+s21 -> s56[fontname="Helvetica", penwidth=5.36, arrowsize=2.68, color="0.7, 0.931, 0.9"
+, label=" 0.431"];
+s37 -> s9[fontname="Helvetica", penwidth=4.87, arrowsize=2.43, color="0.7, 0.723, 0.9"
+, label=" 0.223"];
+s47 -> s9[fontname="Helvetica", penwidth=2.95, arrowsize=1.48, color="0.7, 0.518, 0.9"
+, label=" 0.0176"];
+s42 -> s37[fontname="Helvetica", penwidth=4.49, arrowsize=2.24, color="0.7, 0.635, 0.9"
+, label=" 0.135"];
+s65 -> s27[fontname="Helvetica", penwidth=3.92, arrowsize=1.96, color="0.7, 0.563, 0.9"
+, label=" 0.0634"];
+s5 [ fontname="Helvetica", label="O2(3)"];
+s9 [ fontname="Helvetica", label="CO(7)"];
+s16 [ fontname="Helvetica", label="CH3OH(14)"];
+s19 [ fontname="Helvetica", label="OH(17)"];
+s21 [ fontname="Helvetica", label="HO2(52)"];
+s27 [ fontname="Helvetica", label="HOOH(136)"];
+s29 [ fontname="Helvetica", label="CH3O2(146)"];
+s36 [ fontname="Helvetica", label="OX(20)"];
+s37 [ fontname="Helvetica", label="OCX(21)"];
+s39 [ fontname="Helvetica", label="HOX(23)"];
+s42 [ fontname="Helvetica", label="CXHO(27)"];
+s47 [ fontname="Helvetica", label="COX(37)"];
+s53 [ fontname="Helvetica", label="CH3OHX(46)"];
+s56 [ fontname="Helvetica", label="HO2X(135)"];
+s57 [ fontname="Helvetica", label="SX(139)"];
+s65 [ fontname="Helvetica", label="HOOHX(307)"];
+ label = "Scale = 1e-10\l Reaction path diagram following O";
+ fontname = "Helvetica";
+}
