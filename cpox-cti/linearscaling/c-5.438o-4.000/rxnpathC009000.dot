@@ -1,0 +1,24 @@
+digraph reaction_paths {
+center=1;
+s4 -> s33[fontname="Helvetica", penwidth=4.84, arrowsize=2.42, color="0.7, 0.716, 0.9"
+, label=" 0.216"];
+s9 -> s26[fontname="Helvetica", penwidth=5.64, arrowsize=2.82, color="0.7, 1.12, 0.9"
+, label=" 0.624"];
+s9 -> s37[fontname="Helvetica", penwidth=4.43, arrowsize=2.22, color="0.7, 0.626, 0.9"
+, label=" 0.126"];
+s6 -> s34[fontname="Helvetica", penwidth=3.99, arrowsize=1.99, color="0.7, 0.57, 0.9"
+, label=" 0.0698"];
+s22 -> s43[fontname="Helvetica", penwidth=2.3, arrowsize=1.15, color="0.7, 0.507, 0.9"
+, label=" 0.00746"];
+s4 [ fontname="Helvetica", label="CH4(2)"];
+s6 [ fontname="Helvetica", label="CO2(4)"];
+s9 [ fontname="Helvetica", label="CO(7)"];
+s22 [ fontname="Helvetica", label="CH2O3(144)"];
+s26 [ fontname="Helvetica", label="OCX(21)"];
+s33 [ fontname="Helvetica", label="CH4X(33)"];
+s34 [ fontname="Helvetica", label="CO2X(34)"];
+s37 [ fontname="Helvetica", label="COX(37)"];
+s43 [ fontname="Helvetica", label="SX(162)"];
+ label = "Scale = 1e-10\l Reaction path diagram following C";
+ fontname = "Helvetica";
+}

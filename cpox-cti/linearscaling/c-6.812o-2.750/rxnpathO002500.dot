@@ -1,0 +1,42 @@
+digraph reaction_paths {
+center=1;
+s5 -> s25[fontname="Helvetica", penwidth=6, arrowsize=3, color="0.7, 1.5, 0.9"
+, label=" 1"];
+s25 -> s28[fontname="Helvetica", penwidth=5.99, arrowsize=3, color="0.7, 1.49, 0.9"
+, label=" 0.991"];
+s25 -> s26[fontname="Helvetica", penwidth=2.52, arrowsize=1.26, color="0.7, 0.51, 0.9"
+, label=" 0.00998"];
+s28 -> s7[fontname="Helvetica", penwidth=5.41, arrowsize=2.7, color="0.7, 0.957, 0.9"
+, label=" 0.457"];
+s28 -> s26[fontname="Helvetica", penwidth=4.91, arrowsize=2.46, color="0.7, 0.737, 0.9"
+, label=" 0.237"];
+s28 -> s30[fontname="Helvetica", penwidth=4.95, arrowsize=2.47, color="0.7, 0.747, 0.9"
+, label=" 0.247"];
+s28 -> s21[fontname="Helvetica", penwidth=3.67, arrowsize=1.84, color="0.7, 0.546, 0.9"
+, label=" 0.0458"];
+s35 -> s7[fontname="Helvetica", penwidth=3.32, arrowsize=1.66, color="0.7, 0.529, 0.9"
+, label=" 0.0287"];
+s26 -> s30[fontname="Helvetica", penwidth=4.95, arrowsize=2.47, color="0.7, 0.747, 0.9"
+, label=" 0.247"];
+s30 -> s6[fontname="Helvetica", penwidth=5.31, arrowsize=2.66, color="0.7, 0.903, 0.9"
+, label=" 0.403"];
+s34 -> s6[fontname="Helvetica", penwidth=2.97, arrowsize=1.48, color="0.7, 0.518, 0.9"
+, label=" 0.018"];
+s30 -> s21[fontname="Helvetica", penwidth=4.2, arrowsize=2.1, color="0.7, 0.592, 0.9"
+, label=" 0.0917"];
+s46 -> s21[fontname="Helvetica", penwidth=2.23, arrowsize=1.12, color="0.7, 0.507, 0.9"
+, label=" 0.00678"];
+s5 [ fontname="Helvetica", label="O2(3)"];
+s6 [ fontname="Helvetica", label="CO2(4)"];
+s7 [ fontname="Helvetica", label="H2O(5)"];
+s21 [ fontname="Helvetica", label="CH2O3(142)"];
+s25 [ fontname="Helvetica", label="OX(20)"];
+s26 [ fontname="Helvetica", label="OCX(21)"];
+s28 [ fontname="Helvetica", label="HOX(23)"];
+s30 [ fontname="Helvetica", label="HOCXO(25)"];
+s34 [ fontname="Helvetica", label="CO2X(34)"];
+s35 [ fontname="Helvetica", label="H2OX(35)"];
+s46 [ fontname="Helvetica", label="SX(149)"];
+ label = "Scale = 0.0013\l Reaction path diagram following O";
+ fontname = "Helvetica";
+}

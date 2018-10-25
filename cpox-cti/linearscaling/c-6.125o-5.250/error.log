@@ -9,7 +9,7 @@ Traceback (most recent call last):
     return f(self, *a, **kw)
   File "/home/mazeau.e/anaconda2/envs/rmg_env2/lib/python2.7/site-packages/IPython/core/history.py", line 575, in new_session
     NULL, "") """, (datetime.datetime.now(),))
-OperationalError: database is locked
+OperationalError: attempt to write a readonly database
 Error in sys.exitfunc:
 Traceback (most recent call last):
   File "/home/mazeau.e/anaconda2/envs/rmg_env2/lib/python2.7/atexit.py", line 24, in _run_exitfuncs

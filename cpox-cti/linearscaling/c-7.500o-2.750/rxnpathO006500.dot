@@ -1,0 +1,43 @@
+digraph reaction_paths {
+center=1;
+s5 -> s24[fontname="Helvetica", penwidth=4.98, arrowsize=2.49, color="0.7, 0.76, 0.9"
+, label=" 0.26"];
+s24 -> s25[fontname="Helvetica", penwidth=4.98, arrowsize=2.49, color="0.7, 0.76, 0.9"
+, label=" 0.26"];
+s27 -> s25[fontname="Helvetica", penwidth=3.29, arrowsize=1.64, color="0.7, 0.528, 0.9"
+, label=" 0.0275"];
+s29 -> s27[fontname="Helvetica", penwidth=3.22, arrowsize=1.61, color="0.7, 0.525, 0.9"
+, label=" 0.0252"];
+s7 -> s34[fontname="Helvetica", penwidth=5.84, arrowsize=2.92, color="0.7, 1.31, 0.9"
+, label=" 0.809"];
+s25 -> s9[fontname="Helvetica", penwidth=4.96, arrowsize=2.48, color="0.7, 0.753, 0.9"
+, label=" 0.253"];
+s9 -> s36[fontname="Helvetica", penwidth=2.94, arrowsize=1.47, color="0.7, 0.517, 0.9"
+, label=" 0.0174"];
+s29 -> s25[fontname="Helvetica", penwidth=3.22, arrowsize=1.61, color="0.7, 0.525, 0.9"
+, label=" 0.0252"];
+s6 -> s29[fontname="Helvetica", penwidth=3.67, arrowsize=1.84, color="0.7, 0.546, 0.9"
+, label=" 0.0459"];
+s6 -> s33[fontname="Helvetica", penwidth=6, arrowsize=3, color="0.7, 1.5, 0.9"
+, label=" 1"];
+s21 -> s40[fontname="Helvetica", penwidth=2.49, arrowsize=1.24, color="0.7, 0.51, 0.9"
+, label=" 0.00953"];
+s39 -> s21[fontname="Helvetica", penwidth=4.72, arrowsize=2.36, color="0.7, 0.685, 0.9"
+, label=" 0.185"];
+s5 [ fontname="Helvetica", label="O2(3)"];
+s6 [ fontname="Helvetica", label="CO2(4)"];
+s7 [ fontname="Helvetica", label="H2O(5)"];
+s9 [ fontname="Helvetica", label="CO(7)"];
+s21 [ fontname="Helvetica", label="CH2O3(144)"];
+s24 [ fontname="Helvetica", label="OX(20)"];
+s25 [ fontname="Helvetica", label="OCX(21)"];
+s27 [ fontname="Helvetica", label="HOX(23)"];
+s29 [ fontname="Helvetica", label="HOCXO(25)"];
+s33 [ fontname="Helvetica", label="CO2X(34)"];
+s34 [ fontname="Helvetica", label="H2OX(35)"];
+s36 [ fontname="Helvetica", label="COX(37)"];
+s39 [ fontname="Helvetica", label="CHO3X(141)"];
+s40 [ fontname="Helvetica", label="SX(149)"];
+ label = "Scale = 1.3e-09\l Reaction path diagram following O";
+ fontname = "Helvetica";
+}

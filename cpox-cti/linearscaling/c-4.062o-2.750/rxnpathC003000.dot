@@ -1,0 +1,42 @@
+digraph reaction_paths {
+center=1;
+s40 -> s4[fontname="Helvetica", penwidth=5.88, arrowsize=2.94, color="0.7, 1.36, 0.9"
+, label=" 0.858"];
+s4 -> s35[fontname="Helvetica", penwidth=5.99, arrowsize=3, color="0.7, 1.49, 0.9"
+, label=" 0.991"];
+s12 -> s35[fontname="Helvetica", penwidth=3.47, arrowsize=1.73, color="0.7, 0.535, 0.9"
+, label=" 0.0349"];
+s35 -> s16[fontname="Helvetica", penwidth=6, arrowsize=3, color="0.7, 1.5, 0.9"
+, label=" 1"];
+s35 -> s50[fontname="Helvetica", penwidth=3.24, arrowsize=1.62, color="0.7, 0.526, 0.9"
+, label=" 0.026"];
+s49 -> s16[fontname="Helvetica", penwidth=4.19, arrowsize=2.09, color="0.7, 0.591, 0.9"
+, label=" 0.0909"];
+s16 -> s48[fontname="Helvetica", penwidth=3.66, arrowsize=1.83, color="0.7, 0.545, 0.9"
+, label=" 0.0453"];
+s50 -> s38[fontname="Helvetica", penwidth=3.24, arrowsize=1.62, color="0.7, 0.526, 0.9"
+, label=" 0.026"];
+s38 -> s39[fontname="Helvetica", penwidth=3.23, arrowsize=1.62, color="0.7, 0.526, 0.9"
+, label=" 0.0255"];
+s48 -> s25[fontname="Helvetica", penwidth=3.66, arrowsize=1.83, color="0.7, 0.545, 0.9"
+, label=" 0.0449"];
+s39 -> s34[fontname="Helvetica", penwidth=3.22, arrowsize=1.61, color="0.7, 0.525, 0.9"
+, label=" 0.025"];
+s34 -> s9[fontname="Helvetica", penwidth=3.37, arrowsize=1.68, color="0.7, 0.531, 0.9"
+, label=" 0.0307"];
+s4 [ fontname="Helvetica", label="CH4(2)"];
+s9 [ fontname="Helvetica", label="CO(7)"];
+s12 [ fontname="Helvetica", label="CH3(10)"];
+s16 [ fontname="Helvetica", label="CH3OH(14)"];
+s25 [ fontname="Helvetica", label="OCO(140)"];
+s34 [ fontname="Helvetica", label="OCX(21)"];
+s35 [ fontname="Helvetica", label="CH3X(22)"];
+s38 [ fontname="Helvetica", label="CHX(26)"];
+s39 [ fontname="Helvetica", label="CXHO(27)"];
+s40 [ fontname="Helvetica", label="CH4X(33)"];
+s48 [ fontname="Helvetica", label="CH3OX(45)"];
+s49 [ fontname="Helvetica", label="CH3OHX(46)"];
+s50 [ fontname="Helvetica", label="CH2X(134)"];
+ label = "Scale = 2.7e-05\l Reaction path diagram following C";
+ fontname = "Helvetica";
+}

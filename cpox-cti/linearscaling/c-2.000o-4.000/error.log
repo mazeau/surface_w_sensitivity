@@ -9,7 +9,7 @@ Traceback (most recent call last):
     return f(self, *a, **kw)
   File "/home/mazeau.e/anaconda2/envs/rmg_env2/lib/python2.7/site-packages/IPython/core/history.py", line 575, in new_session
     NULL, "") """, (datetime.datetime.now(),))
-OperationalError: database is locked
+OperationalError: attempt to write a readonly database
 Error in sys.exitfunc:
 Traceback (most recent call last):
   File "/home/mazeau.e/anaconda2/envs/rmg_env2/lib/python2.7/atexit.py", line 24, in _run_exitfuncs
@@ -50,16 +50,204 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, out)
 CellExecutionError: An error occurred while executing the following cell:
 ------------------
-with open('time.txt','w') as f:
-    f.write(str(O2_ref_time))
+#######################################################################
+# Input Parameters
+#######################################################################
+
+volume = 1.0
+cat_area_per_vol = 1.0E2 #I made this up!
+
+cat_area = cat_area_per_vol * volume
+
+#initial conditions
+T0 = 1000.
+P0 = 1.0 #bar
+#initial composition (gas mol fraction)
+CH4_0 = 0.1
+O2_0 = 0.1
+N2_0 = 0.8
+CO2_0 = 0.
+
+gas.TPX = T0, P0 * ct.one_atm, {'CH4(2)':CH4_0, 'O2(3)':O2_0, 'N2':N2_0, 'CO2(4)':CO2_0}
+          #Temp, Pressure, mole fraction
+surf.TP = T0, P0 * ct.one_atm
+surf.coverages = {'X(1)':1.0}
+#surf.coverages = {'PT(S)':0.9, 'O(S)':0.1}
+
+r = ct.IdealGasConstPressureReactor(gas, energy='off')
+r.volume = volume
+rsurf = ct.ReactorSurface(surf, r, A=cat_area) # A=cat_area
+
+sim = ct.ReactorNet([r])
+sim.max_err_test_fails = 12
+
+# set relative and absolute tolerances on the simulation
+sim.rtol = 1.0e-12
+sim.atol = 1.0e-18
+
+#rxn_time = np.linspace(1E-12, 5, 10001) #
+rxn_time = np.logspace(-4, 3, 10001) #from 0s to 1000s, log spacing
+
+gas_mole_fracs = np.zeros([gas.n_species, len(rxn_time)])
+surf_site_fracs = np.zeros([surf.n_species, len(rxn_time)])
+temperature = np.zeros(len(rxn_time))    
+pressure = np.zeros(len(rxn_time))   
+
+for i in range(len(rxn_time)):
+    time = rxn_time[i] #define time in the reactor
+    sim.advance(time) #Advance the simulation to next set time
+    temperature[i] = gas.T
+    pressure[i] = gas.P/ct.one_atm
+    gas_mole_fracs[:,i] = gas.X #
+    surf_site_fracs[:,i] = surf.coverages #
+    if not i % 500:
+        print('  {0:10e}  {1:10f}  {2:10f}  {3:10f}'.format(time, *gas['CH4(2)','O2(3)','N2'].X))
+
+
+
+#sim.advance_to_steady_state()
+#print('  {0:10e}  {1:10f}  {2:10f}  {3:10f}'.format(sim.time, *gas['CH4','H2','CO'].X))    
+    
+# CH4_ref = gas_mole_fracs[i_ch4,:]
+
+# setting new sensitivity to be based on time to consume 95% of the o2
+zipped = zip(gas_mole_fracs[i_o2,:],rxn_time)
+zipped = [list(z) for z in zipped]
+for z in zipped:
+    if z[0] <= O2_0 * .05:
+        O2_ref_time = z[1]
+        break
+
+#Plot out simulations results
+fig = pylab.figure(dpi=300,figsize=(8,8))
+gs = gridspec.GridSpec(2, 1)
+ax0 = plt.subplot(gs[0])
+ax1 = plt.subplot(gs[1])
+
+y_min = 1E-3
+
+for i in range(gas.n_species):
+    if i != i_n2:
+        if np.max(gas_mole_fracs[i,:]) > y_min:
+            ax0.loglog(rxn_time, gas_mole_fracs[i,:], label=gas.species_name(i) )
+
+for i in range(surf.n_species):
+    if np.max(surf_site_fracs[i,:]) > y_min:
+        ax1.loglog(rxn_time, surf_site_fracs[i,:], label=surf.species_name(i) )
+            
+ax0.legend(loc='lower left', fontsize = 12)
+ax1.legend(loc='lower left', fontsize = 12)
+
+ax0.set_ylabel("gas-phase mole fraction")
+ax0.set_ylim(y_min,0.5)
+ax0.set_xlim(1.0E-4,max(rxn_time))
+ax1.set_xlim(1.0E-4,max(rxn_time))
+ax0.set_xlabel("Time(s)")
+ax1.set_ylabel("surface site fraction")
+#ax0.xaxis.set_major_locator(MaxNLocator(6))
+#ax0.yaxis.set_major_locator(LogLocator(base=10.0, numticks=3))
+#ax0.tick_params(axis='both', which='major', labelsize=10)
+ax1.set_ylim(y_min, 1.1 )
+ax1.set_xlabel("Time(s)")
+
+
+#######################
+##   FLUX DIAGRAMS   ##
+#######################
+steps = len(temperature)
+for i in range(0, steps, steps//20):
+    gas.TP = temperature[i], pressure[i] * ct.one_atm
+    gas.X  = gas_mole_fracs[:,i]
+    surf.TP = temperature[i], pressure[i] * ct.one_atm
+    surf.coverages = surf_site_fracs[:,i]
+    
+    element = 'O'
+
+    diagram = ct.ReactionPathDiagram(surf, element)
+    diagram.title = 'Reaction path diagram following {0}'.format(element)
+    diagram.label_threshold = 0.000001
+
+    dot_file = 'rxnpathO{:06d}.dot'.format(i)
+    img_file = 'rxnpathO{:06d}.png'.format(i)
+    img_path = os.path.join(os.getcwd(), img_file)
+
+    diagram.write_dot(dot_file)
+#     print(diagram.get_data())
+
+    print("Wrote graphviz input file to '{0}'.".format(os.path.join(os.getcwd(), dot_file)))
+
+    os.system('dot {0} -Tpng -o{1} -Gdpi=200'.format(dot_file, img_file))
+    print("Wrote graphviz output file to '{0}'.".format(img_path))
+
+    from IPython.display import Image
+    Image(filename=img_file) 
+    
+for i in range(0, steps, steps//20):
+    gas.TP = temperature[i], pressure[i] * ct.one_atm
+    gas.X  = gas_mole_fracs[:,i]
+    surf.TP = temperature[i], pressure[i] * ct.one_atm
+    surf.coverages = surf_site_fracs[:,i]
+    
+    element = 'C'
+
+    diagram = ct.ReactionPathDiagram(surf, element)
+    diagram.title = 'Reaction path diagram following {0}'.format(element)
+    diagram.label_threshold = 0.000001
+
+    dot_file = 'rxnpathC{:06d}.dot'.format(i)
+    img_file = 'rxnpathC{:06d}.png'.format(i)
+    img_path = os.path.join(os.getcwd(), img_file)
+
+    diagram.write_dot(dot_file)
+#     print(diagram.get_data())
+
+    print("Wrote graphviz input file to '{0}'.".format(os.path.join(os.getcwd(), dot_file)))
+
+    os.system('dot {0} -Tpng -o{1} -Gdpi=200'.format(dot_file, img_file))
+    print("Wrote graphviz output file to '{0}'.".format(img_path))
+
+    from IPython.display import Image
+    Image(filename=img_file) 
+
 ------------------
 
 [0;31m[0m
-[0;31mNameError[0mTraceback (most recent call last)
-[0;32m<ipython-input-3-004abf9508b6>[0m in [0;36m<module>[0;34m()[0m
-[1;32m      1[0m [0;32mwith[0m [0mopen[0m[0;34m([0m[0;34m'time.txt'[0m[0;34m,[0m[0;34m'w'[0m[0;34m)[0m [0;32mas[0m [0mf[0m[0;34m:[0m[0;34m[0m[0m
-[0;32m----> 2[0;31m     [0mf[0m[0;34m.[0m[0mwrite[0m[0;34m([0m[0mstr[0m[0;34m([0m[0mO2_ref_time[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0m
-[0m
-[0;31mNameError[0m: name 'O2_ref_time' is not defined
-NameError: name 'O2_ref_time' is not defined
+[0;31mIOError[0mTraceback (most recent call last)
+[0;32m<ipython-input-2-ad443845ec3e>[0m in [0;36m<module>[0;34m()[0m
+[1;32m    129[0m [0;34m[0m[0m
+[1;32m    130[0m     [0;32mfrom[0m [0mIPython[0m[0;34m.[0m[0mdisplay[0m [0;32mimport[0m [0mImage[0m[0;34m[0m[0m
+[0;32m--> 131[0;31m     [0mImage[0m[0;34m([0m[0mfilename[0m[0;34m=[0m[0mimg_file[0m[0;34m)[0m[0;34m[0m[0m
+[0m[1;32m    132[0m [0;34m[0m[0m
+[1;32m    133[0m [0;32mfor[0m [0mi[0m [0;32min[0m [0mrange[0m[0;34m([0m[0;36m0[0m[0;34m,[0m [0msteps[0m[0;34m,[0m [0msteps[0m[0;34m//[0m[0;36m20[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0m
+
+[0;32m/home/mazeau.e/anaconda2/envs/rmg_env2/lib/python2.7/site-packages/IPython/core/display.pyc[0m in [0;36m__init__[0;34m(self, data, url, filename, format, embed, width, height, retina, unconfined, metadata)[0m
+[1;32m    975[0m         [0mself[0m[0;34m.[0m[0munconfined[0m [0;34m=[0m [0munconfined[0m[0;34m[0m[0m
+[1;32m    976[0m         [0mself[0m[0;34m.[0m[0mmetadata[0m [0;34m=[0m [0mmetadata[0m[0;34m[0m[0m
+[0;32m--> 977[0;31m         [0msuper[0m[0;34m([0m[0mImage[0m[0;34m,[0m [0mself[0m[0;34m)[0m[0;34m.[0m[0m__init__[0m[0;34m([0m[0mdata[0m[0;34m=[0m[0mdata[0m[0;34m,[0m [0murl[0m[0;34m=[0m[0murl[0m[0;34m,[0m [0mfilename[0m[0;34m=[0m[0mfilename[0m[0;34m)[0m[0;34m[0m[0m
+[0m[1;32m    978[0m [0;34m[0m[0m
+[1;32m    979[0m         [0;32mif[0m [0mretina[0m[0;34m:[0m[0;34m[0m[0m
+
+[0;32m/home/mazeau.e/anaconda2/envs/rmg_env2/lib/python2.7/site-packages/IPython/core/display.pyc[0m in [0;36m__init__[0;34m(self, data, url, filename)[0m
+[1;32m    611[0m         [0mself[0m[0;34m.[0m[0mfilename[0m [0;34m=[0m [0mNone[0m [0;32mif[0m [0mfilename[0m [0;32mis[0m [0mNone[0m [0;32melse[0m [0municode_type[0m[0;34m([0m[0mfilename[0m[0;34m)[0m[0;34m[0m[0m
+[1;32m    612[0m [0;34m[0m[0m
+[0;32m--> 613[0;31m         [0mself[0m[0;34m.[0m[0mreload[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0m
+[0m[1;32m    614[0m         [0mself[0m[0;34m.[0m[0m_check_data[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0m
+[1;32m    615[0m [0;34m[0m[0m
+
+[0;32m/home/mazeau.e/anaconda2/envs/rmg_env2/lib/python2.7/site-packages/IPython/core/display.pyc[0m in [0;36mreload[0;34m(self)[0m
+[1;32m    997[0m         [0;34m"""Reload the raw data from file or URL."""[0m[0;34m[0m[0m
+[1;32m    998[0m         [0;32mif[0m [0mself[0m[0;34m.[0m[0membed[0m[0;34m:[0m[0;34m[0m[0m
+[0;32m--> 999[0;31m             [0msuper[0m[0;34m([0m[0mImage[0m[0;34m,[0m[0mself[0m[0;34m)[0m[0;34m.[0m[0mreload[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0m
+[0m[1;32m   1000[0m             [0;32mif[0m [0mself[0m[0;34m.[0m[0mretina[0m[0;34m:[0m[0;34m[0m[0m
+[1;32m   1001[0m                 [0mself[0m[0;34m.[0m[0m_retina_shape[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0m
+
+[0;32m/home/mazeau.e/anaconda2/envs/rmg_env2/lib/python2.7/site-packages/IPython/core/display.pyc[0m in [0;36mreload[0;34m(self)[0m
+[1;32m    629[0m         [0;34m"""Reload the raw data from file or URL."""[0m[0;34m[0m[0m
+[1;32m    630[0m         [0;32mif[0m [0mself[0m[0;34m.[0m[0mfilename[0m [0;32mis[0m [0;32mnot[0m [0mNone[0m[0;34m:[0m[0;34m[0m[0m
+[0;32m--> 631[0;31m             [0;32mwith[0m [0mopen[0m[0;34m([0m[0mself[0m[0;34m.[0m[0mfilename[0m[0;34m,[0m [0mself[0m[0;34m.[0m[0m_read_flags[0m[0;34m)[0m [0;32mas[0m [0mf[0m[0;34m:[0m[0;34m[0m[0m
+[0m[1;32m    632[0m                 [0mself[0m[0;34m.[0m[0mdata[0m [0;34m=[0m [0mf[0m[0;34m.[0m[0mread[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0m
+[1;32m    633[0m         [0;32melif[0m [0mself[0m[0;34m.[0m[0murl[0m [0;32mis[0m [0;32mnot[0m [0mNone[0m[0;34m:[0m[0;34m[0m[0m
+
+[0;31mIOError[0m: [Errno 2] No such file or directory: u'rxnpathO000000.png'
+IOError: [Errno 2] No such file or directory: u'rxnpathO000000.png'
 

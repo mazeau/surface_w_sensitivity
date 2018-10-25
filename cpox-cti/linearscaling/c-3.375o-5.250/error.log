@@ -1,7 +1,15 @@
 [NbConvertApp] Converting notebook copyme.ipynb to notebook
 [NbConvertApp] Executing notebook with kernel: python2
-[IPKernelApp] ERROR | Failed to open SQLite history /home/mazeau.e/.ipython/profile_default/history.sqlite (database disk image is malformed).
-[IPKernelApp] ERROR | History file was moved to /home/mazeau.e/.ipython/profile_default/history-corrupt-2018-10-25T13.43.52.195355.sqlite and a new file created.
+[IPKernelApp] ERROR | Failed to create history session in /home/mazeau.e/.ipython/profile_default/history.sqlite. History will not be saved.
+Traceback (most recent call last):
+  File "/home/mazeau.e/anaconda2/envs/rmg_env2/lib/python2.7/site-packages/IPython/core/history.py", line 549, in __init__
+    self.new_session()
+  File "<decorator-gen-22>", line 2, in new_session
+  File "/home/mazeau.e/anaconda2/envs/rmg_env2/lib/python2.7/site-packages/IPython/core/history.py", line 60, in needs_sqlite
+    return f(self, *a, **kw)
+  File "/home/mazeau.e/anaconda2/envs/rmg_env2/lib/python2.7/site-packages/IPython/core/history.py", line 575, in new_session
+    NULL, "") """, (datetime.datetime.now(),))
+OperationalError: database is locked
 [NbConvertApp] ERROR | Error while converting 'copyme.ipynb'
 Traceback (most recent call last):
   File "/home/mazeau.e/anaconda2/envs/rmg_env2/lib/python2.7/site-packages/nbconvert/nbconvertapp.py", line 393, in export_single_notebook

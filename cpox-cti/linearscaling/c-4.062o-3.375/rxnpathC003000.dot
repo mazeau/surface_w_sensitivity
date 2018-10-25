@@ -1,0 +1,42 @@
+digraph reaction_paths {
+center=1;
+s37 -> s4[fontname="Helvetica", penwidth=3.62, arrowsize=1.81, color="0.7, 0.543, 0.9"
+, label=" 0.0429"];
+s4 -> s32[fontname="Helvetica", penwidth=6, arrowsize=3, color="0.7, 1.5, 0.9"
+, label=" 1"];
+s12 -> s32[fontname="Helvetica", penwidth=2.27, arrowsize=1.14, color="0.7, 0.507, 0.9"
+, label=" 0.0072"];
+s32 -> s16[fontname="Helvetica", penwidth=5.89, arrowsize=2.95, color="0.7, 1.37, 0.9"
+, label=" 0.87"];
+s32 -> s45[fontname="Helvetica", penwidth=4.5, arrowsize=2.25, color="0.7, 0.637, 0.9"
+, label=" 0.137"];
+s45 -> s35[fontname="Helvetica", penwidth=4.5, arrowsize=2.25, color="0.7, 0.637, 0.9"
+, label=" 0.137"];
+s35 -> s36[fontname="Helvetica", penwidth=4.41, arrowsize=2.2, color="0.7, 0.621, 0.9"
+, label=" 0.121"];
+s35 -> s47[fontname="Helvetica", penwidth=2.88, arrowsize=1.44, color="0.7, 0.516, 0.9"
+, label=" 0.016"];
+s36 -> s31[fontname="Helvetica", penwidth=4.25, arrowsize=2.13, color="0.7, 0.599, 0.9"
+, label=" 0.0986"];
+s36 -> s22[fontname="Helvetica", penwidth=3.15, arrowsize=1.57, color="0.7, 0.523, 0.9"
+, label=" 0.0228"];
+s31 -> s9[fontname="Helvetica", penwidth=4.26, arrowsize=2.13, color="0.7, 0.6, 0.9"
+, label=" 0.0998"];
+s47 -> s53[fontname="Helvetica", penwidth=2.67, arrowsize=1.33, color="0.7, 0.512, 0.9"
+, label=" 0.0121"];
+s4 [ fontname="Helvetica", label="CH4(2)"];
+s9 [ fontname="Helvetica", label="CO(7)"];
+s12 [ fontname="Helvetica", label="CH3(10)"];
+s16 [ fontname="Helvetica", label="CH3OH(14)"];
+s22 [ fontname="Helvetica", label="CH2O2(69)"];
+s31 [ fontname="Helvetica", label="OCX(21)"];
+s32 [ fontname="Helvetica", label="CH3X(22)"];
+s35 [ fontname="Helvetica", label="CHX(26)"];
+s36 [ fontname="Helvetica", label="CXHO(27)"];
+s37 [ fontname="Helvetica", label="CH4X(33)"];
+s45 [ fontname="Helvetica", label="CH2X(134)"];
+s47 [ fontname="Helvetica", label="CH2OX(138)"];
+s53 [ fontname="Helvetica", label="CHOX(255)"];
+ label = "Scale = 1e-06\l Reaction path diagram following C";
+ fontname = "Helvetica";
+}

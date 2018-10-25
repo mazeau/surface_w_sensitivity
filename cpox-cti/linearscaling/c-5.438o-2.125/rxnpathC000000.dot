@@ -1,0 +1,42 @@
+digraph reaction_paths {
+center=1;
+s4 -> s40[fontname="Helvetica", penwidth=6, arrowsize=3, color="0.7, 1.5, 0.9"
+, label=" 1"];
+s4 -> s34[fontname="Helvetica", penwidth=5.62, arrowsize=2.81, color="0.7, 1.11, 0.9"
+, label=" 0.607"];
+s12 -> s34[fontname="Helvetica", penwidth=4.03, arrowsize=2.01, color="0.7, 0.573, 0.9"
+, label=" 0.0733"];
+s34 -> s16[fontname="Helvetica", penwidth=5.51, arrowsize=2.76, color="0.7, 1.02, 0.9"
+, label=" 0.523"];
+s34 -> s51[fontname="Helvetica", penwidth=4.62, arrowsize=2.31, color="0.7, 0.661, 0.9"
+, label=" 0.161"];
+s51 -> s38[fontname="Helvetica", penwidth=4.6, arrowsize=2.3, color="0.7, 0.657, 0.9"
+, label=" 0.157"];
+s38 -> s36[fontname="Helvetica", penwidth=4.57, arrowsize=2.29, color="0.7, 0.651, 0.9"
+, label=" 0.151"];
+s33 -> s9[fontname="Helvetica", penwidth=3.24, arrowsize=1.62, color="0.7, 0.526, 0.9"
+, label=" 0.0258"];
+s33 -> s37[fontname="Helvetica", penwidth=4.46, arrowsize=2.23, color="0.7, 0.63, 0.9"
+, label=" 0.13"];
+s36 -> s33[fontname="Helvetica", penwidth=4.59, arrowsize=2.3, color="0.7, 0.655, 0.9"
+, label=" 0.155"];
+s37 -> s6[fontname="Helvetica", penwidth=4.19, arrowsize=2.09, color="0.7, 0.591, 0.9"
+, label=" 0.0908"];
+s37 -> s28[fontname="Helvetica", penwidth=3.55, arrowsize=1.77, color="0.7, 0.539, 0.9"
+, label=" 0.0388"];
+s4 [ fontname="Helvetica", label="CH4(2)"];
+s6 [ fontname="Helvetica", label="CO2(4)"];
+s9 [ fontname="Helvetica", label="CO(7)"];
+s12 [ fontname="Helvetica", label="CH3(10)"];
+s16 [ fontname="Helvetica", label="CH3OH(14)"];
+s28 [ fontname="Helvetica", label="CH2O3(177)"];
+s33 [ fontname="Helvetica", label="OCX(21)"];
+s34 [ fontname="Helvetica", label="CH3X(22)"];
+s36 [ fontname="Helvetica", label="CX(24)"];
+s37 [ fontname="Helvetica", label="HOCXO(25)"];
+s38 [ fontname="Helvetica", label="CHX(26)"];
+s40 [ fontname="Helvetica", label="CH4X(33)"];
+s51 [ fontname="Helvetica", label="CH2X(134)"];
+ label = "Scale = 7.8e-05\l Reaction path diagram following C";
+ fontname = "Helvetica";
+}

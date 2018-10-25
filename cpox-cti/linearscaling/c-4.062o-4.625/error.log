@@ -1,21 +1,5 @@
 [NbConvertApp] Converting notebook copyme.ipynb to notebook
 [NbConvertApp] Executing notebook with kernel: python2
-Error in sys.exitfunc:
-Traceback (most recent call last):
-  File "/home/mazeau.e/anaconda2/envs/rmg_env2/lib/python2.7/atexit.py", line 24, in _run_exitfuncs
-    func(*targs, **kargs)
-  File "/home/mazeau.e/anaconda2/envs/rmg_env2/lib/python2.7/site-packages/IPython/core/interactiveshell.py", line 3215, in atexit_operations
-    self.history_manager.end_session()
-  File "/home/mazeau.e/anaconda2/envs/rmg_env2/lib/python2.7/site-packages/IPython/core/history.py", line 580, in end_session
-    self.writeout_cache()
-  File "<decorator-gen-23>", line 2, in writeout_cache
-  File "/home/mazeau.e/anaconda2/envs/rmg_env2/lib/python2.7/site-packages/IPython/core/history.py", line 60, in needs_sqlite
-    return f(self, *a, **kw)
-  File "/home/mazeau.e/anaconda2/envs/rmg_env2/lib/python2.7/site-packages/IPython/core/history.py", line 786, in writeout_cache
-    self._writeout_input_cache(conn)
-  File "/home/mazeau.e/anaconda2/envs/rmg_env2/lib/python2.7/site-packages/IPython/core/history.py", line 770, in _writeout_input_cache
-    (self.session_number,)+line)
-OperationalError: attempt to write a readonly database
 [NbConvertApp] ERROR | Error while converting 'copyme.ipynb'
 Traceback (most recent call last):
   File "/home/mazeau.e/anaconda2/envs/rmg_env2/lib/python2.7/site-packages/nbconvert/nbconvertapp.py", line 393, in export_single_notebook
@@ -157,8 +141,35 @@ for i in range(0, steps, steps//20):
     diagram.title = 'Reaction path diagram following {0}'.format(element)
     diagram.label_threshold = 0.000001
 
-    dot_file = 'rxnpath{:06d}.dot'.format(i)
-    img_file = 'rxnpath{:06d}.png'.format(i)
+    dot_file = 'rxnpathO{:06d}.dot'.format(i)
+    img_file = 'rxnpathO{:06d}.png'.format(i)
+    img_path = os.path.join(os.getcwd(), img_file)
+
+    diagram.write_dot(dot_file)
+#     print(diagram.get_data())
+
+    print("Wrote graphviz input file to '{0}'.".format(os.path.join(os.getcwd(), dot_file)))
+
+    os.system('dot {0} -Tpng -o{1} -Gdpi=200'.format(dot_file, img_file))
+    print("Wrote graphviz output file to '{0}'.".format(img_path))
+
+    from IPython.display import Image
+    Image(filename=img_file) 
+    
+for i in range(0, steps, steps//20):
+    gas.TP = temperature[i], pressure[i] * ct.one_atm
+    gas.X  = gas_mole_fracs[:,i]
+    surf.TP = temperature[i], pressure[i] * ct.one_atm
+    surf.coverages = surf_site_fracs[:,i]
+    
+    element = 'C'
+
+    diagram = ct.ReactionPathDiagram(surf, element)
+    diagram.title = 'Reaction path diagram following {0}'.format(element)
+    diagram.label_threshold = 0.000001
+
+    dot_file = 'rxnpathC{:06d}.dot'.format(i)
+    img_file = 'rxnpathC{:06d}.png'.format(i)
     img_path = os.path.join(os.getcwd(), img_file)
 
     diagram.write_dot(dot_file)
@@ -176,11 +187,13 @@ for i in range(0, steps, steps//20):
 
 [0;31m[0m
 [0;31mIOError[0mTraceback (most recent call last)
-[0;32m<ipython-input-2-282036a2a308>[0m in [0;36m<module>[0;34m()[0m
+[0;32m<ipython-input-2-ad443845ec3e>[0m in [0;36m<module>[0;34m()[0m
 [1;32m    129[0m [0;34m[0m[0m
 [1;32m    130[0m     [0;32mfrom[0m [0mIPython[0m[0;34m.[0m[0mdisplay[0m [0;32mimport[0m [0mImage[0m[0;34m[0m[0m
 [0;32m--> 131[0;31m     [0mImage[0m[0;34m([0m[0mfilename[0m[0;34m=[0m[0mimg_file[0m[0;34m)[0m[0;34m[0m[0m
-[0m
+[0m[1;32m    132[0m [0;34m[0m[0m
+[1;32m    133[0m [0;32mfor[0m [0mi[0m [0;32min[0m [0mrange[0m[0;34m([0m[0;36m0[0m[0;34m,[0m [0msteps[0m[0;34m,[0m [0msteps[0m[0;34m//[0m[0;36m20[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0m
+
 [0;32m/home/mazeau.e/anaconda2/envs/rmg_env2/lib/python2.7/site-packages/IPython/core/display.pyc[0m in [0;36m__init__[0;34m(self, data, url, filename, format, embed, width, height, retina, unconfined, metadata)[0m
 [1;32m    975[0m         [0mself[0m[0;34m.[0m[0munconfined[0m [0;34m=[0m [0munconfined[0m[0;34m[0m[0m
 [1;32m    976[0m         [0mself[0m[0;34m.[0m[0mmetadata[0m [0;34m=[0m [0mmetadata[0m[0;34m[0m[0m
@@ -209,6 +222,6 @@ for i in range(0, steps, steps//20):
 [0m[1;32m    632[0m                 [0mself[0m[0;34m.[0m[0mdata[0m [0;34m=[0m [0mf[0m[0;34m.[0m[0mread[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0m
 [1;32m    633[0m         [0;32melif[0m [0mself[0m[0;34m.[0m[0murl[0m [0;32mis[0m [0;32mnot[0m [0mNone[0m[0;34m:[0m[0;34m[0m[0m
 
-[0;31mIOError[0m: [Errno 2] No such file or directory: u'rxnpath008000.png'
-IOError: [Errno 2] No such file or directory: u'rxnpath008000.png'
+[0;31mIOError[0m: [Errno 2] No such file or directory: u'rxnpathO008500.png'
+IOError: [Errno 2] No such file or directory: u'rxnpathO008500.png'
 
