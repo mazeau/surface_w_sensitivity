@@ -1,18 +1,36 @@
 digraph reaction_paths {
 center=1;
-s4 -> s49[fontname="Helvetica", penwidth=3.75, arrowsize=1.88, color="0.7, 0.551, 0.9"
-, label=" 0.0509"];
-s4 -> s44[fontname="Helvetica", penwidth=6, arrowsize=3, color="0.7, 1.5, 0.9"
-, label=" 0.997"];
-s44 -> s12[fontname="Helvetica", penwidth=6, arrowsize=3, color="0.7, 1.5, 0.9"
+s86 -> s4[fontname="Helvetica", penwidth=2.28, arrowsize=1.14, color="0.7, 0.507, 0.9"
+, label=" 0.00724"];
+s4 -> s78[fontname="Helvetica", penwidth=6, arrowsize=3, color="0.7, 1.5, 0.9"
 , label=" 1"];
-s44 -> s16[fontname="Helvetica", penwidth=2.29, arrowsize=1.14, color="0.7, 0.507, 0.9"
-, label=" 0.00734"];
+s78 -> s12[fontname="Helvetica", penwidth=5.97, arrowsize=2.99, color="0.7, 1.47, 0.9"
+, label=" 0.967"];
+s78 -> s84[fontname="Helvetica", penwidth=3.28, arrowsize=1.64, color="0.7, 0.527, 0.9"
+, label=" 0.0272"];
+s84 -> s85[fontname="Helvetica", penwidth=3.28, arrowsize=1.64, color="0.7, 0.527, 0.9"
+, label=" 0.0272"];
+s85 -> s83[fontname="Helvetica", penwidth=3.28, arrowsize=1.64, color="0.7, 0.527, 0.9"
+, label=" 0.0272"];
+s83 -> s82[fontname="Helvetica", penwidth=3.28, arrowsize=1.64, color="0.7, 0.527, 0.9"
+, label=" 0.0272"];
+s82 -> s9[fontname="Helvetica", penwidth=3.05, arrowsize=1.53, color="0.7, 0.52, 0.9"
+, label=" 0.0201"];
+s82 -> s81[fontname="Helvetica", penwidth=2.31, arrowsize=1.16, color="0.7, 0.508, 0.9"
+, label=" 0.00758"];
+s81 -> s6[fontname="Helvetica", penwidth=2.31, arrowsize=1.16, color="0.7, 0.508, 0.9"
+, label=" 0.00758"];
 s4 [ fontname="Helvetica", label="CH4(2)"];
+s6 [ fontname="Helvetica", label="CO2(4)"];
+s9 [ fontname="Helvetica", label="CO(7)"];
 s12 [ fontname="Helvetica", label="CH3(10)"];
-s16 [ fontname="Helvetica", label="CH3OH(14)"];
-s44 [ fontname="Helvetica", label="CH3X(22)"];
-s49 [ fontname="Helvetica", label="CH4X(33)"];
- label = "Scale = 1.7e-08\l Reaction path diagram following C";
+s78 [ fontname="Helvetica", label="CH3X(21)"];
+s81 [ fontname="Helvetica", label="CO2X(24)"];
+s82 [ fontname="Helvetica", label="OCX(25)"];
+s83 [ fontname="Helvetica", label="CX(26)"];
+s84 [ fontname="Helvetica", label="CH2X(27)"];
+s85 [ fontname="Helvetica", label="CHX(28)"];
+s86 [ fontname="Helvetica", label="CH4X(45)"];
+ label = "Scale = 3.7e-06\l Reaction path diagram following C";
  fontname = "Helvetica";
 }

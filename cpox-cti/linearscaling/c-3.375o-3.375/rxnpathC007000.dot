@@ -1,0 +1,43 @@
+digraph reaction_paths {
+center=1;
+s4 -> s48[fontname="Helvetica", penwidth=5.63, arrowsize=2.81, color="0.7, 1.11, 0.9"
+, label=" 0.61"];
+s4 -> s40[fontname="Helvetica", penwidth=5.19, arrowsize=2.6, color="0.7, 0.843, 0.9"
+, label=" 0.343"];
+s40 -> s12[fontname="Helvetica", penwidth=5.15, arrowsize=2.58, color="0.7, 0.826, 0.9"
+, label=" 0.326"];
+s40 -> s46[fontname="Helvetica", penwidth=2.38, arrowsize=1.19, color="0.7, 0.508, 0.9"
+, label=" 0.00823"];
+s46 -> s47[fontname="Helvetica", penwidth=2.38, arrowsize=1.19, color="0.7, 0.508, 0.9"
+, label=" 0.00823"];
+s47 -> s45[fontname="Helvetica", penwidth=2.38, arrowsize=1.19, color="0.7, 0.508, 0.9"
+, label=" 0.00823"];
+s45 -> s44[fontname="Helvetica", penwidth=2.38, arrowsize=1.19, color="0.7, 0.508, 0.9"
+, label=" 0.00823"];
+s9 -> s44[fontname="Helvetica", penwidth=6, arrowsize=3, color="0.7, 1.5, 0.9"
+, label=" 1"];
+s9 -> s50[fontname="Helvetica", penwidth=4.4, arrowsize=2.2, color="0.7, 0.619, 0.9"
+, label=" 0.119"];
+s44 -> s43[fontname="Helvetica", penwidth=2.1, arrowsize=1.05, color="0.7, 0.506, 0.9"
+, label=" 0.00574"];
+s43 -> s6[fontname="Helvetica", penwidth=2.1, arrowsize=1.05, color="0.7, 0.506, 0.9"
+, label=" 0.00574"];
+s11 -> s53[fontname="Helvetica", penwidth=3.11, arrowsize=1.55, color="0.7, 0.522, 0.9"
+, label=" 0.0217"];
+s4 [ fontname="Helvetica", label="CH4(2)"];
+s6 [ fontname="Helvetica", label="CO2(4)"];
+s9 [ fontname="Helvetica", label="CO(7)"];
+s11 [ fontname="Helvetica", label="CH2O(9)"];
+s12 [ fontname="Helvetica", label="CH3(10)"];
+s40 [ fontname="Helvetica", label="CH3X(21)"];
+s43 [ fontname="Helvetica", label="CO2X(24)"];
+s44 [ fontname="Helvetica", label="OCX(25)"];
+s45 [ fontname="Helvetica", label="CX(26)"];
+s46 [ fontname="Helvetica", label="CH2X(27)"];
+s47 [ fontname="Helvetica", label="CHX(28)"];
+s48 [ fontname="Helvetica", label="CH4X(45)"];
+s50 [ fontname="Helvetica", label="COX(47)"];
+s53 [ fontname="Helvetica", label="CH2OX(51)"];
+ label = "Scale = 3.9e-08\l Reaction path diagram following C";
+ fontname = "Helvetica";
+}

@@ -1,20 +1,29 @@
 digraph reaction_paths {
 center=1;
-s4 -> s51[fontname="Helvetica", penwidth=6, arrowsize=3, color="0.7, 1.5, 0.9"
+s4 -> s73[fontname="Helvetica", penwidth=5.23, arrowsize=2.62, color="0.7, 0.861, 0.9"
+, label=" 0.361"];
+s10 -> s77[fontname="Helvetica", penwidth=3.86, arrowsize=1.93, color="0.7, 0.559, 0.9"
+, label=" 0.0588"];
+s9 -> s69[fontname="Helvetica", penwidth=3.12, arrowsize=1.56, color="0.7, 0.522, 0.9"
+, label=" 0.022"];
+s6 -> s68[fontname="Helvetica", penwidth=3.43, arrowsize=1.72, color="0.7, 0.533, 0.9"
+, label=" 0.0332"];
+s13 -> s80[fontname="Helvetica", penwidth=2.53, arrowsize=1.26, color="0.7, 0.51, 0.9"
+, label=" 0.0101"];
+s20 -> s85[fontname="Helvetica", penwidth=6, arrowsize=3, color="0.7, 1.5, 0.9"
 , label=" 1"];
-s46 -> s12[fontname="Helvetica", penwidth=3.26, arrowsize=1.63, color="0.7, 0.527, 0.9"
-, label=" 0.0266"];
-s45 -> s9[fontname="Helvetica", penwidth=4.36, arrowsize=2.18, color="0.7, 0.614, 0.9"
-, label=" 0.114"];
-s55 -> s9[fontname="Helvetica", penwidth=3.14, arrowsize=1.57, color="0.7, 0.523, 0.9"
-, label=" 0.0228"];
 s4 [ fontname="Helvetica", label="CH4(2)"];
+s6 [ fontname="Helvetica", label="CO2(4)"];
 s9 [ fontname="Helvetica", label="CO(7)"];
-s12 [ fontname="Helvetica", label="CH3(10)"];
-s45 [ fontname="Helvetica", label="OCX(21)"];
-s46 [ fontname="Helvetica", label="CH3X(22)"];
-s51 [ fontname="Helvetica", label="CH4X(33)"];
-s55 [ fontname="Helvetica", label="COX(37)"];
- label = "Scale = 2.4e-07\l Reaction path diagram following C";
+s10 [ fontname="Helvetica", label="C2H6(8)"];
+s13 [ fontname="Helvetica", label="C3H8(11)"];
+s20 [ fontname="Helvetica", label="C2H4(18)"];
+s68 [ fontname="Helvetica", label="CO2X(24)"];
+s69 [ fontname="Helvetica", label="OCX(25)"];
+s73 [ fontname="Helvetica", label="CH4X(45)"];
+s77 [ fontname="Helvetica", label="C2H6X(49)"];
+s80 [ fontname="Helvetica", label="C3H8X(54)"];
+s85 [ fontname="Helvetica", label="C2H4X(62)"];
+ label = "Scale = 1.2e-05\l Reaction path diagram following C";
  fontname = "Helvetica";
 }

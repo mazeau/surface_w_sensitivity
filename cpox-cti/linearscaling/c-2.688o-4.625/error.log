@@ -1,39 +1,13 @@
 [NbConvertApp] Converting notebook copyme.ipynb to notebook
 [NbConvertApp] Executing notebook with kernel: python2
-[NbConvertApp] ERROR | Error while converting 'copyme.ipynb'
+[IPKernelApp] ERROR | Failed to create history session in /home/mazeau.e/.ipython/profile_default/history.sqlite. History will not be saved.
 Traceback (most recent call last):
-  File "/home/mazeau.e/anaconda2/envs/rmg_env2/lib/python2.7/site-packages/nbconvert/nbconvertapp.py", line 393, in export_single_notebook
-    output, resources = self.exporter.from_filename(notebook_filename, resources=resources)
-  File "/home/mazeau.e/anaconda2/envs/rmg_env2/lib/python2.7/site-packages/nbconvert/exporters/exporter.py", line 174, in from_filename
-    return self.from_file(f, resources=resources, **kw)
-  File "/home/mazeau.e/anaconda2/envs/rmg_env2/lib/python2.7/site-packages/nbconvert/exporters/exporter.py", line 192, in from_file
-    return self.from_notebook_node(nbformat.read(file_stream, as_version=4), resources=resources, **kw)
-  File "/home/mazeau.e/anaconda2/envs/rmg_env2/lib/python2.7/site-packages/nbconvert/exporters/notebook.py", line 31, in from_notebook_node
-    nb_copy, resources = super(NotebookExporter, self).from_notebook_node(nb, resources, **kw)
-  File "/home/mazeau.e/anaconda2/envs/rmg_env2/lib/python2.7/site-packages/nbconvert/exporters/exporter.py", line 134, in from_notebook_node
-    nb_copy, resources = self._preprocess(nb_copy, resources)
-  File "/home/mazeau.e/anaconda2/envs/rmg_env2/lib/python2.7/site-packages/nbconvert/exporters/exporter.py", line 311, in _preprocess
-    nbc, resc = preprocessor(nbc, resc)
-  File "/home/mazeau.e/anaconda2/envs/rmg_env2/lib/python2.7/site-packages/nbconvert/preprocessors/base.py", line 47, in __call__
-    return self.preprocess(nb, resources)
-  File "/home/mazeau.e/anaconda2/envs/rmg_env2/lib/python2.7/site-packages/nbconvert/preprocessors/execute.py", line 262, in preprocess
-    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
-  File "/home/mazeau.e/anaconda2/envs/rmg_env2/lib/python2.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
-    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
-  File "/home/mazeau.e/anaconda2/envs/rmg_env2/lib/python2.7/site-packages/nbconvert/preprocessors/execute.py", line 286, in preprocess_cell
-    raise CellExecutionError.from_cell_and_msg(cell, out)
-CellExecutionError: An error occurred while executing the following cell:
-------------------
-with open('time.txt','w') as f:
-    f.write(str(O2_ref_time))
-------------------
-
-[0;31m[0m
-[0;31mNameError[0mTraceback (most recent call last)
-[0;32m<ipython-input-3-004abf9508b6>[0m in [0;36m<module>[0;34m()[0m
-[1;32m      1[0m [0;32mwith[0m [0mopen[0m[0;34m([0m[0;34m'time.txt'[0m[0;34m,[0m[0;34m'w'[0m[0;34m)[0m [0;32mas[0m [0mf[0m[0;34m:[0m[0;34m[0m[0m
-[0;32m----> 2[0;31m     [0mf[0m[0;34m.[0m[0mwrite[0m[0;34m([0m[0mstr[0m[0;34m([0m[0mO2_ref_time[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0m
-[0m
-[0;31mNameError[0m: name 'O2_ref_time' is not defined
-NameError: name 'O2_ref_time' is not defined
-
+  File "/home/mazeau.e/anaconda2/envs/rmg_env2/lib/python2.7/site-packages/IPython/core/history.py", line 549, in __init__
+    self.new_session()
+  File "<decorator-gen-22>", line 2, in new_session
+  File "/home/mazeau.e/anaconda2/envs/rmg_env2/lib/python2.7/site-packages/IPython/core/history.py", line 60, in needs_sqlite
+    return f(self, *a, **kw)
+  File "/home/mazeau.e/anaconda2/envs/rmg_env2/lib/python2.7/site-packages/IPython/core/history.py", line 575, in new_session
+    NULL, "") """, (datetime.datetime.now(),))
+OperationalError: database is locked
+[NbConvertApp] Writing 275651 bytes to alldone.ipynb

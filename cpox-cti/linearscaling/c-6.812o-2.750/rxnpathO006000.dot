@@ -1,30 +1,19 @@
 digraph reaction_paths {
 center=1;
-s28 -> s26[fontname="Helvetica", penwidth=2.32, arrowsize=1.16, color="0.7, 0.508, 0.9"
-, label=" 0.00769"];
-s7 -> s35[fontname="Helvetica", penwidth=6, arrowsize=3, color="0.7, 1.5, 0.9"
+s5 -> s23[fontname="Helvetica", penwidth=2.98, arrowsize=1.49, color="0.7, 0.518, 0.9"
+, label=" 0.0183"];
+s23 -> s28[fontname="Helvetica", penwidth=2.86, arrowsize=1.43, color="0.7, 0.516, 0.9"
+, label=" 0.0155"];
+s7 -> s26[fontname="Helvetica", penwidth=6, arrowsize=3, color="0.7, 1.5, 0.9"
 , label=" 1"];
-s9 -> s26[fontname="Helvetica", penwidth=3.68, arrowsize=1.84, color="0.7, 0.546, 0.9"
-, label=" 0.0464"];
-s9 -> s37[fontname="Helvetica", penwidth=2.65, arrowsize=1.33, color="0.7, 0.512, 0.9"
+s28 -> s9[fontname="Helvetica", penwidth=2.65, arrowsize=1.32, color="0.7, 0.512, 0.9"
 , label=" 0.0118"];
-s6 -> s34[fontname="Helvetica", penwidth=5.67, arrowsize=2.84, color="0.7, 1.15, 0.9"
-, label=" 0.649"];
-s21 -> s30[fontname="Helvetica", penwidth=2.41, arrowsize=1.21, color="0.7, 0.509, 0.9"
-, label=" 0.00864"];
-s21 -> s46[fontname="Helvetica", penwidth=4.58, arrowsize=2.29, color="0.7, 0.651, 0.9"
-, label=" 0.151"];
-s6 [ fontname="Helvetica", label="CO2(4)"];
+s5 [ fontname="Helvetica", label="O2(3)"];
 s7 [ fontname="Helvetica", label="H2O(5)"];
 s9 [ fontname="Helvetica", label="CO(7)"];
-s21 [ fontname="Helvetica", label="CH2O3(142)"];
-s26 [ fontname="Helvetica", label="OCX(21)"];
-s28 [ fontname="Helvetica", label="HOX(23)"];
-s30 [ fontname="Helvetica", label="HOCXO(25)"];
-s34 [ fontname="Helvetica", label="CO2X(34)"];
-s35 [ fontname="Helvetica", label="H2OX(35)"];
-s37 [ fontname="Helvetica", label="COX(37)"];
-s46 [ fontname="Helvetica", label="SX(149)"];
- label = "Scale = 7.1e-06\l Reaction path diagram following O";
+s23 [ fontname="Helvetica", label="OX(20)"];
+s26 [ fontname="Helvetica", label="H2OX(23)"];
+s28 [ fontname="Helvetica", label="OCX(25)"];
+ label = "Scale = 3e-06\l Reaction path diagram following O";
  fontname = "Helvetica";
 }

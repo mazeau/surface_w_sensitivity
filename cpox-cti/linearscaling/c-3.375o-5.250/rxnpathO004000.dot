@@ -1,23 +1,26 @@
 digraph reaction_paths {
 center=1;
-s5 -> s35[fontname="Helvetica", penwidth=5.42, arrowsize=2.71, color="0.7, 0.965, 0.9"
-, label=" 0.465"];
-s38 -> s35[fontname="Helvetica", penwidth=2.26, arrowsize=1.13, color="0.7, 0.507, 0.9"
-, label=" 0.00706"];
-s50 -> s35[fontname="Helvetica", penwidth=2.82, arrowsize=1.41, color="0.7, 0.515, 0.9"
-, label=" 0.0148"];
-s38 -> s7[fontname="Helvetica", penwidth=2.26, arrowsize=1.13, color="0.7, 0.507, 0.9"
-, label=" 0.0071"];
-s50 -> s38[fontname="Helvetica", penwidth=2.82, arrowsize=1.41, color="0.7, 0.515, 0.9"
-, label=" 0.0148"];
-s23 -> s50[fontname="Helvetica", penwidth=3.42, arrowsize=1.71, color="0.7, 0.533, 0.9"
-, label=" 0.0328"];
+s5 -> s58[fontname="Helvetica", penwidth=5.19, arrowsize=2.59, color="0.7, 0.84, 0.9"
+, label=" 0.34"];
+s58 -> s60[fontname="Helvetica", penwidth=4.62, arrowsize=2.31, color="0.7, 0.661, 0.9"
+, label=" 0.161"];
+s76 -> s58[fontname="Helvetica", penwidth=3.07, arrowsize=1.53, color="0.7, 0.521, 0.9"
+, label=" 0.0206"];
+s60 -> s61[fontname="Helvetica", penwidth=4.72, arrowsize=2.36, color="0.7, 0.683, 0.9"
+, label=" 0.183"];
+s76 -> s60[fontname="Helvetica", penwidth=3.07, arrowsize=1.53, color="0.7, 0.521, 0.9"
+, label=" 0.0206"];
+s61 -> s7[fontname="Helvetica", penwidth=4.86, arrowsize=2.43, color="0.7, 0.721, 0.9"
+, label=" 0.221"];
+s29 -> s76[fontname="Helvetica", penwidth=3.59, arrowsize=1.8, color="0.7, 0.541, 0.9"
+, label=" 0.0411"];
 s5 [ fontname="Helvetica", label="O2(3)"];
 s7 [ fontname="Helvetica", label="H2O(5)"];
-s23 [ fontname="Helvetica", label="HO2(52)"];
-s35 [ fontname="Helvetica", label="OX(20)"];
-s38 [ fontname="Helvetica", label="HOX(23)"];
-s50 [ fontname="Helvetica", label="HO2X(135)"];
+s29 [ fontname="Helvetica", label="HO2(63)"];
+s58 [ fontname="Helvetica", label="OX(20)"];
+s60 [ fontname="Helvetica", label="HOX(22)"];
+s61 [ fontname="Helvetica", label="H2OX(23)"];
+s76 [ fontname="Helvetica", label="HO2X(179)"];
  label = "Scale = 1e-10\l Reaction path diagram following O";
  fontname = "Helvetica";
 }

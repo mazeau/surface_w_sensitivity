@@ -1,7 +1,40 @@
 [NbConvertApp] Converting notebook copyme.ipynb to notebook
 [NbConvertApp] Executing notebook with kernel: python2
-[NbConvertApp] ERROR | Error while converting 'copyme.ipynb'
 Traceback (most recent call last):
+  File "/home/mazeau.e/anaconda2/envs/rmg_env2/lib/python2.7/runpy.py", line 174, in _run_module_as_main
+    "__main__", fname, loader, pkg_name)
+  File "/home/mazeau.e/anaconda2/envs/rmg_env2/lib/python2.7/runpy.py", line 72, in _run_code
+    exec code in run_globals
+  File "/home/mazeau.e/anaconda2/envs/rmg_env2/lib/python2.7/site-packages/ipykernel_launcher.py", line 16, in <module>
+    app.launch_new_instance()
+  File "/home/mazeau.e/anaconda2/envs/rmg_env2/lib/python2.7/site-packages/traitlets/config/application.py", line 657, in launch_instance
+    app.initialize(argv)
+  File "<decorator-gen-121>", line 2, in initialize
+  File "/home/mazeau.e/anaconda2/envs/rmg_env2/lib/python2.7/site-packages/traitlets/config/application.py", line 87, in catch_config_error
+    return method(app, *args, **kwargs)
+  File "/home/mazeau.e/anaconda2/envs/rmg_env2/lib/python2.7/site-packages/ipykernel/kernelapp.py", line 456, in initialize
+    self.init_sockets()
+  File "/home/mazeau.e/anaconda2/envs/rmg_env2/lib/python2.7/site-packages/ipykernel/kernelapp.py", line 248, in init_sockets
+    self.control_port = self._bind_socket(self.control_socket, self.control_port)
+  File "/home/mazeau.e/anaconda2/envs/rmg_env2/lib/python2.7/site-packages/ipykernel/kernelapp.py", line 180, in _bind_socket
+    s.bind("tcp://%s:%i" % (self.ip, port))
+  File "zmq/backend/cython/socket.pyx", line 547, in zmq.backend.cython.socket.Socket.bind
+  File "zmq/backend/cython/checkrc.pxd", line 25, in zmq.backend.cython.checkrc._check_rc
+    raise ZMQError(errno)
+ZMQError: Address already in use
+Traceback (most recent call last):
+  File "/home/mazeau.e/anaconda2/envs/rmg_env2/bin/jupyter-nbconvert", line 11, in <module>
+    sys.exit(main())
+  File "/home/mazeau.e/anaconda2/envs/rmg_env2/lib/python2.7/site-packages/jupyter_core/application.py", line 266, in launch_instance
+    return super(JupyterApp, cls).launch_instance(argv=argv, **kwargs)
+  File "/home/mazeau.e/anaconda2/envs/rmg_env2/lib/python2.7/site-packages/traitlets/config/application.py", line 658, in launch_instance
+    app.start()
+  File "/home/mazeau.e/anaconda2/envs/rmg_env2/lib/python2.7/site-packages/nbconvert/nbconvertapp.py", line 325, in start
+    self.convert_notebooks()
+  File "/home/mazeau.e/anaconda2/envs/rmg_env2/lib/python2.7/site-packages/nbconvert/nbconvertapp.py", line 493, in convert_notebooks
+    self.convert_single_notebook(notebook_filename)
+  File "/home/mazeau.e/anaconda2/envs/rmg_env2/lib/python2.7/site-packages/nbconvert/nbconvertapp.py", line 464, in convert_single_notebook
+    output, resources = self.export_single_notebook(notebook_filename, resources, input_buffer=input_buffer)
   File "/home/mazeau.e/anaconda2/envs/rmg_env2/lib/python2.7/site-packages/nbconvert/nbconvertapp.py", line 393, in export_single_notebook
     output, resources = self.exporter.from_filename(notebook_filename, resources=resources)
   File "/home/mazeau.e/anaconda2/envs/rmg_env2/lib/python2.7/site-packages/nbconvert/exporters/exporter.py", line 174, in from_filename
@@ -16,24 +49,10 @@ Traceback (most recent call last):
     nbc, resc = preprocessor(nbc, resc)
   File "/home/mazeau.e/anaconda2/envs/rmg_env2/lib/python2.7/site-packages/nbconvert/preprocessors/base.py", line 47, in __call__
     return self.preprocess(nb, resources)
-  File "/home/mazeau.e/anaconda2/envs/rmg_env2/lib/python2.7/site-packages/nbconvert/preprocessors/execute.py", line 262, in preprocess
-    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
-  File "/home/mazeau.e/anaconda2/envs/rmg_env2/lib/python2.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
-    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
-  File "/home/mazeau.e/anaconda2/envs/rmg_env2/lib/python2.7/site-packages/nbconvert/preprocessors/execute.py", line 286, in preprocess_cell
-    raise CellExecutionError.from_cell_and_msg(cell, out)
-CellExecutionError: An error occurred while executing the following cell:
-------------------
-with open('time.txt','w') as f:
-    f.write(str(O2_ref_time))
-------------------
-
-[0;31m[0m
-[0;31mNameError[0mTraceback (most recent call last)
-[0;32m<ipython-input-3-004abf9508b6>[0m in [0;36m<module>[0;34m()[0m
-[1;32m      1[0m [0;32mwith[0m [0mopen[0m[0;34m([0m[0;34m'time.txt'[0m[0;34m,[0m[0;34m'w'[0m[0;34m)[0m [0;32mas[0m [0mf[0m[0;34m:[0m[0;34m[0m[0m
-[0;32m----> 2[0;31m     [0mf[0m[0;34m.[0m[0mwrite[0m[0;34m([0m[0mstr[0m[0;34m([0m[0mO2_ref_time[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0m
-[0m
-[0;31mNameError[0m: name 'O2_ref_time' is not defined
-NameError: name 'O2_ref_time' is not defined
-
+  File "/home/mazeau.e/anaconda2/envs/rmg_env2/lib/python2.7/site-packages/nbconvert/preprocessors/execute.py", line 257, in preprocess
+    cwd=path)
+  File "/home/mazeau.e/anaconda2/envs/rmg_env2/lib/python2.7/site-packages/nbconvert/preprocessors/execute.py", line 241, in start_new_kernel
+    kc.wait_for_ready(timeout=startup_timeout)
+  File "/home/mazeau.e/anaconda2/envs/rmg_env2/lib/python2.7/site-packages/jupyter_client/blocking/client.py", line 120, in wait_for_ready
+    raise RuntimeError('Kernel died before replying to kernel_info')
+RuntimeError: Kernel died before replying to kernel_info

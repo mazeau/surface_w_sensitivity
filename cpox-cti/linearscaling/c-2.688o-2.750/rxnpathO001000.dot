@@ -1,26 +1,35 @@
 digraph reaction_paths {
 center=1;
-s5 -> s34[fontname="Helvetica", penwidth=6, arrowsize=3, color="0.7, 1.5, 0.9"
+s5 -> s35[fontname="Helvetica", penwidth=6, arrowsize=3, color="0.7, 1.5, 0.9"
 , label=" 1"];
-s34 -> s37[fontname="Helvetica", penwidth=5.98, arrowsize=2.99, color="0.7, 1.48, 0.9"
-, label=" 0.977"];
-s34 -> s54[fontname="Helvetica", penwidth=3.15, arrowsize=1.58, color="0.7, 0.523, 0.9"
-, label=" 0.023"];
-s37 -> s16[fontname="Helvetica", penwidth=5.75, arrowsize=2.87, color="0.7, 1.21, 0.9"
-, label=" 0.714"];
-s37 -> s19[fontname="Helvetica", penwidth=4.89, arrowsize=2.44, color="0.7, 0.729, 0.9"
-, label=" 0.229"];
-s37 -> s7[fontname="Helvetica", penwidth=2.45, arrowsize=1.23, color="0.7, 0.509, 0.9"
-, label=" 0.0091"];
-s37 -> s54[fontname="Helvetica", penwidth=3.15, arrowsize=1.58, color="0.7, 0.523, 0.9"
-, label=" 0.023"];
+s35 -> s37[fontname="Helvetica", penwidth=5.98, arrowsize=2.99, color="0.7, 1.48, 0.9"
+, label=" 0.975"];
+s35 -> s40[fontname="Helvetica", penwidth=3.38, arrowsize=1.69, color="0.7, 0.531, 0.9"
+, label=" 0.0311"];
+s56 -> s35[fontname="Helvetica", penwidth=2.02, arrowsize=1.01, color="0.7, 0.505, 0.9"
+, label=" 0.00513"];
+s37 -> s16[fontname="Helvetica", penwidth=2.91, arrowsize=1.46, color="0.7, 0.517, 0.9"
+, label=" 0.0167"];
+s37 -> s38[fontname="Helvetica", penwidth=5.97, arrowsize=2.99, color="0.7, 1.46, 0.9"
+, label=" 0.963"];
+s56 -> s37[fontname="Helvetica", penwidth=2.02, arrowsize=1.01, color="0.7, 0.505, 0.9"
+, label=" 0.00513"];
+s38 -> s7[fontname="Helvetica", penwidth=5.97, arrowsize=2.99, color="0.7, 1.47, 0.9"
+, label=" 0.966"];
+s40 -> s9[fontname="Helvetica", penwidth=3.38, arrowsize=1.69, color="0.7, 0.531, 0.9"
+, label=" 0.0309"];
+s23 -> s56[fontname="Helvetica", penwidth=2.54, arrowsize=1.27, color="0.7, 0.51, 0.9"
+, label=" 0.0102"];
 s5 [ fontname="Helvetica", label="O2(3)"];
 s7 [ fontname="Helvetica", label="H2O(5)"];
+s9 [ fontname="Helvetica", label="CO(7)"];
 s16 [ fontname="Helvetica", label="CH3OH(14)"];
-s19 [ fontname="Helvetica", label="OH(17)"];
-s34 [ fontname="Helvetica", label="OX(20)"];
-s37 [ fontname="Helvetica", label="HOX(23)"];
-s54 [ fontname="Helvetica", label="HO2X(135)"];
- label = "Scale = 6.3e-07\l Reaction path diagram following O";
+s23 [ fontname="Helvetica", label="HO2(63)"];
+s35 [ fontname="Helvetica", label="OX(20)"];
+s37 [ fontname="Helvetica", label="HOX(22)"];
+s38 [ fontname="Helvetica", label="H2OX(23)"];
+s40 [ fontname="Helvetica", label="OCX(25)"];
+s56 [ fontname="Helvetica", label="HO2X(179)"];
+ label = "Scale = 1.5e-05\l Reaction path diagram following O";
  fontname = "Helvetica";
 }

@@ -1,9 +1,18 @@
 digraph reaction_paths {
 center=1;
-s5 -> s36[fontname="Helvetica", penwidth=6, arrowsize=3, color="0.7, 1.5, 0.9"
+s5 -> s91[fontname="Helvetica", penwidth=6, arrowsize=3, color="0.7, 1.5, 0.9"
 , label=" 1"];
+s91 -> s93[fontname="Helvetica", penwidth=5.07, arrowsize=2.53, color="0.7, 0.791, 0.9"
+, label=" 0.291"];
+s93 -> s94[fontname="Helvetica", penwidth=5.07, arrowsize=2.53, color="0.7, 0.791, 0.9"
+, label=" 0.291"];
+s94 -> s7[fontname="Helvetica", penwidth=5.07, arrowsize=2.53, color="0.7, 0.791, 0.9"
+, label=" 0.291"];
 s5 [ fontname="Helvetica", label="O2(3)"];
-s36 [ fontname="Helvetica", label="OX(20)"];
- label = "Scale = 3.1e-08\l Reaction path diagram following O";
+s7 [ fontname="Helvetica", label="H2O(5)"];
+s91 [ fontname="Helvetica", label="OX(20)"];
+s93 [ fontname="Helvetica", label="HOX(22)"];
+s94 [ fontname="Helvetica", label="H2OX(23)"];
+ label = "Scale = 1.5e-08\l Reaction path diagram following O";
  fontname = "Helvetica";
 }

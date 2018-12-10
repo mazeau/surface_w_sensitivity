@@ -1,16 +1,12 @@
 digraph reaction_paths {
 center=1;
-s9 -> s24[fontname="Helvetica", penwidth=6, arrowsize=3, color="0.7, 1.5, 0.9"
+s9 -> s28[fontname="Helvetica", penwidth=6, arrowsize=3, color="0.7, 1.5, 0.9"
 , label=" 1"];
-s9 -> s34[fontname="Helvetica", penwidth=4.78, arrowsize=2.39, color="0.7, 0.7, 0.9"
-, label=" 0.2"];
-s6 -> s31[fontname="Helvetica", penwidth=4.28, arrowsize=2.14, color="0.7, 0.603, 0.9"
-, label=" 0.103"];
-s6 [ fontname="Helvetica", label="CO2(4)"];
+s9 -> s34[fontname="Helvetica", penwidth=4.39, arrowsize=2.2, color="0.7, 0.619, 0.9"
+, label=" 0.119"];
 s9 [ fontname="Helvetica", label="CO(7)"];
-s24 [ fontname="Helvetica", label="OCX(21)"];
-s31 [ fontname="Helvetica", label="CO2X(34)"];
-s34 [ fontname="Helvetica", label="COX(37)"];
- label = "Scale = 9.2e-05\l Reaction path diagram following C";
+s28 [ fontname="Helvetica", label="OCX(25)"];
+s34 [ fontname="Helvetica", label="COX(47)"];
+ label = "Scale = 4.4e-08\l Reaction path diagram following C";
  fontname = "Helvetica";
 }

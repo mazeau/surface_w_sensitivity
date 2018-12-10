@@ -1,5 +1,16 @@
 digraph reaction_paths {
 center=1;
+s7 -> s61[fontname="Helvetica", penwidth=5.31, arrowsize=2.66, color="0.7, 0.903, 0.9"
+, label=" 0.403"];
+s9 -> s63[fontname="Helvetica", penwidth=4.69, arrowsize=2.34, color="0.7, 0.676, 0.9"
+, label=" 0.176"];
+s9 -> s69[fontname="Helvetica", penwidth=3.08, arrowsize=1.54, color="0.7, 0.521, 0.9"
+, label=" 0.0209"];
+s7 [ fontname="Helvetica", label="H2O(5)"];
+s9 [ fontname="Helvetica", label="CO(7)"];
+s61 [ fontname="Helvetica", label="H2OX(23)"];
+s63 [ fontname="Helvetica", label="OCX(25)"];
+s69 [ fontname="Helvetica", label="COX(47)"];
  label = "Scale = 1e-10\l Reaction path diagram following O";
  fontname = "Helvetica";
 }
