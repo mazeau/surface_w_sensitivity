@@ -1,4 +1,4 @@
-import os
+import os, glob
 import shutil
 
 array = os.listdir('./linearscaling')
@@ -30,3 +30,7 @@ for x in files:
 	os.remove(x + '/time.txt')
     except:
 	pass
+    for file in glob.glob(x + "/rxnpath*"):
+        os.remove(file)
+for file in glob.glob("rxnpath*"):
+        os.remove(file)
