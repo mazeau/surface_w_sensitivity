@@ -3,6 +3,7 @@ import shutil
 
 array = os.listdir('../../../linear-scaling-tests/cpox/binding_energies/')
 #array = os.listdir('/scratch/westgroup/mazeau/linear-scaling-tests/cpox/binding_energies/')
+print array
 
 # get the species dictionaries
 for x in array:
