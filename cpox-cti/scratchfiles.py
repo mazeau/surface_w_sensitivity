@@ -11,7 +11,7 @@ for x in array:
     except:
         print 'cannot find species_dictionary for %s'%(x)
     try:
-        shutil.copy2('../../../linear-scaling-tests/cpox/binding_energies/' + x + '/cantera/chem.cti','./linearscaling/' + x + '/chem.cti')
+        shutil.copy2('../../../linear-scaling-tests/cpox/binding_energies/' + x + '/cantera/chem.cti','./linearscaling/' + x + '/chem_annotated.cti')
     except:
         print 'cannot find cantera file for %s'%(x)
 try:
