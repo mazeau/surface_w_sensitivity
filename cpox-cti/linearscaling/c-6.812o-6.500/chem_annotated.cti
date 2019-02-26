@@ -7,8 +7,8 @@ ideal_gas(name='gas',
                      C2H6(8)     CH2O(9)     CH3(10)     C3H8(11)
                      H(12)       C2H5(13)    CH3OH(14)   HCO(15)
                      CH3CHO(16)  OH(17)      C2H4(18)    O(29)
-                     HO2(32)     H2O2(33)    CH2(S)(34)  CH3OO(78)
-                     CH2O2(88)   CHO3(119)   CH2O3(260)""",
+                     HO2(32)     H2O2(33)    CH2(S)(40)  CH3OO(85)
+                     CH2O2(95)   CHO3(126)   CH2O3(251)""",
           reactions='gas-*',
           transport='Mix',
           initial_state=state(temperature=300.0, pressure=OneAtm))
@@ -17,11 +17,11 @@ ideal_interface(name='surface1',
                 elements="H D T C Ci O Oi N Ne Ar He Si S Cl X",
                 species="""X(1)        HX(19)      OX(20)      CH3X(21)
                           HOX(22)     H2OX(23)    CO2X(24)    OCX(25)
-                          CX(26)      CH2X(27)    CHX(28)     CH4X(49)
-                          H2X(50)     COX(51)     C2H6X(53)   CHOX(54)
-                          CH3OX(60)   CH4OX(61)   HO2X(181)   CHOX(183)
-                          CH2OX(185)  SX(188)     HOCOX(250)  H2O2X(254)
-                          SX(361)     SX(412)""",
+                          CX(26)      CH2X(27)    CHX(28)     CH4X(56)
+                          H2X(57)     COX(58)     C2H6X(60)   CHOX(61)
+                          CH2OX(62)   CH3OX(67)   CH4OX(68)   HO2X(188)
+                          CHOX(190)   CH2OX(192)  SX(195)     HOCOX(241)
+                          H2O2X(249)  SX(368)     SX(419)""",
                 site_density=2.9e-09,
                 phases="gas",
           reactions='surface1-*',
@@ -364,7 +364,7 @@ species(name=u'H2O2(33)',
                                 diam=4.196,
                                 well_depth=289.3))
 
-species(name=u'CH2(S)(34)',
+species(name=u'CH2(S)(40)',
         atoms='H:2 C:1',
         thermo=(NASA([100.00, 1442.37],
                      [ 4.10264295E+00, -1.44067613E-03,  5.45066773E-06,
@@ -378,7 +378,7 @@ species(name=u'CH2(S)(34)',
                                 diam=3.8,
                                 well_depth=144.001))
 
-species(name=u'CH3OO(78)',
+species(name=u'CH3OO(85)',
         atoms='H:3 C:1 O:2',
         thermo=(NASA([100.00, 1031.34],
                      [ 3.58601552E+00,  6.15340415E-03,  1.33272153E-05,
@@ -394,7 +394,7 @@ species(name=u'CH3OO(78)',
                                 dipole=1.7,
                                 rot_relax=2.0))
 
-species(name=u'CH2O2(88)',
+species(name=u'CH2O2(95)',
         atoms='H:2 C:1 O:2',
         thermo=(NASA([100.00, 993.73],
                      [ 3.76240519E+00, -9.43849897E-04,  3.38778464E-05,
@@ -410,7 +410,7 @@ species(name=u'CH2O2(88)',
                                 dipole=1.7,
                                 rot_relax=1.0))
 
-species(name=u'CHO3(119)',
+species(name=u'CHO3(126)',
         atoms='H:1 C:1 O:3',
         thermo=(NASA([100.00, 968.19],
                      [ 3.28601163E+00,  9.07582191E-03,  1.53512490E-05,
@@ -424,7 +424,7 @@ species(name=u'CHO3(119)',
                                 diam=5.425,
                                 well_depth=432.363))
 
-species(name=u'CH2O3(260)',
+species(name=u'CH2O3(251)',
         atoms='H:2 C:1 O:3',
         thermo=(NASA([100.00, 956.74],
                      [ 2.98121452E+00,  1.14382895E-02,  2.77967873E-05,
@@ -559,7 +559,7 @@ species(name=u'CHX(28)',
                       -1.20792940E-10,  8.35273490E-15, -7.97071570E+03,
                       -2.36252517E+01])))
 
-species(name=u'CH4X(49)',
+species(name=u'CH4X(56)',
         atoms='H:4 C:1 X:1',
         thermo=(NASA([100.00, 886.28],
                      [-1.38692694E+00,  4.00457227E-02, -8.37942901E-05,
@@ -570,7 +570,7 @@ species(name=u'CH4X(49)',
                        1.83533434E-09, -1.22519245E-13, -9.84490736E+03,
                        2.67910861E+01])))
 
-species(name=u'H2X(50)',
+species(name=u'H2X(57)',
         atoms='H:2 X:1',
         thermo=(NASA([100.00, 911.35],
                      [-1.27849450E+00,  3.68001008E-02, -8.90262675E-05,
@@ -581,7 +581,7 @@ species(name=u'H2X(50)',
                        7.04775875E-10, -4.41066879E-14, -7.85174680E+02,
                        7.14747364E+00])))
 
-species(name=u'COX(51)',
+species(name=u'COX(58)',
         atoms='X:1 C:1 O:1',
         thermo=(NASA([100.00, 931.14],
                      [ 3.31023675E+00,  2.94669363E-03,  2.21698795E-06,
@@ -592,7 +592,7 @@ species(name=u'COX(51)',
                        7.75631987E-11, -5.46399392E-15, -1.86183556E+04,
                       -1.20909952E+01])))
 
-species(name=u'C2H6X(53)',
+species(name=u'C2H6X(60)',
         atoms='H:6 C:2 X:1',
         thermo=(NASA([100.00, 826.24],
                      [-1.73426428E+00,  4.32689702E-02, -6.15059592E-05,
@@ -603,7 +603,7 @@ species(name=u'C2H6X(53)',
                        2.34092022E-09, -1.61301921E-13, -1.39185638E+04,
                        1.52942205E+01])))
 
-species(name=u'CHOX(54)',
+species(name=u'CHOX(61)',
         atoms='H:1 C:1 O:1 X:1',
         thermo=(NASA([100.00, 847.15],
                      [-1.11399070E+00,  2.77206777E-02, -4.95591511E-05,
@@ -614,7 +614,18 @@ species(name=u'CHOX(54)',
                        8.20033488E-10, -5.65201881E-14, -3.48304411E+04,
                       -1.59668004E+00])))
 
-species(name=u'CH3OX(60)',
+species(name=u'CH2OX(62)',
+        atoms='H:2 C:1 O:1 X:1',
+        thermo=(NASA([100.00, 1013.33],
+                     [-1.08679196E+00,  2.48415415E-02, -2.76882646E-05,
+                       1.63685332E-08, -3.90170998E-12, -2.63737741E+04,
+                       9.46291951E+00]),
+                NASA([1013.33, 5000.00],
+                     [ 2.96877535E+00,  8.83289856E-03, -3.99151993E-06,
+                       7.78740494E-10, -5.55861473E-14, -2.71957114E+04,
+                      -1.01566097E+01])))
+
+species(name=u'CH3OX(67)',
         atoms='H:3 C:1 O:1 X:1',
         thermo=(NASA([100.00, 944.96],
                      [-1.28371408E+00,  2.95907900E-02, -3.37901123E-05,
@@ -625,7 +636,7 @@ species(name=u'CH3OX(60)',
                        9.64875881E-10, -6.79451343E-14, -3.68284567E+04,
                       -9.58451031E+00])))
 
-species(name=u'CH4OX(61)',
+species(name=u'CH4OX(68)',
         atoms='H:4 C:1 O:1 X:1',
         thermo=(NASA([100.00, 850.44],
                      [-1.64003517E+00,  4.09968310E-02, -6.66133526E-05,
@@ -636,7 +647,7 @@ species(name=u'CH4OX(61)',
                        1.62235081E-09, -1.10735642E-13, -3.62870309E+04,
                        3.59832619E+00])))
 
-species(name=u'HO2X(181)',
+species(name=u'HO2X(188)',
         atoms='H:1 O:2 X:1',
         thermo=(NASA([100.00, 900.76],
                      [-1.66631259E+00,  4.37833198E-02, -9.25611462E-05,
@@ -647,7 +658,7 @@ species(name=u'HO2X(181)',
                        7.88655579E-10, -5.09088917E-14, -1.32933087E+04,
                       -4.64295476E+00])))
 
-species(name=u'CHOX(183)',
+species(name=u'CHOX(190)',
         atoms='H:1 C:1 O:1 X:1',
         thermo=(NASA([100.00, 878.76],
                      [-1.56644272E+00,  3.83556574E-02, -7.06851702E-05,
@@ -658,7 +669,7 @@ species(name=u'CHOX(183)',
                        6.76605661E-10, -4.51267416E-14, -4.03848629E+04,
                       -1.70870825E+01])))
 
-species(name=u'CH2OX(185)',
+species(name=u'CH2OX(192)',
         atoms='H:2 C:1 O:1 X:1',
         thermo=(NASA([100.00, 1028.82],
                      [-1.04157302E+00,  2.37749927E-02, -2.57217305E-05,
@@ -669,7 +680,7 @@ species(name=u'CH2OX(185)',
                        7.72457717E-10, -5.50707398E-14, -3.48769099E+04,
                       -8.66366908E+00])))
 
-species(name=u'SX(188)',
+species(name=u'SX(195)',
         atoms='H:3 C:1 O:2 X:1',
         thermo=(NASA([100.00, 954.62],
                      [ 3.38247227E+00,  7.16617036E-03,  2.49262674E-05,
@@ -680,7 +691,7 @@ species(name=u'SX(188)',
                        5.28735644E-10, -3.88313648E-14, -1.02231083E+04,
                       -2.73143371E+01])))
 
-species(name=u'HOCOX(250)',
+species(name=u'HOCOX(241)',
         atoms='H:1 C:1 O:2 X:1',
         thermo=(NASA([100.00, 941.63],
                      [ 3.75793980E+00, -6.46276557E-03,  6.00855413E-05,
@@ -691,7 +702,7 @@ species(name=u'HOCOX(250)',
                       -7.57866980E-11, -1.89491330E-15, -4.76957163E+04,
                       -4.06332610E+01])))
 
-species(name=u'H2O2X(254)',
+species(name=u'H2O2X(249)',
         atoms='H:2 O:2 X:1',
         thermo=(NASA([100.00, 895.71],
                      [-1.78868282E+00,  4.65802157E-02, -9.38985576E-05,
@@ -702,7 +713,7 @@ species(name=u'H2O2X(254)',
                        1.02774348E-09, -6.72225756E-14, -3.62240928E+04,
                       -1.69056214E+00])))
 
-species(name=u'SX(361)',
+species(name=u'SX(368)',
         atoms='H:2 C:1 O:3 X:1',
         thermo=(NASA([100.00, 936.73],
                      [ 2.86720280E+00,  8.05573405E-03,  5.37452581E-05,
@@ -713,7 +724,7 @@ species(name=u'SX(361)',
                       -4.90081634E-10,  2.40707473E-14, -8.24028059E+04,
                       -7.56587921E+01])))
 
-species(name=u'SX(412)',
+species(name=u'SX(419)',
         atoms='H:2 C:1 O:2 X:1',
         thermo=(NASA([100.00, 946.88],
                      [ 3.64742712E+00, -4.30203650E-03,  5.96704524E-05,
@@ -727,334 +738,341 @@ species(name=u'SX(412)',
 #-------------------------------------------------------------------------------
 # Reaction data
 #-------------------------------------------------------------------------------
-#  Reaction index: Chemkin #1; RMG #23
+#  Reaction index: Chemkin #1; RMG #251
+#  Library reaction: ERC-FoundationFuelv0.9
+#  Flux pairs: CH2O(9), CO(7); CH2O(9), H2(6);
+
+# Reaction 1
+falloff_reaction('CH2O(9) (+ M) <=> CO(7) + H2(6) (+ M)',
+                 kf=[3.700000e+13, 0.0, 71.976],
+                 kf0=[4.400000e+38, -6.1, 94.0],
+                 efficiencies='C2H6(8):3.0 H2O(5):6.0 CH2O(9):2.5 CO2(4):2.0 CH4(2):2.0 CH3OH(14):3.0',
+                 falloff=Troe(A=0.932, T3=197.0, T1=1540.0, T2=10300.0),
+                 id='gas-1')
+#  Reaction index: Chemkin #2; RMG #254
+#  Library reaction: ERC-FoundationFuelv0.9
+#  Flux pairs: CH3(10), C2H6(8); CH3(10), C2H6(8);
+
+# Reaction 2
+falloff_reaction('CH3(10) + CH3(10) (+ M) <=> C2H6(8) (+ M)',
+                 kf=[2.120000e+16, -0.97, 0.62],
+                 kf0=[1.770000e+50, -9.67, 6.22],
+                 efficiencies='C2H6(8):3.0 H2O(5):6.0 CH2O(9):2.5 CO2(4):2.0 CH4(2):2.0 CH3OH(14):3.0',
+                 falloff=Troe(A=0.5325, T3=151.0, T1=1040.0, T2=4970.0),
+                 id='gas-2')
+#  Reaction index: Chemkin #3; RMG #23
 #  Library reaction: BurkeH2O2inN2
 #  Flux pairs: H2(6), H(12); H2(6), H(12);
 
-# Reaction 1
+# Reaction 3
 three_body_reaction('H2(6) + M <=> H(12) + H(12) + M', [4.577000e+19, -1.4, 104.38],
                     efficiencies='H2(6):2.5 CO2(4):3.8 H2O(5):12.0 CO(7):1.9',
-                    id='gas-1')
-#  Reaction index: Chemkin #2; RMG #21
+                    id='gas-3')
+#  Reaction index: Chemkin #4; RMG #134
+#  Library reaction: ERC-FoundationFuelv0.9
+#  Flux pairs: CH4(2), CH3(10); H(12), H2(6);
+
+# Reaction 4
+reaction('CH4(2) + H(12) <=> H2(6) + CH3(10)', [4.973400e+05, 2.5, 9.588],
+         id='gas-4')
+#  Reaction index: Chemkin #5; RMG #252
+#  Library reaction: ERC-FoundationFuelv0.9
+#  Flux pairs: CH3(10), CH4(2); H(12), CH4(2);
+
+# Reaction 5
+falloff_reaction('CH3(10) + H(12) (+ M) <=> CH4(2) (+ M)',
+                 kf=[1.245000e+14, 0.0, 0.0],
+                 kf0=[4.679000e+24, -2.17, 0.0],
+                 efficiencies='C2H6(8):3.0 H2O(5):6.0 CH2O(9):2.5 CO2(4):2.0 CH4(2):2.0 CH3OH(14):3.0',
+                 falloff=Troe(A=0.124, T3=1800.0, T1=33.1, T2=90000.0),
+                 id='gas-5')
+#  Reaction index: Chemkin #6; RMG #115
+#  Library reaction: ERC-FoundationFuelv0.9
+#  Flux pairs: CH3(10), C2H5(13); CH3(10), H(12);
+
+# Reaction 6
+reaction('CH3(10) + CH3(10) <=> H(12) + C2H5(13)', [7.845000e+12, 0.1, 10.6],
+         id='gas-6')
+#  Reaction index: Chemkin #7; RMG #238
+#  Library reaction: ERC-FoundationFuelv0.9
+#  Flux pairs: C2H6(8), C2H5(13); H(12), H2(6);
+
+# Reaction 7
+reaction('C2H6(8) + H(12) <=> H2(6) + C2H5(13)', [1.135100e+08, 1.9, 7.53],
+         id='gas-7')
+#  Reaction index: Chemkin #8; RMG #243
+#  Library reaction: ERC-FoundationFuelv0.9
+
+# Reaction 8
+reaction('C2H6(8) + CH3(10) <=> CH4(2) + C2H5(13)', [5.600000e+10, 0.0, 9.42],
+         options='duplicate',
+         id='gas-8')
+#  Reaction index: Chemkin #9; RMG #243
+#  Library reaction: ERC-FoundationFuelv0.9
+
+# Reaction 9
+reaction('C2H6(8) + CH3(10) <=> CH4(2) + C2H5(13)', [8.817800e+14, 0.0, 22.26],
+         options='duplicate',
+         id='gas-9')
+#  Reaction index: Chemkin #10; RMG #272
+#  Library reaction: ERC-FoundationFuelv0.9
+#  Flux pairs: H(12), C2H6(8); C2H5(13), C2H6(8);
+
+# Reaction 10
+falloff_reaction('H(12) + C2H5(13) (+ M) <=> C2H6(8) (+ M)',
+                 kf=[5.210000e+17, -0.99, 1.58],
+                 kf0=[1.990000e+41, -7.08, 6.685],
+                 efficiencies='C2H6(8):3.0 H2O(5):6.0 CH2O(9):2.5 CO2(4):2.0 CH4(2):2.0 CH3OH(14):3.0',
+                 falloff=Troe(A=0.842, T3=125.0, T1=2220.0, T2=6880.0),
+                 id='gas-10')
+#  Reaction index: Chemkin #11; RMG #52
+#  Library reaction: ERC-FoundationFuelv0.9
+#  Flux pairs: HCO(15), CO(7); H(12), H2(6);
+
+# Reaction 11
+reaction('H(12) + HCO(15) <=> CO(7) + H2(6)', [9.030000e+13, 0.0, 0.0],
+         id='gas-11')
+#  Reaction index: Chemkin #12; RMG #92
+#  Library reaction: ERC-FoundationFuelv0.9
+#  Flux pairs: CH2O(9), HCO(15); H(12), H2(6);
+
+# Reaction 12
+reaction('CH2O(9) + H(12) <=> H2(6) + HCO(15)', [6.193500e+07, 1.9, 2.742],
+         id='gas-12')
+#  Reaction index: Chemkin #13; RMG #116
+#  Library reaction: ERC-FoundationFuelv0.9
+#  Flux pairs: HCO(15), CO(7); CH3(10), CH4(2);
+
+# Reaction 13
+reaction('CH3(10) + HCO(15) <=> CH4(2) + CO(7)', [5.300000e+12, 0.0, 0.0],
+         id='gas-13')
+#  Reaction index: Chemkin #14; RMG #117
+#  Library reaction: ERC-FoundationFuelv0.9
+#  Flux pairs: CH2O(9), HCO(15); CH3(10), CH4(2);
+
+# Reaction 14
+reaction('CH2O(9) + CH3(10) <=> CH4(2) + HCO(15)', [3.301600e+01, 3.36, 4.31],
+         id='gas-14')
+#  Reaction index: Chemkin #15; RMG #236
+#  Library reaction: ERC-FoundationFuelv0.9
+#  Flux pairs: C2H5(13), C2H6(8); CH2O(9), HCO(15);
+
+# Reaction 15
+reaction('CH2O(9) + C2H5(13) <=> C2H6(8) + HCO(15)', [5.500000e+03, 2.81, 5.86],
+         id='gas-15')
+#  Reaction index: Chemkin #16; RMG #245
+#  Library reaction: ERC-FoundationFuelv0.9
+#  Flux pairs: HCO(15), CO(7); HCO(15), H(12);
+
+# Reaction 16
+three_body_reaction('HCO(15) + M <=> CO(7) + H(12) + M', [5.059000e+17, -1.2, 17.734],
+                    efficiencies='C2H6(8):3.0 H2O(5):9.55 CH2O(9):2.5 CO2(4):2.0 CH4(2):2.0 CH3OH(14):3.0',
+                    id='gas-16')
+#  Reaction index: Chemkin #17; RMG #250
+#  Library reaction: ERC-FoundationFuelv0.9
+#  Flux pairs: H(12), CH2O(9); HCO(15), CH2O(9);
+
+# Reaction 17
+falloff_reaction('H(12) + HCO(15) (+ M) <=> CH2O(9) (+ M)',
+                 kf=[3.084000e+14, -0.033, -0.142],
+                 kf0=[6.947000e+34, -5.533, 6.128],
+                 efficiencies='C2H6(8):3.0 H2O(5):6.0 CH2O(9):2.5 CO2(4):2.0 CH4(2):2.0 CH3OH(14):3.0',
+                 falloff=Troe(A=0.782, T3=271.0, T1=2760.0, T2=6570.0),
+                 id='gas-17')
+#  Reaction index: Chemkin #18; RMG #268
+#  Library reaction: ERC-FoundationFuelv0.9
+#  Flux pairs: CH3CHO(16), CH4(2); CH3CHO(16), CO(7);
+
+# Reaction 18
+falloff_reaction('CH3CHO(16) (+ M) <=> CH4(2) + CO(7) (+ M)',
+                 kf=[5.440000e+21, -1.74, 86.364],
+                 kf0=[2.290000e+58, -11.3, 95.922],
+                 efficiencies='C2H6(8):3.0 H2O(5):6.0 CH2O(9):2.5 CO2(4):2.0 CH4(2):2.0 H2(6):2.0 C2H4(18):3.0 CH3OH(14):3.0',
+                 falloff=Troe(A=0.92, T3=50000.0, T1=10.0, T2=8200.0),
+                 id='gas-18')
+#  Reaction index: Chemkin #19; RMG #269
+#  Library reaction: ERC-FoundationFuelv0.9
+#  Flux pairs: CH3CHO(16), CH3(10); CH3CHO(16), HCO(15);
+
+# Reaction 19
+falloff_reaction('CH3CHO(16) (+ M) <=> CH3(10) + HCO(15) (+ M)',
+                 kf=[2.180000e+22, -1.74, 86.364],
+                 kf0=[9.150000e+58, -11.3, 95.922],
+                 efficiencies='C2H6(8):3.0 H2O(5):6.0 CH2O(9):2.5 CO2(4):2.0 CH4(2):2.0 H2(6):2.0 C2H4(18):3.0 CH3OH(14):3.0',
+                 falloff=Troe(A=0.92, T3=50000.0, T1=10.0, T2=8200.0),
+                 id='gas-19')
+#  Reaction index: Chemkin #20; RMG #21
 #  Library reaction: BurkeH2O2inN2
 #  Flux pairs: OH(17), H2O(5); H2(6), H(12);
 
-# Reaction 2
+# Reaction 20
 reaction('H2(6) + OH(17) <=> H2O(5) + H(12)', [2.160000e+08, 1.51, 3.43],
-         id='gas-2')
-#  Reaction index: Chemkin #3; RMG #30
+         id='gas-20')
+#  Reaction index: Chemkin #21; RMG #30
 #  Library reaction: BurkeH2O2inN2
 #  Flux pairs: H2O(5), H(12); H2O(5), OH(17);
 
-# Reaction 3
+# Reaction 21
 three_body_reaction('H2O(5) + M <=> H(12) + OH(17) + M', [6.064000e+27, -3.322, 120.79],
                     efficiencies='H2O(5):0.0 CO(7):1.9 O2(3):1.5 CO2(4):3.8 H2(6):3.0 N2:2.0',
-                    id='gas-3')
-#  Reaction index: Chemkin #4; RMG #31
+                    id='gas-21')
+#  Reaction index: Chemkin #22; RMG #31
 #  Library reaction: BurkeH2O2inN2
 #  Flux pairs: H2O(5), OH(17); H2O(5), H(12); H2O(5), H2O(5);
 
-# Reaction 4
+# Reaction 22
 reaction('H2O(5) + H2O(5) <=> H2O(5) + H(12) + OH(17)', [1.006000e+26, -2.44, 120.18],
-         id='gas-4')
-#  Reaction index: Chemkin #5; RMG #45
+         id='gas-22')
+#  Reaction index: Chemkin #23; RMG #45
 #  Library reaction: BurkeH2O2inN2
 #  Flux pairs: OH(17), O2(3); OH(17), H2(6);
 
-# Reaction 5
+# Reaction 23
 reaction('OH(17) + OH(17) <=> O2(3) + H2(6)', [2.000000e+11, 0.51, 50.5],
-         id='gas-5')
-#  Reaction index: Chemkin #6; RMG #49
-#  Template reaction: R_Recombination
-#  Flux pairs: CH3(10), CH4(2); H(12), CH4(2);
-#  Matched reaction 57 H + CH3 <=> CH4 in R_Recombination/training
-#  This reaction matched rate rule [C_methyl;H_rad]
-#  family: R_Recombination
+         id='gas-23')
+#  Reaction index: Chemkin #24; RMG #50
+#  Library reaction: ERC-FoundationFuelv0.9
 
-# Reaction 6
-reaction('CH3(10) + H(12) <=> CH4(2)', [1.930000e+14, 0.0, 0.27],
-         id='gas-6')
-#  Reaction index: Chemkin #7; RMG #51
-#  Template reaction: R_Recombination
-#  Flux pairs: CH3(10), C2H6(8); CH3(10), C2H6(8);
-#  Matched reaction 9 CH3 + CH3 <=> C2H6 in R_Recombination/training
-#  This reaction matched rate rule [C_methyl;C_methyl]
-#  family: R_Recombination
+# Reaction 24
+reaction('CO(7) + OH(17) <=> CO2(4) + H(12)', [6.542400e+04, 2.053, -0.356],
+         options='duplicate',
+         id='gas-24')
+#  Reaction index: Chemkin #25; RMG #50
+#  Library reaction: ERC-FoundationFuelv0.9
 
-# Reaction 7
-reaction('CH3(10) + CH3(10) <=> C2H6(8)', [9.450000e+14, -0.538, 0.135],
-         id='gas-7')
-#  Reaction index: Chemkin #8; RMG #52
-#  Template reaction: R_Recombination
-#  Flux pairs: C2H5(13), C2H6(8); H(12), C2H6(8);
-#  Matched reaction 58 H + C2H5 <=> C2H6-2 in R_Recombination/training
-#  This reaction matched rate rule [C_rad/H2/Cs;H_rad]
-#  family: R_Recombination
+# Reaction 25
+reaction('CO(7) + OH(17) <=> CO2(4) + H(12)', [5.356800e+12, -0.664, 0.332],
+         options='duplicate',
+         id='gas-25')
+#  Reaction index: Chemkin #26; RMG #55
+#  Library reaction: ERC-FoundationFuelv0.9
+#  Flux pairs: HCO(15), CO(7); OH(17), H2O(5);
 
-# Reaction 8
-reaction('H(12) + C2H5(13) <=> C2H6(8)', [1.000000e+14, 0.0, 0.0],
-         id='gas-8')
-#  Reaction index: Chemkin #9; RMG #54
-#  Template reaction: R_Recombination
-#  Flux pairs: HCO(15), CH2O(9); H(12), CH2O(9);
-#  Matched reaction 63 H + CHO <=> CH2O in R_Recombination/training
-#  This reaction matched rate rule [CO_pri_rad;H_rad]
-#  family: R_Recombination
+# Reaction 26
+reaction('HCO(15) + OH(17) <=> CO(7) + H2O(5)', [1.165300e+14, 0.0, 0.0],
+         id='gas-26')
+#  Reaction index: Chemkin #27; RMG #94
+#  Library reaction: ERC-FoundationFuelv0.9
+#  Flux pairs: CH2O(9), HCO(15); OH(17), H2O(5);
 
-# Reaction 9
-reaction('H(12) + HCO(15) <=> CH2O(9)', [4.680000e+10, 0.0, -4.53],
-         id='gas-9')
-#  Reaction index: Chemkin #10; RMG #55
-#  Template reaction: 1,2_Insertion_CO
-#  Flux pairs: CO(7), CH2O(9); H2(6), CH2O(9);
-#  Matched reaction 2 H2 + CO <=> CH2O in 1,2_Insertion_CO/training
-#  This reaction matched rate rule [CO;H2]
-#  family: 1,2_Insertion_CO
+# Reaction 27
+reaction('CH2O(9) + OH(17) <=> H2O(5) + HCO(15)', [7.655800e+07, 1.63, -1.055],
+         id='gas-27')
+#  Reaction index: Chemkin #28; RMG #106
+#  Library reaction: ERC-FoundationFuelv0.9
+#  Flux pairs: CH3(10), CH2O(9); OH(17), H2(6);
 
-# Reaction 10
-reaction('H2(6) + CO(7) <=> CH2O(9)', [2.890000e+09, 1.16, 82.1],
-         id='gas-10')
-#  Reaction index: Chemkin #11; RMG #57
+# Reaction 28
+reaction('CH3(10) + OH(17) <=> H2(6) + CH2O(9)', [8.272000e+09, 0.5, -1.755],
+         id='gas-28')
+#  Reaction index: Chemkin #29; RMG #110
+#  Library reaction: ERC-FoundationFuelv0.9
+#  Flux pairs: CH3(10), CH2O(9); O2(3), OH(17);
+
+# Reaction 29
+reaction('O2(3) + CH3(10) <=> CH2O(9) + OH(17)', [1.124400e+02, 2.86, 9.768],
+         id='gas-29')
+#  Reaction index: Chemkin #30; RMG #136
+#  Library reaction: ERC-FoundationFuelv0.9
+#  Flux pairs: CH4(2), CH3(10); OH(17), H2O(5);
+
+# Reaction 30
+reaction('CH4(2) + OH(17) <=> H2O(5) + CH3(10)', [9.680000e+05, 2.182, 2.446],
+         id='gas-30')
+#  Reaction index: Chemkin #31; RMG #240
+#  Library reaction: ERC-FoundationFuelv0.9
+#  Flux pairs: C2H6(8), C2H5(13); OH(17), H2O(5);
+
+# Reaction 31
+reaction('C2H6(8) + OH(17) <=> H2O(5) + C2H5(13)', [9.543500e+06, 2.0, 0.994],
+         id='gas-31')
+#  Reaction index: Chemkin #32; RMG #253
+#  Library reaction: ERC-FoundationFuelv0.9
+#  Flux pairs: CH3(10), CH3OH(14); OH(17), CH3OH(14);
+
+# Reaction 32
+falloff_reaction('CH3(10) + OH(17) (+ M) <=> CH3OH(14) (+ M)',
+                 kf=[3.365000e+18, -1.43, 1.33],
+                 kf0=[4.824000e+36, -5.92, 3.14],
+                 efficiencies='C2H6(8):3.0 H2O(5):6.0 CH2O(9):2.5 CO2(4):2.0 CH4(2):2.0 CH3OH(14):3.0',
+                 falloff=Troe(A=0.412, T3=195.0, T1=5900.0, T2=6390.0),
+                 id='gas-32')
+#  Reaction index: Chemkin #33; RMG #230
+#  Library reaction: ERC-FoundationFuelv0.9
+#  Flux pairs: C2H5(13), C2H4(18); H(12), H2(6);
+
+# Reaction 33
+reaction('H(12) + C2H5(13) <=> H2(6) + C2H4(18)', [1.810000e+12, 0.0, 0.0],
+         id='gas-33')
+#  Reaction index: Chemkin #34; RMG #235
+#  Library reaction: ERC-FoundationFuelv0.9
+#  Flux pairs: C2H5(13), C2H4(18); CH3(10), CH4(2);
+
+# Reaction 34
+reaction('CH3(10) + C2H5(13) <=> CH4(2) + C2H4(18)', [9.000000e+11, 0.0, 0.0],
+         id='gas-34')
+#  Reaction index: Chemkin #35; RMG #271
+#  Library reaction: ERC-FoundationFuelv0.9
+#  Flux pairs: H(12), C2H5(13); C2H4(18), C2H5(13);
+
+# Reaction 35
+falloff_reaction('H(12) + C2H4(18) (+ M) <=> C2H5(13) (+ M)',
+                 kf=[7.193000e+08, 1.463, 1.355],
+                 kf0=[1.523000e+39, -6.642, 5.769],
+                 efficiencies='C2H6(8):3.0 H2O(5):6.0 CH2O(9):2.5 CO2(4):2.0 CH4(2):2.0 CH3OH(14):3.0',
+                 falloff=Troe(A=1.569, T3=-9150.0, T1=299.0, T2=152.0),
+                 id='gas-35')
+#  Reaction index: Chemkin #36; RMG #275
 #  Template reaction: R_Recombination
 #  Flux pairs: C2H5(13), C3H8(11); CH3(10), C3H8(11);
 #  Matched reaction 10 CH3 + C2H5 <=> C3H8 in R_Recombination/training
 #  This reaction matched rate rule [C_rad/H2/Cs;C_methyl]
 #  family: R_Recombination
 
-# Reaction 11
+# Reaction 36
 reaction('CH3(10) + C2H5(13) <=> C3H8(11)', [1.230000e+15, -0.562, 0.021],
-         id='gas-11')
-#  Reaction index: Chemkin #12; RMG #62
-#  Template reaction: R_Addition_MultipleBond
-#  Flux pairs: C2H4(18), C2H5(13); H(12), C2H5(13);
-#  Matched reaction 2541 H + C2H4 <=> C2H5-2 in R_Addition_MultipleBond/training
-#  This reaction matched rate rule [Cds-HH_Cds-HH;HJ]
-#  family: R_Addition_MultipleBond
-
-# Reaction 12
-reaction('H(12) + C2H4(18) <=> C2H5(13)', [4.620000e+08, 1.64, 1.01],
-         id='gas-12')
-#  Reaction index: Chemkin #13; RMG #66
-#  Template reaction: R_Recombination
-#  Flux pairs: OH(17), CH3OH(14); CH3(10), CH3OH(14);
-#  Matched reaction 73 CH3 + OH <=> CH4O in R_Recombination/training
-#  This reaction matched rate rule [O_pri_rad;C_methyl]
-#  family: R_Recombination
-
-# Reaction 13
-reaction('CH3(10) + OH(17) <=> CH3OH(14)', [6.030000e+13, 0.0, 0.0],
-         id='gas-13')
-#  Reaction index: Chemkin #14; RMG #70
-#  Template reaction: R_Addition_COm
-#  Flux pairs: CO(7), HCO(15); H(12), HCO(15);
-#  Matched reaction 4 H + CO <=> CHO in R_Addition_COm/training
-#  This reaction matched rate rule [COm;H_rad]
-#  family: R_Addition_COm
-
-# Reaction 14
-reaction('CO(7) + H(12) <=> HCO(15)', [1.180000e+11, 0.0, 2.72],
-         id='gas-14')
-#  Reaction index: Chemkin #15; RMG #72
-#  Template reaction: R_Recombination
-#  Flux pairs: HCO(15), CH3CHO(16); CH3(10), CH3CHO(16);
-#  Matched reaction 71 CH3 + CHO <=> C2H4O in R_Recombination/training
-#  This reaction matched rate rule [CO_pri_rad;C_methyl]
-#  family: R_Recombination
-
-# Reaction 15
-reaction('CH3(10) + HCO(15) <=> CH3CHO(16)', [1.810000e+13, 0.0, 0.0],
-         id='gas-15')
-#  Reaction index: Chemkin #16; RMG #76
-#  Template reaction: 1,2_Insertion_CO
-#  Flux pairs: CO(7), CH3CHO(16); CH4(2), CH3CHO(16);
-#  Matched reaction 3 CH4 + CO <=> C2H4O in 1,2_Insertion_CO/training
-#  This reaction matched rate rule [CO;C_methane]
-#  family: 1,2_Insertion_CO
-
-# Reaction 16
-reaction('CH4(2) + CO(7) <=> CH3CHO(16)', [6.560000e+04, 2.86, 86.9],
-         id='gas-16')
-#  Reaction index: Chemkin #17; RMG #113
-#  Template reaction: CO_Disproportionation
-#  Flux pairs: CH3(10), CH4(2); HCO(15), CO(7);
-#  Matched reaction 3 HCO + CH3 <=> CO + CH4 in CO_Disproportionation/training
-#  This reaction matched rate rule [C_methyl;HCO]
-#  family: CO_Disproportionation
-
-# Reaction 17
-reaction('CH3(10) + HCO(15) <=> CH4(2) + CO(7)', [4.000000e+13, 0.0, 0.0],
-         id='gas-17')
-#  Reaction index: Chemkin #18; RMG #116
-#  Template reaction: H_Abstraction
-#  Flux pairs: H(12), H2(6); CH4(2), CH3(10);
-#  Matched reaction 186 CH4b + H <=> CH3_p1 + H2_p in H_Abstraction/training
-#  This reaction matched rate rule [C_methane;H_rad]
-#  family: H_Abstraction
-
-# Reaction 18
-reaction('CH4(2) + H(12) <=> H2(6) + CH3(10)', [4.100000e+03, 3.156, 8.755],
-         id='gas-18')
-#  Reaction index: Chemkin #19; RMG #117
-#  Template reaction: H_Abstraction
-#  Flux pairs: C2H6(8), C2H5(13); CH3(10), CH4(2);
-#  Matched reaction 215 C2H6 + CH3_r3 <=> C2H5b + CH4 in H_Abstraction/training
-#  This reaction matched rate rule [C_methane;C_rad/H2/Cs\H3]
-#  family: H_Abstraction
-
-# Reaction 19
-reaction('C2H6(8) + CH3(10) <=> CH4(2) + C2H5(13)', [3.500000e+01, 3.44, 10.384],
-         id='gas-19')
-#  Reaction index: Chemkin #20; RMG #119
-#  Template reaction: H_Abstraction
-#  Flux pairs: HCO(15), CH2O(9); CH4(2), CH3(10);
-#  Matched reaction 319 HCO_r3 + CH4b <=> CH2O + CH3_p1 in H_Abstraction/training
-#  This reaction matched rate rule [C_methane;CO_pri_rad]
-#  family: H_Abstraction
-
-# Reaction 20
-reaction('CH4(2) + HCO(15) <=> CH2O(9) + CH3(10)', [7.280000e+03, 2.85, 34.25],
-         id='gas-20')
-#  Reaction index: Chemkin #21; RMG #122
-#  Template reaction: H_Abstraction
-#  Flux pairs: OH(17), H2O(5); CH4(2), CH3(10);
-#  Matched reaction 188 CH4b + OH <=> CH3_p1 + H2O_p in H_Abstraction/training
-#  This reaction matched rate rule [C_methane;O_pri_rad]
-#  family: H_Abstraction
-
-# Reaction 21
-reaction('CH4(2) + OH(17) <=> H2O(5) + CH3(10)', [1.000000e+06, 2.182, 2.506],
-         id='gas-21')
-#  Reaction index: Chemkin #22; RMG #123
-#  Template reaction: Disproportionation
-#  Flux pairs: CH3(10), CH4(2); C2H5(13), C2H4(18);
-#  Matched reaction 5 CH3 + C2H5 <=> CH4 + C2H4 in Disproportionation/training
-#  This reaction matched rate rule [C_methyl;Cmethyl_Csrad]
-#  family: Disproportionation
-
-# Reaction 22
-reaction('CH3(10) + C2H5(13) <=> CH4(2) + C2H4(18)', [6.570000e+14, -0.68, 0.0],
-         id='gas-22')
-#  Reaction index: Chemkin #23; RMG #222
-#  Template reaction: CO_Disproportionation
-#  Flux pairs: OH(17), H2O(5); HCO(15), CO(7);
-#  Estimated using template [O_rad;HCO] for rate rule [O_pri_rad;HCO]
-#  Euclidian distance = 1.0
-#  family: CO_Disproportionation
-
-# Reaction 23
-reaction('HCO(15) + OH(17) <=> CO(7) + H2O(5)', [1.240000e+23, -3.29, 2.355],
-         id='gas-23')
-#  Reaction index: Chemkin #24; RMG #226
-#  Template reaction: H_Abstraction
-#  Flux pairs: C2H6(8), C2H5(13); OH(17), H2O(5);
-#  Matched reaction 212 C2H6 + OH <=> C2H5b + H2O_p in H_Abstraction/training
-#  This reaction matched rate rule [O_pri;C_rad/H2/Cs\H3]
-#  family: H_Abstraction
-
-# Reaction 24
-reaction('C2H6(8) + OH(17) <=> H2O(5) + C2H5(13)', [1.610000e+06, 2.224, 0.741],
-         id='gas-24')
-#  Reaction index: Chemkin #25; RMG #228
-#  Template reaction: H_Abstraction
-#  Flux pairs: CH2O(9), HCO(15); OH(17), H2O(5);
-#  Matched reaction 368 OH_p23 + CH2O <=> H2O + HCO_r3 in H_Abstraction/training
-#  This reaction matched rate rule [O_pri;CO_pri_rad]
-#  family: H_Abstraction
-
-# Reaction 25
-reaction('CH2O(9) + OH(17) <=> H2O(5) + HCO(15)', [3.440000e+09, 1.18, -0.45],
-         id='gas-25')
-#  Reaction index: Chemkin #26; RMG #231
+         id='gas-36')
+#  Reaction index: Chemkin #37; RMG #420
 #  Template reaction: Disproportionation
 #  Flux pairs: OH(17), H2O(5); C2H5(13), C2H4(18);
 #  Matched reaction 13 HO + C2H5 <=> H2O + C2H4 in Disproportionation/training
 #  This reaction matched rate rule [O_pri_rad;Cmethyl_Csrad]
 #  family: Disproportionation
 
-# Reaction 26
+# Reaction 37
 reaction('C2H5(13) + OH(17) <=> H2O(5) + C2H4(18)', [7.230000e+13, 0.0, 0.0],
-         id='gas-26')
-#  Reaction index: Chemkin #27; RMG #233
-#  Template reaction: CO_Disproportionation
-#  Flux pairs: H(12), H2(6); HCO(15), CO(7);
-#  Matched reaction 0 HCO + H <=> CO + H2 in CO_Disproportionation/training
-#  This reaction matched rate rule [H_rad;HCO]
-#  family: CO_Disproportionation
-
-# Reaction 27
-reaction('H(12) + HCO(15) <=> H2(6) + CO(7)', [9.030000e+13, 0.0, 0.0],
-         id='gas-27')
-#  Reaction index: Chemkin #28; RMG #236
-#  Template reaction: H_Abstraction
-#  Flux pairs: C2H6(8), C2H5(13); H(12), H2(6);
-#  Matched reaction 210 C2H6 + H <=> C2H5b + H2_p in H_Abstraction/training
-#  This reaction matched rate rule [H2;C_rad/H2/Cs\H3]
-#  family: H_Abstraction
-
-# Reaction 28
-reaction('C2H6(8) + H(12) <=> H2(6) + C2H5(13)', [1.150000e+08, 1.9, 7.53],
-         id='gas-28')
-#  Reaction index: Chemkin #29; RMG #238
-#  Template reaction: H_Abstraction
-#  Flux pairs: HCO(15), CH2O(9); H2(6), H(12);
-#  Matched reaction 310 H2 + HCO_r3 <=> CH2O + H in H_Abstraction/training
-#  This reaction matched rate rule [H2;CO_pri_rad]
-#  family: H_Abstraction
-
-# Reaction 29
-reaction('H2(6) + HCO(15) <=> CH2O(9) + H(12)', [1.800000e+06, 2.0, 48.94],
-         id='gas-29')
-#  Reaction index: Chemkin #30; RMG #241
-#  Template reaction: Disproportionation
-#  Flux pairs: H(12), H2(6); C2H5(13), C2H4(18);
-#  Matched reaction 4 H + C2H5 <=> H2 + C2H4 in Disproportionation/training
-#  This reaction matched rate rule [H_rad;Cmethyl_Csrad]
-#  family: Disproportionation
-
-# Reaction 30
-reaction('H(12) + C2H5(13) <=> H2(6) + C2H4(18)', [1.083000e+13, 0.0, 0.0],
-         id='gas-30')
-#  Reaction index: Chemkin #31; RMG #242
+         id='gas-37')
+#  Reaction index: Chemkin #38; RMG #425
 #  Template reaction: CO_Disproportionation
 #  Flux pairs: C2H5(13), C2H6(8); HCO(15), CO(7);
 #  Matched reaction 12 C2H5 + HCO <=> C2H6 + CO in CO_Disproportionation/training
 #  This reaction matched rate rule [C_rad/H2/Cs;HCO]
 #  family: CO_Disproportionation
 
-# Reaction 31
-reaction('C2H5(13) + HCO(15) <=> C2H6(8) + CO(7)', [4.300000e+13, 0.0, 0.0],
-         id='gas-31')
-#  Reaction index: Chemkin #32; RMG #245
+# Reaction 38
+reaction('C2H5(13) + HCO(15) <=> CO(7) + C2H6(8)', [4.300000e+13, 0.0, 0.0],
+         id='gas-38')
+#  Reaction index: Chemkin #39; RMG #428
 #  Template reaction: CO_Disproportionation
 #  Flux pairs: HCO(15), CH2O(9); HCO(15), CO(7);
 #  Matched reaction 5 HCO + HCO_Y <=> CO + CH2O in CO_Disproportionation/training
 #  This reaction matched rate rule [CO_pri_rad;HCO]
 #  family: CO_Disproportionation
 
-# Reaction 32
+# Reaction 39
 reaction('HCO(15) + HCO(15) <=> CO(7) + CH2O(9)', [1.800000e+13, 0.0, 0.0],
-         id='gas-32')
-#  Reaction index: Chemkin #33; RMG #273
-#  Template reaction: H_Abstraction
-#  Flux pairs: HCO(15), CH2O(9); C2H6(8), C2H5(13);
-#  Matched reaction 326 HCO_r3 + C2H6 <=> CH2O + C2H5 in H_Abstraction/training
-#  This reaction matched rate rule [C/H3/Cs\H3;CO_pri_rad]
-#  family: H_Abstraction
-
-# Reaction 33
-reaction('C2H6(8) + HCO(15) <=> CH2O(9) + C2H5(13)', [4.692000e+04, 2.72, 38.24],
-         id='gas-33')
-#  Reaction index: Chemkin #34; RMG #276
+         id='gas-39')
+#  Reaction index: Chemkin #40; RMG #456
 #  Template reaction: Disproportionation
 #  Flux pairs: C2H5(13), C2H6(8); C2H5(13), C2H4(18);
 #  Matched reaction 6 C2H5 + C2H5-2 <=> C2H6 + C2H4 in Disproportionation/training
 #  This reaction matched rate rule [C_rad/H2/Cs;Cmethyl_Csrad]
 #  family: Disproportionation
 
-# Reaction 34
+# Reaction 40
 reaction('C2H5(13) + C2H5(13) <=> C2H6(8) + C2H4(18)', [6.900000e+13, -0.35, 0.0],
-         id='gas-34')
-#  Reaction index: Chemkin #35; RMG #325
+         id='gas-40')
+#  Reaction index: Chemkin #41; RMG #501
 #  Template reaction: Disproportionation
 #  Flux pairs: HCO(15), C2H4(18); C2H5(13), CH2O(9);
 #  Estimated using average of templates [Y_rad;Cmethyl_Csrad] + [CO_pri_rad;XH_s_Rrad] for rate rule [CO_pri_rad;Cmethyl_Csrad]
@@ -1062,63 +1080,87 @@ reaction('C2H5(13) + C2H5(13) <=> C2H6(8) + C2H4(18)', [6.900000e+13, -0.35, 0.0
 #  Multiplied by reaction path degeneracy 3.0
 #  family: Disproportionation
 
-# Reaction 35
+# Reaction 41
 reaction('C2H5(13) + HCO(15) <=> CH2O(9) + C2H4(18)', [5.972864e+14, -0.34, 0.0],
-         id='gas-35')
-#  Reaction index: Chemkin #36; RMG #131
+         id='gas-41')
+#  Reaction index: Chemkin #42; RMG #329
 #  Template reaction: R_Recombination
-#  Flux pairs: CH3OO(78), CH3(10); CH3OO(78), O2(3);
+#  Flux pairs: CH3OO(85), CH3(10); CH3OO(85), O2(3);
 #  Matched reaction 0 CH3O2 <=> O2 + CH3 in R_Recombination/training
 #  This reaction matched rate rule [C_methyl;O2_birad]
 #  family: R_Recombination
 
-# Reaction 36
-reaction('CH3OO(78) <=> O2(3) + CH3(10)', [1.090000e+14, 0.25, 33.3],
-         id='gas-36')
-#  Reaction index: Chemkin #37; RMG #32
+# Reaction 42
+reaction('CH3OO(85) <=> O2(3) + CH3(10)', [1.090000e+14, 0.25, 33.3],
+         id='gas-42')
+#  Reaction index: Chemkin #43; RMG #32
 #  Library reaction: BurkeH2O2inN2
 #  Flux pairs: O2(3), HO2(32); H(12), HO2(32);
 
-# Reaction 37
+# Reaction 43
 falloff_reaction('O2(3) + H(12) (+ M) <=> HO2(32) (+ M)',
                  kf=[4.651000e+12, 0.44, 0.0],
                  kf0=[6.366000e+20, -1.72, 0.525],
                  efficiencies='H2(6):2.0 O2(3):0.78 CO2(4):3.8 H2O(5):14.0 CO(7):1.9',
                  falloff=Troe(A=0.5, T3=1e-30, T1=1e+30),
-                 id='gas-37')
-#  Reaction index: Chemkin #38; RMG #33
+                 id='gas-43')
+#  Reaction index: Chemkin #44; RMG #33
 #  Library reaction: BurkeH2O2inN2
 #  Flux pairs: HO2(32), O2(3); H(12), H2(6);
 
-# Reaction 38
+# Reaction 44
 reaction('H(12) + HO2(32) <=> O2(3) + H2(6)', [2.750000e+06, 2.09, -1.451],
-         id='gas-38')
-#  Reaction index: Chemkin #39; RMG #34
+         id='gas-44')
+#  Reaction index: Chemkin #45; RMG #34
 #  Library reaction: BurkeH2O2inN2
 #  Flux pairs: HO2(32), OH(17); H(12), OH(17);
 
-# Reaction 39
+# Reaction 45
 reaction('H(12) + HO2(32) <=> OH(17) + OH(17)', [7.079000e+13, 0.0, 0.295],
-         id='gas-39')
-#  Reaction index: Chemkin #40; RMG #36
+         id='gas-45')
+#  Reaction index: Chemkin #46; RMG #36
 #  Library reaction: BurkeH2O2inN2
 #  Flux pairs: HO2(32), O2(3); OH(17), H2O(5);
 
-# Reaction 40
+# Reaction 46
 reaction('OH(17) + HO2(32) <=> O2(3) + H2O(5)', [2.890000e+13, 0.0, -0.497],
-         id='gas-40')
-#  Reaction index: Chemkin #41; RMG #108
-#  Template reaction: H_Abstraction
-#  Flux pairs: O2(3), HO2(32); CH4(2), CH3(10);
-#  Matched reaction 190 CH4b + O2 <=> CH3_p1 + HO2 in H_Abstraction/training
-#  This reaction matched rate rule [C_methane;O2b]
-#  family: H_Abstraction
-#  Ea raised from 216.4 to 231.5 kJ/mol to match endothermicity of reaction.
+         id='gas-46')
+#  Reaction index: Chemkin #47; RMG #51
+#  Library reaction: ERC-FoundationFuelv0.9
+#  Flux pairs: CO(7), CO2(4); HO2(32), OH(17);
 
-# Reaction 41
-reaction('CH4(2) + O2(3) <=> CH3(10) + HO2(32)', [2.030000e+05, 2.745, 55.339],
-         id='gas-41')
-#  Reaction index: Chemkin #42; RMG #126
+# Reaction 47
+reaction('CO(7) + HO2(32) <=> CO2(4) + OH(17)', [1.570000e+05, 2.18, 17.944],
+         id='gas-47')
+#  Reaction index: Chemkin #48; RMG #56
+#  Library reaction: ERC-FoundationFuelv0.9
+#  Flux pairs: HCO(15), CO(7); O2(3), HO2(32);
+
+# Reaction 48
+reaction('O2(3) + HCO(15) <=> CO(7) + HO2(32)', [7.939600e+10, 0.521, -0.521],
+         id='gas-48')
+#  Reaction index: Chemkin #49; RMG #95
+#  Library reaction: ERC-FoundationFuelv0.9
+#  Flux pairs: CH2O(9), HCO(15); O2(3), HO2(32);
+
+# Reaction 49
+reaction('O2(3) + CH2O(9) <=> HCO(15) + HO2(32)', [4.045500e+05, 2.5, 36.46],
+         id='gas-49')
+#  Reaction index: Chemkin #50; RMG #107
+#  Library reaction: ERC-FoundationFuelv0.9
+#  Flux pairs: CH3(10), CH4(2); HO2(32), O2(3);
+
+# Reaction 50
+reaction('CH3(10) + HO2(32) <=> CH4(2) + O2(3)', [2.649600e+07, 1.49, -1.673],
+         id='gas-50')
+#  Reaction index: Chemkin #51; RMG #234
+#  Library reaction: ERC-FoundationFuelv0.9
+#  Flux pairs: C2H5(13), C2H4(18); O2(3), HO2(32);
+
+# Reaction 51
+reaction('O2(3) + C2H5(13) <=> C2H4(18) + HO2(32)', [1.410000e+07, 1.09, -1.975],
+         id='gas-51')
+#  Reaction index: Chemkin #52; RMG #325
 #  Template reaction: H_Abstraction
 #  Flux pairs: O2(3), HO2(32); C2H6(8), C2H5(13);
 #  Matched reaction 214 C2H6 + O2 <=> C2H5b + HO2 in H_Abstraction/training
@@ -1126,356 +1168,94 @@ reaction('CH4(2) + O2(3) <=> CH3(10) + HO2(32)', [2.030000e+05, 2.745, 55.339],
 #  family: H_Abstraction
 #  Ea raised from 207.3 to 215.7 kJ/mol to match endothermicity of reaction.
 
-# Reaction 42
-reaction('O2(3) + C2H6(8) <=> C2H5(13) + HO2(32)', [2.920000e+07, 1.9, 51.557],
-         id='gas-42')
-#  Reaction index: Chemkin #43; RMG #129
-#  Template reaction: H_Abstraction
-#  Flux pairs: O2(3), HO2(32); CH2O(9), HCO(15);
-#  Matched reaction 359 CH2O + O2 <=> HO2_r12 + HCO_r3 in H_Abstraction/training
-#  This reaction matched rate rule [CO_pri;O2b]
-#  family: H_Abstraction
-#  Ea raised from 158.7 to 162.5 kJ/mol to match endothermicity of reaction.
-
-# Reaction 43
-reaction('O2(3) + CH2O(9) <=> HCO(15) + HO2(32)', [9.360000e+07, 2.05, 38.837],
-         id='gas-43')
-#  Reaction index: Chemkin #44; RMG #134
-#  Template reaction: Disproportionation
-#  Flux pairs: C2H5(13), C2H4(18); O2(3), HO2(32);
-#  Matched reaction 2 C2H5 + O2 <=> HO2 + C2H4 in Disproportionation/training
-#  This reaction matched rate rule [O2b;Cmethyl_Csrad]
-#  family: Disproportionation
-
-# Reaction 44
-reaction('O2(3) + C2H5(13) <=> C2H4(18) + HO2(32)', [4.338000e+13, 0.0, 15.99],
-         id='gas-44')
-#  Reaction index: Chemkin #45; RMG #139
-#  Template reaction: CO_Disproportionation
-#  Flux pairs: HCO(15), CO(7); O2(3), HO2(32);
-#  Matched reaction 2 HCO + O2 <=> CO + HO2 in CO_Disproportionation/training
-#  This reaction matched rate rule [O2b;HCO]
-#  family: CO_Disproportionation
-
-# Reaction 45
-reaction('O2(3) + HCO(15) <=> CO(7) + HO2(32)', [5.120000e+13, 0.0, 1.69],
-         id='gas-45')
-#  Reaction index: Chemkin #46; RMG #19
-#  Library reaction: BurkeH2O2inN2
-#  Flux pairs: O2(3), O(29); H(12), OH(17);
-
-# Reaction 46
-reaction('O2(3) + H(12) <=> OH(17) + O(29)', [1.040000e+14, 0.0, 15.286],
-         id='gas-46')
-#  Reaction index: Chemkin #47; RMG #20
-#  Library reaction: BurkeH2O2inN2
-
-# Reaction 47
-reaction('H2(6) + O(29) <=> H(12) + OH(17)', [3.818000e+12, 0.0, 7.948],
-         options='duplicate',
-         id='gas-47')
-#  Reaction index: Chemkin #48; RMG #20
-#  Library reaction: BurkeH2O2inN2
-
-# Reaction 48
-reaction('H2(6) + O(29) <=> H(12) + OH(17)', [8.792000e+14, 0.0, 19.17],
-         options='duplicate',
-         id='gas-48')
-#  Reaction index: Chemkin #49; RMG #22
-#  Library reaction: BurkeH2O2inN2
-#  Flux pairs: OH(17), O(29); OH(17), H2O(5);
-
-# Reaction 49
-reaction('OH(17) + OH(17) <=> H2O(5) + O(29)', [3.340000e+04, 2.42, -1.93],
-         id='gas-49')
-#  Reaction index: Chemkin #50; RMG #26
-#  Library reaction: BurkeH2O2inN2
-#  Flux pairs: O(29), O2(3); O(29), O2(3);
-
-# Reaction 50
-three_body_reaction('O(29) + O(29) + M <=> O2(3) + M', [6.165000e+15, -0.5, 0.0],
-                    efficiencies='H2(6):2.5 CO2(4):3.8 H2O(5):12.0 CO(7):1.9',
-                    id='gas-50')
-#  Reaction index: Chemkin #51; RMG #29
-#  Library reaction: BurkeH2O2inN2
-#  Flux pairs: H(12), OH(17); O(29), OH(17);
-
-# Reaction 51
-three_body_reaction('H(12) + O(29) + M <=> OH(17) + M', [4.714000e+18, -1.0, 0.0],
-                    efficiencies='H2(6):2.5 CO2(4):3.8 H2O(5):12.0 CO(7):1.9',
-                    id='gas-51')
-#  Reaction index: Chemkin #52; RMG #35
-#  Library reaction: BurkeH2O2inN2
-#  Flux pairs: HO2(32), O2(3); O(29), OH(17);
-
 # Reaction 52
-reaction('O(29) + HO2(32) <=> O2(3) + OH(17)', [2.850000e+10, 1.0, -0.724],
+reaction('O2(3) + C2H6(8) <=> C2H5(13) + HO2(32)', [2.920000e+07, 1.9, 51.557],
          id='gas-52')
-#  Reaction index: Chemkin #53; RMG #43
+#  Reaction index: Chemkin #53; RMG #37
 #  Library reaction: BurkeH2O2inN2
-#  Flux pairs: HO2(32), O(29); H(12), H2O(5);
 
 # Reaction 53
-reaction('H(12) + HO2(32) <=> H2O(5) + O(29)', [2.900000e+08, 1.55, -0.16],
-         id='gas-53')
-#  Reaction index: Chemkin #54; RMG #46
-#  Library reaction: BurkeH2O2inN2
-#  Flux pairs: O(29), O2(3); H2O(5), H2(6);
-
-# Reaction 54
-reaction('H2O(5) + O(29) <=> O2(3) + H2(6)', [1.070000e+10, 0.97, 68.7],
-         id='gas-54')
-#  Reaction index: Chemkin #55; RMG #48
-#  Library reaction: BurkeH2O2inN2
-#  Flux pairs: OH(17), HO2(32); O(29), HO2(32);
-
-# Reaction 55
-three_body_reaction('OH(17) + O(29) + M <=> HO2(32) + M', [1.000000e+15, 0.0, 0.0],
-                    id='gas-55')
-#  Reaction index: Chemkin #56; RMG #266
-#  Template reaction: CO_Disproportionation
-#  Flux pairs: O(29), OH(17); HCO(15), CO(7);
-#  Matched reaction 1 HCO + O <=> CO + OH in CO_Disproportionation/training
-#  This reaction matched rate rule [O_atom_triplet;HCO]
-#  family: CO_Disproportionation
-
-# Reaction 56
-reaction('HCO(15) + O(29) <=> CO(7) + OH(17)', [3.010000e+13, 0.0, 0.0],
-         id='gas-56')
-#  Reaction index: Chemkin #57; RMG #349
-#  Template reaction: H_Abstraction
-#  Flux pairs: CH4(2), CH3(10); O(29), OH(17);
-#  Matched reaction 187 CH4b + O_rad <=> CH3_p1 + OH_p23 in H_Abstraction/training
-#  This reaction matched rate rule [OH_rad_H;C_methyl]
-#  family: H_Abstraction
-
-# Reaction 57
-reaction('CH4(2) + O(29) <=> CH3(10) + OH(17)', [4.400000e+05, 2.5, 6.577],
-         id='gas-57')
-#  Reaction index: Chemkin #58; RMG #396
-#  Template reaction: H_Abstraction
-#  Flux pairs: C2H6(8), C2H5(13); O(29), OH(17);
-#  Matched reaction 211 C2H6 + O_rad <=> C2H5b + OH_p23 in H_Abstraction/training
-#  This reaction matched rate rule [OH_rad_H;C_rad/H2/Cs\H3]
-#  family: H_Abstraction
-
-# Reaction 58
-reaction('C2H6(8) + O(29) <=> C2H5(13) + OH(17)', [1.800000e+05, 2.8, 5.8],
-         id='gas-58')
-#  Reaction index: Chemkin #59; RMG #429
-#  Template reaction: H_Abstraction
-#  Flux pairs: CH2O(9), HCO(15); O(29), OH(17);
-#  Matched reaction 360 CH2O + O_rad <=> HO + HCO_r3 in H_Abstraction/training
-#  This reaction matched rate rule [OH_rad_H;CO_pri_rad]
-#  family: H_Abstraction
-
-# Reaction 59
-reaction('CH2O(9) + O(29) <=> HCO(15) + OH(17)', [4.160000e+11, 0.57, 2.76],
-         id='gas-59')
-#  Reaction index: Chemkin #60; RMG #457
-#  Template reaction: Disproportionation
-#  Flux pairs: O(29), OH(17); C2H5(13), C2H4(18);
-#  Estimated using average of templates [Y_1centerbirad;Cmethyl_Csrad] + [O_atom_triplet;Cmethyl_Rrad] for rate rule [O_atom_triplet;Cmethyl_Csrad]
-#  Euclidian distance = 1.0
-#  Multiplied by reaction path degeneracy 3.0
-#  family: Disproportionation
-
-# Reaction 60
-reaction('C2H5(13) + O(29) <=> OH(17) + C2H4(18)', [3.680353e+11, 0.75, -0.445],
-         id='gas-60')
-#  Reaction index: Chemkin #61; RMG #50
-#  Template reaction: 1,2_Insertion_carbene
-#  Flux pairs: CH2(S)(34), CH4(2); H2(6), CH4(2);
-#  Estimated using template [carbene;R_H] for rate rule [carbene;H2]
-#  Euclidian distance = 1.0
-#  family: 1,2_Insertion_carbene
-
-# Reaction 61
-reaction('H2(6) + CH2(S)(34) <=> CH4(2)', [7.188190e+10, 0.444, -1.216],
-         id='gas-61')
-#  Reaction index: Chemkin #62; RMG #53
-#  Template reaction: 1,2_Insertion_carbene
-#  Flux pairs: CH2(S)(34), C2H6(8); CH4(2), C2H6(8);
-#  Estimated using template [carbene;Cs_H] for rate rule [carbene;C_methane]
-#  Euclidian distance = 1.0
-#  Multiplied by reaction path degeneracy 4.0
-#  family: 1,2_Insertion_carbene
-
-# Reaction 62
-reaction('CH4(2) + CH2(S)(34) <=> C2H6(8)', [1.746952e+12, 0.189, -0.354],
-         id='gas-62')
-#  Reaction index: Chemkin #63; RMG #60
-#  Template reaction: 1,2_Insertion_carbene
-#  Flux pairs: CH2(S)(34), C3H8(11); C2H6(8), C3H8(11);
-#  Estimated using template [carbene;C_pri] for rate rule [carbene;C_pri/NonDeC]
-#  Euclidian distance = 1.0
-#  Multiplied by reaction path degeneracy 6.0
-#  family: 1,2_Insertion_carbene
-
-# Reaction 63
-reaction('C2H6(8) + CH2(S)(34) <=> C3H8(11)', [2.620427e+12, 0.189, -0.354],
-         options='duplicate',
-         id='gas-63')
-#  Reaction index: Chemkin #64; RMG #61
-#  Template reaction: 1,2_Insertion_carbene
-#  Flux pairs: CH2(S)(34), C3H8(11); C2H6(8), C3H8(11);
-#  Estimated using template [carbene;RR'] for rate rule [carbene;C_methyl_C_methyl]
-#  Euclidian distance = 3.0
-#  family: 1,2_Insertion_carbene
-
-# Reaction 64
-reaction('C2H6(8) + CH2(S)(34) <=> C3H8(11)', [7.188190e+10, 0.444, -1.216],
-         options='duplicate',
-         id='gas-64')
-#  Reaction index: Chemkin #65; RMG #69
-#  Template reaction: 1,2_Insertion_carbene
-#  Flux pairs: CH2(S)(34), CH3OH(14); H2O(5), CH3OH(14);
-#  Estimated using template [carbene;R_H] for rate rule [carbene;RO_H]
-#  Euclidian distance = 1.0
-#  Multiplied by reaction path degeneracy 2.0
-#  family: 1,2_Insertion_carbene
-
-# Reaction 65
-reaction('H2O(5) + CH2(S)(34) <=> CH3OH(14)', [1.437638e+11, 0.444, -1.216],
-         id='gas-65')
-#  Reaction index: Chemkin #66; RMG #480
-#  Template reaction: 1,2_Insertion_carbene
-#  Flux pairs: CH2(S)(34), CH3OO(78); HO2(32), CH3OO(78);
-#  Estimated using an average for rate rule [carbene;R_H]
-#  Euclidian distance = 0
-#  family: 1,2_Insertion_carbene
-
-# Reaction 66
-reaction('HO2(32) + CH2(S)(34) <=> CH3OO(78)', [7.188190e+10, 0.444, -1.216],
-         id='gas-66')
-#  Reaction index: Chemkin #67; RMG #619
-#  Template reaction: 1,2_Insertion_carbene
-#  Flux pairs: C2H6(8), C3H8(11); CH2(S)(34), C3H8(11);
-#  Estimated using template [carbene;C_pri] for rate rule [carbene;C_pri/NonDeC]
-#  Euclidian distance = 1.0
-#  Multiplied by reaction path degeneracy 6.0
-#  family: 1,2_Insertion_carbene
-
-# Reaction 67
-reaction('C2H6(8) + CH2(S)(34) <=> C3H8(11)', [2.620427e+12, 0.189, -0.354],
-         options='duplicate',
-         id='gas-67')
-#  Reaction index: Chemkin #68; RMG #620
-#  Template reaction: 1,2_Insertion_carbene
-#  Flux pairs: C2H6(8), C3H8(11); CH2(S)(34), C3H8(11);
-#  Estimated using template [carbene;RR'] for rate rule [carbene;C_methyl_C_methyl]
-#  Euclidian distance = 3.0
-#  family: 1,2_Insertion_carbene
-
-# Reaction 68
-reaction('C2H6(8) + CH2(S)(34) <=> C3H8(11)', [7.188190e+10, 0.444, -1.216],
-         options='duplicate',
-         id='gas-68')
-#  Reaction index: Chemkin #69; RMG #37
-#  Library reaction: BurkeH2O2inN2
-
-# Reaction 69
 reaction('HO2(32) + HO2(32) <=> O2(3) + H2O2(33)', [4.200000e+14, 0.0, 11.982],
          options='duplicate',
-         id='gas-69')
-#  Reaction index: Chemkin #70; RMG #37
+         id='gas-53')
+#  Reaction index: Chemkin #54; RMG #37
 #  Library reaction: BurkeH2O2inN2
 
-# Reaction 70
+# Reaction 54
 reaction('HO2(32) + HO2(32) <=> O2(3) + H2O2(33)', [1.300000e+11, 0.0, -1.629],
          options='duplicate',
-         id='gas-70')
-#  Reaction index: Chemkin #71; RMG #38
+         id='gas-54')
+#  Reaction index: Chemkin #55; RMG #38
 #  Library reaction: BurkeH2O2inN2
 #  Flux pairs: H2O2(33), OH(17); H2O2(33), OH(17);
 
-# Reaction 71
+# Reaction 55
 falloff_reaction('H2O2(33) (+ M) <=> OH(17) + OH(17) (+ M)',
                  kf=[2.000000e+12, 0.9, 48.749],
                  kf0=[2.490000e+24, -2.3, 48.749],
                  efficiencies='H2O(5):7.5 CO(7):2.8 O2(3):1.2 CO2(4):1.6 H2O2(33):7.7 H2(6):3.7 N2:1.5',
                  falloff=Troe(A=0.43, T3=1e-30, T1=1e+30),
-                 id='gas-71')
-#  Reaction index: Chemkin #72; RMG #39
+                 id='gas-55')
+#  Reaction index: Chemkin #56; RMG #39
 #  Library reaction: BurkeH2O2inN2
 #  Flux pairs: H2O2(33), OH(17); H(12), H2O(5);
 
-# Reaction 72
+# Reaction 56
 reaction('H(12) + H2O2(33) <=> H2O(5) + OH(17)', [2.410000e+13, 0.0, 3.97],
-         id='gas-72')
-#  Reaction index: Chemkin #73; RMG #40
+         id='gas-56')
+#  Reaction index: Chemkin #57; RMG #40
 #  Library reaction: BurkeH2O2inN2
 #  Flux pairs: H2O2(33), HO2(32); H(12), H2(6);
 
-# Reaction 73
+# Reaction 57
 reaction('H(12) + H2O2(33) <=> H2(6) + HO2(32)', [4.820000e+13, 0.0, 7.95],
-         id='gas-73')
-#  Reaction index: Chemkin #74; RMG #41
-#  Library reaction: BurkeH2O2inN2
-#  Flux pairs: H2O2(33), HO2(32); O(29), OH(17);
-
-# Reaction 74
-reaction('O(29) + H2O2(33) <=> OH(17) + HO2(32)', [9.550000e+06, 2.0, 3.97],
-         id='gas-74')
-#  Reaction index: Chemkin #75; RMG #42
+         id='gas-57')
+#  Reaction index: Chemkin #58; RMG #42
 #  Library reaction: BurkeH2O2inN2
 
-# Reaction 75
+# Reaction 58
 reaction('OH(17) + H2O2(33) <=> H2O(5) + HO2(32)', [1.740000e+12, 0.0, 0.318],
          options='duplicate',
-         id='gas-75')
-#  Reaction index: Chemkin #76; RMG #42
+         id='gas-58')
+#  Reaction index: Chemkin #59; RMG #42
 #  Library reaction: BurkeH2O2inN2
 
-# Reaction 76
+# Reaction 59
 reaction('OH(17) + H2O2(33) <=> H2O(5) + HO2(32)', [7.590000e+13, 0.0, 7.27],
          options='duplicate',
-         id='gas-76')
-#  Reaction index: Chemkin #77; RMG #44
+         id='gas-59')
+#  Reaction index: Chemkin #60; RMG #44
 #  Library reaction: BurkeH2O2inN2
 #  Flux pairs: H(12), H2O2(33); HO2(32), H2O2(33);
 
-# Reaction 77
+# Reaction 60
 three_body_reaction('H(12) + HO2(32) + M <=> H2O2(33) + M', [6.000000e+14, 1.25, -0.27],
-                    id='gas-77')
-#  Reaction index: Chemkin #78; RMG #47
-#  Library reaction: BurkeH2O2inN2
-#  Flux pairs: H2O2(33), O2(3); O(29), H2O(5);
+                    id='gas-60')
+#  Reaction index: Chemkin #61; RMG #96
+#  Library reaction: ERC-FoundationFuelv0.9
+#  Flux pairs: CH2O(9), HCO(15); HO2(32), H2O2(33);
 
-# Reaction 78
-reaction('O(29) + H2O2(33) <=> O2(3) + H2O(5)', [8.430000e+11, 0.0, 3.97],
-         id='gas-78')
-#  Reaction index: Chemkin #79; RMG #537
-#  Template reaction: H_Abstraction
-#  Flux pairs: HO2(32), H2O2(33); CH4(2), CH3(10);
-#  Matched reaction 189 CH4b + HO2_r3 <=> CH3_p1 + H2O2_p13 in H_Abstraction/training
-#  This reaction matched rate rule [C_methane;O_rad/NonDeO]
-#  family: H_Abstraction
+# Reaction 61
+reaction('CH2O(9) + HO2(32) <=> HCO(15) + H2O2(33)', [8.211800e+04, 2.5, 10.21],
+         id='gas-61')
+#  Reaction index: Chemkin #62; RMG #137
+#  Library reaction: ERC-FoundationFuelv0.9
+#  Flux pairs: CH4(2), CH3(10); HO2(32), H2O2(33);
 
-# Reaction 79
-reaction('CH4(2) + HO2(32) <=> CH3(10) + H2O2(33)', [4.700000e+04, 2.5, 21.0],
-         id='gas-79')
-#  Reaction index: Chemkin #80; RMG #546
+# Reaction 62
+reaction('CH4(2) + HO2(32) <=> CH3(10) + H2O2(33)', [4.784600e+04, 2.5, 21.0],
+         id='gas-62')
+#  Reaction index: Chemkin #63; RMG #710
 #  Template reaction: H_Abstraction
 #  Flux pairs: HO2(32), H2O2(33); C2H6(8), C2H5(13);
 #  Matched reaction 213 C2H6 + HO2_r3 <=> C2H5b + H2O2_p13 in H_Abstraction/training
 #  This reaction matched rate rule [C/H3/Cs\H3;O_rad/NonDeO]
 #  family: H_Abstraction
 
-# Reaction 80
+# Reaction 63
 reaction('C2H6(8) + HO2(32) <=> C2H5(13) + H2O2(33)', [2.600000e+01, 3.37, 15.9],
-         id='gas-80')
-#  Reaction index: Chemkin #81; RMG #551
-#  Template reaction: H_Abstraction
-#  Flux pairs: HO2(32), H2O2(33); CH2O(9), HCO(15);
-#  Matched reaction 370 HO2_r3 + CH2O <=> H2O2 + HCO_r3 in H_Abstraction/training
-#  This reaction matched rate rule [CO_pri;O_rad/NonDeO]
-#  family: H_Abstraction
-
-# Reaction 81
-reaction('CH2O(9) + HO2(32) <=> HCO(15) + H2O2(33)', [4.120000e+04, 2.5, 10.21],
-         id='gas-81')
-#  Reaction index: Chemkin #82; RMG #557
+         id='gas-63')
+#  Reaction index: Chemkin #64; RMG #718
 #  Template reaction: Disproportionation
 #  Flux pairs: C2H5(13), C2H4(18); HO2(32), H2O2(33);
 #  Estimated using average of templates [O_rad;Cmethyl_Csrad] + [O_rad/NonDeO;XH_s_Rrad] for rate rule [O_rad/NonDeO;Cmethyl_Csrad]
@@ -1483,196 +1263,534 @@ reaction('CH2O(9) + HO2(32) <=> HCO(15) + H2O2(33)', [4.120000e+04, 2.5, 10.21],
 #  Multiplied by reaction path degeneracy 3.0
 #  family: Disproportionation
 
-# Reaction 82
+# Reaction 64
 reaction('C2H5(13) + HO2(32) <=> C2H4(18) + H2O2(33)', [3.003453e+10, 1.009, -0.6],
-         id='gas-82')
-#  Reaction index: Chemkin #83; RMG #563
+         id='gas-64')
+#  Reaction index: Chemkin #65; RMG #722
 #  Template reaction: CO_Disproportionation
 #  Flux pairs: HCO(15), CO(7); HO2(32), H2O2(33);
 #  Estimated using template [O_sec_rad;HCO] for rate rule [O_rad/NonDeO;HCO]
 #  Euclidian distance = 1.0
 #  family: CO_Disproportionation
 
-# Reaction 83
+# Reaction 65
 reaction('HCO(15) + HO2(32) <=> CO(7) + H2O2(33)', [1.240000e+23, -3.29, 2.355],
+         id='gas-65')
+#  Reaction index: Chemkin #66; RMG #19
+#  Library reaction: BurkeH2O2inN2
+#  Flux pairs: O2(3), O(29); H(12), OH(17);
+
+# Reaction 66
+reaction('O2(3) + H(12) <=> OH(17) + O(29)', [1.040000e+14, 0.0, 15.286],
+         id='gas-66')
+#  Reaction index: Chemkin #67; RMG #20
+#  Library reaction: BurkeH2O2inN2
+
+# Reaction 67
+reaction('H2(6) + O(29) <=> H(12) + OH(17)', [3.818000e+12, 0.0, 7.948],
+         options='duplicate',
+         id='gas-67')
+#  Reaction index: Chemkin #68; RMG #20
+#  Library reaction: BurkeH2O2inN2
+
+# Reaction 68
+reaction('H2(6) + O(29) <=> H(12) + OH(17)', [8.792000e+14, 0.0, 19.17],
+         options='duplicate',
+         id='gas-68')
+#  Reaction index: Chemkin #69; RMG #22
+#  Library reaction: BurkeH2O2inN2
+#  Flux pairs: OH(17), O(29); OH(17), H2O(5);
+
+# Reaction 69
+reaction('OH(17) + OH(17) <=> H2O(5) + O(29)', [3.340000e+04, 2.42, -1.93],
+         id='gas-69')
+#  Reaction index: Chemkin #70; RMG #26
+#  Library reaction: BurkeH2O2inN2
+#  Flux pairs: O(29), O2(3); O(29), O2(3);
+
+# Reaction 70
+three_body_reaction('O(29) + O(29) + M <=> O2(3) + M', [6.165000e+15, -0.5, 0.0],
+                    efficiencies='H2(6):2.5 CO2(4):3.8 H2O(5):12.0 CO(7):1.9',
+                    id='gas-70')
+#  Reaction index: Chemkin #71; RMG #29
+#  Library reaction: BurkeH2O2inN2
+#  Flux pairs: H(12), OH(17); O(29), OH(17);
+
+# Reaction 71
+three_body_reaction('H(12) + O(29) + M <=> OH(17) + M', [4.714000e+18, -1.0, 0.0],
+                    efficiencies='H2(6):2.5 CO2(4):3.8 H2O(5):12.0 CO(7):1.9',
+                    id='gas-71')
+#  Reaction index: Chemkin #72; RMG #35
+#  Library reaction: BurkeH2O2inN2
+#  Flux pairs: HO2(32), O2(3); O(29), OH(17);
+
+# Reaction 72
+reaction('O(29) + HO2(32) <=> O2(3) + OH(17)', [2.850000e+10, 1.0, -0.724],
+         id='gas-72')
+#  Reaction index: Chemkin #73; RMG #41
+#  Library reaction: BurkeH2O2inN2
+#  Flux pairs: H2O2(33), HO2(32); O(29), OH(17);
+
+# Reaction 73
+reaction('O(29) + H2O2(33) <=> OH(17) + HO2(32)', [9.550000e+06, 2.0, 3.97],
+         id='gas-73')
+#  Reaction index: Chemkin #74; RMG #43
+#  Library reaction: BurkeH2O2inN2
+#  Flux pairs: HO2(32), O(29); H(12), H2O(5);
+
+# Reaction 74
+reaction('H(12) + HO2(32) <=> H2O(5) + O(29)', [2.900000e+08, 1.55, -0.16],
+         id='gas-74')
+#  Reaction index: Chemkin #75; RMG #46
+#  Library reaction: BurkeH2O2inN2
+#  Flux pairs: O(29), O2(3); H2O(5), H2(6);
+
+# Reaction 75
+reaction('H2O(5) + O(29) <=> O2(3) + H2(6)', [1.070000e+10, 0.97, 68.7],
+         id='gas-75')
+#  Reaction index: Chemkin #76; RMG #47
+#  Library reaction: BurkeH2O2inN2
+#  Flux pairs: H2O2(33), O2(3); O(29), H2O(5);
+
+# Reaction 76
+reaction('O(29) + H2O2(33) <=> O2(3) + H2O(5)', [8.430000e+11, 0.0, 3.97],
+         id='gas-76')
+#  Reaction index: Chemkin #77; RMG #48
+#  Library reaction: BurkeH2O2inN2
+#  Flux pairs: OH(17), HO2(32); O(29), HO2(32);
+
+# Reaction 77
+three_body_reaction('OH(17) + O(29) + M <=> HO2(32) + M', [1.000000e+15, 0.0, 0.0],
+                    id='gas-77')
+#  Reaction index: Chemkin #78; RMG #49
+#  Library reaction: ERC-FoundationFuelv0.9
+#  Flux pairs: CO(7), CO2(4); O2(3), O(29);
+
+# Reaction 78
+reaction('O2(3) + CO(7) <=> CO2(4) + O(29)', [2.588200e+12, 0.0, 47.7],
+         id='gas-78')
+#  Reaction index: Chemkin #79; RMG #53
+#  Library reaction: ERC-FoundationFuelv0.9
+#  Flux pairs: HCO(15), CO(7); O(29), OH(17);
+
+# Reaction 79
+reaction('HCO(15) + O(29) <=> CO(7) + OH(17)', [3.010000e+13, 0.0, 0.0],
+         id='gas-79')
+#  Reaction index: Chemkin #80; RMG #54
+#  Library reaction: ERC-FoundationFuelv0.9
+#  Flux pairs: HCO(15), CO2(4); O(29), H(12);
+
+# Reaction 80
+reaction('HCO(15) + O(29) <=> CO2(4) + H(12)', [3.010000e+13, 0.0, 0.0],
+         id='gas-80')
+#  Reaction index: Chemkin #81; RMG #93
+#  Library reaction: ERC-FoundationFuelv0.9
+#  Flux pairs: CH2O(9), HCO(15); O(29), OH(17);
+
+# Reaction 81
+reaction('CH2O(9) + O(29) <=> HCO(15) + OH(17)', [4.139200e+11, 0.57, 2.762],
+         id='gas-81')
+#  Reaction index: Chemkin #82; RMG #102
+#  Library reaction: ERC-FoundationFuelv0.9
+#  Flux pairs: CH3(10), CH2O(9); O(29), H(12);
+
+# Reaction 82
+reaction('CH3(10) + O(29) <=> CH2O(9) + H(12)', [5.670300e+13, 0.0, 0.0],
+         id='gas-82')
+#  Reaction index: Chemkin #83; RMG #103
+#  Library reaction: ERC-FoundationFuelv0.9
+#  Flux pairs: CH3(10), CO(7); O(29), H2(6); O(29), H(12);
+
+# Reaction 83
+reaction('CH3(10) + O(29) => CO(7) + H2(6) + H(12)', [2.365400e+13, 0.0, 0.0],
          id='gas-83')
-#  Reaction index: Chemkin #84; RMG #215
+#  Reaction index: Chemkin #84; RMG #135
+#  Library reaction: ERC-FoundationFuelv0.9
+#  Flux pairs: CH4(2), CH3(10); O(29), OH(17);
+
+# Reaction 84
+reaction('CH4(2) + O(29) <=> CH3(10) + OH(17)', [6.652800e+08, 1.56, 8.485],
+         id='gas-84')
+#  Reaction index: Chemkin #85; RMG #225
+#  Library reaction: ERC-FoundationFuelv0.9
+#  Flux pairs: C2H4(18), HCO(15); O(29), CH3(10);
+
+# Reaction 85
+reaction('C2H4(18) + O(29) <=> CH3(10) + HCO(15)', [8.130000e+06, 1.88, 0.183],
+         id='gas-85')
+#  Reaction index: Chemkin #86; RMG #231
+#  Library reaction: ERC-FoundationFuelv0.9
+#  Flux pairs: C2H5(13), CH2O(9); O(29), CH3(10);
+
+# Reaction 86
+reaction('C2H5(13) + O(29) <=> CH2O(9) + CH3(10)', [4.420000e+13, 0.0, 0.0],
+         id='gas-86')
+#  Reaction index: Chemkin #87; RMG #232
+#  Library reaction: ERC-FoundationFuelv0.9
+#  Flux pairs: C2H5(13), CH3CHO(16); O(29), H(12);
+
+# Reaction 87
+reaction('C2H5(13) + O(29) <=> H(12) + CH3CHO(16)', [5.890000e+13, 0.0, 0.0],
+         id='gas-87')
+#  Reaction index: Chemkin #88; RMG #233
+#  Library reaction: ERC-FoundationFuelv0.9
+#  Flux pairs: C2H5(13), C2H4(18); O(29), OH(17);
+
+# Reaction 88
+reaction('C2H5(13) + O(29) <=> OH(17) + C2H4(18)', [2.940000e+13, 0.0, 0.0],
+         id='gas-88')
+#  Reaction index: Chemkin #89; RMG #239
+#  Library reaction: ERC-FoundationFuelv0.9
+#  Flux pairs: C2H6(8), C2H5(13); O(29), OH(17);
+
+# Reaction 89
+reaction('C2H6(8) + O(29) <=> C2H5(13) + OH(17)', [1.677900e+05, 2.8, 5.803],
+         id='gas-89')
+#  Reaction index: Chemkin #90; RMG #244
+#  Library reaction: ERC-FoundationFuelv0.9
+#  Flux pairs: CO(7), CO2(4); O(29), CO2(4);
+
+# Reaction 90
+falloff_reaction('CO(7) + O(29) (+ M) <=> CO2(4) (+ M)',
+                 kf=[5.191000e+10, 0.0, 2.43],
+                 kf0=[4.038000e+21, -2.1, 5.5],
+                 efficiencies='H2(6):2.5 H2O(5):12.0 CO2(4):3.8',
+                 id='gas-90')
+#  Reaction index: Chemkin #91; RMG #82
+#  Library reaction: ERC-FoundationFuelv0.9
+#  Flux pairs: CH2(S)(40), CO(7); O(29), H(12); O(29), H(12);
+
+# Reaction 91
+reaction('O(29) + CH2(S)(40) => CO(7) + H(12) + H(12)', [3.000000e+13, 0.0, 0.0],
+         id='gas-91')
+#  Reaction index: Chemkin #92; RMG #83
+#  Library reaction: ERC-FoundationFuelv0.9
+#  Flux pairs: CH2(S)(40), CH2O(9); OH(17), H(12);
+
+# Reaction 92
+reaction('OH(17) + CH2(S)(40) <=> CH2O(9) + H(12)', [3.000000e+13, 0.0, 0.0],
+         id='gas-92')
+#  Reaction index: Chemkin #93; RMG #84
+#  Library reaction: ERC-FoundationFuelv0.9
+#  Flux pairs: CH2(S)(40), CH3(10); H2(6), H(12);
+
+# Reaction 93
+reaction('H2(6) + CH2(S)(40) <=> CH3(10) + H(12)', [6.895200e+13, 0.0, 0.0],
+         id='gas-93')
+#  Reaction index: Chemkin #94; RMG #87
+#  Library reaction: ERC-FoundationFuelv0.9
+#  Flux pairs: CH2(S)(40), CH2O(9); H2O(5), H2(6);
+
+# Reaction 94
+reaction('H2O(5) + CH2(S)(40) <=> H2(6) + CH2O(9)', [6.820000e+10, 0.25, -0.935],
+         id='gas-94')
+#  Reaction index: Chemkin #95; RMG #91
+#  Library reaction: ERC-FoundationFuelv0.9
+#  Flux pairs: CO2(4), CH2O(9); CH2(S)(40), CO(7);
+
+# Reaction 95
+reaction('CO2(4) + CH2(S)(40) <=> CO(7) + CH2O(9)', [6.620000e+12, 0.0, 0.0],
+         id='gas-95')
+#  Reaction index: Chemkin #96; RMG #99
+#  Library reaction: ERC-FoundationFuelv0.9
+#  Flux pairs: CH2O(9), HCO(15); CH2(S)(40), CH3(10);
+
+# Reaction 96
+reaction('CH2O(9) + CH2(S)(40) <=> CH3(10) + HCO(15)', [1.330000e+13, 0.0, -0.55],
+         id='gas-96')
+#  Reaction index: Chemkin #97; RMG #105
+#  Library reaction: ERC-FoundationFuelv0.9
+#  Flux pairs: CH3(10), CH2(S)(40); OH(17), H2O(5);
+
+# Reaction 97
+reaction('CH3(10) + OH(17) <=> H2O(5) + CH2(S)(40)', [5.287200e+17, -1.34, 1.417],
+         id='gas-97')
+#  Reaction index: Chemkin #98; RMG #114
+#  Library reaction: ERC-FoundationFuelv0.9
+#  Flux pairs: CH2(S)(40), C2H4(18); CH3(10), H(12);
+
+# Reaction 98
+reaction('CH3(10) + CH2(S)(40) <=> H(12) + C2H4(18)', [1.400000e+13, 0.0, -0.497],
+         id='gas-98')
+#  Reaction index: Chemkin #99; RMG #140
+#  Library reaction: ERC-FoundationFuelv0.9
+#  Flux pairs: CH2(S)(40), CH3(10); CH4(2), CH3(10);
+
+# Reaction 99
+reaction('CH4(2) + CH2(S)(40) <=> CH3(10) + CH3(10)', [1.864400e+13, 0.0, -0.497],
+         id='gas-99')
+#  Reaction index: Chemkin #100; RMG #242
+#  Library reaction: ERC-FoundationFuelv0.9
+#  Flux pairs: C2H6(8), C2H5(13); CH2(S)(40), CH3(10);
+
+# Reaction 100
+reaction('C2H6(8) + CH2(S)(40) <=> CH3(10) + C2H5(13)', [3.300000e+13, 0.0, -0.66],
+         id='gas-100')
+#  Reaction index: Chemkin #101; RMG #249
+#  Library reaction: ERC-FoundationFuelv0.9
+#  Flux pairs: H2O(5), CH3OH(14); CH2(S)(40), CH3OH(14);
+
+# Reaction 101
+falloff_reaction('H2O(5) + CH2(S)(40) (+ M) <=> CH3OH(14) (+ M)',
+                 kf=[4.820000e+17, -1.16, 1.145],
+                 kf0=[1.880000e+38, -6.36, 5.04],
+                 efficiencies='C2H6(8):3.0 H2O(5):6.0 CH2O(9):2.5 CO2(4):2.0 CH4(2):2.0 CH3OH(14):3.0',
+                 falloff=Troe(A=0.6027, T3=208.0, T1=3920.0, T2=10200.0),
+                 id='gas-101')
+#  Reaction index: Chemkin #102; RMG #273
+#  Template reaction: 1,2_Insertion_carbene
+#  Flux pairs: CH2(S)(40), CH4(2); H2(6), CH4(2);
+#  Estimated using template [carbene;R_H] for rate rule [carbene;H2]
+#  Euclidian distance = 1.0
+#  family: 1,2_Insertion_carbene
+
+# Reaction 102
+reaction('H2(6) + CH2(S)(40) <=> CH4(2)', [7.188190e+10, 0.444, -1.216],
+         id='gas-102')
+#  Reaction index: Chemkin #103; RMG #274
+#  Template reaction: 1,2_Insertion_carbene
+#  Flux pairs: CH2(S)(40), C2H6(8); CH4(2), C2H6(8);
+#  Estimated using template [carbene;Cs_H] for rate rule [carbene;C_methane]
+#  Euclidian distance = 1.0
+#  Multiplied by reaction path degeneracy 4.0
+#  family: 1,2_Insertion_carbene
+
+# Reaction 103
+reaction('CH4(2) + CH2(S)(40) <=> C2H6(8)', [1.746952e+12, 0.189, -0.354],
+         id='gas-103')
+#  Reaction index: Chemkin #104; RMG #278
+#  Template reaction: 1,2_Insertion_carbene
+#  Flux pairs: CH2(S)(40), C3H8(11); C2H6(8), C3H8(11);
+#  Estimated using template [carbene;C_pri] for rate rule [carbene;C_pri/NonDeC]
+#  Euclidian distance = 1.0
+#  Multiplied by reaction path degeneracy 6.0
+#  family: 1,2_Insertion_carbene
+
+# Reaction 104
+reaction('C2H6(8) + CH2(S)(40) <=> C3H8(11)', [2.620427e+12, 0.189, -0.354],
+         options='duplicate',
+         id='gas-104')
+#  Reaction index: Chemkin #105; RMG #279
+#  Template reaction: 1,2_Insertion_carbene
+#  Flux pairs: CH2(S)(40), C3H8(11); C2H6(8), C3H8(11);
+#  Estimated using template [carbene;RR'] for rate rule [carbene;C_methyl_C_methyl]
+#  Euclidian distance = 3.0
+#  family: 1,2_Insertion_carbene
+
+# Reaction 105
+reaction('C2H6(8) + CH2(S)(40) <=> C3H8(11)', [7.188190e+10, 0.444, -1.216],
+         options='duplicate',
+         id='gas-105')
+#  Reaction index: Chemkin #106; RMG #633
+#  Template reaction: 1,2_Insertion_carbene
+#  Flux pairs: CH2(S)(40), CH3OO(85); HO2(32), CH3OO(85);
+#  Estimated using an average for rate rule [carbene;R_H]
+#  Euclidian distance = 0
+#  family: 1,2_Insertion_carbene
+
+# Reaction 106
+reaction('HO2(32) + CH2(S)(40) <=> CH3OO(85)', [7.188190e+10, 0.444, -1.216],
+         id='gas-106')
+#  Reaction index: Chemkin #107; RMG #865
+#  Template reaction: 1,2_Insertion_carbene
+#  Flux pairs: C2H6(8), C3H8(11); CH2(S)(40), C3H8(11);
+#  Estimated using template [carbene;C_pri] for rate rule [carbene;C_pri/NonDeC]
+#  Euclidian distance = 1.0
+#  Multiplied by reaction path degeneracy 6.0
+#  family: 1,2_Insertion_carbene
+
+# Reaction 107
+reaction('C2H6(8) + CH2(S)(40) <=> C3H8(11)', [2.620427e+12, 0.189, -0.354],
+         options='duplicate',
+         id='gas-107')
+#  Reaction index: Chemkin #108; RMG #866
+#  Template reaction: 1,2_Insertion_carbene
+#  Flux pairs: C2H6(8), C3H8(11); CH2(S)(40), C3H8(11);
+#  Estimated using template [carbene;RR'] for rate rule [carbene;C_methyl_C_methyl]
+#  Euclidian distance = 3.0
+#  family: 1,2_Insertion_carbene
+
+# Reaction 108
+reaction('C2H6(8) + CH2(S)(40) <=> C3H8(11)', [7.188190e+10, 0.444, -1.216],
+         options='duplicate',
+         id='gas-108')
+#  Reaction index: Chemkin #109; RMG #409
 #  Template reaction: R_Addition_MultipleBond
-#  Flux pairs: OH(17), CHO3(119); CO2(4), CHO3(119);
+#  Flux pairs: OH(17), CHO3(126); CO2(4), CHO3(126);
 #  Estimated using template [Cd_R;OJ_pri] for rate rule [CO2;OJ_pri]
 #  Euclidian distance = 2.0
 #  family: R_Addition_MultipleBond
 
-# Reaction 84
-reaction('CO2(4) + OH(17) <=> CHO3(119)', [3.368616e+06, 1.846, -1.664],
-         id='gas-84')
-#  Reaction index: Chemkin #85; RMG #762
+# Reaction 109
+reaction('CO2(4) + OH(17) <=> CHO3(126)', [3.368616e+06, 1.846, -1.664],
+         id='gas-109')
+#  Reaction index: Chemkin #110; RMG #922
 #  Template reaction: H_Abstraction
-#  Flux pairs: CH2O3(260), CHO3(119); CH3(10), CH4(2);
+#  Flux pairs: CH2O3(251), CHO3(126); CH3(10), CH4(2);
 #  From training reaction 694 used for O/H/OneDeC;C_methyl
 #  Exact match found for rate rule [O/H/OneDeC;C_methyl]
 #  Euclidian distance = 0
 #  Multiplied by reaction path degeneracy 2.0
 #  family: H_Abstraction
 
-# Reaction 85
-reaction('CH3(10) + CH2O3(260) <=> CH4(2) + CHO3(119)', [1.640000e+06, 1.87, 6.62],
-         id='gas-85')
-#  Reaction index: Chemkin #86; RMG #777
+# Reaction 110
+reaction('CH3(10) + CH2O3(251) <=> CH4(2) + CHO3(126)', [1.640000e+06, 1.87, 6.62],
+         id='gas-110')
+#  Reaction index: Chemkin #111; RMG #937
 #  Template reaction: H_Abstraction
-#  Flux pairs: CH2O3(260), CHO3(119); OH(17), H2O(5);
+#  Flux pairs: CH2O3(251), CHO3(126); OH(17), H2O(5);
 #  From training reaction 693 used for O/H/OneDeC;O_pri_rad
 #  Exact match found for rate rule [O/H/OneDeC;O_pri_rad]
 #  Euclidian distance = 0
 #  Multiplied by reaction path degeneracy 2.0
 #  family: H_Abstraction
 
-# Reaction 86
-reaction('OH(17) + CH2O3(260) <=> H2O(5) + CHO3(119)', [2.400000e+06, 2.0, -0.25],
-         id='gas-86')
-#  Reaction index: Chemkin #87; RMG #780
+# Reaction 111
+reaction('OH(17) + CH2O3(251) <=> H2O(5) + CHO3(126)', [2.400000e+06, 2.0, -0.25],
+         id='gas-111')
+#  Reaction index: Chemkin #112; RMG #940
 #  Template reaction: H_Abstraction
-#  Flux pairs: CH2O3(260), CHO3(119); H(12), H2(6);
+#  Flux pairs: CH2O3(251), CHO3(126); H(12), H2(6);
 #  From training reaction 691 used for O/H/OneDeC;H_rad
 #  Exact match found for rate rule [O/H/OneDeC;H_rad]
 #  Euclidian distance = 0
 #  Multiplied by reaction path degeneracy 2.0
 #  family: H_Abstraction
 
-# Reaction 87
-reaction('H(12) + CH2O3(260) <=> H2(6) + CHO3(119)', [4.800000e+08, 1.5, 6.62],
-         id='gas-87')
-#  Reaction index: Chemkin #88; RMG #786
+# Reaction 112
+reaction('H(12) + CH2O3(251) <=> H2(6) + CHO3(126)', [4.800000e+08, 1.5, 6.62],
+         id='gas-112')
+#  Reaction index: Chemkin #113; RMG #946
 #  Template reaction: H_Abstraction
-#  Flux pairs: CHO3(119), CH2O3(260); C2H6(8), C2H5(13);
+#  Flux pairs: CHO3(126), CH2O3(251); C2H6(8), C2H5(13);
 #  Estimated using average of templates [C_pri;O_rad/OneDeC] + [C/H3/Cs\H3;O_sec_rad] for rate rule [C/H3/Cs\H3;O_rad/OneDeC]
 #  Euclidian distance = 2.0
 #  Multiplied by reaction path degeneracy 12.0
 #  family: H_Abstraction
 
-# Reaction 88
-reaction('C2H6(8) + CHO3(119) <=> C2H5(13) + CH2O3(260)', [2.274827e+00, 3.728, 11.745],
-         id='gas-88')
-#  Reaction index: Chemkin #89; RMG #793
+# Reaction 113
+reaction('C2H6(8) + CHO3(126) <=> C2H5(13) + CH2O3(251)', [2.274827e+00, 3.728, 11.745],
+         id='gas-113')
+#  Reaction index: Chemkin #114; RMG #953
 #  Template reaction: H_Abstraction
-#  Flux pairs: CHO3(119), CH2O3(260); CH2O(9), HCO(15);
+#  Flux pairs: CHO3(126), CH2O3(251); CH2O(9), HCO(15);
 #  Estimated using template [CO_pri;O_rad/OneDe] for rate rule [CO_pri;O_rad/OneDeC]
 #  Euclidian distance = 1.0
 #  Multiplied by reaction path degeneracy 4.0
 #  family: H_Abstraction
 
-# Reaction 89
-reaction('CH2O(9) + CHO3(119) <=> HCO(15) + CH2O3(260)', [1.420000e-07, 5.64, 9.221],
-         id='gas-89')
-#  Reaction index: Chemkin #90; RMG #816
+# Reaction 114
+reaction('CH2O(9) + CHO3(126) <=> HCO(15) + CH2O3(251)', [1.420000e-07, 5.64, 9.221],
+         id='gas-114')
+#  Reaction index: Chemkin #115; RMG #976
 #  Template reaction: R_Recombination
-#  Flux pairs: CHO3(119), CH2O3(260); H(12), CH2O3(260);
+#  Flux pairs: CHO3(126), CH2O3(251); H(12), CH2O3(251);
 #  From training reaction 25 used for H_rad;O_rad/OneDe
 #  Exact match found for rate rule [O_rad/OneDe;H_rad]
 #  Euclidian distance = 0
 #  Multiplied by reaction path degeneracy 2.0
 #  family: R_Recombination
 
-# Reaction 90
-reaction('H(12) + CHO3(119) <=> CH2O3(260)', [1.400000e+12, 0.493, -0.294],
-         id='gas-90')
-#  Reaction index: Chemkin #91; RMG #817
+# Reaction 115
+reaction('H(12) + CHO3(126) <=> CH2O3(251)', [1.400000e+12, 0.493, -0.294],
+         id='gas-115')
+#  Reaction index: Chemkin #116; RMG #977
 #  Template reaction: Disproportionation
-#  Flux pairs: C2H5(13), C2H4(18); CHO3(119), CH2O3(260);
+#  Flux pairs: C2H5(13), C2H4(18); CHO3(126), CH2O3(251);
 #  Estimated using template [O_rad;Cmethyl_Csrad] for rate rule [O_rad/OneDe;Cmethyl_Csrad]
 #  Euclidian distance = 2.0
 #  Multiplied by reaction path degeneracy 6.0
 #  family: Disproportionation
 
-# Reaction 91
-reaction('C2H5(13) + CHO3(119) <=> C2H4(18) + CH2O3(260)', [1.446000e+14, 0.0, 0.0],
-         id='gas-91')
-#  Reaction index: Chemkin #92; RMG #836
+# Reaction 116
+reaction('C2H5(13) + CHO3(126) <=> C2H4(18) + CH2O3(251)', [1.446000e+14, 0.0, 0.0],
+         id='gas-116')
+#  Reaction index: Chemkin #117; RMG #996
 #  Template reaction: CO_Disproportionation
-#  Flux pairs: HCO(15), CO(7); CHO3(119), CH2O3(260);
+#  Flux pairs: HCO(15), CO(7); CHO3(126), CH2O3(251);
 #  Estimated using template [O_sec_rad;HCO] for rate rule [O_rad/OneDe;HCO]
 #  Euclidian distance = 1.0
 #  Multiplied by reaction path degeneracy 2.0
 #  family: CO_Disproportionation
 
-# Reaction 92
-reaction('HCO(15) + CHO3(119) <=> CO(7) + CH2O3(260)', [2.480000e+23, -3.29, 2.355],
-         id='gas-92')
-#  Reaction index: Chemkin #93; RMG #862
+# Reaction 117
+reaction('HCO(15) + CHO3(126) <=> CO(7) + CH2O3(251)', [2.480000e+23, -3.29, 2.355],
+         id='gas-117')
+#  Reaction index: Chemkin #118; RMG #1022
 #  Template reaction: H_Abstraction
-#  Flux pairs: CH2O3(260), CHO3(119); O(29), OH(17);
+#  Flux pairs: CH2O3(251), CHO3(126); O(29), OH(17);
 #  From training reaction 692 used for O/H/OneDeC;O_atom_triplet
 #  Exact match found for rate rule [O/H/OneDeC;O_atom_triplet]
 #  Euclidian distance = 0
 #  Multiplied by reaction path degeneracy 2.0
 #  family: H_Abstraction
 
-# Reaction 93
-reaction('CH2O3(260) + O(29) <=> OH(17) + CHO3(119)', [3.400000e+08, 1.5, 7.351],
-         id='gas-93')
-#  Reaction index: Chemkin #94; RMG #885
+# Reaction 118
+reaction('CH2O3(251) + O(29) <=> OH(17) + CHO3(126)', [3.400000e+08, 1.5, 7.351],
+         id='gas-118')
+#  Reaction index: Chemkin #119; RMG #1045
 #  Template reaction: H_Abstraction
-#  Flux pairs: CHO3(119), CH2O3(260); HO2(32), O2(3);
+#  Flux pairs: CHO3(126), CH2O3(251); HO2(32), O2(3);
 #  Estimated using average of templates [X_H;O_rad/OneDeC] + [Orad_O_H;O_sec_rad] for rate rule [Orad_O_H;O_rad/OneDeC]
 #  Euclidian distance = 2.0
 #  Multiplied by reaction path degeneracy 2.0
 #  family: H_Abstraction
 
-# Reaction 94
-reaction('CHO3(119) + HO2(32) <=> O2(3) + CH2O3(260)', [6.319327e+03, 2.302, 8.568],
-         id='gas-94')
-#  Reaction index: Chemkin #95; RMG #897
+# Reaction 119
+reaction('HO2(32) + CHO3(126) <=> O2(3) + CH2O3(251)', [6.319327e+03, 2.302, 8.568],
+         id='gas-119')
+#  Reaction index: Chemkin #120; RMG #1051
 #  Template reaction: H_Abstraction
-#  Flux pairs: CHO3(119), CH2O3(260); H2O2(33), HO2(32);
+#  Flux pairs: CHO3(126), CH2O3(251); H2O2(33), HO2(32);
 #  Estimated using an average for rate rule [H2O2;O_rad/OneDeC]
 #  Euclidian distance = 0
 #  Multiplied by reaction path degeneracy 4.0
 #  family: H_Abstraction
 
-# Reaction 95
-reaction('CHO3(119) + H2O2(33) <=> CH2O3(260) + HO2(32)', [1.398000e-01, 3.75, 19.545],
-         id='gas-95')
-#  Reaction index: Chemkin #96; RMG #156
+# Reaction 120
+reaction('H2O2(33) + CHO3(126) <=> CH2O3(251) + HO2(32)', [1.398000e-01, 3.75, 19.545],
+         id='gas-120')
+#  Reaction index: Chemkin #121; RMG #350
 #  Template reaction: 1,3_Insertion_CO2
-#  Flux pairs: H2(6), CH2O2(88); CO2(4), CH2O2(88);
+#  Flux pairs: H2(6), CH2O2(95); CO2(4), CH2O2(95);
 #  Matched reaction 1 H2 + CO2 <=> CH2O2 in 1,3_Insertion_CO2/training
 #  This reaction matched rate rule [CO2_Od;H2]
 #  family: 1,3_Insertion_CO2
 
-# Reaction 96
-reaction('CO2(4) + H2(6) <=> CH2O2(88)', [1.510000e+09, 1.23, 73.9],
-         id='gas-96')
-#  Reaction index: Chemkin #97; RMG #223
+# Reaction 121
+reaction('CO2(4) + H2(6) <=> CH2O2(95)', [1.510000e+09, 1.23, 73.9],
+         id='gas-121')
+#  Reaction index: Chemkin #122; RMG #416
 #  Template reaction: 1,2_Insertion_CO
-#  Flux pairs: H2O(5), CH2O2(88); CO(7), CH2O2(88);
+#  Flux pairs: H2O(5), CH2O2(95); CO(7), CH2O2(95);
 #  Estimated using an average for rate rule [CO;RO_H]
 #  Euclidian distance = 0
 #  Multiplied by reaction path degeneracy 2.0
 #  family: 1,2_Insertion_CO
 
-# Reaction 97
-reaction('CO(7) + H2O(5) <=> CH2O2(88)', [2.540000e-01, 3.7, 53.36],
-         id='gas-97')
-#  Reaction index: Chemkin #98; RMG #430
+# Reaction 122
+reaction('CO(7) + H2O(5) <=> CH2O2(95)', [2.540000e-01, 3.7, 53.36],
+         id='gas-122')
+#  Reaction index: Chemkin #123; RMG #587
 #  Template reaction: R_Recombination
-#  Flux pairs: OH(17), CH2O2(88); HCO(15), CH2O2(88);
+#  Flux pairs: OH(17), CH2O2(95); HCO(15), CH2O2(95);
 #  Estimated using average of templates [Y_rad;CO_pri_rad] + [O_pri_rad;Y_rad] for rate rule [O_pri_rad;CO_pri_rad]
 #  Euclidian distance = 2.0
 #  family: R_Recombination
 #  Ea raised from -1.8 to -1.8 kJ/mol.
 
-# Reaction 98
-reaction('HCO(15) + OH(17) <=> CH2O2(88)', [1.074579e+13, 0.022, -0.44],
-         id='gas-98')
-#  Reaction index: Chemkin #1; RMG #80
+# Reaction 123
+reaction('HCO(15) + OH(17) <=> CH2O2(95)', [1.074579e+13, 0.022, -0.44],
+         id='gas-123')
+#  Reaction index: Chemkin #1; RMG #288
 #  Template reaction: Surface_Adsorption_vdW
-#  Flux pairs: X(1), CH4X(49); CH4(2), CH4X(49);
+#  Flux pairs: X(1), CH4X(56); CH4(2), CH4X(56);
 #  Exact match found for rate rule [Adsorbate;VacantSite]
 #  Euclidian distance = 0
 #  family: Surface_Adsorption_vdW
 
 # surface1 Reaction 1
-surface_reaction('X(1) + CH4(2) <=> CH4X(49)', stick(1.000000e-01, 0.0, 0.0),
+surface_reaction('X(1) + CH4(2) <=> CH4X(56)', stick(1.000000e-01, 0.0, 0.0),
                  id='surface1-1')
 #  Reaction index: Chemkin #2; RMG #2
 #  Library reaction: CPOX_Pt/Deutschmann2006
@@ -1681,7 +1799,7 @@ surface_reaction('X(1) + CH4(2) <=> CH4X(49)', stick(1.000000e-01, 0.0, 0.0),
 # surface1 Reaction 2
 surface_reaction('X(1) + X(1) + O2(3) <=> OX(20) + OX(20)', [1.890000e+21, -0.5, 0.0],
                  id='surface1-2')
-#  Reaction index: Chemkin #3; RMG #84
+#  Reaction index: Chemkin #3; RMG #292
 #  Template reaction: Surface_Adsorption_Dissociative
 #  Flux pairs: C2H6(8), CH3X(21); C2H6(8), CH3X(21);
 #  Exact match found for rate rule [Adsorbate;VacantSite1;VacantSite2]
@@ -1691,7 +1809,7 @@ surface_reaction('X(1) + X(1) + O2(3) <=> OX(20) + OX(20)', [1.890000e+21, -0.5,
 # surface1 Reaction 3
 surface_reaction('X(1) + X(1) + C2H6(8) <=> CH3X(21) + CH3X(21)', stick(1.000000e-02, 0.0, 10.0),
                  id='surface1-3')
-#  Reaction index: Chemkin #4; RMG #89
+#  Reaction index: Chemkin #4; RMG #297
 #  Template reaction: Surface_Adsorption_Single
 #  Flux pairs: X(1), CH3X(21); CH3(10), CH3X(21);
 #  Exact match found for rate rule [Adsorbate;VacantSite]
@@ -1715,7 +1833,7 @@ surface_reaction('X(1) + X(1) + H2(6) <=> HX(19) + HX(19)', stick(4.600000e-02, 
 # surface1 Reaction 6
 surface_reaction('X(1) + X(1) + CH4(2) <=> HX(19) + CH3X(21)', stick(9.000000e-04, 0.0, 17.208),
                  id='surface1-6')
-#  Reaction index: Chemkin #7; RMG #94
+#  Reaction index: Chemkin #7; RMG #302
 #  Template reaction: Surface_Adsorption_Single
 #  Flux pairs: X(1), HX(19); H(12), HX(19);
 #  Exact match found for rate rule [Adsorbate;VacantSite]
@@ -1740,7 +1858,7 @@ surface_reaction('X(1) + CH4(2) + OX(20) <=> CH3X(21) + HOX(22)', [5.000000e+18,
 # surface1 Reaction 9
 surface_reaction('HX(19) + OX(20) <=> X(1) + HOX(22)', [1.280000e+21, 0.0, 2.677],
                  id='surface1-9')
-#  Reaction index: Chemkin #10; RMG #81
+#  Reaction index: Chemkin #10; RMG #289
 #  Template reaction: Surface_Adsorption_Dissociative
 #  Flux pairs: H2O(5), HOX(22); H2O(5), HX(19);
 #  Exact match found for rate rule [Adsorbate;VacantSite1;VacantSite2]
@@ -1752,7 +1870,7 @@ surface_reaction('HX(19) + OX(20) <=> X(1) + HOX(22)', [1.280000e+21, 0.0, 2.677
 # surface1 Reaction 10
 surface_reaction('X(1) + X(1) + H2O(5) <=> HX(19) + HOX(22)', stick(2.000000e-02, 0.0, 90.386),
                  id='surface1-10')
-#  Reaction index: Chemkin #11; RMG #96
+#  Reaction index: Chemkin #11; RMG #304
 #  Template reaction: Surface_Adsorption_Dissociative
 #  Flux pairs: CH3OH(14), HOX(22); CH3OH(14), CH3X(21);
 #  Exact match found for rate rule [Adsorbate;VacantSite1;VacantSite2]
@@ -1763,7 +1881,7 @@ surface_reaction('X(1) + X(1) + H2O(5) <=> HX(19) + HOX(22)', stick(2.000000e-02
 # surface1 Reaction 11
 surface_reaction('X(1) + X(1) + CH3OH(14) <=> CH3X(21) + HOX(22)', stick(1.000000e-02, 0.0, 14.849),
                  id='surface1-11')
-#  Reaction index: Chemkin #12; RMG #105
+#  Reaction index: Chemkin #12; RMG #313
 #  Template reaction: Surface_Adsorption_Single
 #  Flux pairs: X(1), HOX(22); OH(17), HOX(22);
 #  Exact match found for rate rule [Adsorbate;VacantSite]
@@ -1773,15 +1891,15 @@ surface_reaction('X(1) + X(1) + CH3OH(14) <=> CH3X(21) + HOX(22)', stick(1.00000
 # surface1 Reaction 12
 surface_reaction('X(1) + OH(17) <=> HOX(22)', stick(1.000000e-01, 0.0, 0.0),
                  id='surface1-12')
-#  Reaction index: Chemkin #13; RMG #82
+#  Reaction index: Chemkin #13; RMG #290
 #  Template reaction: Surface_Adsorption_vdW
-#  Flux pairs: X(1), H2X(50); H2(6), H2X(50);
+#  Flux pairs: X(1), H2X(57); H2(6), H2X(57);
 #  Exact match found for rate rule [Adsorbate;VacantSite]
 #  Euclidian distance = 0
 #  family: Surface_Adsorption_vdW
 
 # surface1 Reaction 13
-surface_reaction('X(1) + H2(6) <=> H2X(50)', stick(1.000000e-01, 0.0, 0.0),
+surface_reaction('X(1) + H2(6) <=> H2X(57)', stick(1.000000e-01, 0.0, 0.0),
                  id='surface1-13')
 #  Reaction index: Chemkin #14; RMG #12
 #  Library reaction: CPOX_Pt/Deutschmann2006
@@ -1790,7 +1908,7 @@ surface_reaction('X(1) + H2(6) <=> H2X(50)', stick(1.000000e-01, 0.0, 0.0),
 # surface1 Reaction 14
 surface_reaction('HX(19) + CH2X(27) <=> X(1) + CH3X(21)', [3.090000e+22, 0.0, 0.0],
                  id='surface1-14')
-#  Reaction index: Chemkin #15; RMG #463
+#  Reaction index: Chemkin #15; RMG #616
 #  Template reaction: Surface_Abstraction
 #  Flux pairs: HOX(22), CH3X(21); CH2X(27), OX(20);
 #  Matched reaction 24 CH2X_1 + HOX_3 <=> CH3X_4 + OX_5 in Surface_Abstraction/training
@@ -1799,7 +1917,7 @@ surface_reaction('HX(19) + CH2X(27) <=> X(1) + CH3X(21)', [3.090000e+22, 0.0, 0.
 #  Ea raised from 19.0 to 98.3 kJ/mol to match endothermicity of reaction.
 
 # surface1 Reaction 15
-surface_reaction('HOX(22) + CH2X(27) <=> CH3X(21) + OX(20)', [1.390000e+21, 0.101, 23.487],
+surface_reaction('HOX(22) + CH2X(27) <=> OX(20) + CH3X(21)', [1.390000e+21, 0.101, 23.487],
                  id='surface1-15')
 #  Reaction index: Chemkin #16; RMG #17
 #  Library reaction: CPOX_Pt/Deutschmann2006
@@ -1822,7 +1940,7 @@ surface_reaction('HX(19) + CHX(28) <=> X(1) + CH2X(27)', [3.090000e+22, 0.0, 0.0
 # surface1 Reaction 18
 surface_reaction('X(1) + CHX(28) <=> HX(19) + CX(26)', [3.090000e+22, 0.0, 0.0],
                  id='surface1-18')
-#  Reaction index: Chemkin #19; RMG #467
+#  Reaction index: Chemkin #19; RMG #620
 #  Template reaction: Surface_Abstraction
 #  Flux pairs: HOX(22), CH2X(27); CHX(28), OX(20);
 #  Matched reaction 26 CHX_1 + HOX_3 <=> CH2X_4 + OX_5 in Surface_Abstraction/training
@@ -1833,7 +1951,7 @@ surface_reaction('X(1) + CHX(28) <=> HX(19) + CX(26)', [3.090000e+22, 0.0, 0.0],
 # surface1 Reaction 19
 surface_reaction('HOX(22) + CHX(28) <=> OX(20) + CH2X(27)', [4.400000e+22, 0.101, 40.919],
                  id='surface1-19')
-#  Reaction index: Chemkin #20; RMG #470
+#  Reaction index: Chemkin #20; RMG #623
 #  Template reaction: Surface_Abstraction
 #  Flux pairs: CH2X(27), CH3X(21); CH2X(27), CHX(28);
 #  Exact match found for rate rule [Abstracting;R-H]
@@ -1844,7 +1962,7 @@ surface_reaction('HOX(22) + CHX(28) <=> OX(20) + CH2X(27)', [4.400000e+22, 0.101
 # surface1 Reaction 20
 surface_reaction('CH2X(27) + CH2X(27) <=> CH3X(21) + CHX(28)', [1.000000e+22, 0.0, 9.56],
                  id='surface1-20')
-#  Reaction index: Chemkin #21; RMG #471
+#  Reaction index: Chemkin #21; RMG #624
 #  Template reaction: Surface_Abstraction
 #  Flux pairs: CH3X(21), CHX(28); CX(26), CH2X(27);
 #  Exact match found for rate rule [Abstracting;R-H]
@@ -1855,7 +1973,7 @@ surface_reaction('CH2X(27) + CH2X(27) <=> CH3X(21) + CHX(28)', [1.000000e+22, 0.
 # surface1 Reaction 21
 surface_reaction('CH3X(21) + CX(26) <=> CH2X(27) + CHX(28)', [1.500000e+22, 0.0, 9.56],
                  id='surface1-21')
-#  Reaction index: Chemkin #22; RMG #473
+#  Reaction index: Chemkin #22; RMG #626
 #  Template reaction: Surface_Abstraction
 #  Flux pairs: HOX(22), CHX(28); CX(26), OX(20);
 #  Matched reaction 28 HOX_3 + CX_1 <=> OX_5 + CHX_4  in Surface_Abstraction/training
@@ -1865,7 +1983,7 @@ surface_reaction('CH3X(21) + CX(26) <=> CH2X(27) + CHX(28)', [1.500000e+22, 0.0,
 # surface1 Reaction 22
 surface_reaction('HOX(22) + CX(26) <=> OX(20) + CHX(28)', [2.430000e+21, -0.312, 28.418],
                  id='surface1-22')
-#  Reaction index: Chemkin #23; RMG #475
+#  Reaction index: Chemkin #23; RMG #628
 #  Template reaction: Surface_Abstraction
 #  Flux pairs: CH2X(27), CHX(28); CX(26), CHX(28);
 #  Exact match found for rate rule [Abstracting;R-H]
@@ -1904,55 +2022,55 @@ surface_reaction('OX(20) + H2OX(23) <=> HOX(22) + HOX(22)', [1.000000e+20, 0.0, 
 # surface1 Reaction 27
 surface_reaction('HX(19) + HOX(22) <=> X(1) + H2OX(23)', [2.040000e+21, 0.0, 15.827],
                  id='surface1-27')
-#  Reaction index: Chemkin #28; RMG #99
+#  Reaction index: Chemkin #28; RMG #307
 #  Template reaction: Surface_Adsorption_vdW
-#  Flux pairs: X(1), CH4OX(61); CH3OH(14), CH4OX(61);
+#  Flux pairs: X(1), CH4OX(68); CH3OH(14), CH4OX(68);
 #  Exact match found for rate rule [Adsorbate;VacantSite]
 #  Euclidian distance = 0
 #  family: Surface_Adsorption_vdW
 
 # surface1 Reaction 28
-surface_reaction('X(1) + CH3OH(14) <=> CH4OX(61)', stick(1.000000e-01, 0.0, 0.0),
+surface_reaction('X(1) + CH3OH(14) <=> CH4OX(68)', stick(1.000000e-01, 0.0, 0.0),
                  id='surface1-28')
-#  Reaction index: Chemkin #29; RMG #465
-#  Template reaction: Surface_Dissociation
-#  Flux pairs: HO2X(181), HOX(22); HO2X(181), OX(20);
-#  Exact match found for rate rule [Combined;VacantSite]
+#  Reaction index: Chemkin #29; RMG #636
+#  Template reaction: Surface_Adsorption_Single
+#  Flux pairs: X(1), SX(195); CH3OO(85), SX(195);
+#  Exact match found for rate rule [Adsorbate;VacantSite]
 #  Euclidian distance = 0
-#  family: Surface_Dissociation
+#  family: Surface_Adsorption_Single
 
 # surface1 Reaction 29
-surface_reaction('X(1) + HO2X(181) <=> OX(20) + HOX(22)', [1.000000e+21, 0.0, 57.911],
+surface_reaction('X(1) + CH3OO(85) <=> SX(195)', stick(1.000000e-01, 0.0, 0.0),
                  id='surface1-29')
-#  Reaction index: Chemkin #30; RMG #536
-#  Template reaction: Surface_Adsorption_Single
-#  Flux pairs: X(1), HO2X(181); HO2(32), HO2X(181);
-#  Exact match found for rate rule [Adsorbate;VacantSite]
-#  Euclidian distance = 0
-#  family: Surface_Adsorption_Single
-
-# surface1 Reaction 30
-surface_reaction('X(1) + HO2(32) <=> HO2X(181)', stick(1.000000e-01, 0.0, 0.0),
-                 id='surface1-30')
-#  Reaction index: Chemkin #31; RMG #483
-#  Template reaction: Surface_Adsorption_Single
-#  Flux pairs: X(1), SX(188); CH3OO(78), SX(188);
-#  Exact match found for rate rule [Adsorbate;VacantSite]
-#  Euclidian distance = 0
-#  family: Surface_Adsorption_Single
-
-# surface1 Reaction 31
-surface_reaction('X(1) + CH3OO(78) <=> SX(188)', stick(1.000000e-01, 0.0, 0.0),
-                 id='surface1-31')
-#  Reaction index: Chemkin #32; RMG #86
+#  Reaction index: Chemkin #30; RMG #294
 #  Template reaction: Surface_Adsorption_vdW
-#  Flux pairs: X(1), C2H6X(53); C2H6(8), C2H6X(53);
+#  Flux pairs: X(1), C2H6X(60); C2H6(8), C2H6X(60);
 #  Exact match found for rate rule [Adsorbate;VacantSite]
 #  Euclidian distance = 0
 #  family: Surface_Adsorption_vdW
 
+# surface1 Reaction 30
+surface_reaction('X(1) + C2H6(8) <=> C2H6X(60)', stick(1.000000e-01, 0.0, 0.0),
+                 id='surface1-30')
+#  Reaction index: Chemkin #31; RMG #618
+#  Template reaction: Surface_Dissociation
+#  Flux pairs: HO2X(188), HOX(22); HO2X(188), OX(20);
+#  Exact match found for rate rule [Combined;VacantSite]
+#  Euclidian distance = 0
+#  family: Surface_Dissociation
+
+# surface1 Reaction 31
+surface_reaction('X(1) + HO2X(188) <=> OX(20) + HOX(22)', [1.000000e+21, 0.0, 57.911],
+                 id='surface1-31')
+#  Reaction index: Chemkin #32; RMG #701
+#  Template reaction: Surface_Adsorption_Single
+#  Flux pairs: X(1), HO2X(188); HO2(32), HO2X(188);
+#  Exact match found for rate rule [Adsorbate;VacantSite]
+#  Euclidian distance = 0
+#  family: Surface_Adsorption_Single
+
 # surface1 Reaction 32
-surface_reaction('X(1) + C2H6(8) <=> C2H6X(53)', stick(1.000000e-01, 0.0, 0.0),
+surface_reaction('X(1) + HO2(32) <=> HO2X(188)', stick(1.000000e-01, 0.0, 0.0),
                  id='surface1-32')
 #  Reaction index: Chemkin #33; RMG #8
 #  Library reaction: CPOX_Pt/Deutschmann2006
@@ -1968,540 +2086,550 @@ surface_reaction('X(1) + CO(7) <=> OCX(25)', stick(8.400000e-01, 0.0, 0.0),
 # surface1 Reaction 34
 surface_reaction('OX(20) + CX(26) <=> X(1) + OCX(25)', [3.700000e+19, 0.0, 0.0],
                  id='surface1-34')
-#  Reaction index: Chemkin #35; RMG #466
+#  Reaction index: Chemkin #35; RMG #295
 #  Template reaction: Surface_Adsorption_Dissociative
-#  Flux pairs: H2O2(33), HOX(22); H2O2(33), HOX(22);
-#  Exact match found for rate rule [Adsorbate;VacantSite1;VacantSite2]
-#  Euclidian distance = 0
-#  family: Surface_Adsorption_Dissociative
-
-# surface1 Reaction 35
-surface_reaction('X(1) + X(1) + H2O2(33) <=> HOX(22) + HOX(22)', stick(1.000000e-02, 0.0, 10.0),
-                 id='surface1-35')
-#  Reaction index: Chemkin #36; RMG #583
-#  Template reaction: Surface_Adsorption_Dissociative
-#  Flux pairs: H2O2(33), HO2X(181); H2O2(33), HX(19);
-#  Exact match found for rate rule [Adsorbate;VacantSite1;VacantSite2]
-#  Euclidian distance = 0
-#  Multiplied by reaction path degeneracy 2.0
-#  family: Surface_Adsorption_Dissociative
-#  Ea raised from 250.9 to 253.5 kJ/mol to match endothermicity of reaction.
-
-# surface1 Reaction 36
-surface_reaction('X(1) + X(1) + H2O2(33) <=> HX(19) + HO2X(181)', stick(2.000000e-02, 0.0, 60.598),
-                 id='surface1-36')
-#  Reaction index: Chemkin #37; RMG #87
-#  Template reaction: Surface_Adsorption_Dissociative
-#  Flux pairs: CH2O(9), CHOX(54); CH2O(9), HX(19);
+#  Flux pairs: CH2O(9), CHOX(61); CH2O(9), HX(19);
 #  Exact match found for rate rule [Adsorbate;VacantSite1;VacantSite2]
 #  Euclidian distance = 0
 #  Multiplied by reaction path degeneracy 2.0
 #  family: Surface_Adsorption_Dissociative
 #  Ea raised from 45.1 to 48.9 kJ/mol to match endothermicity of reaction.
 
-# surface1 Reaction 37
-surface_reaction('X(1) + X(1) + CH2O(9) <=> HX(19) + CHOX(54)', stick(2.000000e-02, 0.0, 11.683),
-                 id='surface1-37')
-#  Reaction index: Chemkin #38; RMG #100
+# surface1 Reaction 35
+surface_reaction('X(1) + X(1) + CH2O(9) <=> CHOX(61) + HX(19)', stick(2.000000e-02, 0.0, 11.683),
+                 id='surface1-35')
+#  Reaction index: Chemkin #36; RMG #308
 #  Template reaction: Surface_Adsorption_Single
-#  Flux pairs: X(1), CHOX(54); HCO(15), CHOX(54);
+#  Flux pairs: X(1), CHOX(61); HCO(15), CHOX(61);
 #  Exact match found for rate rule [Adsorbate;VacantSite]
 #  Euclidian distance = 0
 #  family: Surface_Adsorption_Single
 
-# surface1 Reaction 38
-surface_reaction('X(1) + HCO(15) <=> CHOX(54)', stick(1.000000e-01, 0.0, 0.0),
-                 id='surface1-38')
-#  Reaction index: Chemkin #39; RMG #101
+# surface1 Reaction 36
+surface_reaction('X(1) + HCO(15) <=> CHOX(61)', stick(1.000000e-01, 0.0, 0.0),
+                 id='surface1-36')
+#  Reaction index: Chemkin #37; RMG #309
 #  Template reaction: Surface_Adsorption_Dissociative
-#  Flux pairs: CH3CHO(16), CH3X(21); CH3CHO(16), CHOX(54);
+#  Flux pairs: CH3CHO(16), CH3X(21); CH3CHO(16), CHOX(61);
 #  Exact match found for rate rule [Adsorbate;VacantSite1;VacantSite2]
 #  Euclidian distance = 0
 #  family: Surface_Adsorption_Dissociative
 
-# surface1 Reaction 39
-surface_reaction('X(1) + X(1) + CH3CHO(16) <=> CH3X(21) + CHOX(54)', stick(1.000000e-02, 0.0, 10.0),
-                 id='surface1-39')
-#  Reaction index: Chemkin #40; RMG #646
+# surface1 Reaction 37
+surface_reaction('X(1) + X(1) + CH3CHO(16) <=> CHOX(61) + CH3X(21)', stick(1.000000e-02, 0.0, 10.0),
+                 id='surface1-37')
+#  Reaction index: Chemkin #38; RMG #751
 #  Template reaction: Surface_Abstraction
-#  Flux pairs: CHOX(54), CH3X(21); CH2X(27), OCX(25);
+#  Flux pairs: CHOX(61), CH3X(21); CH2X(27), OCX(25);
 #  Exact match found for rate rule [Abstracting;R-H]
 #  Euclidian distance = 0
 #  family: Surface_Abstraction
 
-# surface1 Reaction 40
-surface_reaction('CH2X(27) + CHOX(54) <=> CH3X(21) + OCX(25)', [5.000000e+21, 0.0, 9.56],
-                 id='surface1-40')
-#  Reaction index: Chemkin #41; RMG #648
+# surface1 Reaction 38
+surface_reaction('CHOX(61) + CH2X(27) <=> CH3X(21) + OCX(25)', [5.000000e+21, 0.0, 9.56],
+                 id='surface1-38')
+#  Reaction index: Chemkin #39; RMG #753
 #  Template reaction: Surface_Dissociation
-#  Flux pairs: CHOX(54), HX(19); CHOX(54), OCX(25);
+#  Flux pairs: CHOX(61), HX(19); CHOX(61), OCX(25);
 #  Matched reaction 48 CXHO_1 + Ni_4 <=> OCX_3 + HX_5 in Surface_Dissociation/training
 #  This reaction matched rate rule [Combined;VacantSite]
 #  family: Surface_Dissociation
 #  Ea raised from 0.0 to 151.2 kJ/mol to match endothermicity of reaction.
 
-# surface1 Reaction 41
-surface_reaction('X(1) + CHOX(54) <=> HX(19) + OCX(25)', [3.710000e+21, 0.0, 36.147],
-                 id='surface1-41')
-#  Reaction index: Chemkin #42; RMG #649
+# surface1 Reaction 39
+surface_reaction('X(1) + CHOX(61) <=> HX(19) + OCX(25)', [3.710000e+21, 0.0, 36.147],
+                 id='surface1-39')
+#  Reaction index: Chemkin #40; RMG #754
 #  Template reaction: Surface_Abstraction
-#  Flux pairs: CHOX(54), HOX(22); OX(20), OCX(25);
+#  Flux pairs: CHOX(61), HOX(22); OX(20), OCX(25);
+#  Exact match found for rate rule [Abstracting;R-H]
+#  Euclidian distance = 0
+#  family: Surface_Abstraction
+
+# surface1 Reaction 40
+surface_reaction('CHOX(61) + OX(20) <=> HOX(22) + OCX(25)', [5.000000e+21, 0.0, 9.56],
+                 id='surface1-40')
+#  Reaction index: Chemkin #41; RMG #756
+#  Template reaction: Surface_Abstraction
+#  Flux pairs: CHOX(61), CH2X(27); CHX(28), OCX(25);
+#  Exact match found for rate rule [Abstracting;R-H]
+#  Euclidian distance = 0
+#  family: Surface_Abstraction
+
+# surface1 Reaction 41
+surface_reaction('CHOX(61) + CHX(28) <=> OCX(25) + CH2X(27)', [5.000000e+21, 0.0, 9.56],
+                 id='surface1-41')
+#  Reaction index: Chemkin #42; RMG #757
+#  Template reaction: Surface_Abstraction
+#  Flux pairs: CHOX(61), CHX(28); CX(26), OCX(25);
 #  Exact match found for rate rule [Abstracting;R-H]
 #  Euclidian distance = 0
 #  family: Surface_Abstraction
 
 # surface1 Reaction 42
-surface_reaction('OX(20) + CHOX(54) <=> HOX(22) + OCX(25)', [5.000000e+21, 0.0, 9.56],
+surface_reaction('CHOX(61) + CX(26) <=> OCX(25) + CHX(28)', [5.000000e+21, 0.0, 9.56],
                  id='surface1-42')
-#  Reaction index: Chemkin #43; RMG #651
-#  Template reaction: Surface_Abstraction
-#  Flux pairs: CHOX(54), CH2X(27); CHX(28), OCX(25);
-#  Exact match found for rate rule [Abstracting;R-H]
+#  Reaction index: Chemkin #43; RMG #619
+#  Template reaction: Surface_Adsorption_Dissociative
+#  Flux pairs: H2O2(33), HOX(22); H2O2(33), HOX(22);
+#  Exact match found for rate rule [Adsorbate;VacantSite1;VacantSite2]
 #  Euclidian distance = 0
-#  family: Surface_Abstraction
+#  family: Surface_Adsorption_Dissociative
 
 # surface1 Reaction 43
-surface_reaction('CHX(28) + CHOX(54) <=> OCX(25) + CH2X(27)', [5.000000e+21, 0.0, 9.56],
+surface_reaction('X(1) + X(1) + H2O2(33) <=> HOX(22) + HOX(22)', stick(1.000000e-02, 0.0, 10.0),
                  id='surface1-43')
-#  Reaction index: Chemkin #44; RMG #652
-#  Template reaction: Surface_Abstraction
-#  Flux pairs: CHOX(54), CHX(28); CX(26), OCX(25);
-#  Exact match found for rate rule [Abstracting;R-H]
+#  Reaction index: Chemkin #44; RMG #741
+#  Template reaction: Surface_Adsorption_Dissociative
+#  Flux pairs: H2O2(33), HO2X(188); H2O2(33), HX(19);
+#  Exact match found for rate rule [Adsorbate;VacantSite1;VacantSite2]
 #  Euclidian distance = 0
-#  family: Surface_Abstraction
+#  Multiplied by reaction path degeneracy 2.0
+#  family: Surface_Adsorption_Dissociative
+#  Ea raised from 250.9 to 253.5 kJ/mol to match endothermicity of reaction.
 
 # surface1 Reaction 44
-surface_reaction('CX(26) + CHOX(54) <=> OCX(25) + CHX(28)', [5.000000e+21, 0.0, 9.56],
+surface_reaction('X(1) + X(1) + H2O2(33) <=> HO2X(188) + HX(19)', stick(2.000000e-02, 0.0, 60.598),
                  id='surface1-44')
-#  Reaction index: Chemkin #45; RMG #83
+#  Reaction index: Chemkin #45; RMG #291
 #  Template reaction: Surface_Adsorption_vdW
-#  Flux pairs: X(1), COX(51); CO(7), COX(51);
+#  Flux pairs: X(1), COX(58); CO(7), COX(58);
 #  Exact match found for rate rule [Adsorbate;VacantSite]
 #  Euclidian distance = 0
 #  family: Surface_Adsorption_vdW
 
 # surface1 Reaction 45
-surface_reaction('X(1) + CO(7) <=> COX(51)', stick(1.000000e-01, 0.0, 0.0),
+surface_reaction('X(1) + CO(7) <=> COX(58)', stick(1.000000e-01, 0.0, 0.0),
                  id='surface1-45')
-#  Reaction index: Chemkin #46; RMG #657
+#  Reaction index: Chemkin #46; RMG #771
 #  Template reaction: Surface_Adsorption_vdW
-#  Flux pairs: X(1), H2O2X(254); H2O2(33), H2O2X(254);
+#  Flux pairs: X(1), H2O2X(249); H2O2(33), H2O2X(249);
 #  Exact match found for rate rule [Adsorbate;VacantSite]
 #  Euclidian distance = 0
 #  family: Surface_Adsorption_vdW
 
 # surface1 Reaction 46
-surface_reaction('X(1) + H2O2(33) <=> H2O2X(254)', stick(1.000000e-01, 0.0, 0.0),
+surface_reaction('X(1) + H2O2(33) <=> H2O2X(249)', stick(1.000000e-01, 0.0, 0.0),
                  id='surface1-46')
-#  Reaction index: Chemkin #47; RMG #650
+#  Reaction index: Chemkin #47; RMG #755
 #  Template reaction: Surface_Dissociation
-#  Flux pairs: HOCOX(250), HOX(22); HOCOX(250), OCX(25);
+#  Flux pairs: HOCOX(241), HOX(22); HOCOX(241), OCX(25);
 #  Matched reaction 44 HOCXO_1 + Ni_4 <=> OCX_3 + HOX_5 in Surface_Dissociation/training
 #  This reaction matched rate rule [Combined;VacantSite]
 #  family: Surface_Dissociation
 
 # surface1 Reaction 47
-surface_reaction('X(1) + HOCOX(250) <=> HOX(22) + OCX(25)', [1.460000e+24, -0.213, 12.978],
+surface_reaction('X(1) + HOCOX(241) <=> HOX(22) + OCX(25)', [1.460000e+24, -0.213, 12.978],
                  id='surface1-47')
-#  Reaction index: Chemkin #48; RMG #653
+#  Reaction index: Chemkin #48; RMG #760
 #  Template reaction: Surface_Abstraction
-#  Flux pairs: HOCOX(250), HO2X(181); OX(20), OCX(25);
+#  Flux pairs: HOCOX(241), HO2X(188); OX(20), OCX(25);
 #  Estimated using template [Abstracting;Donating] for rate rule [Abstracting;R-OH]
 #  Euclidian distance = 2.0
 #  family: Surface_Abstraction
 
 # surface1 Reaction 48
-surface_reaction('OX(20) + HOCOX(250) <=> HO2X(181) + OCX(25)', [1.000000e+19, 0.0, 19.12],
+surface_reaction('OX(20) + HOCOX(241) <=> HO2X(188) + OCX(25)', [1.000000e+19, 0.0, 19.12],
                  id='surface1-48')
-#  Reaction index: Chemkin #49; RMG #7
-#  Library reaction: CPOX_Pt/Deutschmann2006
-#  Flux pairs: X(1), CO2X(24); CO2(4), CO2X(24);
+#  Reaction index: Chemkin #49; RMG #630
+#  Template reaction: Surface_Dissociation
+#  Flux pairs: CH2OX(192), HOX(22); CH2OX(192), CHX(28);
+#  Exact match found for rate rule [Combined;VacantSite]
+#  Euclidian distance = 0
+#  family: Surface_Dissociation
 
 # surface1 Reaction 49
-surface_reaction('X(1) + CO2(4) <=> CO2X(24)', stick(5.000000e-03, 0.0, 0.0),
+surface_reaction('X(1) + CH2OX(192) <=> HOX(22) + CHX(28)', [1.000000e+21, 0.0, 72.469],
                  id='surface1-49')
-#  Reaction index: Chemkin #50; RMG #10
-#  Library reaction: CPOX_Pt/Deutschmann2006
-#  Flux pairs: OCX(25), CO2X(24); OX(20), X(1);
+#  Reaction index: Chemkin #50; RMG #747
+#  Template reaction: Surface_Abstraction
+#  Flux pairs: HO2X(188), CH2OX(192); CHX(28), OX(20);
+#  Estimated using template [Abstracting;Donating] for rate rule [Abstracting;R-OH]
+#  Euclidian distance = 2.0
+#  family: Surface_Abstraction
 
 # surface1 Reaction 50
-surface_reaction('OX(20) + OCX(25) <=> X(1) + CO2X(24)', [3.700000e+21, 0.0, 28.107],
+surface_reaction('HO2X(188) + CHX(28) <=> CH2OX(192) + OX(20)', [1.000000e+19, 0.0, 19.12],
                  id='surface1-50')
-#  Reaction index: Chemkin #51; RMG #11
-#  Library reaction: CPOX_Pt/Deutschmann2006
-#  Flux pairs: CO2X(24), OCX(25); HX(19), HOX(22);
+#  Reaction index: Chemkin #51; RMG #790
+#  Template reaction: Surface_Abstraction
+#  Flux pairs: HOCOX(241), CH2OX(192); CHX(28), OCX(25);
+#  Estimated using template [Abstracting;Donating] for rate rule [Abstracting;R-OH]
+#  Euclidian distance = 2.0
+#  family: Surface_Abstraction
 
 # surface1 Reaction 51
-surface_reaction('HX(19) + CO2X(24) <=> HOX(22) + OCX(25)', [1.000000e+19, 0.0, 2.008],
+surface_reaction('CHX(28) + HOCOX(241) <=> CH2OX(192) + OCX(25)', [1.000000e+19, 0.0, 19.12],
                  id='surface1-51')
-#  Reaction index: Chemkin #52; RMG #477
+#  Reaction index: Chemkin #52; RMG #627
 #  Template reaction: Surface_Dissociation
-#  Flux pairs: CH2OX(185), HOX(22); CH2OX(185), CHX(28);
+#  Flux pairs: CHOX(190), HOX(22); CHOX(190), CX(26);
 #  Exact match found for rate rule [Combined;VacantSite]
 #  Euclidian distance = 0
 #  family: Surface_Dissociation
 
 # surface1 Reaction 52
-surface_reaction('X(1) + CH2OX(185) <=> HOX(22) + CHX(28)', [1.000000e+21, 0.0, 72.469],
+surface_reaction('X(1) + CHOX(190) <=> HOX(22) + CX(26)', [1.000000e+21, 0.0, 95.699],
                  id='surface1-52')
-#  Reaction index: Chemkin #53; RMG #589
+#  Reaction index: Chemkin #53; RMG #745
 #  Template reaction: Surface_Abstraction
-#  Flux pairs: HO2X(181), CH2OX(185); CHX(28), OX(20);
+#  Flux pairs: HO2X(188), CHOX(190); CX(26), OX(20);
 #  Estimated using template [Abstracting;Donating] for rate rule [Abstracting;R-OH]
 #  Euclidian distance = 2.0
 #  family: Surface_Abstraction
 
 # surface1 Reaction 53
-surface_reaction('HO2X(181) + CHX(28) <=> OX(20) + CH2OX(185)', [1.000000e+19, 0.0, 19.12],
+surface_reaction('HO2X(188) + CX(26) <=> OX(20) + CHOX(190)', [1.000000e+19, 0.0, 19.12],
                  id='surface1-53')
-#  Reaction index: Chemkin #54; RMG #686
+#  Reaction index: Chemkin #54; RMG #788
 #  Template reaction: Surface_Abstraction
-#  Flux pairs: HOCOX(250), CH2OX(185); CHX(28), OCX(25);
+#  Flux pairs: HOCOX(241), CHOX(190); CX(26), OCX(25);
 #  Estimated using template [Abstracting;Donating] for rate rule [Abstracting;R-OH]
 #  Euclidian distance = 2.0
 #  family: Surface_Abstraction
 
 # surface1 Reaction 54
-surface_reaction('HOCOX(250) + CHX(28) <=> CH2OX(185) + OCX(25)', [1.000000e+19, 0.0, 19.12],
+surface_reaction('CX(26) + HOCOX(241) <=> OCX(25) + CHOX(190)', [1.000000e+19, 0.0, 19.12],
                  id='surface1-54')
-#  Reaction index: Chemkin #55; RMG #474
+#  Reaction index: Chemkin #55; RMG #797
 #  Template reaction: Surface_Dissociation
-#  Flux pairs: CHOX(183), HOX(22); CHOX(183), CX(26);
+#  Flux pairs: CH2OX(192), CHOX(190); CH2OX(192), HX(19);
 #  Exact match found for rate rule [Combined;VacantSite]
 #  Euclidian distance = 0
 #  family: Surface_Dissociation
 
 # surface1 Reaction 55
-surface_reaction('X(1) + CHOX(183) <=> HOX(22) + CX(26)', [1.000000e+21, 0.0, 95.699],
+surface_reaction('X(1) + CH2OX(192) <=> HX(19) + CHOX(190)', [1.000000e+21, 0.0, 78.792],
                  id='surface1-55')
-#  Reaction index: Chemkin #56; RMG #587
+#  Reaction index: Chemkin #56; RMG #798
 #  Template reaction: Surface_Abstraction
-#  Flux pairs: HO2X(181), CHOX(183); CX(26), OX(20);
-#  Estimated using template [Abstracting;Donating] for rate rule [Abstracting;R-OH]
-#  Euclidian distance = 2.0
+#  Flux pairs: CH2OX(192), HOX(22); OX(20), CHOX(190);
+#  Exact match found for rate rule [Abstracting;R-H]
+#  Euclidian distance = 0
 #  family: Surface_Abstraction
 
 # surface1 Reaction 56
-surface_reaction('HO2X(181) + CX(26) <=> OX(20) + CHOX(183)', [1.000000e+19, 0.0, 19.12],
+surface_reaction('CH2OX(192) + OX(20) <=> HOX(22) + CHOX(190)', [5.000000e+21, 0.0, 9.56],
                  id='surface1-56')
-#  Reaction index: Chemkin #57; RMG #684
+#  Reaction index: Chemkin #57; RMG #805
 #  Template reaction: Surface_Abstraction
-#  Flux pairs: HOCOX(250), CHOX(183); CX(26), OCX(25);
-#  Estimated using template [Abstracting;Donating] for rate rule [Abstracting;R-OH]
-#  Euclidian distance = 2.0
+#  Flux pairs: CH2OX(192), CH3X(21); CH2X(27), CHOX(190);
+#  Exact match found for rate rule [Abstracting;R-H]
+#  Euclidian distance = 0
 #  family: Surface_Abstraction
 
 # surface1 Reaction 57
-surface_reaction('HOCOX(250) + CX(26) <=> CHOX(183) + OCX(25)', [1.000000e+19, 0.0, 19.12],
+surface_reaction('CH2OX(192) + CH2X(27) <=> CH3X(21) + CHOX(190)', [5.000000e+21, 0.0, 9.56],
                  id='surface1-57')
-#  Reaction index: Chemkin #58; RMG #693
-#  Template reaction: Surface_Dissociation
-#  Flux pairs: CH2OX(185), CHOX(183); CH2OX(185), HX(19);
-#  Exact match found for rate rule [Combined;VacantSite]
+#  Reaction index: Chemkin #58; RMG #807
+#  Template reaction: Surface_Abstraction
+#  Flux pairs: CHOX(190), CH2OX(192); CHX(28), CX(26);
+#  Exact match found for rate rule [Abstracting;R-H]
 #  Euclidian distance = 0
-#  family: Surface_Dissociation
+#  family: Surface_Abstraction
+#  Ea raised from 115.7 to 118.2 kJ/mol to match endothermicity of reaction.
 
 # surface1 Reaction 58
-surface_reaction('X(1) + CH2OX(185) <=> HX(19) + CHOX(183)', [1.000000e+21, 0.0, 78.792],
+surface_reaction('CHX(28) + CHOX(190) <=> CH2OX(192) + CX(26)', [5.000000e+21, 0.0, 28.254],
+                 options='duplicate',
                  id='surface1-58')
-#  Reaction index: Chemkin #59; RMG #694
+#  Reaction index: Chemkin #59; RMG #808
 #  Template reaction: Surface_Abstraction
-#  Flux pairs: CH2OX(185), HOX(22); OX(20), CHOX(183);
+#  Flux pairs: CH2OX(192), CHX(28); CX(26), CHOX(190);
 #  Exact match found for rate rule [Abstracting;R-H]
 #  Euclidian distance = 0
 #  family: Surface_Abstraction
 
 # surface1 Reaction 59
-surface_reaction('OX(20) + CH2OX(185) <=> CHOX(183) + HOX(22)', [5.000000e+21, 0.0, 9.56],
+surface_reaction('CH2OX(192) + CX(26) <=> CHX(28) + CHOX(190)', [5.000000e+21, 0.0, 9.56],
+                 options='duplicate',
                  id='surface1-59')
-#  Reaction index: Chemkin #60; RMG #701
+#  Reaction index: Chemkin #60; RMG #809
 #  Template reaction: Surface_Abstraction
-#  Flux pairs: CH2OX(185), CH3X(21); CH2X(27), CHOX(183);
+#  Flux pairs: CH2OX(192), CH2X(27); CHX(28), CHOX(190);
 #  Exact match found for rate rule [Abstracting;R-H]
 #  Euclidian distance = 0
 #  family: Surface_Abstraction
 
 # surface1 Reaction 60
-surface_reaction('CH2OX(185) + CH2X(27) <=> CH3X(21) + CHOX(183)', [5.000000e+21, 0.0, 9.56],
+surface_reaction('CH2OX(192) + CHX(28) <=> CH2X(27) + CHOX(190)', [5.000000e+21, 0.0, 9.56],
                  id='surface1-60')
-#  Reaction index: Chemkin #61; RMG #703
+#  Reaction index: Chemkin #61; RMG #815
 #  Template reaction: Surface_Abstraction
-#  Flux pairs: CHOX(183), CH2OX(185); CHX(28), CX(26);
+#  Flux pairs: CHOX(61), CH2OX(192); CHOX(190), OCX(25);
 #  Exact match found for rate rule [Abstracting;R-H]
 #  Euclidian distance = 0
 #  family: Surface_Abstraction
-#  Ea raised from 115.7 to 118.2 kJ/mol to match endothermicity of reaction.
 
 # surface1 Reaction 61
-surface_reaction('CHOX(183) + CHX(28) <=> CH2OX(185) + CX(26)', [5.000000e+21, 0.0, 28.254],
-                 options='duplicate',
+surface_reaction('CHOX(61) + CHOX(190) <=> CH2OX(192) + OCX(25)', [5.000000e+21, 0.0, 9.56],
                  id='surface1-61')
-#  Reaction index: Chemkin #62; RMG #704
+#  Reaction index: Chemkin #62; RMG #825
 #  Template reaction: Surface_Abstraction
-#  Flux pairs: CH2OX(185), CHX(28); CX(26), CHOX(183);
-#  Exact match found for rate rule [Abstracting;R-H]
-#  Euclidian distance = 0
-#  family: Surface_Abstraction
-
-# surface1 Reaction 62
-surface_reaction('CH2OX(185) + CX(26) <=> CHOX(183) + CHX(28)', [5.000000e+21, 0.0, 9.56],
-                 options='duplicate',
-                 id='surface1-62')
-#  Reaction index: Chemkin #63; RMG #705
-#  Template reaction: Surface_Abstraction
-#  Flux pairs: CH2OX(185), CH2X(27); CHX(28), CHOX(183);
-#  Exact match found for rate rule [Abstracting;R-H]
-#  Euclidian distance = 0
-#  family: Surface_Abstraction
-
-# surface1 Reaction 63
-surface_reaction('CH2OX(185) + CHX(28) <=> CHOX(183) + CH2X(27)', [5.000000e+21, 0.0, 9.56],
-                 id='surface1-63')
-#  Reaction index: Chemkin #64; RMG #711
-#  Template reaction: Surface_Abstraction
-#  Flux pairs: CHOX(54), CH2OX(185); CHOX(183), OCX(25);
-#  Exact match found for rate rule [Abstracting;R-H]
-#  Euclidian distance = 0
-#  family: Surface_Abstraction
-
-# surface1 Reaction 64
-surface_reaction('CHOX(183) + CHOX(54) <=> CH2OX(185) + OCX(25)', [5.000000e+21, 0.0, 9.56],
-                 id='surface1-64')
-#  Reaction index: Chemkin #65; RMG #721
-#  Template reaction: Surface_Abstraction
-#  Flux pairs: CH2OX(185), CHOX(183); CX(26), CHX(28);
+#  Flux pairs: CH2OX(192), CHOX(190); CX(26), CHX(28);
 #  Estimated using template [Abstracting;Donating] for rate rule [Abstracting;R-OH]
 #  Euclidian distance = 2.0
 #  family: Surface_Abstraction
 
-# surface1 Reaction 65
-surface_reaction('CH2OX(185) + CX(26) <=> CHOX(183) + CHX(28)', [1.000000e+19, 0.0, 19.12],
+# surface1 Reaction 62
+surface_reaction('CH2OX(192) + CX(26) <=> CHX(28) + CHOX(190)', [1.000000e+19, 0.0, 19.12],
                  options='duplicate',
-                 id='surface1-65')
-#  Reaction index: Chemkin #66; RMG #722
+                 id='surface1-62')
+#  Reaction index: Chemkin #63; RMG #826
 #  Template reaction: Surface_Abstraction
-#  Flux pairs: CHX(28), CH2OX(185); CHOX(183), CX(26);
+#  Flux pairs: CHX(28), CH2OX(192); CHOX(190), CX(26);
 #  Exact match found for rate rule [Abstracting;R-H]
 #  Euclidian distance = 0
 #  family: Surface_Abstraction
 #  Ea raised from 115.7 to 118.2 kJ/mol to match endothermicity of reaction.
 
-# surface1 Reaction 66
-surface_reaction('CHOX(183) + CHX(28) <=> CH2OX(185) + CX(26)', [5.000000e+21, 0.0, 28.254],
+# surface1 Reaction 63
+surface_reaction('CHX(28) + CHOX(190) <=> CH2OX(192) + CX(26)', [5.000000e+21, 0.0, 28.254],
                  options='duplicate',
+                 id='surface1-63')
+#  Reaction index: Chemkin #64; RMG #296
+#  Template reaction: Surface_Adsorption_vdW
+#  Flux pairs: X(1), CH2OX(62); CH2O(9), CH2OX(62);
+#  Exact match found for rate rule [Adsorbate;VacantSite]
+#  Euclidian distance = 0
+#  family: Surface_Adsorption_vdW
+
+# surface1 Reaction 64
+surface_reaction('X(1) + CH2O(9) <=> CH2OX(62)', stick(1.000000e-01, 0.0, 0.0),
+                 id='surface1-64')
+#  Reaction index: Chemkin #65; RMG #7
+#  Library reaction: CPOX_Pt/Deutschmann2006
+#  Flux pairs: X(1), CO2X(24); CO2(4), CO2X(24);
+
+# surface1 Reaction 65
+surface_reaction('X(1) + CO2(4) <=> CO2X(24)', stick(5.000000e-03, 0.0, 0.0),
+                 id='surface1-65')
+#  Reaction index: Chemkin #66; RMG #10
+#  Library reaction: CPOX_Pt/Deutschmann2006
+#  Flux pairs: OCX(25), CO2X(24); OX(20), X(1);
+
+# surface1 Reaction 66
+surface_reaction('OX(20) + OCX(25) <=> X(1) + CO2X(24)', [3.700000e+21, 0.0, 28.107],
                  id='surface1-66')
-#  Reaction index: Chemkin #67; RMG #98
+#  Reaction index: Chemkin #67; RMG #11
+#  Library reaction: CPOX_Pt/Deutschmann2006
+#  Flux pairs: CO2X(24), OCX(25); HX(19), HOX(22);
+
+# surface1 Reaction 67
+surface_reaction('HX(19) + CO2X(24) <=> HOX(22) + OCX(25)', [1.000000e+19, 0.0, 2.008],
+                 id='surface1-67')
+#  Reaction index: Chemkin #68; RMG #306
 #  Template reaction: Surface_Adsorption_Dissociative
-#  Flux pairs: CH3OH(14), CH3OX(60); CH3OH(14), HX(19);
+#  Flux pairs: CH3OH(14), CH3OX(67); CH3OH(14), HX(19);
 #  Exact match found for rate rule [Adsorbate;VacantSite1;VacantSite2]
 #  Euclidian distance = 0
 #  Multiplied by reaction path degeneracy 3.0
 #  family: Surface_Adsorption_Dissociative
 #  Ea raised from 125.9 to 129.9 kJ/mol to match endothermicity of reaction.
 
-# surface1 Reaction 67
-surface_reaction('X(1) + X(1) + CH3OH(14) <=> CH3OX(60) + HX(19)', stick(3.000000e-02, 0.0, 31.042),
-                 id='surface1-67')
-#  Reaction index: Chemkin #68; RMG #469
+# surface1 Reaction 68
+surface_reaction('X(1) + X(1) + CH3OH(14) <=> HX(19) + CH3OX(67)', stick(3.000000e-02, 0.0, 31.042),
+                 id='surface1-68')
+#  Reaction index: Chemkin #69; RMG #622
 #  Template reaction: Surface_Dissociation
-#  Flux pairs: CH3OX(60), HOX(22); CH3OX(60), CH2X(27);
+#  Flux pairs: CH3OX(67), HOX(22); CH3OX(67), CH2X(27);
 #  Exact match found for rate rule [Combined;VacantSite]
 #  Euclidian distance = 0
 #  family: Surface_Dissociation
 
-# surface1 Reaction 68
-surface_reaction('X(1) + CH3OX(60) <=> HOX(22) + CH2X(27)', [1.000000e+21, 0.0, 82.586],
-                 id='surface1-68')
-#  Reaction index: Chemkin #69; RMG #585
-#  Template reaction: Surface_Abstraction
-#  Flux pairs: HO2X(181), CH3OX(60); CH2X(27), OX(20);
-#  Estimated using template [Abstracting;Donating] for rate rule [Abstracting;R-OH]
-#  Euclidian distance = 2.0
-#  family: Surface_Abstraction
-
 # surface1 Reaction 69
-surface_reaction('HO2X(181) + CH2X(27) <=> CH3OX(60) + OX(20)', [1.000000e+19, 0.0, 19.12],
+surface_reaction('X(1) + CH3OX(67) <=> HOX(22) + CH2X(27)', [1.000000e+21, 0.0, 82.586],
                  id='surface1-69')
-#  Reaction index: Chemkin #70; RMG #682
+#  Reaction index: Chemkin #70; RMG #743
 #  Template reaction: Surface_Abstraction
-#  Flux pairs: HOCOX(250), CH3OX(60); CH2X(27), OCX(25);
+#  Flux pairs: HO2X(188), CH3OX(67); CH2X(27), OX(20);
 #  Estimated using template [Abstracting;Donating] for rate rule [Abstracting;R-OH]
 #  Euclidian distance = 2.0
 #  family: Surface_Abstraction
 
 # surface1 Reaction 70
-surface_reaction('HOCOX(250) + CH2X(27) <=> CH3OX(60) + OCX(25)', [1.000000e+19, 0.0, 19.12],
+surface_reaction('HO2X(188) + CH2X(27) <=> OX(20) + CH3OX(67)', [1.000000e+19, 0.0, 19.12],
                  id='surface1-70')
-#  Reaction index: Chemkin #71; RMG #695
+#  Reaction index: Chemkin #71; RMG #786
 #  Template reaction: Surface_Abstraction
-#  Flux pairs: CH3OX(60), CH3X(21); CH2X(27), CH2OX(185);
+#  Flux pairs: HOCOX(241), CH3OX(67); CH2X(27), OCX(25);
+#  Estimated using template [Abstracting;Donating] for rate rule [Abstracting;R-OH]
+#  Euclidian distance = 2.0
+#  family: Surface_Abstraction
+
+# surface1 Reaction 71
+surface_reaction('CH2X(27) + HOCOX(241) <=> OCX(25) + CH3OX(67)', [1.000000e+19, 0.0, 19.12],
+                 id='surface1-71')
+#  Reaction index: Chemkin #72; RMG #799
+#  Template reaction: Surface_Abstraction
+#  Flux pairs: CH3OX(67), CH3X(21); CH2X(27), CH2OX(192);
 #  Exact match found for rate rule [Abstracting;R-H]
 #  Euclidian distance = 0
 #  Multiplied by reaction path degeneracy 2.0
 #  family: Surface_Abstraction
 
-# surface1 Reaction 71
-surface_reaction('CH3OX(60) + CH2X(27) <=> CH3X(21) + CH2OX(185)', [1.000000e+22, 0.0, 9.56],
-                 id='surface1-71')
-#  Reaction index: Chemkin #72; RMG #697
+# surface1 Reaction 72
+surface_reaction('CH2X(27) + CH3OX(67) <=> CH2OX(192) + CH3X(21)', [1.000000e+22, 0.0, 9.56],
+                 id='surface1-72')
+#  Reaction index: Chemkin #73; RMG #801
 #  Template reaction: Surface_Dissociation
-#  Flux pairs: CH3OX(60), HX(19); CH3OX(60), CH2OX(185);
+#  Flux pairs: CH3OX(67), HX(19); CH3OX(67), CH2OX(192);
 #  Exact match found for rate rule [Combined;VacantSite]
 #  Euclidian distance = 0
 #  Multiplied by reaction path degeneracy 2.0
 #  family: Surface_Dissociation
 
-# surface1 Reaction 72
-surface_reaction('X(1) + CH3OX(60) <=> HX(19) + CH2OX(185)', [2.000000e+21, 0.0, 91.034],
-                 id='surface1-72')
-#  Reaction index: Chemkin #73; RMG #698
+# surface1 Reaction 73
+surface_reaction('X(1) + CH3OX(67) <=> CH2OX(192) + HX(19)', [2.000000e+21, 0.0, 91.034],
+                 id='surface1-73')
+#  Reaction index: Chemkin #74; RMG #802
 #  Template reaction: Surface_Abstraction
-#  Flux pairs: CH3OX(60), HOX(22); OX(20), CH2OX(185);
+#  Flux pairs: CH3OX(67), HOX(22); OX(20), CH2OX(192);
 #  Exact match found for rate rule [Abstracting;R-H]
 #  Euclidian distance = 0
 #  Multiplied by reaction path degeneracy 2.0
 #  family: Surface_Abstraction
 
-# surface1 Reaction 73
-surface_reaction('CH3OX(60) + OX(20) <=> CH2OX(185) + HOX(22)', [1.000000e+22, 0.0, 9.56],
-                 id='surface1-73')
-#  Reaction index: Chemkin #74; RMG #700
+# surface1 Reaction 74
+surface_reaction('OX(20) + CH3OX(67) <=> CH2OX(192) + HOX(22)', [1.000000e+22, 0.0, 9.56],
+                 id='surface1-74')
+#  Reaction index: Chemkin #75; RMG #804
 #  Template reaction: Surface_Abstraction
-#  Flux pairs: CH2OX(185), CH3OX(60); CH2X(27), CHX(28);
+#  Flux pairs: CH2OX(192), CH3OX(67); CH2X(27), CHX(28);
 #  Estimated using template [Abstracting;Donating] for rate rule [Abstracting;R-OH]
 #  Euclidian distance = 2.0
 #  family: Surface_Abstraction
 
-# surface1 Reaction 74
-surface_reaction('CH2OX(185) + CH2X(27) <=> CH3OX(60) + CHX(28)', [1.000000e+19, 0.0, 19.12],
-                 options='duplicate',
-                 id='surface1-74')
-#  Reaction index: Chemkin #75; RMG #702
-#  Template reaction: Surface_Abstraction
-#  Flux pairs: CH2X(27), CH3OX(60); CH2OX(185), CHX(28);
-#  Exact match found for rate rule [Abstracting;R-H]
-#  Euclidian distance = 0
-#  Multiplied by reaction path degeneracy 2.0
-#  family: Surface_Abstraction
-
 # surface1 Reaction 75
-surface_reaction('CH2OX(185) + CH2X(27) <=> CH3OX(60) + CHX(28)', [1.000000e+22, 0.0, 9.56],
+surface_reaction('CH2OX(192) + CH2X(27) <=> CHX(28) + CH3OX(67)', [1.000000e+19, 0.0, 19.12],
                  options='duplicate',
                  id='surface1-75')
-#  Reaction index: Chemkin #76; RMG #706
+#  Reaction index: Chemkin #76; RMG #806
 #  Template reaction: Surface_Abstraction
-#  Flux pairs: CH3OX(60), CHX(28); CX(26), CH2OX(185);
+#  Flux pairs: CH2X(27), CH3OX(67); CH2OX(192), CHX(28);
 #  Exact match found for rate rule [Abstracting;R-H]
 #  Euclidian distance = 0
 #  Multiplied by reaction path degeneracy 2.0
 #  family: Surface_Abstraction
 
 # surface1 Reaction 76
-surface_reaction('CH3OX(60) + CX(26) <=> CH2OX(185) + CHX(28)', [1.000000e+22, 0.0, 9.56],
+surface_reaction('CH2OX(192) + CH2X(27) <=> CHX(28) + CH3OX(67)', [1.000000e+22, 0.0, 9.56],
+                 options='duplicate',
                  id='surface1-76')
-#  Reaction index: Chemkin #77; RMG #712
+#  Reaction index: Chemkin #77; RMG #810
 #  Template reaction: Surface_Abstraction
-#  Flux pairs: CHOX(54), CH3OX(60); CH2OX(185), OCX(25);
-#  Exact match found for rate rule [Abstracting;R-H]
-#  Euclidian distance = 0
-#  family: Surface_Abstraction
-
-# surface1 Reaction 77
-surface_reaction('CH2OX(185) + CHOX(54) <=> CH3OX(60) + OCX(25)', [5.000000e+21, 0.0, 9.56],
-                 id='surface1-77')
-#  Reaction index: Chemkin #78; RMG #717
-#  Template reaction: Surface_Abstraction
-#  Flux pairs: CH2OX(185), CH3OX(60); CH2OX(185), CHOX(183);
-#  Exact match found for rate rule [Abstracting;R-H]
-#  Euclidian distance = 0
-#  family: Surface_Abstraction
-
-# surface1 Reaction 78
-surface_reaction('CH2OX(185) + CH2OX(185) <=> CH3OX(60) + CHOX(183)', [5.000000e+21, 0.0, 9.56],
-                 id='surface1-78')
-#  Reaction index: Chemkin #79; RMG #720
-#  Template reaction: Surface_Abstraction
-#  Flux pairs: CH3OX(60), CHOX(183); CX(26), CH2X(27);
-#  Estimated using template [Abstracting;Donating] for rate rule [Abstracting;R-OH]
-#  Euclidian distance = 2.0
-#  family: Surface_Abstraction
-
-# surface1 Reaction 79
-surface_reaction('CH3OX(60) + CX(26) <=> CHOX(183) + CH2X(27)', [1.000000e+19, 0.0, 19.12],
-                 id='surface1-79')
-#  Reaction index: Chemkin #80; RMG #739
-#  Template reaction: Surface_Abstraction
-#  Flux pairs: CH2OX(185), CH3OX(60); CH2X(27), CHX(28);
+#  Flux pairs: CH3OX(67), CHX(28); CX(26), CH2OX(192);
 #  Exact match found for rate rule [Abstracting;R-H]
 #  Euclidian distance = 0
 #  Multiplied by reaction path degeneracy 2.0
 #  family: Surface_Abstraction
 
-# surface1 Reaction 80
-surface_reaction('CH2OX(185) + CH2X(27) <=> CH3OX(60) + CHX(28)', [1.000000e+22, 0.0, 9.56],
-                 options='duplicate',
-                 id='surface1-80')
-#  Reaction index: Chemkin #81; RMG #740
+# surface1 Reaction 77
+surface_reaction('CX(26) + CH3OX(67) <=> CH2OX(192) + CHX(28)', [1.000000e+22, 0.0, 9.56],
+                 id='surface1-77')
+#  Reaction index: Chemkin #78; RMG #816
 #  Template reaction: Surface_Abstraction
-#  Flux pairs: CH3OX(60), CH2X(27); CHX(28), CH2OX(185);
+#  Flux pairs: CHOX(61), CH3OX(67); CH2OX(192), OCX(25);
+#  Exact match found for rate rule [Abstracting;R-H]
+#  Euclidian distance = 0
+#  family: Surface_Abstraction
+
+# surface1 Reaction 78
+surface_reaction('CHOX(61) + CH2OX(192) <=> OCX(25) + CH3OX(67)', [5.000000e+21, 0.0, 9.56],
+                 id='surface1-78')
+#  Reaction index: Chemkin #79; RMG #821
+#  Template reaction: Surface_Abstraction
+#  Flux pairs: CH2OX(192), CH3OX(67); CH2OX(192), CHOX(190);
+#  Exact match found for rate rule [Abstracting;R-H]
+#  Euclidian distance = 0
+#  family: Surface_Abstraction
+
+# surface1 Reaction 79
+surface_reaction('CH2OX(192) + CH2OX(192) <=> CH3OX(67) + CHOX(190)', [5.000000e+21, 0.0, 9.56],
+                 id='surface1-79')
+#  Reaction index: Chemkin #80; RMG #824
+#  Template reaction: Surface_Abstraction
+#  Flux pairs: CH3OX(67), CHOX(190); CX(26), CH2X(27);
+#  Estimated using template [Abstracting;Donating] for rate rule [Abstracting;R-OH]
+#  Euclidian distance = 2.0
+#  family: Surface_Abstraction
+
+# surface1 Reaction 80
+surface_reaction('CX(26) + CH3OX(67) <=> CH2X(27) + CHOX(190)', [1.000000e+19, 0.0, 19.12],
+                 id='surface1-80')
+#  Reaction index: Chemkin #81; RMG #899
+#  Template reaction: Surface_Abstraction
+#  Flux pairs: CH2OX(192), CH3OX(67); CH2X(27), CHX(28);
+#  Exact match found for rate rule [Abstracting;R-H]
+#  Euclidian distance = 0
+#  Multiplied by reaction path degeneracy 2.0
+#  family: Surface_Abstraction
+
+# surface1 Reaction 81
+surface_reaction('CH2OX(192) + CH2X(27) <=> CHX(28) + CH3OX(67)', [1.000000e+22, 0.0, 9.56],
+                 options='duplicate',
+                 id='surface1-81')
+#  Reaction index: Chemkin #82; RMG #900
+#  Template reaction: Surface_Abstraction
+#  Flux pairs: CH3OX(67), CH2X(27); CHX(28), CH2OX(192);
 #  Exact match found for rate rule [Abstracting;R-H]
 #  Euclidian distance = 0
 #  Multiplied by reaction path degeneracy 2.0
 #  family: Surface_Abstraction
 #  Ea raised from 50.4 to 50.4 kJ/mol to match endothermicity of reaction.
 
-# surface1 Reaction 81
-surface_reaction('CH3OX(60) + CHX(28) <=> CH2OX(185) + CH2X(27)', [1.000000e+22, 0.0, 12.05],
+# surface1 Reaction 82
+surface_reaction('CHX(28) + CH3OX(67) <=> CH2OX(192) + CH2X(27)', [1.000000e+22, 0.0, 12.05],
                  options='duplicate',
-                 id='surface1-81')
-#  Reaction index: Chemkin #82; RMG #681
+                 id='surface1-82')
+#  Reaction index: Chemkin #83; RMG #785
 #  Template reaction: Surface_Adsorption_Dissociative
-#  Flux pairs: CH2O3(260), HOCOX(250); CH2O3(260), HOX(22);
+#  Flux pairs: CH2O3(251), HOCOX(241); CH2O3(251), HOX(22);
 #  Exact match found for rate rule [Adsorbate;VacantSite1;VacantSite2]
 #  Euclidian distance = 0
 #  Multiplied by reaction path degeneracy 2.0
 #  family: Surface_Adsorption_Dissociative
 
-# surface1 Reaction 82
-surface_reaction('X(1) + X(1) + CH2O3(260) <=> HOCOX(250) + HOX(22)', stick(2.000000e-02, 0.0, 38.258),
-                 id='surface1-82')
-#  Reaction index: Chemkin #83; RMG #912
+# surface1 Reaction 83
+surface_reaction('X(1) + X(1) + CH2O3(251) <=> HOX(22) + HOCOX(241)', stick(2.000000e-02, 0.0, 38.258),
+                 id='surface1-83')
+#  Reaction index: Chemkin #84; RMG #1075
 #  Template reaction: Surface_Adsorption_vdW
-#  Flux pairs: X(1), SX(361); CH2O3(260), SX(361);
+#  Flux pairs: X(1), SX(368); CH2O3(251), SX(368);
 #  Exact match found for rate rule [Adsorbate;VacantSite]
 #  Euclidian distance = 0
 #  family: Surface_Adsorption_vdW
 
-# surface1 Reaction 83
-surface_reaction('X(1) + CH2O3(260) <=> SX(361)', stick(1.000000e-01, 0.0, 0.0),
-                 id='surface1-83')
-#  Reaction index: Chemkin #84; RMG #669
-#  Template reaction: Surface_Adsorption_Dissociative
-#  Flux pairs: CH2O2(88), CHOX(54); CH2O2(88), HOX(22);
-#  Exact match found for rate rule [Adsorbate;VacantSite1;VacantSite2]
-#  Euclidian distance = 0
-#  family: Surface_Adsorption_Dissociative
-
 # surface1 Reaction 84
-surface_reaction('X(1) + X(1) + CH2O2(88) <=> HOX(22) + CHOX(54)', stick(1.000000e-02, 0.0, 10.0),
+surface_reaction('X(1) + CH2O3(251) <=> SX(368)', stick(1.000000e-01, 0.0, 0.0),
                  id='surface1-84')
-#  Reaction index: Chemkin #85; RMG #680
+#  Reaction index: Chemkin #85; RMG #763
 #  Template reaction: Surface_Adsorption_Dissociative
-#  Flux pairs: CH2O2(88), HOCOX(250); CH2O2(88), HX(19);
+#  Flux pairs: CH2O2(95), CHOX(61); CH2O2(95), HOX(22);
 #  Exact match found for rate rule [Adsorbate;VacantSite1;VacantSite2]
 #  Euclidian distance = 0
 #  family: Surface_Adsorption_Dissociative
 
 # surface1 Reaction 85
-surface_reaction('X(1) + X(1) + CH2O2(88) <=> HX(19) + HOCOX(250)', stick(1.000000e-02, 0.0, 54.901),
+surface_reaction('X(1) + X(1) + CH2O2(95) <=> CHOX(61) + HOX(22)', stick(1.000000e-02, 0.0, 10.0),
                  id='surface1-85')
-#  Reaction index: Chemkin #86; RMG #1026
+#  Reaction index: Chemkin #86; RMG #784
+#  Template reaction: Surface_Adsorption_Dissociative
+#  Flux pairs: CH2O2(95), HOCOX(241); CH2O2(95), HX(19);
+#  Exact match found for rate rule [Adsorbate;VacantSite1;VacantSite2]
+#  Euclidian distance = 0
+#  family: Surface_Adsorption_Dissociative
+
+# surface1 Reaction 86
+surface_reaction('X(1) + X(1) + CH2O2(95) <=> HX(19) + HOCOX(241)', stick(1.000000e-02, 0.0, 54.901),
+                 id='surface1-86')
+#  Reaction index: Chemkin #87; RMG #1191
 #  Template reaction: Surface_Adsorption_vdW
-#  Flux pairs: X(1), SX(412); CH2O2(88), SX(412);
+#  Flux pairs: X(1), SX(419); CH2O2(95), SX(419);
 #  Exact match found for rate rule [Adsorbate;VacantSite]
 #  Euclidian distance = 0
 #  family: Surface_Adsorption_vdW
 
-# surface1 Reaction 86
-surface_reaction('X(1) + CH2O2(88) <=> SX(412)', stick(1.000000e-01, 0.0, 0.0),
-                 id='surface1-86')
+# surface1 Reaction 87
+surface_reaction('X(1) + CH2O2(95) <=> SX(419)', stick(1.000000e-01, 0.0, 0.0),
+                 id='surface1-87')

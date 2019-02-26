@@ -1461,7 +1461,7 @@ falloff_reaction('CO(7) + O(29) (+ M) <=> CO2(4) (+ M)',
 #  Flux pairs: CH2(S)(40), CO(7); O(29), H(12); O(29), H(12);
 
 # Reaction 91
-reaction('CH2(S)(40) + O(29) => CO(7) + H(12) + H(12)', [3.000000e+13, 0.0, 0.0],
+reaction('O(29) + CH2(S)(40) => CO(7) + H(12) + H(12)', [3.000000e+13, 0.0, 0.0],
          id='gas-91')
 #  Reaction index: Chemkin #92; RMG #83
 #  Library reaction: ERC-FoundationFuelv0.9
@@ -1589,7 +1589,7 @@ reaction('C2H6(8) + CH2(S)(40) <=> C3H8(11)', [7.188190e+10, 0.444, -1.216],
 #  family: 1,2_Insertion_carbene
 
 # Reaction 106
-reaction('CH2(S)(40) + HO2(32) <=> CH3OO(85)', [7.188190e+10, 0.444, -1.216],
+reaction('HO2(32) + CH2(S)(40) <=> CH3OO(85)', [7.188190e+10, 0.444, -1.216],
          id='gas-106')
 #  Reaction index: Chemkin #107; RMG #850
 #  Template reaction: 1,2_Insertion_carbene
@@ -1737,7 +1737,7 @@ reaction('O(29) + CH2O3(251) <=> OH(17) + CHO3(126)', [3.400000e+08, 1.5, 7.351]
 #  family: H_Abstraction
 
 # Reaction 119
-reaction('HO2(32) + CHO3(126) <=> O2(3) + CH2O3(251)', [6.319327e+03, 2.302, 8.568],
+reaction('CHO3(126) + HO2(32) <=> O2(3) + CH2O3(251)', [6.319327e+03, 2.302, 8.568],
          id='gas-119')
 #  Reaction index: Chemkin #120; RMG #1051
 #  Template reaction: H_Abstraction
@@ -1748,7 +1748,7 @@ reaction('HO2(32) + CHO3(126) <=> O2(3) + CH2O3(251)', [6.319327e+03, 2.302, 8.5
 #  family: H_Abstraction
 
 # Reaction 120
-reaction('H2O2(33) + CHO3(126) <=> HO2(32) + CH2O3(251)', [1.398000e-01, 3.75, 19.545],
+reaction('CHO3(126) + H2O2(33) <=> HO2(32) + CH2O3(251)', [1.398000e-01, 3.75, 19.545],
          id='gas-120')
 #  Reaction index: Chemkin #121; RMG #350
 #  Template reaction: 1,3_Insertion_CO2
@@ -2189,7 +2189,7 @@ surface_reaction('X(1) + X(1) + H2O2(33) <=> HOX(22) + HOX(22)', stick(1.000000e
 #  Ea raised from 250.9 to 253.5 kJ/mol to match endothermicity of reaction.
 
 # surface1 Reaction 44
-surface_reaction('X(1) + X(1) + H2O2(33) <=> HX(19) + HO2X(188)', stick(2.000000e-02, 0.0, 60.598),
+surface_reaction('X(1) + X(1) + H2O2(33) <=> HO2X(188) + HX(19)', stick(2.000000e-02, 0.0, 60.598),
                  id='surface1-44')
 #  Reaction index: Chemkin #45; RMG #771
 #  Template reaction: Surface_Adsorption_vdW
@@ -2219,7 +2219,7 @@ surface_reaction('X(1) + HOCOX(241) <=> HOX(22) + OCX(25)', [1.460000e+24, -0.21
 #  family: Surface_Abstraction
 
 # surface1 Reaction 47
-surface_reaction('OX(20) + HOCOX(241) <=> OCX(25) + HO2X(188)', [1.000000e+19, 0.0, 19.12],
+surface_reaction('HOCOX(241) + OX(20) <=> HO2X(188) + OCX(25)', [1.000000e+19, 0.0, 19.12],
                  id='surface1-47')
 #  Reaction index: Chemkin #48; RMG #291
 #  Template reaction: Surface_Adsorption_vdW
@@ -2280,7 +2280,7 @@ surface_reaction('X(1) + CH2OX(192) <=> HOX(22) + CHX(28)', [1.000000e+21, 0.0, 
 #  family: Surface_Abstraction
 
 # surface1 Reaction 54
-surface_reaction('CHX(28) + HO2X(188) <=> OX(20) + CH2OX(192)', [1.000000e+19, 0.0, 19.12],
+surface_reaction('HO2X(188) + CHX(28) <=> CH2OX(192) + OX(20)', [1.000000e+19, 0.0, 19.12],
                  id='surface1-54')
 #  Reaction index: Chemkin #55; RMG #790
 #  Template reaction: Surface_Abstraction
@@ -2290,7 +2290,7 @@ surface_reaction('CHX(28) + HO2X(188) <=> OX(20) + CH2OX(192)', [1.000000e+19, 0
 #  family: Surface_Abstraction
 
 # surface1 Reaction 55
-surface_reaction('CHX(28) + HOCOX(241) <=> OCX(25) + CH2OX(192)', [1.000000e+19, 0.0, 19.12],
+surface_reaction('HOCOX(241) + CHX(28) <=> CH2OX(192) + OCX(25)', [1.000000e+19, 0.0, 19.12],
                  id='surface1-55')
 #  Reaction index: Chemkin #56; RMG #627
 #  Template reaction: Surface_Dissociation
@@ -2310,7 +2310,7 @@ surface_reaction('X(1) + CHOX(190) <=> HOX(22) + CX(26)', [1.000000e+21, 0.0, 95
 #  family: Surface_Abstraction
 
 # surface1 Reaction 57
-surface_reaction('CX(26) + HO2X(188) <=> CHOX(190) + OX(20)', [1.000000e+19, 0.0, 19.12],
+surface_reaction('HO2X(188) + CX(26) <=> OX(20) + CHOX(190)', [1.000000e+19, 0.0, 19.12],
                  id='surface1-57')
 #  Reaction index: Chemkin #58; RMG #788
 #  Template reaction: Surface_Abstraction
@@ -2320,7 +2320,7 @@ surface_reaction('CX(26) + HO2X(188) <=> CHOX(190) + OX(20)', [1.000000e+19, 0.0
 #  family: Surface_Abstraction
 
 # surface1 Reaction 58
-surface_reaction('CX(26) + HOCOX(241) <=> CHOX(190) + OCX(25)', [1.000000e+19, 0.0, 19.12],
+surface_reaction('HOCOX(241) + CX(26) <=> OCX(25) + CHOX(190)', [1.000000e+19, 0.0, 19.12],
                  id='surface1-58')
 #  Reaction index: Chemkin #59; RMG #797
 #  Template reaction: Surface_Dissociation
@@ -2330,7 +2330,7 @@ surface_reaction('CX(26) + HOCOX(241) <=> CHOX(190) + OCX(25)', [1.000000e+19, 0
 #  family: Surface_Dissociation
 
 # surface1 Reaction 59
-surface_reaction('X(1) + CH2OX(192) <=> CHOX(190) + HX(19)', [1.000000e+21, 0.0, 78.792],
+surface_reaction('X(1) + CH2OX(192) <=> HX(19) + CHOX(190)', [1.000000e+21, 0.0, 78.792],
                  id='surface1-59')
 #  Reaction index: Chemkin #60; RMG #798
 #  Template reaction: Surface_Abstraction
@@ -2340,7 +2340,7 @@ surface_reaction('X(1) + CH2OX(192) <=> CHOX(190) + HX(19)', [1.000000e+21, 0.0,
 #  family: Surface_Abstraction
 
 # surface1 Reaction 60
-surface_reaction('OX(20) + CH2OX(192) <=> CHOX(190) + HOX(22)', [5.000000e+21, 0.0, 9.56],
+surface_reaction('CH2OX(192) + OX(20) <=> HOX(22) + CHOX(190)', [5.000000e+21, 0.0, 9.56],
                  id='surface1-60')
 #  Reaction index: Chemkin #61; RMG #805
 #  Template reaction: Surface_Abstraction
@@ -2350,7 +2350,7 @@ surface_reaction('OX(20) + CH2OX(192) <=> CHOX(190) + HOX(22)', [5.000000e+21, 0
 #  family: Surface_Abstraction
 
 # surface1 Reaction 61
-surface_reaction('CH2X(27) + CH2OX(192) <=> CHOX(190) + CH3X(21)', [5.000000e+21, 0.0, 9.56],
+surface_reaction('CH2OX(192) + CH2X(27) <=> CH3X(21) + CHOX(190)', [5.000000e+21, 0.0, 9.56],
                  id='surface1-61')
 #  Reaction index: Chemkin #62; RMG #807
 #  Template reaction: Surface_Abstraction
@@ -2361,7 +2361,7 @@ surface_reaction('CH2X(27) + CH2OX(192) <=> CHOX(190) + CH3X(21)', [5.000000e+21
 #  Ea raised from 115.7 to 118.2 kJ/mol to match endothermicity of reaction.
 
 # surface1 Reaction 62
-surface_reaction('CHOX(190) + CHX(28) <=> CX(26) + CH2OX(192)', [5.000000e+21, 0.0, 28.254],
+surface_reaction('CHX(28) + CHOX(190) <=> CH2OX(192) + CX(26)', [5.000000e+21, 0.0, 28.254],
                  options='duplicate',
                  id='surface1-62')
 #  Reaction index: Chemkin #63; RMG #808
@@ -2372,7 +2372,7 @@ surface_reaction('CHOX(190) + CHX(28) <=> CX(26) + CH2OX(192)', [5.000000e+21, 0
 #  family: Surface_Abstraction
 
 # surface1 Reaction 63
-surface_reaction('CX(26) + CH2OX(192) <=> CHOX(190) + CHX(28)', [5.000000e+21, 0.0, 9.56],
+surface_reaction('CH2OX(192) + CX(26) <=> CHX(28) + CHOX(190)', [5.000000e+21, 0.0, 9.56],
                  options='duplicate',
                  id='surface1-63')
 #  Reaction index: Chemkin #64; RMG #809
@@ -2383,7 +2383,7 @@ surface_reaction('CX(26) + CH2OX(192) <=> CHOX(190) + CHX(28)', [5.000000e+21, 0
 #  family: Surface_Abstraction
 
 # surface1 Reaction 64
-surface_reaction('CHX(28) + CH2OX(192) <=> CHOX(190) + CH2X(27)', [5.000000e+21, 0.0, 9.56],
+surface_reaction('CH2OX(192) + CHX(28) <=> CH2X(27) + CHOX(190)', [5.000000e+21, 0.0, 9.56],
                  id='surface1-64')
 #  Reaction index: Chemkin #65; RMG #815
 #  Template reaction: Surface_Abstraction
@@ -2393,7 +2393,7 @@ surface_reaction('CHX(28) + CH2OX(192) <=> CHOX(190) + CH2X(27)', [5.000000e+21,
 #  family: Surface_Abstraction
 
 # surface1 Reaction 65
-surface_reaction('CHOX(190) + CHOX(61) <=> OCX(25) + CH2OX(192)', [5.000000e+21, 0.0, 9.56],
+surface_reaction('CHOX(61) + CHOX(190) <=> CH2OX(192) + OCX(25)', [5.000000e+21, 0.0, 9.56],
                  id='surface1-65')
 #  Reaction index: Chemkin #66; RMG #881
 #  Template reaction: Surface_Abstraction
@@ -2403,7 +2403,7 @@ surface_reaction('CHOX(190) + CHOX(61) <=> OCX(25) + CH2OX(192)', [5.000000e+21,
 #  family: Surface_Abstraction
 
 # surface1 Reaction 66
-surface_reaction('CX(26) + CH2OX(192) <=> CHOX(190) + CHX(28)', [1.000000e+19, 0.0, 19.12],
+surface_reaction('CH2OX(192) + CX(26) <=> CHX(28) + CHOX(190)', [1.000000e+19, 0.0, 19.12],
                  options='duplicate',
                  id='surface1-66')
 #  Reaction index: Chemkin #67; RMG #882
@@ -2415,7 +2415,7 @@ surface_reaction('CX(26) + CH2OX(192) <=> CHOX(190) + CHX(28)', [1.000000e+19, 0
 #  Ea raised from 115.7 to 118.2 kJ/mol to match endothermicity of reaction.
 
 # surface1 Reaction 67
-surface_reaction('CHOX(190) + CHX(28) <=> CX(26) + CH2OX(192)', [5.000000e+21, 0.0, 28.254],
+surface_reaction('CHX(28) + CHOX(190) <=> CH2OX(192) + CX(26)', [5.000000e+21, 0.0, 28.254],
                  options='duplicate',
                  id='surface1-67')
 #  Reaction index: Chemkin #68; RMG #306
@@ -2448,7 +2448,7 @@ surface_reaction('X(1) + CH3OX(67) <=> HOX(22) + CH2X(27)', [1.000000e+21, 0.0, 
 #  family: Surface_Abstraction
 
 # surface1 Reaction 70
-surface_reaction('CH2X(27) + HO2X(188) <=> OX(20) + CH3OX(67)', [1.000000e+19, 0.0, 19.12],
+surface_reaction('HO2X(188) + CH2X(27) <=> OX(20) + CH3OX(67)', [1.000000e+19, 0.0, 19.12],
                  id='surface1-70')
 #  Reaction index: Chemkin #71; RMG #786
 #  Template reaction: Surface_Abstraction
@@ -2458,7 +2458,7 @@ surface_reaction('CH2X(27) + HO2X(188) <=> OX(20) + CH3OX(67)', [1.000000e+19, 0
 #  family: Surface_Abstraction
 
 # surface1 Reaction 71
-surface_reaction('CH2X(27) + HOCOX(241) <=> OCX(25) + CH3OX(67)', [1.000000e+19, 0.0, 19.12],
+surface_reaction('HOCOX(241) + CH2X(27) <=> OCX(25) + CH3OX(67)', [1.000000e+19, 0.0, 19.12],
                  id='surface1-71')
 #  Reaction index: Chemkin #72; RMG #799
 #  Template reaction: Surface_Abstraction
@@ -2469,7 +2469,7 @@ surface_reaction('CH2X(27) + HOCOX(241) <=> OCX(25) + CH3OX(67)', [1.000000e+19,
 #  family: Surface_Abstraction
 
 # surface1 Reaction 72
-surface_reaction('CH2X(27) + CH3OX(67) <=> CH3X(21) + CH2OX(192)', [1.000000e+22, 0.0, 9.56],
+surface_reaction('CH2X(27) + CH3OX(67) <=> CH2OX(192) + CH3X(21)', [1.000000e+22, 0.0, 9.56],
                  id='surface1-72')
 #  Reaction index: Chemkin #73; RMG #801
 #  Template reaction: Surface_Dissociation
@@ -2480,7 +2480,7 @@ surface_reaction('CH2X(27) + CH3OX(67) <=> CH3X(21) + CH2OX(192)', [1.000000e+22
 #  family: Surface_Dissociation
 
 # surface1 Reaction 73
-surface_reaction('X(1) + CH3OX(67) <=> HX(19) + CH2OX(192)', [2.000000e+21, 0.0, 91.034],
+surface_reaction('X(1) + CH3OX(67) <=> CH2OX(192) + HX(19)', [2.000000e+21, 0.0, 91.034],
                  id='surface1-73')
 #  Reaction index: Chemkin #74; RMG #802
 #  Template reaction: Surface_Abstraction
@@ -2491,7 +2491,7 @@ surface_reaction('X(1) + CH3OX(67) <=> HX(19) + CH2OX(192)', [2.000000e+21, 0.0,
 #  family: Surface_Abstraction
 
 # surface1 Reaction 74
-surface_reaction('OX(20) + CH3OX(67) <=> HOX(22) + CH2OX(192)', [1.000000e+22, 0.0, 9.56],
+surface_reaction('OX(20) + CH3OX(67) <=> CH2OX(192) + HOX(22)', [1.000000e+22, 0.0, 9.56],
                  id='surface1-74')
 #  Reaction index: Chemkin #75; RMG #804
 #  Template reaction: Surface_Abstraction
@@ -2501,7 +2501,7 @@ surface_reaction('OX(20) + CH3OX(67) <=> HOX(22) + CH2OX(192)', [1.000000e+22, 0
 #  family: Surface_Abstraction
 
 # surface1 Reaction 75
-surface_reaction('CH2X(27) + CH2OX(192) <=> CHX(28) + CH3OX(67)', [1.000000e+19, 0.0, 19.12],
+surface_reaction('CH2OX(192) + CH2X(27) <=> CHX(28) + CH3OX(67)', [1.000000e+19, 0.0, 19.12],
                  options='duplicate',
                  id='surface1-75')
 #  Reaction index: Chemkin #76; RMG #806
@@ -2513,7 +2513,7 @@ surface_reaction('CH2X(27) + CH2OX(192) <=> CHX(28) + CH3OX(67)', [1.000000e+19,
 #  family: Surface_Abstraction
 
 # surface1 Reaction 76
-surface_reaction('CH2X(27) + CH2OX(192) <=> CHX(28) + CH3OX(67)', [1.000000e+22, 0.0, 9.56],
+surface_reaction('CH2OX(192) + CH2X(27) <=> CHX(28) + CH3OX(67)', [1.000000e+22, 0.0, 9.56],
                  options='duplicate',
                  id='surface1-76')
 #  Reaction index: Chemkin #77; RMG #810
@@ -2525,7 +2525,7 @@ surface_reaction('CH2X(27) + CH2OX(192) <=> CHX(28) + CH3OX(67)', [1.000000e+22,
 #  family: Surface_Abstraction
 
 # surface1 Reaction 77
-surface_reaction('CX(26) + CH3OX(67) <=> CHX(28) + CH2OX(192)', [1.000000e+22, 0.0, 9.56],
+surface_reaction('CX(26) + CH3OX(67) <=> CH2OX(192) + CHX(28)', [1.000000e+22, 0.0, 9.56],
                  id='surface1-77')
 #  Reaction index: Chemkin #78; RMG #816
 #  Template reaction: Surface_Abstraction
@@ -2545,7 +2545,7 @@ surface_reaction('CH2OX(192) + CHOX(61) <=> OCX(25) + CH3OX(67)', [5.000000e+21,
 #  family: Surface_Abstraction
 
 # surface1 Reaction 79
-surface_reaction('CH2OX(192) + CH2OX(192) <=> CHOX(190) + CH3OX(67)', [5.000000e+21, 0.0, 9.56],
+surface_reaction('CH2OX(192) + CH2OX(192) <=> CH3OX(67) + CHOX(190)', [5.000000e+21, 0.0, 9.56],
                  id='surface1-79')
 #  Reaction index: Chemkin #80; RMG #880
 #  Template reaction: Surface_Abstraction
@@ -2555,7 +2555,7 @@ surface_reaction('CH2OX(192) + CH2OX(192) <=> CHOX(190) + CH3OX(67)', [5.000000e
 #  family: Surface_Abstraction
 
 # surface1 Reaction 80
-surface_reaction('CX(26) + CH3OX(67) <=> CHOX(190) + CH2X(27)', [1.000000e+19, 0.0, 19.12],
+surface_reaction('CX(26) + CH3OX(67) <=> CH2X(27) + CHOX(190)', [1.000000e+19, 0.0, 19.12],
                  id='surface1-80')
 #  Reaction index: Chemkin #81; RMG #899
 #  Template reaction: Surface_Abstraction
@@ -2566,7 +2566,7 @@ surface_reaction('CX(26) + CH3OX(67) <=> CHOX(190) + CH2X(27)', [1.000000e+19, 0
 #  family: Surface_Abstraction
 
 # surface1 Reaction 81
-surface_reaction('CH2X(27) + CH2OX(192) <=> CHX(28) + CH3OX(67)', [1.000000e+22, 0.0, 9.56],
+surface_reaction('CH2OX(192) + CH2X(27) <=> CHX(28) + CH3OX(67)', [1.000000e+22, 0.0, 9.56],
                  options='duplicate',
                  id='surface1-81')
 #  Reaction index: Chemkin #82; RMG #900
@@ -2579,7 +2579,7 @@ surface_reaction('CH2X(27) + CH2OX(192) <=> CHX(28) + CH3OX(67)', [1.000000e+22,
 #  Ea raised from 50.4 to 50.4 kJ/mol to match endothermicity of reaction.
 
 # surface1 Reaction 82
-surface_reaction('CHX(28) + CH3OX(67) <=> CH2X(27) + CH2OX(192)', [1.000000e+22, 0.0, 12.05],
+surface_reaction('CHX(28) + CH3OX(67) <=> CH2OX(192) + CH2X(27)', [1.000000e+22, 0.0, 12.05],
                  options='duplicate',
                  id='surface1-82')
 #  Reaction index: Chemkin #83; RMG #785
@@ -2591,7 +2591,7 @@ surface_reaction('CHX(28) + CH3OX(67) <=> CH2X(27) + CH2OX(192)', [1.000000e+22,
 #  family: Surface_Adsorption_Dissociative
 
 # surface1 Reaction 83
-surface_reaction('X(1) + X(1) + CH2O3(251) <=> HOX(22) + HOCOX(241)', stick(2.000000e-02, 0.0, 38.258),
+surface_reaction('X(1) + X(1) + CH2O3(251) <=> HOCOX(241) + HOX(22)', stick(2.000000e-02, 0.0, 38.258),
                  id='surface1-83')
 #  Reaction index: Chemkin #84; RMG #1075
 #  Template reaction: Surface_Adsorption_vdW
@@ -2621,7 +2621,7 @@ surface_reaction('X(1) + X(1) + CH2O2(95) <=> HOX(22) + CHOX(61)', stick(1.00000
 #  family: Surface_Adsorption_Dissociative
 
 # surface1 Reaction 86
-surface_reaction('X(1) + X(1) + CH2O2(95) <=> HX(19) + HOCOX(241)', stick(1.000000e-02, 0.0, 54.901),
+surface_reaction('X(1) + X(1) + CH2O2(95) <=> HOCOX(241) + HX(19)', stick(1.000000e-02, 0.0, 54.901),
                  id='surface1-86')
 #  Reaction index: Chemkin #87; RMG #1191
 #  Template reaction: Surface_Adsorption_vdW

@@ -16,6 +16,6 @@ for x in array:
         print 'cannot find cantera file for %s'%(x)
 try:
     shutil.copy2('../../../linear-scaling-tests/cpox/base/chemkin/species_dictionary.txt','./species_dictionary.txt')
-    shutil.copy2('../../../linear-scaling-tests/cpox/base/cantera/chem.cti','./chem.cti')
+    shutil.copy2('../../../linear-scaling-tests/cpox/base/cantera/chem_annotated.cti','./chem_annotated.cti')
 except:
     print 'cannot find files for base'
