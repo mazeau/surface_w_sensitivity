@@ -1,0 +1,1130 @@
+[NbConvertApp] Converting notebook copyme.ipynb to notebook
+[NbConvertApp] Executing notebook with kernel: python2
+[IPKernelApp] ERROR | Failed to create history session in /home/mazeau.e/.ipython/profile_default/history.sqlite. History will not be saved.
+Traceback (most recent call last):
+  File "/home/mazeau.e/anaconda2/envs/rmg_env3/lib/python2.7/site-packages/IPython/core/history.py", line 549, in __init__
+    self.new_session()
+  File "<decorator-gen-22>", line 2, in new_session
+  File "/home/mazeau.e/anaconda2/envs/rmg_env3/lib/python2.7/site-packages/IPython/core/history.py", line 60, in needs_sqlite
+    return f(self, *a, **kw)
+  File "/home/mazeau.e/anaconda2/envs/rmg_env3/lib/python2.7/site-packages/IPython/core/history.py", line 575, in new_session
+    NULL, "") """, (datetime.datetime.now(),))
+OperationalError: database is locked
+[NbConvertApp] ERROR | Error while converting 'copyme.ipynb'
+Traceback (most recent call last):
+  File "/home/mazeau.e/anaconda2/envs/rmg_env3/lib/python2.7/site-packages/nbconvert/nbconvertapp.py", line 393, in export_single_notebook
+    output, resources = self.exporter.from_filename(notebook_filename, resources=resources)
+  File "/home/mazeau.e/anaconda2/envs/rmg_env3/lib/python2.7/site-packages/nbconvert/exporters/exporter.py", line 174, in from_filename
+    return self.from_file(f, resources=resources, **kw)
+  File "/home/mazeau.e/anaconda2/envs/rmg_env3/lib/python2.7/site-packages/nbconvert/exporters/exporter.py", line 192, in from_file
+    return self.from_notebook_node(nbformat.read(file_stream, as_version=4), resources=resources, **kw)
+  File "/home/mazeau.e/anaconda2/envs/rmg_env3/lib/python2.7/site-packages/nbconvert/exporters/notebook.py", line 31, in from_notebook_node
+    nb_copy, resources = super(NotebookExporter, self).from_notebook_node(nb, resources, **kw)
+  File "/home/mazeau.e/anaconda2/envs/rmg_env3/lib/python2.7/site-packages/nbconvert/exporters/exporter.py", line 134, in from_notebook_node
+    nb_copy, resources = self._preprocess(nb_copy, resources)
+  File "/home/mazeau.e/anaconda2/envs/rmg_env3/lib/python2.7/site-packages/nbconvert/exporters/exporter.py", line 311, in _preprocess
+    nbc, resc = preprocessor(nbc, resc)
+  File "/home/mazeau.e/anaconda2/envs/rmg_env3/lib/python2.7/site-packages/nbconvert/preprocessors/base.py", line 47, in __call__
+    return self.preprocess(nb, resources)
+  File "/home/mazeau.e/anaconda2/envs/rmg_env3/lib/python2.7/site-packages/nbconvert/preprocessors/execute.py", line 262, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/home/mazeau.e/anaconda2/envs/rmg_env3/lib/python2.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/home/mazeau.e/anaconda2/envs/rmg_env3/lib/python2.7/site-packages/nbconvert/preprocessors/execute.py", line 286, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+CellExecutionError: An error occurred while executing the following cell:
+------------------
+# Set the value of the perturbation
+dk = 1.0e-2
+# create the array to hold the sensitivty at each time step
+Sensitivity = np.zeros([surf.n_reactions,len(rxn_time)])
+
+rxns = []
+sens = []
+
+#cycle through each reaction
+for m in range(surf.n_reactions):
+    surf.set_multiplier(1.0) # reset all multipliers  
+    surf.set_multiplier(1+dk, m) # perturb reaction m
+    
+    gas.TPX = T0, P0 * ct.one_atm, {'CH4(2)':CH4_0, 'O2(3)':O2_0, 'N2':N2_0}
+              #Temp, Pressure, mole fraction
+    surf.TP = T0, P0 * ct.one_atm
+    surf.coverages = {'X(1)':1.0}
+    
+    r = ct.IdealGasConstPressureReactor(gas, energy='off')
+    r.volume = volume
+    rsurf = ct.ReactorSurface(surf, r, A=cat_area) # A=cat_area
+
+
+    sim = ct.ReactorNet([r])
+    sim.max_err_test_fails = 12
+
+
+    # set relative and absolute tolerances on the simulation
+    sim.rtol = 1.0e-12
+    sim.atol = 1.0e-20
+    gas_mole_fracs = np.zeros([gas.n_species, len(rxn_time)])
+    temperature = np.zeros(len(rxn_time))    
+    pressure = np.zeros(len(rxn_time))   
+
+    for i in range(len(rxn_time)):
+        time = rxn_time[i] #define time in the reactor
+        sim.advance(time) #Advance the simulation to next set time
+        temperature[i] = gas.T
+        pressure[i] = gas.P/ct.one_atm
+        gas_mole_fracs[:,i] = gas.X #[mol.frac,nth reactor]
+    # here is the new output
+#     CH4_new = gas_mole_fracs[i_ch4,:]
+
+    O2_new = gas_mole_fracs[i_o2,:]
+    zipped = zip(gas_mole_fracs[i_o2,:],rxn_time)
+    zipped = [list(z) for z in zipped]
+    for z in zipped:
+        if z[0] <= O2_0 * .05:
+            O2_new_time = z[1]
+            break
+
+#     Sens = (CH4_new-CH4_ref)/(CH4_ref*dk)
+    Sens = (O2_ref_time - O2_new_time)/(O2_ref_time*dk) # positive if it speeds up the reaction
+#     max_sensitivity = max(max(Sens),-min(Sens))
+#    if (1==0):
+#        if (max_sensitivity>0.01):
+#            print "%d %s %.2F"%( m, surf.reaction_equations()[m],  max_sensitivity)
+#    else:
+#     print "%d %s %.2F"%( m, surf.reaction_equations()[m],  max_sensitivity)
+    print "%d %s %.2F"%( m, surf.reaction_equations()[m],  Sens)
+#     Sensitivity[m,:] = Sens
+    rxns.append(surf.reaction_equations()[m])
+    sens.append(Sens)
+surf.set_multiplier(1.0)
+
+ 
+------------------
+
+[0;31m[0m
+[0;31mCanteraError[0mTraceback (most recent call last)
+[0;32m<ipython-input-4-0951cd873db8>[0m in [0;36m<module>[0;34m()[0m
+[1;32m     35[0m     [0;32mfor[0m [0mi[0m [0;32min[0m [0mrange[0m[0;34m([0m[0mlen[0m[0;34m([0m[0mrxn_time[0m[0;34m)[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0m
+[1;32m     36[0m         [0mtime[0m [0;34m=[0m [0mrxn_time[0m[0;34m[[0m[0mi[0m[0;34m][0m [0;31m#define time in the reactor[0m[0;34m[0m[0m
+[0;32m---> 37[0;31m         [0msim[0m[0;34m.[0m[0madvance[0m[0;34m([0m[0mtime[0m[0;34m)[0m [0;31m#Advance the simulation to next set time[0m[0;34m[0m[0m
+[0m[1;32m     38[0m         [0mtemperature[0m[0;34m[[0m[0mi[0m[0;34m][0m [0;34m=[0m [0mgas[0m[0;34m.[0m[0mT[0m[0;34m[0m[0m
+[1;32m     39[0m         [0mpressure[0m[0;34m[[0m[0mi[0m[0;34m][0m [0;34m=[0m [0mgas[0m[0;34m.[0m[0mP[0m[0;34m/[0m[0mct[0m[0;34m.[0m[0mone_atm[0m[0;34m[0m[0m
+
+[0;32minterfaces/cython/cantera/reactor.pyx[0m in [0;36mcantera._cantera.ReactorNet.advance (interfaces/cython/cantera/_cantera.cpp:68369)[0;34m()[0m
+
+[0;31mCanteraError[0m: 
+***********************************************************************
+CanteraError thrown by CVodesIntegrator::integrate:
+CVodes error encountered. Error code: -10
+At t = 849.874 repeated recoverable right-hand side function errors.
+
+Exceptions caught during RHS evaluation:
+density must be positive
+ydot contains non-finite elements:
+
+ydot[0] = nan
+ydot[2] = nan
+ydot[3] = nan
+ydot[4] = nan
+ydot[5] = nan
+ydot[6] = nan
+ydot[7] = nan
+ydot[8] = nan
+ydot[9] = nan
+ydot[10] = nan
+ydot[11] = nan
+ydot[12] = nan
+ydot[13] = nan
+ydot[14] = nan
+ydot[15] = nan
+ydot[16] = nan
+ydot[17] = nan
+ydot[18] = nan
+ydot[19] = nan
+ydot[20] = nan
+ydot[21] = nan
+ydot[22] = nan
+ydot[23] = nan
+ydot[24] = nan
+ydot[25] = nan
+ydot[26] = nan
+ydot[27] = nan
+ydot[28] = nan
+ydot[29] = nan
+ydot[30] = inf
+ydot[31] = nan
+ydot[32] = nan
+ydot[33] = nan
+ydot[34] = -inf
+ydot[35] = inf
+ydot[36] = -inf
+ydot[37] = nan
+ydot[38] = nan
+ydot[39] = nan
+ydot[40] = -inf
+ydot[41] = -inf
+ydot[43] = -inf
+ydot[44] = nan
+ydot[45] = -inf
+ydot[46] = nan
+ydot[47] = -inf
+ydot[48] = nan
+ydot[49] = nan
+ydot[50] = nan
+ydot[52] = nan
+ydot[53] = -inf
+
+ydot contains non-finite elements:
+
+ydot[0] = nan
+ydot[2] = nan
+ydot[3] = nan
+ydot[4] = nan
+ydot[5] = nan
+ydot[6] = nan
+ydot[7] = nan
+ydot[8] = nan
+ydot[9] = nan
+ydot[10] = nan
+ydot[11] = nan
+ydot[12] = nan
+ydot[13] = nan
+ydot[14] = nan
+ydot[15] = nan
+ydot[16] = nan
+ydot[17] = nan
+ydot[18] = nan
+ydot[19] = nan
+ydot[20] = nan
+ydot[21] = nan
+ydot[22] = nan
+ydot[23] = nan
+ydot[24] = nan
+ydot[25] = nan
+ydot[26] = nan
+ydot[27] = nan
+ydot[28] = nan
+ydot[29] = nan
+ydot[30] = inf
+ydot[31] = nan
+ydot[32] = nan
+ydot[33] = nan
+ydot[34] = -inf
+ydot[35] = inf
+ydot[36] = -inf
+ydot[37] = nan
+ydot[38] = nan
+ydot[39] = nan
+ydot[40] = -inf
+ydot[41] = -inf
+ydot[43] = -inf
+ydot[44] = nan
+ydot[45] = -inf
+ydot[46] = nan
+ydot[47] = -inf
+ydot[48] = nan
+ydot[49] = nan
+ydot[50] = nan
+ydot[52] = nan
+ydot[53] = -inf
+
+ydot contains non-finite elements:
+
+ydot[0] = nan
+ydot[2] = nan
+ydot[3] = nan
+ydot[4] = nan
+ydot[5] = nan
+ydot[6] = nan
+ydot[7] = nan
+ydot[8] = nan
+ydot[9] = nan
+ydot[10] = nan
+ydot[11] = nan
+ydot[12] = nan
+ydot[13] = nan
+ydot[14] = nan
+ydot[15] = nan
+ydot[16] = nan
+ydot[17] = nan
+ydot[18] = nan
+ydot[19] = nan
+ydot[20] = nan
+ydot[21] = nan
+ydot[22] = nan
+ydot[23] = nan
+ydot[24] = nan
+ydot[25] = nan
+ydot[26] = nan
+ydot[27] = nan
+ydot[28] = nan
+ydot[29] = nan
+ydot[30] = inf
+ydot[31] = nan
+ydot[32] = nan
+ydot[33] = nan
+ydot[34] = -inf
+ydot[35] = inf
+ydot[36] = -inf
+ydot[37] = nan
+ydot[38] = nan
+ydot[39] = nan
+ydot[40] = -inf
+ydot[41] = -inf
+ydot[43] = -inf
+ydot[44] = nan
+ydot[45] = -inf
+ydot[46] = nan
+ydot[47] = -inf
+ydot[48] = nan
+ydot[49] = nan
+ydot[50] = nan
+ydot[52] = nan
+ydot[53] = -inf
+
+ydot contains non-finite elements:
+
+ydot[0] = nan
+ydot[2] = nan
+ydot[3] = nan
+ydot[4] = nan
+ydot[5] = nan
+ydot[6] = nan
+ydot[7] = nan
+ydot[8] = nan
+ydot[9] = nan
+ydot[10] = nan
+ydot[11] = nan
+ydot[12] = nan
+ydot[13] = nan
+ydot[14] = nan
+ydot[15] = nan
+ydot[16] = nan
+ydot[17] = nan
+ydot[18] = nan
+ydot[19] = nan
+ydot[20] = nan
+ydot[21] = nan
+ydot[22] = nan
+ydot[23] = nan
+ydot[24] = nan
+ydot[25] = nan
+ydot[26] = nan
+ydot[27] = nan
+ydot[28] = nan
+ydot[29] = nan
+ydot[30] = inf
+ydot[31] = nan
+ydot[32] = nan
+ydot[33] = nan
+ydot[34] = -inf
+ydot[35] = inf
+ydot[36] = -inf
+ydot[37] = nan
+ydot[38] = nan
+ydot[39] = nan
+ydot[40] = -inf
+ydot[41] = -inf
+ydot[43] = -inf
+ydot[44] = nan
+ydot[45] = -inf
+ydot[46] = nan
+ydot[47] = -inf
+ydot[48] = nan
+ydot[49] = nan
+ydot[50] = nan
+ydot[52] = nan
+ydot[53] = -inf
+
+ydot contains non-finite elements:
+
+ydot[0] = nan
+ydot[2] = nan
+ydot[3] = nan
+ydot[4] = nan
+ydot[5] = nan
+ydot[6] = nan
+ydot[7] = nan
+ydot[8] = nan
+ydot[9] = nan
+ydot[10] = nan
+ydot[11] = nan
+ydot[12] = nan
+ydot[13] = nan
+ydot[14] = nan
+ydot[15] = nan
+ydot[16] = nan
+ydot[17] = nan
+ydot[18] = nan
+ydot[19] = nan
+ydot[20] = nan
+ydot[21] = nan
+ydot[22] = nan
+ydot[23] = nan
+ydot[24] = nan
+ydot[25] = nan
+ydot[26] = nan
+ydot[27] = nan
+ydot[28] = nan
+ydot[29] = nan
+ydot[30] = inf
+ydot[31] = nan
+ydot[32] = nan
+ydot[33] = nan
+ydot[34] = -inf
+ydot[35] = inf
+ydot[36] = -inf
+ydot[37] = nan
+ydot[38] = nan
+ydot[39] = nan
+ydot[40] = -inf
+ydot[41] = -inf
+ydot[43] = -inf
+ydot[44] = nan
+ydot[45] = -inf
+ydot[46] = nan
+ydot[47] = -inf
+ydot[48] = nan
+ydot[49] = nan
+ydot[50] = nan
+ydot[52] = nan
+ydot[53] = -inf
+
+ydot contains non-finite elements:
+
+ydot[0] = nan
+ydot[2] = nan
+ydot[3] = nan
+ydot[4] = nan
+ydot[5] = nan
+ydot[6] = nan
+ydot[7] = nan
+ydot[8] = nan
+ydot[9] = nan
+ydot[10] = nan
+ydot[11] = nan
+ydot[12] = nan
+ydot[13] = nan
+ydot[14] = nan
+ydot[15] = nan
+ydot[16] = nan
+ydot[17] = nan
+ydot[18] = nan
+ydot[19] = nan
+ydot[20] = nan
+ydot[21] = nan
+ydot[22] = nan
+ydot[23] = nan
+ydot[24] = nan
+ydot[25] = nan
+ydot[26] = nan
+ydot[27] = nan
+ydot[28] = nan
+ydot[29] = nan
+ydot[30] = inf
+ydot[31] = nan
+ydot[32] = nan
+ydot[33] = nan
+ydot[34] = -inf
+ydot[35] = inf
+ydot[36] = -inf
+ydot[37] = nan
+ydot[38] = nan
+ydot[39] = nan
+ydot[40] = -inf
+ydot[41] = -inf
+ydot[43] = -inf
+ydot[44] = nan
+ydot[45] = -inf
+ydot[46] = nan
+ydot[47] = -inf
+ydot[48] = nan
+ydot[49] = nan
+ydot[50] = nan
+ydot[52] = nan
+ydot[53] = -inf
+
+ydot contains non-finite elements:
+
+ydot[0] = nan
+ydot[2] = nan
+ydot[3] = nan
+ydot[4] = nan
+ydot[5] = nan
+ydot[6] = nan
+ydot[7] = nan
+ydot[8] = nan
+ydot[9] = nan
+ydot[10] = nan
+ydot[11] = nan
+ydot[12] = nan
+ydot[13] = nan
+ydot[14] = nan
+ydot[15] = nan
+ydot[16] = nan
+ydot[17] = nan
+ydot[18] = nan
+ydot[19] = nan
+ydot[20] = nan
+ydot[21] = nan
+ydot[22] = nan
+ydot[23] = nan
+ydot[24] = nan
+ydot[25] = nan
+ydot[26] = nan
+ydot[27] = nan
+ydot[28] = nan
+ydot[29] = nan
+ydot[30] = inf
+ydot[31] = nan
+ydot[32] = nan
+ydot[33] = nan
+ydot[34] = -inf
+ydot[35] = inf
+ydot[36] = -inf
+ydot[37] = nan
+ydot[38] = nan
+ydot[39] = nan
+ydot[40] = -inf
+ydot[41] = -inf
+ydot[43] = -inf
+ydot[44] = nan
+ydot[45] = -inf
+ydot[46] = nan
+ydot[47] = -inf
+ydot[48] = nan
+ydot[49] = nan
+ydot[50] = nan
+ydot[52] = nan
+ydot[53] = -inf
+
+ydot contains non-finite elements:
+
+ydot[0] = nan
+ydot[2] = nan
+ydot[3] = nan
+ydot[4] = nan
+ydot[5] = nan
+ydot[6] = nan
+ydot[7] = nan
+ydot[8] = nan
+ydot[9] = nan
+ydot[10] = nan
+ydot[11] = nan
+ydot[12] = nan
+ydot[13] = nan
+ydot[14] = nan
+ydot[15] = nan
+ydot[16] = nan
+ydot[17] = nan
+ydot[18] = nan
+ydot[19] = nan
+ydot[20] = nan
+ydot[21] = nan
+ydot[22] = nan
+ydot[23] = nan
+ydot[24] = nan
+ydot[25] = nan
+ydot[26] = nan
+ydot[27] = nan
+ydot[28] = nan
+ydot[29] = nan
+ydot[30] = inf
+ydot[31] = nan
+ydot[32] = nan
+ydot[33] = nan
+ydot[34] = -inf
+ydot[35] = inf
+ydot[36] = -inf
+ydot[37] = nan
+ydot[38] = nan
+ydot[39] = nan
+ydot[40] = -inf
+ydot[41] = -inf
+ydot[43] = -inf
+ydot[44] = nan
+ydot[45] = -inf
+ydot[46] = nan
+ydot[47] = -inf
+ydot[48] = nan
+ydot[49] = nan
+ydot[50] = nan
+ydot[52] = nan
+ydot[53] = -inf
+
+ydot contains non-finite elements:
+
+ydot[0] = nan
+ydot[2] = nan
+ydot[3] = nan
+ydot[4] = nan
+ydot[5] = nan
+ydot[6] = nan
+ydot[7] = nan
+ydot[8] = nan
+ydot[9] = nan
+ydot[10] = nan
+ydot[11] = nan
+ydot[12] = nan
+ydot[13] = nan
+ydot[14] = nan
+ydot[15] = nan
+ydot[16] = nan
+ydot[17] = nan
+ydot[18] = nan
+ydot[19] = nan
+ydot[20] = nan
+ydot[21] = nan
+ydot[22] = nan
+ydot[23] = nan
+ydot[24] = nan
+ydot[25] = nan
+ydot[26] = nan
+ydot[27] = nan
+ydot[28] = nan
+ydot[29] = nan
+ydot[30] = inf
+ydot[31] = nan
+ydot[32] = nan
+ydot[33] = nan
+ydot[34] = -inf
+ydot[35] = inf
+ydot[36] = -inf
+ydot[37] = nan
+ydot[38] = nan
+ydot[39] = nan
+ydot[40] = -inf
+ydot[41] = -inf
+ydot[43] = -inf
+ydot[44] = nan
+ydot[45] = -inf
+ydot[46] = nan
+ydot[47] = -inf
+ydot[48] = nan
+ydot[49] = nan
+ydot[50] = nan
+ydot[52] = nan
+ydot[53] = -inf
+
+Components with largest weighted error estimates:
+0: nan
+1: 0
+2: nan
+3: nan
+4: nan
+5: nan
+6: nan
+7: nan
+8: nan
+9: nan
+***********************************************************************
+
+CanteraError: 
+***********************************************************************
+CanteraError thrown by CVodesIntegrator::integrate:
+CVodes error encountered. Error code: -10
+At t = 849.874 repeated recoverable right-hand side function errors.
+
+Exceptions caught during RHS evaluation:
+density must be positive
+ydot contains non-finite elements:
+
+ydot[0] = nan
+ydot[2] = nan
+ydot[3] = nan
+ydot[4] = nan
+ydot[5] = nan
+ydot[6] = nan
+ydot[7] = nan
+ydot[8] = nan
+ydot[9] = nan
+ydot[10] = nan
+ydot[11] = nan
+ydot[12] = nan
+ydot[13] = nan
+ydot[14] = nan
+ydot[15] = nan
+ydot[16] = nan
+ydot[17] = nan
+ydot[18] = nan
+ydot[19] = nan
+ydot[20] = nan
+ydot[21] = nan
+ydot[22] = nan
+ydot[23] = nan
+ydot[24] = nan
+ydot[25] = nan
+ydot[26] = nan
+ydot[27] = nan
+ydot[28] = nan
+ydot[29] = nan
+ydot[30] = inf
+ydot[31] = nan
+ydot[32] = nan
+ydot[33] = nan
+ydot[34] = -inf
+ydot[35] = inf
+ydot[36] = -inf
+ydot[37] = nan
+ydot[38] = nan
+ydot[39] = nan
+ydot[40] = -inf
+ydot[41] = -inf
+ydot[43] = -inf
+ydot[44] = nan
+ydot[45] = -inf
+ydot[46] = nan
+ydot[47] = -inf
+ydot[48] = nan
+ydot[49] = nan
+ydot[50] = nan
+ydot[52] = nan
+ydot[53] = -inf
+
+ydot contains non-finite elements:
+
+ydot[0] = nan
+ydot[2] = nan
+ydot[3] = nan
+ydot[4] = nan
+ydot[5] = nan
+ydot[6] = nan
+ydot[7] = nan
+ydot[8] = nan
+ydot[9] = nan
+ydot[10] = nan
+ydot[11] = nan
+ydot[12] = nan
+ydot[13] = nan
+ydot[14] = nan
+ydot[15] = nan
+ydot[16] = nan
+ydot[17] = nan
+ydot[18] = nan
+ydot[19] = nan
+ydot[20] = nan
+ydot[21] = nan
+ydot[22] = nan
+ydot[23] = nan
+ydot[24] = nan
+ydot[25] = nan
+ydot[26] = nan
+ydot[27] = nan
+ydot[28] = nan
+ydot[29] = nan
+ydot[30] = inf
+ydot[31] = nan
+ydot[32] = nan
+ydot[33] = nan
+ydot[34] = -inf
+ydot[35] = inf
+ydot[36] = -inf
+ydot[37] = nan
+ydot[38] = nan
+ydot[39] = nan
+ydot[40] = -inf
+ydot[41] = -inf
+ydot[43] = -inf
+ydot[44] = nan
+ydot[45] = -inf
+ydot[46] = nan
+ydot[47] = -inf
+ydot[48] = nan
+ydot[49] = nan
+ydot[50] = nan
+ydot[52] = nan
+ydot[53] = -inf
+
+ydot contains non-finite elements:
+
+ydot[0] = nan
+ydot[2] = nan
+ydot[3] = nan
+ydot[4] = nan
+ydot[5] = nan
+ydot[6] = nan
+ydot[7] = nan
+ydot[8] = nan
+ydot[9] = nan
+ydot[10] = nan
+ydot[11] = nan
+ydot[12] = nan
+ydot[13] = nan
+ydot[14] = nan
+ydot[15] = nan
+ydot[16] = nan
+ydot[17] = nan
+ydot[18] = nan
+ydot[19] = nan
+ydot[20] = nan
+ydot[21] = nan
+ydot[22] = nan
+ydot[23] = nan
+ydot[24] = nan
+ydot[25] = nan
+ydot[26] = nan
+ydot[27] = nan
+ydot[28] = nan
+ydot[29] = nan
+ydot[30] = inf
+ydot[31] = nan
+ydot[32] = nan
+ydot[33] = nan
+ydot[34] = -inf
+ydot[35] = inf
+ydot[36] = -inf
+ydot[37] = nan
+ydot[38] = nan
+ydot[39] = nan
+ydot[40] = -inf
+ydot[41] = -inf
+ydot[43] = -inf
+ydot[44] = nan
+ydot[45] = -inf
+ydot[46] = nan
+ydot[47] = -inf
+ydot[48] = nan
+ydot[49] = nan
+ydot[50] = nan
+ydot[52] = nan
+ydot[53] = -inf
+
+ydot contains non-finite elements:
+
+ydot[0] = nan
+ydot[2] = nan
+ydot[3] = nan
+ydot[4] = nan
+ydot[5] = nan
+ydot[6] = nan
+ydot[7] = nan
+ydot[8] = nan
+ydot[9] = nan
+ydot[10] = nan
+ydot[11] = nan
+ydot[12] = nan
+ydot[13] = nan
+ydot[14] = nan
+ydot[15] = nan
+ydot[16] = nan
+ydot[17] = nan
+ydot[18] = nan
+ydot[19] = nan
+ydot[20] = nan
+ydot[21] = nan
+ydot[22] = nan
+ydot[23] = nan
+ydot[24] = nan
+ydot[25] = nan
+ydot[26] = nan
+ydot[27] = nan
+ydot[28] = nan
+ydot[29] = nan
+ydot[30] = inf
+ydot[31] = nan
+ydot[32] = nan
+ydot[33] = nan
+ydot[34] = -inf
+ydot[35] = inf
+ydot[36] = -inf
+ydot[37] = nan
+ydot[38] = nan
+ydot[39] = nan
+ydot[40] = -inf
+ydot[41] = -inf
+ydot[43] = -inf
+ydot[44] = nan
+ydot[45] = -inf
+ydot[46] = nan
+ydot[47] = -inf
+ydot[48] = nan
+ydot[49] = nan
+ydot[50] = nan
+ydot[52] = nan
+ydot[53] = -inf
+
+ydot contains non-finite elements:
+
+ydot[0] = nan
+ydot[2] = nan
+ydot[3] = nan
+ydot[4] = nan
+ydot[5] = nan
+ydot[6] = nan
+ydot[7] = nan
+ydot[8] = nan
+ydot[9] = nan
+ydot[10] = nan
+ydot[11] = nan
+ydot[12] = nan
+ydot[13] = nan
+ydot[14] = nan
+ydot[15] = nan
+ydot[16] = nan
+ydot[17] = nan
+ydot[18] = nan
+ydot[19] = nan
+ydot[20] = nan
+ydot[21] = nan
+ydot[22] = nan
+ydot[23] = nan
+ydot[24] = nan
+ydot[25] = nan
+ydot[26] = nan
+ydot[27] = nan
+ydot[28] = nan
+ydot[29] = nan
+ydot[30] = inf
+ydot[31] = nan
+ydot[32] = nan
+ydot[33] = nan
+ydot[34] = -inf
+ydot[35] = inf
+ydot[36] = -inf
+ydot[37] = nan
+ydot[38] = nan
+ydot[39] = nan
+ydot[40] = -inf
+ydot[41] = -inf
+ydot[43] = -inf
+ydot[44] = nan
+ydot[45] = -inf
+ydot[46] = nan
+ydot[47] = -inf
+ydot[48] = nan
+ydot[49] = nan
+ydot[50] = nan
+ydot[52] = nan
+ydot[53] = -inf
+
+ydot contains non-finite elements:
+
+ydot[0] = nan
+ydot[2] = nan
+ydot[3] = nan
+ydot[4] = nan
+ydot[5] = nan
+ydot[6] = nan
+ydot[7] = nan
+ydot[8] = nan
+ydot[9] = nan
+ydot[10] = nan
+ydot[11] = nan
+ydot[12] = nan
+ydot[13] = nan
+ydot[14] = nan
+ydot[15] = nan
+ydot[16] = nan
+ydot[17] = nan
+ydot[18] = nan
+ydot[19] = nan
+ydot[20] = nan
+ydot[21] = nan
+ydot[22] = nan
+ydot[23] = nan
+ydot[24] = nan
+ydot[25] = nan
+ydot[26] = nan
+ydot[27] = nan
+ydot[28] = nan
+ydot[29] = nan
+ydot[30] = inf
+ydot[31] = nan
+ydot[32] = nan
+ydot[33] = nan
+ydot[34] = -inf
+ydot[35] = inf
+ydot[36] = -inf
+ydot[37] = nan
+ydot[38] = nan
+ydot[39] = nan
+ydot[40] = -inf
+ydot[41] = -inf
+ydot[43] = -inf
+ydot[44] = nan
+ydot[45] = -inf
+ydot[46] = nan
+ydot[47] = -inf
+ydot[48] = nan
+ydot[49] = nan
+ydot[50] = nan
+ydot[52] = nan
+ydot[53] = -inf
+
+ydot contains non-finite elements:
+
+ydot[0] = nan
+ydot[2] = nan
+ydot[3] = nan
+ydot[4] = nan
+ydot[5] = nan
+ydot[6] = nan
+ydot[7] = nan
+ydot[8] = nan
+ydot[9] = nan
+ydot[10] = nan
+ydot[11] = nan
+ydot[12] = nan
+ydot[13] = nan
+ydot[14] = nan
+ydot[15] = nan
+ydot[16] = nan
+ydot[17] = nan
+ydot[18] = nan
+ydot[19] = nan
+ydot[20] = nan
+ydot[21] = nan
+ydot[22] = nan
+ydot[23] = nan
+ydot[24] = nan
+ydot[25] = nan
+ydot[26] = nan
+ydot[27] = nan
+ydot[28] = nan
+ydot[29] = nan
+ydot[30] = inf
+ydot[31] = nan
+ydot[32] = nan
+ydot[33] = nan
+ydot[34] = -inf
+ydot[35] = inf
+ydot[36] = -inf
+ydot[37] = nan
+ydot[38] = nan
+ydot[39] = nan
+ydot[40] = -inf
+ydot[41] = -inf
+ydot[43] = -inf
+ydot[44] = nan
+ydot[45] = -inf
+ydot[46] = nan
+ydot[47] = -inf
+ydot[48] = nan
+ydot[49] = nan
+ydot[50] = nan
+ydot[52] = nan
+ydot[53] = -inf
+
+ydot contains non-finite elements:
+
+ydot[0] = nan
+ydot[2] = nan
+ydot[3] = nan
+ydot[4] = nan
+ydot[5] = nan
+ydot[6] = nan
+ydot[7] = nan
+ydot[8] = nan
+ydot[9] = nan
+ydot[10] = nan
+ydot[11] = nan
+ydot[12] = nan
+ydot[13] = nan
+ydot[14] = nan
+ydot[15] = nan
+ydot[16] = nan
+ydot[17] = nan
+ydot[18] = nan
+ydot[19] = nan
+ydot[20] = nan
+ydot[21] = nan
+ydot[22] = nan
+ydot[23] = nan
+ydot[24] = nan
+ydot[25] = nan
+ydot[26] = nan
+ydot[27] = nan
+ydot[28] = nan
+ydot[29] = nan
+ydot[30] = inf
+ydot[31] = nan
+ydot[32] = nan
+ydot[33] = nan
+ydot[34] = -inf
+ydot[35] = inf
+ydot[36] = -inf
+ydot[37] = nan
+ydot[38] = nan
+ydot[39] = nan
+ydot[40] = -inf
+ydot[41] = -inf
+ydot[43] = -inf
+ydot[44] = nan
+ydot[45] = -inf
+ydot[46] = nan
+ydot[47] = -inf
+ydot[48] = nan
+ydot[49] = nan
+ydot[50] = nan
+ydot[52] = nan
+ydot[53] = -inf
+
+ydot contains non-finite elements:
+
+ydot[0] = nan
+ydot[2] = nan
+ydot[3] = nan
+ydot[4] = nan
+ydot[5] = nan
+ydot[6] = nan
+ydot[7] = nan
+ydot[8] = nan
+ydot[9] = nan
+ydot[10] = nan
+ydot[11] = nan
+ydot[12] = nan
+ydot[13] = nan
+ydot[14] = nan
+ydot[15] = nan
+ydot[16] = nan
+ydot[17] = nan
+ydot[18] = nan
+ydot[19] = nan
+ydot[20] = nan
+ydot[21] = nan
+ydot[22] = nan
+ydot[23] = nan
+ydot[24] = nan
+ydot[25] = nan
+ydot[26] = nan
+ydot[27] = nan
+ydot[28] = nan
+ydot[29] = nan
+ydot[30] = inf
+ydot[31] = nan
+ydot[32] = nan
+ydot[33] = nan
+ydot[34] = -inf
+ydot[35] = inf
+ydot[36] = -inf
+ydot[37] = nan
+ydot[38] = nan
+ydot[39] = nan
+ydot[40] = -inf
+ydot[41] = -inf
+ydot[43] = -inf
+ydot[44] = nan
+ydot[45] = -inf
+ydot[46] = nan
+ydot[47] = -inf
+ydot[48] = nan
+ydot[49] = nan
+ydot[50] = nan
+ydot[52] = nan
+ydot[53] = -inf
+
+Components with largest weighted error estimates:
+0: nan
+1: 0
+2: nan
+3: nan
+4: nan
+5: nan
+6: nan
+7: nan
+8: nan
+9: nan
+***********************************************************************
+
+
