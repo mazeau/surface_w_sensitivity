@@ -7,7 +7,7 @@ Traceback (most recent call last):
   File "<decorator-gen-22>", line 2, in new_session
   File "/home/mazeau.e/anaconda2/envs/rmg_env3/lib/python2.7/site-packages/IPython/core/history.py", line 60, in needs_sqlite
     return f(self, *a, **kw)
-  File "/home/mazeau.e/anaconda2/envs/rmg_env3/lib/python2.7/site-packages/IPython/core/history.py", line 575, in new_session
-    NULL, "") """, (datetime.datetime.now(),))
+  File "/home/mazeau.e/anaconda2/envs/rmg_env3/lib/python2.7/site-packages/IPython/core/history.py", line 576, in new_session
+    self.session_number = cur.lastrowid
 OperationalError: database is locked
-[NbConvertApp] Writing 380974 bytes to alldone.ipynb
+[NbConvertApp] Writing 682003 bytes to alldone.ipynb

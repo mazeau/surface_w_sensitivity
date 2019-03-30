@@ -1,104 +1,26 @@
-0,C + O=[Ni] + [Ni] <=> C[Ni] + O[Ni],0.0
-1,CC=[Ni] + OC[Ni] <=> CC[Ni] + OC=[Ni],0.0
-2,CC[Ni] + [Ni] <=> C=[Ni] + C[Ni],0.0
-3,OC[Ni] + C~[Ni] <=> OC=[Ni] + C#[Ni],0.0
-4,C=[Ni] + C~[Ni] <=> 2 C#[Ni],0.0
+0,C=[Ni] + [Ni] <=> C[Ni] + [Ni],1.33836258028
+1,[OH] + [Ni] <=> O[Ni],0.0893988135217
+2,O=C=O + [Ni] <=> O=C=O.[Ni],0.0
+3,O[Ni] + [Ni] <=> O.[Ni] + [Ni],0.0
+4,[H][H] + 2 [Ni] <=> 2 [Ni],0.0
 5,O=C=[Ni] + O=[Ni] <=> O=C=O.[Ni] + [Ni],0.0
-6,OC[Ni] + C~[Ni] <=> C=[Ni] + OC#[Ni],0.0
-7,CC=[Ni] + O=C=[Ni] <=> CC#[Ni] + O=C[Ni],0.0
-8,O=C[Ni] + [Ni] <=> [Ni] + O=C=[Ni],0.0
-9,CO + 2 [Ni] <=> OC[Ni] + [Ni],0.0
-10,C + 2 [Ni] <=> C[Ni] + [Ni],0.0
-11,CC=[Ni] + C#[Ni] <=> CC#[Ni] + C=[Ni],0.0
-12,OC=[Ni] + [Ni] <=> C#[Ni] + O[Ni],0.0
-13,OC=[Ni] + C#[Ni] <=> C=[Ni] + OC#[Ni],0.0
-14,CC=[Ni] + [Ni] <=> C[Ni] + C#[Ni],0.0
-15,2 CC=[Ni] <=> CC#[Ni] + CC[Ni],0.0
-16,OC=[Ni] + [Ni] <=> OC#[Ni] + [Ni],0.0
-17,CC + 2 [Ni] <=> CC[Ni] + [Ni],0.0
-18,CO[Ni] + [Ni] <=> C[Ni] + O=[Ni],0.0
-19,OC[Ni] + C#[Ni] <=> OC=[Ni] + C=[Ni],0.0
-20,OC=[Ni] + O=C[Ni] <=> OC[Ni] + O=C=[Ni],0.0
-21,CC=[Ni] + C=[Ni] <=> CC#[Ni] + C[Ni],0.0
-22,CC=[Ni] + OC=[Ni] <=> CC[Ni] + OC#[Ni],0.0
-23,CC=[Ni] + OC#[Ni] <=> CC#[Ni] + OC=[Ni],0.0
-24,CC=[Ni] + O[Ni] <=> CC[Ni] + O=[Ni],0.0
-25,OC=[Ni] + C=[Ni] <=> OC[Ni] + C#[Ni],0.0
-26,O=C=O + [Ni] <=> O=C=O.[Ni],0.0
-27,OO[Ni] + [Ni] <=> O[Ni] + O=[Ni],0.0
-28,2 C=[Ni] <=> C[Ni] + C#[Ni],0.0
-29,CC[Ni] + C~[Ni] <=> CC#[Ni] + C=[Ni],0.0
-30,[C-]#[O+] + [Ni] <=> [C-]#[O+].[Ni],0.0
-31,CCC + 2 [Ni] <=> CC[Ni] + C[Ni],0.0
-32,[O][O] + 2 [Ni] <=> 2 O=[Ni],0.0
-33,CO + [Ni] <=> CO.[Ni],0.0
-34,C#[Ni] + O=C(O)[Ni] <=> OC=[Ni] + O=C=[Ni],0.0
-35,CC[Ni] + C=[Ni] <=> CC=[Ni] + C[Ni],0.0
-36,C~[Ni] + [H][H] <=> C=[Ni],0.0
-37,O.[Ni] + O=[Ni] <=> 2 O[Ni],0.0
-38,CC[Ni] + C~[Ni] <=> CC=[Ni] + C#[Ni],0.0
-39,[OH] + [Ni] <=> O[Ni],0.0
-40,CC[Ni] + [Ni] <=> CC=[Ni] + [Ni],0.0
-41,OC[Ni] + [Ni] <=> C=[Ni] + O[Ni],0.0
-42,[H] + [Ni] <=> [Ni],0.0
-43,C + O[Ni] + [Ni] <=> C[Ni] + O.[Ni],0.0
-44,[C-]#[O+] + [Ni] <=> O=C=[Ni],0.0
-45,C=[Ni] + O=C(O)[Ni] <=> OC[Ni] + O=C=[Ni],0.0
-46,CC=O + 2 [Ni] <=> C[Ni] + O=C[Ni],0.0
-47,[Ni] + O=[Ni] <=> O[Ni] + [Ni],0.0
-48,CC[Ni] + C#[Ni] <=> CC=[Ni] + C=[Ni],0.0
-49,O + [Ni] <=> O.[Ni],0.0
-50,C#[Ni] + [Ni] <=> C=[Ni] + [Ni],0.0
-51,O=C[Ni] + O=[Ni] <=> O[Ni] + O=C=[Ni],0.0
-52,CC=[Ni] + O=[Ni] <=> CC#[Ni] + O[Ni],0.0
-53,CC=[Ni] + O=C[Ni] <=> CC[Ni] + O=C=[Ni],0.0
-54,OC[Ni] + O=[Ni] <=> OC=[Ni] + O[Ni],0.0
-55,[H][H] + [Ni] <=> [H][H].[Ni],0.0
-56,C=[Ni] + OC[Ni] <=> OC=[Ni] + C[Ni],0.0
-57,C[Ni] + C~[Ni] <=> C=[Ni] + C#[Ni],0.0
-58,OC#[Ni] + O=C[Ni] <=> OC=[Ni] + O=C=[Ni],0.0
-59,C~[Ni] + O=[Ni] <=> O=C=[Ni] + [Ni],0.0
-60,C#[Ni] + O[Ni] <=> C=[Ni] + O=[Ni],0.0
-61,OC=[Ni] + O=[Ni] <=> OC#[Ni] + O[Ni],0.0
-62,CO + 2 [Ni] <=> C[Ni] + O[Ni],0.0
-63,O=C=O.[Ni] + [Ni] <=> O[Ni] + O=C=[Ni],0.0
-64,O=C[Ni] + C~[Ni] <=> C#[Ni] + O=C=[Ni],0.0
-65,C#[Ni] + OO[Ni] <=> OC=[Ni] + O=[Ni],0.0
-66,C[CH2] + [Ni] <=> CC[Ni],0.0
-67,C=O + 2 [Ni] <=> O=C[Ni] + [Ni],0.0
-68,CC=[Ni] + O=[Ni] <=> CO[Ni] + C#[Ni],0.0
-69,C + [Ni] <=> C.[Ni],0.0
-70,C~[Ni] + OO[Ni] <=> OC#[Ni] + O=[Ni],0.0
-71,CC#[Ni] + C#[Ni] <=> CC=[Ni] + C~[Ni],0.0
-72,O=C(O)[Ni] + [Ni] <=> O[Ni] + O=C=[Ni],0.0
-73,C=[Ni] + [Ni] <=> C[Ni] + [Ni],0.0
-74,CC + 2 [Ni] <=> 2 C[Ni],0.0
-75,CC=[Ni] + C=[Ni] <=> CC[Ni] + C#[Ni],0.0
-76,OC=[Ni] + C=[Ni] <=> C[Ni] + OC#[Ni],0.0
-77,OC=[Ni] + C~[Ni] <=> OC#[Ni] + C#[Ni],0.0
-78,OC#[Ni] + C#[Ni] <=> OC=[Ni] + C~[Ni],0.0
-79,CC + [Ni] <=> CC.[Ni],0.0
-80,[CH3] + [Ni] <=> C[Ni],0.0
-81,[H][H] + 2 [Ni] <=> 2 [Ni],0.0
-82,C=O + [Ni] <=> C=O.[Ni],0.0
-83,C~[Ni] + O[Ni] <=> C#[Ni] + O=[Ni],0.0
-84,CO[Ni] + C~[Ni] <=> CC#[Ni] + O=[Ni],0.0
-85,CC=[Ni] + OC=[Ni] <=> CC#[Ni] + OC[Ni],0.0
-86,O + 2 [Ni] <=> O[Ni] + [Ni],0.0
-87,C~[Ni] + O=C(O)[Ni] <=> OC#[Ni] + O=C=[Ni],0.0
-88,O[Ni] + [Ni] <=> O.[Ni] + [Ni],0.0
-89,[CH]=O + [Ni] <=> O=C[Ni],0.0
-90,C=[Ni] + OO[Ni] <=> OC[Ni] + O=[Ni],0.0
-91,OC#[Ni] + [Ni] <=> C~[Ni] + O[Ni],0.0
-92,CC=[Ni] + C~[Ni] <=> CC#[Ni] + C#[Ni],0.0
-93,C=[Ni] + O=C[Ni] <=> C[Ni] + O=C=[Ni],0.0
-94,C=[Ni] + CO[Ni] <=> CC[Ni] + O=[Ni],0.0
-95,C#[Ni] + [Ni] <=> C~[Ni] + [Ni],0.0
-96,2 OC=[Ni] <=> OC[Ni] + OC#[Ni],0.0
-97,O=C(O)[Ni] + O=[Ni] <=> OO[Ni] + O=C=[Ni],0.0
-98,O=C[Ni] + C#[Ni] <=> C=[Ni] + O=C=[Ni],0.0
-99,CO + 2 [Ni] <=> CO[Ni] + [Ni],0.0
-100,CC=[Ni] + [Ni] <=> CC#[Ni] + [Ni],0.0
-101,OC[Ni] + [Ni] <=> OC=[Ni] + [Ni],0.0
-102,C=[Ni] + O[Ni] <=> C[Ni] + O=[Ni],0.0
-103,CC#[Ni] + [Ni] <=> C[Ni] + C~[Ni],0.0
+6,C~[Ni] + O=[Ni] <=> O=C=[Ni] + [Ni],0.0
+7,O + 2 [Ni] <=> O[Ni] + [Ni],0.0
+8,CO + 2 [Ni] <=> C[Ni] + O[Ni],0.0
+9,C + 2 [Ni] <=> C[Ni] + [Ni],0.0
+10,O=C=O.[Ni] + [Ni] <=> O[Ni] + O=C=[Ni],0.0
+11,C~[Ni] + [H][H] <=> C=[Ni],0.0
+12,O.[Ni] + O=[Ni] <=> 2 O[Ni],0.0
+13,C + [Ni] <=> C.[Ni],0.0
+14,C#[Ni] + [Ni] <=> C~[Ni] + [Ni],0.0
+15,CC + 2 [Ni] <=> 2 C[Ni],0.0
+16,C + O[Ni] + [Ni] <=> C[Ni] + O.[Ni],0.0
+17,[C-]#[O+] + [Ni] <=> O=C=[Ni],0.0
+18,CC + [Ni] <=> CC.[Ni],0.0
+19,[Ni] + O=[Ni] <=> O[Ni] + [Ni],0.0
+20,O + [Ni] <=> O.[Ni],0.0
+21,C#[Ni] + [Ni] <=> C=[Ni] + [Ni],0.0
+22,[O][O] + 2 [Ni] <=> 2 O=[Ni],-0.060046774725
+23,C + O=[Ni] + [Ni] <=> C[Ni] + O[Ni],-0.273064148387
+24,[H] + [Ni] <=> [Ni],-0.273064148387
+25,[CH3] + [Ni] <=> C[Ni],-0.939563662721
