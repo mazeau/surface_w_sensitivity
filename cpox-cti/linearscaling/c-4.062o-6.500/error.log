@@ -7,8 +7,8 @@ Traceback (most recent call last):
   File "<decorator-gen-22>", line 2, in new_session
   File "/home/mazeau.e/anaconda2/envs/rmg_env3/lib/python2.7/site-packages/IPython/core/history.py", line 60, in needs_sqlite
     return f(self, *a, **kw)
-  File "/home/mazeau.e/anaconda2/envs/rmg_env3/lib/python2.7/site-packages/IPython/core/history.py", line 576, in new_session
-    self.session_number = cur.lastrowid
+  File "/home/mazeau.e/anaconda2/envs/rmg_env3/lib/python2.7/site-packages/IPython/core/history.py", line 575, in new_session
+    NULL, "") """, (datetime.datetime.now(),))
 OperationalError: database is locked
 [NbConvertApp] ERROR | Error while converting 'copyme.ipynb'
 Traceback (most recent call last):
@@ -34,18 +34,53 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, out)
 CellExecutionError: An error occurred while executing the following cell:
 ------------------
-with open('time.txt','w') as f:
-    f.write(str(O2_ref_time))
-print O2_ref_time
+species_dict = rmgpy.data.kinetics.KineticsLibrary().getSpecies('species_dictionary.txt')
+keys = species_dict.keys()
+
+# get the first listed smiles string for each molecule
+smile = []
+for s in species_dict:
+    smile.append(species_dict[s].molecule[0])
+    if len(species_dict[s].molecule) is not 1:
+        print 'There are %d dupllicate smiles for %s:'%(len(species_dict[s].molecule),s)
+        for a in range(len(species_dict[s].molecule)):
+            print '%s'%(species_dict[s].molecule[a])
+            
+# translate the molecules from above into just smiles strings
+smiles = []
+for s in smile:
+    smiles.append(s.toSMILES())
+    
+names = dict(zip(keys,smiles))
+
+rxns_translated = []
+
+# now replace each molecule with smiles
+for x in reactions:
+    for key, smile in names.iteritems():
+        x = re.sub(re.escape(key), smile, x)
+    rxns_translated.append(x)
+
+def export(rxns_translated,ratio,sens_vals,sens_type=1):
+    answer = dict(zip(rxns_translated, sens_vals))
+    sorted_answer = sorted(answer.items(), key=operator.itemgetter(1), reverse=False)
+    # for x in sorted_answer:
+    #     print '%s %.4f'%(x)
+    
+    # write to csv file
+    (pd.DataFrame.from_dict(data=sorted_answer, orient='columns')
+    .to_csv('dict_{}ratio_{}.csv'.format(ratio,sens_type), header=False))
 ------------------
 
 [0;31m[0m
 [0;31mNameError[0mTraceback (most recent call last)
-[0;32m<ipython-input-8-7f06fe241ffa>[0m in [0;36m<module>[0;34m()[0m
-[1;32m      1[0m [0;32mwith[0m [0mopen[0m[0;34m([0m[0;34m'time.txt'[0m[0;34m,[0m[0;34m'w'[0m[0;34m)[0m [0;32mas[0m [0mf[0m[0;34m:[0m[0;34m[0m[0m
-[0;32m----> 2[0;31m     [0mf[0m[0;34m.[0m[0mwrite[0m[0;34m([0m[0mstr[0m[0;34m([0m[0mO2_ref_time[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0m
-[0m[1;32m      3[0m [0;32mprint[0m [0mO2_ref_time[0m[0;34m[0m[0m
+[0;32m<ipython-input-13-3c87b7745f2e>[0m in [0;36m<module>[0;34m()[0m
+[1;32m     21[0m [0;34m[0m[0m
+[1;32m     22[0m [0;31m# now replace each molecule with smiles[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 23[0;31m [0;32mfor[0m [0mx[0m [0;32min[0m [0mreactions[0m[0;34m:[0m[0;34m[0m[0m
+[0m[1;32m     24[0m     [0;32mfor[0m [0mkey[0m[0;34m,[0m [0msmile[0m [0;32min[0m [0mnames[0m[0;34m.[0m[0miteritems[0m[0;34m([0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0m
+[1;32m     25[0m         [0mx[0m [0;34m=[0m [0mre[0m[0;34m.[0m[0msub[0m[0;34m([0m[0mre[0m[0;34m.[0m[0mescape[0m[0;34m([0m[0mkey[0m[0;34m)[0m[0;34m,[0m [0msmile[0m[0;34m,[0m [0mx[0m[0;34m)[0m[0;34m[0m[0m
 
-[0;31mNameError[0m: name 'O2_ref_time' is not defined
-NameError: name 'O2_ref_time' is not defined
+[0;31mNameError[0m: name 'reactions' is not defined
+NameError: name 'reactions' is not defined
 

@@ -8,6 +8,8 @@ for x in files:
     # copying the copyme file and pasting into each linearscaling folder
     shutil.copy('copyme.ipynb', x)
     shutil.copy('run.sh', x)
+    shutil.copy('copyme-fixed-temp-profile.ipynb', x)
+    shutil.copy('run_ft.sh' ,x)
     # removing prior error and output logs, as well as old results
     try:
         os.remove(x + '/output.log')

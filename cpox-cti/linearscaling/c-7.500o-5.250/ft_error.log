@@ -1,0 +1,96 @@
+[NbConvertApp] Converting notebook copyme-fixed-temp-profile.ipynb to notebook
+[NbConvertApp] Executing notebook with kernel: python2
+[IPKernelApp] ERROR | Failed to create history session in /home/mazeau.e/.ipython/profile_default/history.sqlite. History will not be saved.
+Traceback (most recent call last):
+  File "/home/mazeau.e/anaconda2/envs/rmg_env3/lib/python2.7/site-packages/IPython/core/history.py", line 549, in __init__
+    self.new_session()
+  File "<decorator-gen-22>", line 2, in new_session
+  File "/home/mazeau.e/anaconda2/envs/rmg_env3/lib/python2.7/site-packages/IPython/core/history.py", line 60, in needs_sqlite
+    return f(self, *a, **kw)
+  File "/home/mazeau.e/anaconda2/envs/rmg_env3/lib/python2.7/site-packages/IPython/core/history.py", line 575, in new_session
+    NULL, "") """, (datetime.datetime.now(),))
+OperationalError: database is locked
+[NbConvertApp] ERROR | Error while converting 'copyme-fixed-temp-profile.ipynb'
+Traceback (most recent call last):
+  File "/home/mazeau.e/anaconda2/envs/rmg_env3/lib/python2.7/site-packages/nbconvert/nbconvertapp.py", line 393, in export_single_notebook
+    output, resources = self.exporter.from_filename(notebook_filename, resources=resources)
+  File "/home/mazeau.e/anaconda2/envs/rmg_env3/lib/python2.7/site-packages/nbconvert/exporters/exporter.py", line 174, in from_filename
+    return self.from_file(f, resources=resources, **kw)
+  File "/home/mazeau.e/anaconda2/envs/rmg_env3/lib/python2.7/site-packages/nbconvert/exporters/exporter.py", line 192, in from_file
+    return self.from_notebook_node(nbformat.read(file_stream, as_version=4), resources=resources, **kw)
+  File "/home/mazeau.e/anaconda2/envs/rmg_env3/lib/python2.7/site-packages/nbconvert/exporters/notebook.py", line 31, in from_notebook_node
+    nb_copy, resources = super(NotebookExporter, self).from_notebook_node(nb, resources, **kw)
+  File "/home/mazeau.e/anaconda2/envs/rmg_env3/lib/python2.7/site-packages/nbconvert/exporters/exporter.py", line 134, in from_notebook_node
+    nb_copy, resources = self._preprocess(nb_copy, resources)
+  File "/home/mazeau.e/anaconda2/envs/rmg_env3/lib/python2.7/site-packages/nbconvert/exporters/exporter.py", line 311, in _preprocess
+    nbc, resc = preprocessor(nbc, resc)
+  File "/home/mazeau.e/anaconda2/envs/rmg_env3/lib/python2.7/site-packages/nbconvert/preprocessors/base.py", line 47, in __call__
+    return self.preprocess(nb, resources)
+  File "/home/mazeau.e/anaconda2/envs/rmg_env3/lib/python2.7/site-packages/nbconvert/preprocessors/execute.py", line 262, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/home/mazeau.e/anaconda2/envs/rmg_env3/lib/python2.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/home/mazeau.e/anaconda2/envs/rmg_env3/lib/python2.7/site-packages/nbconvert/preprocessors/execute.py", line 286, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+CellExecutionError: An error occurred while executing the following cell:
+------------------
+a = monolithFull(gas,surf,temp_array,[0.06152112676056338, 0.03076056338028169, 0.11571830985915492],verbose=True)
+plotflow(a)
+------------------
+
+[0;31m[0m
+[0;31mCanteraError[0mTraceback (most recent call last)
+[0;32m<ipython-input-5-e1ac7b0c4394>[0m in [0;36m<module>[0;34m()[0m
+[0;32m----> 1[0;31m [0ma[0m [0;34m=[0m [0mmonolithFull[0m[0;34m([0m[0mgas[0m[0;34m,[0m[0msurf[0m[0;34m,[0m[0mtemp_array[0m[0;34m,[0m[0;34m[[0m[0;36m0.06152112676056338[0m[0;34m,[0m [0;36m0.03076056338028169[0m[0;34m,[0m [0;36m0.11571830985915492[0m[0;34m][0m[0;34m,[0m[0mverbose[0m[0;34m=[0m[0mTrue[0m[0;34m)[0m[0;34m[0m[0m
+[0m[1;32m      2[0m [0mplotflow[0m[0;34m([0m[0ma[0m[0;34m)[0m[0;34m[0m[0m
+
+[0;32m<ipython-input-3-b4b1dc896601>[0m in [0;36mmonolithFull[0;34m(gas, surf, temp, mol_in, verbose, sens)[0m
+[1;32m     74[0m         [0;31m# Integrate the reactor forward in time until steady state has been reached[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     75[0m         [0msim[0m[0;34m.[0m[0mreinitialize[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0m
+[0;32m---> 76[0;31m         [0msim[0m[0;34m.[0m[0madvance_to_steady_state[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0m
+[0m[1;32m     77[0m [0;34m[0m[0m
+[1;32m     78[0m         [0mdist[0m [0;34m=[0m [0mn[0m [0;34m*[0m [0mreactor_len[0m [0;34m*[0m [0;36m1.0e3[0m   [0;31m# distance in mm[0m[0;34m[0m[0m
+
+[0;32minterfaces/cython/cantera/reactor.pyx[0m in [0;36mcantera._cantera.ReactorNet.advance_to_steady_state (interfaces/cython/cantera/_cantera.cpp:70994)[0;34m()[0m
+
+[0;32minterfaces/cython/cantera/reactor.pyx[0m in [0;36mcantera._cantera.ReactorNet.step (interfaces/cython/cantera/_cantera.cpp:68477)[0;34m()[0m
+
+[0;31mCanteraError[0m: 
+***********************************************************************
+CanteraError thrown by CVodesIntegrator::step:
+CVodes error encountered. Error code: -3
+
+At t = 7.75826e+08 and h = 2.69169e-18, the error test failed repeatedly or with |h| = hmin.
+Components with largest weighted error estimates:
+32: 20.9703
+24: -0.00106718
+26: -0.000425481
+33: -0.000144541
+27: -4.48729e-05
+23: 6.62701e-06
+37: -3.12101e-06
+29: -7.33797e-08
+31: 5.85581e-09
+25: 2.36949e-10
+***********************************************************************
+
+CanteraError: 
+***********************************************************************
+CanteraError thrown by CVodesIntegrator::step:
+CVodes error encountered. Error code: -3
+
+At t = 7.75826e+08 and h = 2.69169e-18, the error test failed repeatedly or with |h| = hmin.
+Components with largest weighted error estimates:
+32: 20.9703
+24: -0.00106718
+26: -0.000425481
+33: -0.000144541
+27: -4.48729e-05
+23: 6.62701e-06
+37: -3.12101e-06
+29: -7.33797e-08
+31: 5.85581e-09
+25: 2.36949e-10
+***********************************************************************
+
+

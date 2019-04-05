@@ -34,886 +34,112 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, out)
 CellExecutionError: An error occurred while executing the following cell:
 ------------------
-print('    distance       X_CH4        X_O2        X_H2       X_CO       X_H2O       X_CO2')
-# create a new reactor for when gas phase reactions are not included
-gas2.TDY = TDY
-r2 = ct.IdealGasReactor(gas2)
-r2.volume = rvol
+# finding exit conversions
+end_temp = []
+ch4_conv = []
+o2_conv = []
+co_sel = []
+h2_sel = []
+h2o_sel = []
+# ratios = []
+for r in data:
+#     gas_out,gas_names,dist_array,T_array = r[1]
+    for x in range(len(r[1][1])):
+        if r[1][1][x]=='CH4(2)':
+            ch4_in = r[1][0][0][x]
+            ch4_out = r[1][0][-1][x]
+            ch4_conv.append((ch4_in-ch4_out)/ch4_in)
+        if r[1][1][x]=='O2(3)':
+            o2_in = r[1][0][0][x]
+            o2_out = r[1][0][-1][x]
+            o2_conv.append((o2_in-o2_out)/o2_in)
+    end_temp.append(r[1][3][-1])
+    
+    for x in range(len(r[1][1])):
+        if r[1][1][x]=='Ar':
+            ar = r[1][0][-1][x]
+        if r[1][1][x]=='CO(7)':
+            co_out = r[1][0][-1][x]
+            co_sel.append(co_out/(1-ch4_out-o2_out-ar))
+        if r[1][1][x]=='H2O(5)':
+            h2o_out = r[1][0][-1][x]
+            h2o_sel.append(h2o_out/(1-ch4_out-o2_out-ar))
+        if r[1][1][x]=='H2(6)':
+            h2_out = r[1][0][-1][x]
+            h2_sel.append(h2_out/(1-ch4_out-o2_out-ar))
+        
+#     ratios.append(r[0])
 
-# create a reservoir to represent the reactor immediately upstream. Note
-# that the gas object is set already to the state of the upstream reactor
-upstream2 = ct.Reservoir(gas2, name='upstream')
 
-# create a reservoir for the reactor to exhaust into. The composition of
-# this reservoir is irrelevant.
-downstream2 = ct.Reservoir(gas2, name='downstream')
+fig, axs = plt.subplots(1,2)
+# plot exit conversion and temp
+axs[0].plot(ratios, ch4_conv,'bo-', label='CH4', color='green')
+axs[0].plot(ratios, o2_conv, 'bo-',label='O2', color='blue')
+ax2 = axs[0].twinx()
+ax2.plot(ratios, end_temp, 'bo-',label='temp', color = 'red')
 
-# Add the reacting surface to the reactor. The area is set to the desired
-# catalyst area in the reactor.
-rsurf2 = ct.ReactorSurface(surf2, r2, A=cat_area)
+# plot exit selectivities
+axs[1].plot(ratios, h2o_sel, 'bo-',label='H2O', color ='pink')
+axs[1].plot(ratios, co_sel, 'bo-',label='CO', color ='purple')
+axs[1].plot(ratios, h2_sel, 'bo-',label='H2', color ='orange')
 
-# The mass flow rate into the reactor will be fixed by using a
-# MassFlowController object.
-m2 = ct.MassFlowController(upstream2, r2, mdot=mass_flow_rate)
-
-# We need an outlet to the downstream reservoir. This will determine the
-# pressure in the reactor. The value of K will only affect the transient
-# pressure difference.
-v2 = ct.PressureController(r2, downstream2, master=m2, K=1e-5)
-
-sim2 = ct.ReactorNet([r2])
-sim2.max_err_test_fails = 12
-
-# set relative and absolute tolerances on the simulation
-sim2.rtol = 1.0e-10
-sim2.atol = 1.0e-20
-
-gas2_names = gas2.species_names
-surf2_names = surf2.species_names
-gas2_out = []
-surf2_out = []
-dist2_array=[]
-T2_array = []
-surf2.set_multiplier(0.0) #no surface reactions until in the middle of the reactor.
-for n in range(NReactors):
-    # Set the state of the reservoir to match that of the previous reactor
-    gas2.TDY = r2.thermo.TDY
-    upstream2.syncState()
-    if n==cat_on:
-        surf2.set_multiplier(1.0)
-        print(surf2.T)
-    if n==cat_off:
-        surf2.set_multiplier(0.0)
-        print(surf2.T)
-    sim2.reinitialize()
-    sim2.advance_to_steady_state()
-    dist2 = n * reactor_len * 1.0e3   # distance in mm
-    dist2_array.append(dist2)
-    T2_array.append(surf2.T)
-    gas2_out.append(gas2.X.copy())
-    surf2_out.append(surf2.X.copy())
-
-    if not n % 100:
-        print('  {0:10f}  {1:10f}  {2:10f}  {3:10f} {4:10f} {5:10f} {6:10f}'.format(dist2, *gas2['CH4(2)','O2(3)','H2(6)','CO(7)','H2O(5)','CO2(4)'].X))
-        #print(surf2.T)
-
-gas2_out = np.array(gas2_out)
-surf2_out = np.array(surf2_out)
-gas2_names = np.array(gas2_names)
-surf2_names = np.array(surf2_names)
+axs[0].legend()
+axs[1].legend()
+axs[0].set_ylabel('Exit conversion (%)', fontsize=13);
+ax2.set_ylabel('Exit temperature (K)', fontsize=13)
+axs[0].set_xlabel('C/O Ratio', fontsize=13);
+axs[1].set_ylabel('Exit selectivity (%)', fontsize=13)
+axs[1].set_xlabel('C/O Ratio', fontsize=13)
+plt.tight_layout()
+fig.set_figheight(6)
+fig.set_figwidth(16)
+fig.savefig('conversion&selectivity.png', bbox_inches='tight')
 ------------------
 
 [0;31m[0m
-[0;31mCanteraError[0mTraceback (most recent call last)
-[0;32m<ipython-input-4-9dedb9360b01>[0m in [0;36m<module>[0;34m()[0m
-[1;32m     51[0m         [0;32mprint[0m[0;34m([0m[0msurf2[0m[0;34m.[0m[0mT[0m[0;34m)[0m[0;34m[0m[0m
-[1;32m     52[0m     [0msim2[0m[0;34m.[0m[0mreinitialize[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0m
-[0;32m---> 53[0;31m     [0msim2[0m[0;34m.[0m[0madvance_to_steady_state[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0m
-[0m[1;32m     54[0m     [0mdist2[0m [0;34m=[0m [0mn[0m [0;34m*[0m [0mreactor_len[0m [0;34m*[0m [0;36m1.0e3[0m   [0;31m# distance in mm[0m[0;34m[0m[0m
-[1;32m     55[0m     [0mdist2_array[0m[0;34m.[0m[0mappend[0m[0;34m([0m[0mdist2[0m[0;34m)[0m[0;34m[0m[0m
+[0;31mValueError[0mTraceback (most recent call last)
+[0;32m<ipython-input-8-b006d0b9d5aa>[0m in [0;36m<module>[0;34m()[0m
+[1;32m     38[0m [0mfig[0m[0;34m,[0m [0maxs[0m [0;34m=[0m [0mplt[0m[0;34m.[0m[0msubplots[0m[0;34m([0m[0;36m1[0m[0;34m,[0m[0;36m2[0m[0;34m)[0m[0;34m[0m[0m
+[1;32m     39[0m [0;31m# plot exit conversion and temp[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 40[0;31m [0maxs[0m[0;34m[[0m[0;36m0[0m[0;34m][0m[0;34m.[0m[0mplot[0m[0;34m([0m[0mratios[0m[0;34m,[0m [0mch4_conv[0m[0;34m,[0m[0;34m'bo-'[0m[0;34m,[0m [0mlabel[0m[0;34m=[0m[0;34m'CH4'[0m[0;34m,[0m [0mcolor[0m[0;34m=[0m[0;34m'green'[0m[0;34m)[0m[0;34m[0m[0m
+[0m[1;32m     41[0m [0maxs[0m[0;34m[[0m[0;36m0[0m[0;34m][0m[0;34m.[0m[0mplot[0m[0;34m([0m[0mratios[0m[0;34m,[0m [0mo2_conv[0m[0;34m,[0m [0;34m'bo-'[0m[0;34m,[0m[0mlabel[0m[0;34m=[0m[0;34m'O2'[0m[0;34m,[0m [0mcolor[0m[0;34m=[0m[0;34m'blue'[0m[0;34m)[0m[0;34m[0m[0m
+[1;32m     42[0m [0max2[0m [0;34m=[0m [0maxs[0m[0;34m[[0m[0;36m0[0m[0;34m][0m[0;34m.[0m[0mtwinx[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0m
 
-[0;32minterfaces/cython/cantera/reactor.pyx[0m in [0;36mcantera._cantera.ReactorNet.advance_to_steady_state (interfaces/cython/cantera/_cantera.cpp:70994)[0;34m()[0m
+[0;32m/home/mazeau.e/anaconda2/envs/rmg_env3/lib/python2.7/site-packages/matplotlib/__init__.pyc[0m in [0;36minner[0;34m(ax, *args, **kwargs)[0m
+[1;32m   1865[0m                         [0;34m"the Matplotlib list!)"[0m [0;34m%[0m [0;34m([0m[0mlabel_namer[0m[0;34m,[0m [0mfunc[0m[0;34m.[0m[0m__name__[0m[0;34m)[0m[0;34m,[0m[0;34m[0m[0m
+[1;32m   1866[0m                         RuntimeWarning, stacklevel=2)
+[0;32m-> 1867[0;31m             [0;32mreturn[0m [0mfunc[0m[0;34m([0m[0max[0m[0;34m,[0m [0;34m*[0m[0margs[0m[0;34m,[0m [0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m[0m[0m
+[0m[1;32m   1868[0m [0;34m[0m[0m
+[1;32m   1869[0m         inner.__doc__ = _add_data_doc(inner.__doc__,
 
-[0;32minterfaces/cython/cantera/reactor.pyx[0m in [0;36mcantera._cantera.ReactorNet.step (interfaces/cython/cantera/_cantera.cpp:68477)[0;34m()[0m
+[0;32m/home/mazeau.e/anaconda2/envs/rmg_env3/lib/python2.7/site-packages/matplotlib/axes/_axes.pyc[0m in [0;36mplot[0;34m(self, *args, **kwargs)[0m
+[1;32m   1526[0m         [0mkwargs[0m [0;34m=[0m [0mcbook[0m[0;34m.[0m[0mnormalize_kwargs[0m[0;34m([0m[0mkwargs[0m[0;34m,[0m [0m_alias_map[0m[0;34m)[0m[0;34m[0m[0m
+[1;32m   1527[0m [0;34m[0m[0m
+[0;32m-> 1528[0;31m         [0;32mfor[0m [0mline[0m [0;32min[0m [0mself[0m[0;34m.[0m[0m_get_lines[0m[0;34m([0m[0;34m*[0m[0margs[0m[0;34m,[0m [0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0m
+[0m[1;32m   1529[0m             [0mself[0m[0;34m.[0m[0madd_line[0m[0;34m([0m[0mline[0m[0;34m)[0m[0;34m[0m[0m
+[1;32m   1530[0m             [0mlines[0m[0;34m.[0m[0mappend[0m[0;34m([0m[0mline[0m[0;34m)[0m[0;34m[0m[0m
 
-[0;31mCanteraError[0m: 
-***********************************************************************
-CanteraError thrown by CVodesIntegrator::step:
-CVodes error encountered. Error code: -10
-Exceptions caught during RHS evaluation:
-ydot contains non-finite elements:
+[0;32m/home/mazeau.e/anaconda2/envs/rmg_env3/lib/python2.7/site-packages/matplotlib/axes/_base.pyc[0m in [0;36m_grab_next_args[0;34m(self, *args, **kwargs)[0m
+[1;32m    404[0m                 [0mthis[0m [0;34m+=[0m [0margs[0m[0;34m[[0m[0;36m0[0m[0;34m][0m[0;34m,[0m[0;34m[0m[0m
+[1;32m    405[0m                 [0margs[0m [0;34m=[0m [0margs[0m[0;34m[[0m[0;36m1[0m[0;34m:[0m[0;34m][0m[0;34m[0m[0m
+[0;32m--> 406[0;31m             [0;32mfor[0m [0mseg[0m [0;32min[0m [0mself[0m[0;34m.[0m[0m_plot_args[0m[0;34m([0m[0mthis[0m[0;34m,[0m [0mkwargs[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0m
+[0m[1;32m    407[0m                 [0;32myield[0m [0mseg[0m[0;34m[0m[0m
+[1;32m    408[0m [0;34m[0m[0m
 
-ydot[0] = nan
-ydot[2] = nan
-ydot[3] = nan
-ydot[4] = nan
-ydot[5] = nan
-ydot[6] = nan
-ydot[7] = nan
-ydot[8] = nan
-ydot[9] = nan
-ydot[10] = nan
-ydot[11] = nan
-ydot[12] = nan
-ydot[13] = nan
-ydot[14] = nan
-ydot[15] = nan
-ydot[16] = nan
-ydot[17] = nan
-ydot[18] = nan
-ydot[19] = nan
-ydot[20] = nan
-ydot[21] = nan
-ydot[22] = nan
-ydot[23] = nan
-ydot[24] = nan
-ydot[25] = -inf
-ydot[26] = nan
-ydot[27] = -inf
-ydot[28] = inf
-ydot[29] = nan
-ydot[30] = nan
-ydot[31] = inf
-ydot[32] = -inf
-ydot[33] = -inf
-ydot[34] = -inf
-ydot[35] = nan
+[0;32m/home/mazeau.e/anaconda2/envs/rmg_env3/lib/python2.7/site-packages/matplotlib/axes/_base.pyc[0m in [0;36m_plot_args[0;34m(self, tup, kwargs)[0m
+[1;32m    381[0m             [0mx[0m[0;34m,[0m [0my[0m [0;34m=[0m [0mindex_of[0m[0;34m([0m[0mtup[0m[0;34m[[0m[0;34m-[0m[0;36m1[0m[0;34m][0m[0;34m)[0m[0;34m[0m[0m
+[1;32m    382[0m [0;34m[0m[0m
+[0;32m--> 383[0;31m         [0mx[0m[0;34m,[0m [0my[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0m_xy_from_xy[0m[0;34m([0m[0mx[0m[0;34m,[0m [0my[0m[0;34m)[0m[0;34m[0m[0m
+[0m[1;32m    384[0m [0;34m[0m[0m
+[1;32m    385[0m         [0;32mif[0m [0mself[0m[0;34m.[0m[0mcommand[0m [0;34m==[0m [0;34m'plot'[0m[0;34m:[0m[0;34m[0m[0m
 
-ydot contains non-finite elements:
+[0;32m/home/mazeau.e/anaconda2/envs/rmg_env3/lib/python2.7/site-packages/matplotlib/axes/_base.pyc[0m in [0;36m_xy_from_xy[0;34m(self, x, y)[0m
+[1;32m    240[0m         [0;32mif[0m [0mx[0m[0;34m.[0m[0mshape[0m[0;34m[[0m[0;36m0[0m[0;34m][0m [0;34m!=[0m [0my[0m[0;34m.[0m[0mshape[0m[0;34m[[0m[0;36m0[0m[0;34m][0m[0;34m:[0m[0;34m[0m[0m
+[1;32m    241[0m             raise ValueError("x and y must have same first dimension, but "
+[0;32m--> 242[0;31m                              "have shapes {} and {}".format(x.shape, y.shape))
+[0m[1;32m    243[0m         [0;32mif[0m [0mx[0m[0;34m.[0m[0mndim[0m [0;34m>[0m [0;36m2[0m [0;32mor[0m [0my[0m[0;34m.[0m[0mndim[0m [0;34m>[0m [0;36m2[0m[0;34m:[0m[0;34m[0m[0m
+[1;32m    244[0m             raise ValueError("x and y can be no greater than 2-D, but have "
 
-ydot[0] = inf
-ydot[2] = nan
-ydot[3] = -inf
-ydot[4] = nan
-ydot[5] = nan
-ydot[6] = inf
-ydot[7] = -inf
-ydot[8] = nan
-ydot[9] = nan
-ydot[10] = nan
-ydot[11] = nan
-ydot[12] = nan
-ydot[13] = nan
-ydot[14] = nan
-ydot[15] = -inf
-ydot[16] = nan
-ydot[17] = nan
-ydot[18] = nan
-ydot[19] = nan
-ydot[20] = nan
-ydot[21] = nan
-ydot[22] = nan
-ydot[23] = nan
-ydot[24] = nan
-ydot[25] = -inf
-ydot[26] = nan
-ydot[27] = -inf
-ydot[28] = inf
-ydot[29] = -inf
-ydot[30] = inf
-ydot[31] = nan
-ydot[32] = nan
-ydot[33] = -inf
-ydot[34] = -inf
-ydot[35] = nan
-
-ydot contains non-finite elements:
-
-ydot[0] = inf
-ydot[2] = nan
-ydot[3] = -inf
-ydot[4] = nan
-ydot[5] = nan
-ydot[6] = nan
-ydot[7] = -inf
-ydot[8] = nan
-ydot[9] = nan
-ydot[10] = nan
-ydot[11] = nan
-ydot[12] = nan
-ydot[13] = nan
-ydot[14] = nan
-ydot[15] = -inf
-ydot[16] = nan
-ydot[17] = nan
-ydot[18] = nan
-ydot[19] = nan
-ydot[20] = nan
-ydot[21] = nan
-ydot[22] = nan
-ydot[23] = nan
-ydot[24] = nan
-ydot[25] = -inf
-ydot[26] = nan
-ydot[27] = -inf
-ydot[28] = inf
-ydot[29] = -inf
-ydot[30] = inf
-ydot[31] = nan
-ydot[32] = nan
-ydot[33] = -inf
-ydot[34] = -inf
-ydot[35] = nan
-
-ydot contains non-finite elements:
-
-ydot[0] = inf
-ydot[2] = nan
-ydot[3] = -inf
-ydot[4] = nan
-ydot[5] = nan
-ydot[6] = nan
-ydot[7] = -inf
-ydot[8] = nan
-ydot[9] = nan
-ydot[10] = nan
-ydot[11] = nan
-ydot[12] = nan
-ydot[13] = nan
-ydot[14] = nan
-ydot[15] = -inf
-ydot[16] = nan
-ydot[17] = nan
-ydot[18] = nan
-ydot[19] = nan
-ydot[20] = nan
-ydot[21] = nan
-ydot[22] = nan
-ydot[23] = nan
-ydot[24] = nan
-ydot[25] = -inf
-ydot[26] = nan
-ydot[27] = -inf
-ydot[28] = inf
-ydot[29] = -inf
-ydot[30] = inf
-ydot[31] = nan
-ydot[32] = nan
-ydot[33] = -inf
-ydot[34] = -inf
-ydot[35] = nan
-
-ydot contains non-finite elements:
-
-ydot[0] = inf
-ydot[2] = nan
-ydot[3] = -inf
-ydot[4] = nan
-ydot[5] = nan
-ydot[6] = nan
-ydot[7] = -inf
-ydot[8] = nan
-ydot[9] = nan
-ydot[10] = nan
-ydot[11] = nan
-ydot[12] = nan
-ydot[13] = nan
-ydot[14] = nan
-ydot[15] = -inf
-ydot[16] = nan
-ydot[17] = nan
-ydot[18] = nan
-ydot[19] = nan
-ydot[20] = nan
-ydot[21] = nan
-ydot[22] = nan
-ydot[23] = nan
-ydot[24] = nan
-ydot[25] = -inf
-ydot[26] = nan
-ydot[27] = -inf
-ydot[28] = inf
-ydot[29] = -inf
-ydot[30] = inf
-ydot[31] = nan
-ydot[32] = nan
-ydot[33] = -inf
-ydot[34] = -inf
-ydot[35] = nan
-
-ydot contains non-finite elements:
-
-ydot[0] = inf
-ydot[2] = nan
-ydot[3] = -inf
-ydot[4] = nan
-ydot[5] = nan
-ydot[6] = nan
-ydot[7] = -inf
-ydot[8] = nan
-ydot[9] = nan
-ydot[10] = nan
-ydot[11] = nan
-ydot[12] = nan
-ydot[13] = nan
-ydot[14] = nan
-ydot[15] = -inf
-ydot[16] = nan
-ydot[17] = nan
-ydot[18] = nan
-ydot[19] = nan
-ydot[20] = nan
-ydot[21] = nan
-ydot[22] = nan
-ydot[23] = nan
-ydot[24] = nan
-ydot[25] = -inf
-ydot[26] = nan
-ydot[27] = -inf
-ydot[28] = inf
-ydot[29] = -inf
-ydot[30] = inf
-ydot[31] = nan
-ydot[32] = nan
-ydot[33] = -inf
-ydot[34] = -inf
-ydot[35] = nan
-
-ydot contains non-finite elements:
-
-ydot[0] = inf
-ydot[2] = nan
-ydot[3] = -inf
-ydot[4] = nan
-ydot[5] = nan
-ydot[6] = nan
-ydot[7] = -inf
-ydot[8] = nan
-ydot[9] = nan
-ydot[10] = nan
-ydot[11] = nan
-ydot[12] = nan
-ydot[13] = nan
-ydot[14] = nan
-ydot[15] = -inf
-ydot[16] = nan
-ydot[17] = nan
-ydot[18] = nan
-ydot[19] = nan
-ydot[20] = nan
-ydot[21] = nan
-ydot[22] = nan
-ydot[23] = nan
-ydot[24] = nan
-ydot[25] = -inf
-ydot[26] = nan
-ydot[27] = -inf
-ydot[28] = inf
-ydot[29] = -inf
-ydot[30] = inf
-ydot[31] = nan
-ydot[32] = nan
-ydot[33] = -inf
-ydot[34] = -inf
-ydot[35] = nan
-
-ydot contains non-finite elements:
-
-ydot[0] = inf
-ydot[2] = nan
-ydot[3] = -inf
-ydot[4] = nan
-ydot[5] = nan
-ydot[6] = nan
-ydot[7] = -inf
-ydot[8] = nan
-ydot[9] = nan
-ydot[10] = nan
-ydot[11] = nan
-ydot[12] = nan
-ydot[13] = nan
-ydot[14] = nan
-ydot[15] = -inf
-ydot[16] = nan
-ydot[17] = nan
-ydot[18] = nan
-ydot[19] = nan
-ydot[20] = nan
-ydot[21] = nan
-ydot[22] = nan
-ydot[23] = nan
-ydot[24] = nan
-ydot[25] = -inf
-ydot[26] = nan
-ydot[27] = -inf
-ydot[28] = inf
-ydot[29] = -inf
-ydot[30] = inf
-ydot[31] = nan
-ydot[32] = nan
-ydot[33] = -inf
-ydot[34] = -inf
-ydot[35] = nan
-
-ydot contains non-finite elements:
-
-ydot[0] = inf
-ydot[2] = nan
-ydot[3] = -inf
-ydot[4] = nan
-ydot[5] = nan
-ydot[6] = nan
-ydot[7] = -inf
-ydot[8] = nan
-ydot[9] = nan
-ydot[10] = nan
-ydot[11] = nan
-ydot[12] = nan
-ydot[13] = nan
-ydot[14] = nan
-ydot[15] = -inf
-ydot[16] = nan
-ydot[17] = nan
-ydot[18] = nan
-ydot[19] = nan
-ydot[20] = nan
-ydot[21] = nan
-ydot[22] = nan
-ydot[23] = nan
-ydot[24] = nan
-ydot[25] = -inf
-ydot[26] = nan
-ydot[27] = -inf
-ydot[28] = inf
-ydot[29] = -inf
-ydot[30] = inf
-ydot[31] = nan
-ydot[32] = nan
-ydot[33] = -inf
-ydot[34] = -inf
-ydot[35] = nan
-
-ydot contains non-finite elements:
-
-ydot[0] = inf
-ydot[2] = nan
-ydot[3] = -inf
-ydot[4] = nan
-ydot[5] = nan
-ydot[6] = nan
-ydot[7] = -inf
-ydot[8] = nan
-ydot[9] = nan
-ydot[10] = nan
-ydot[11] = nan
-ydot[12] = nan
-ydot[13] = nan
-ydot[14] = nan
-ydot[15] = -inf
-ydot[16] = nan
-ydot[17] = nan
-ydot[18] = nan
-ydot[19] = nan
-ydot[20] = nan
-ydot[21] = nan
-ydot[22] = nan
-ydot[23] = nan
-ydot[24] = nan
-ydot[25] = -inf
-ydot[26] = nan
-ydot[27] = -inf
-ydot[28] = inf
-ydot[29] = -inf
-ydot[30] = inf
-ydot[31] = nan
-ydot[32] = nan
-ydot[33] = -inf
-ydot[34] = -inf
-ydot[35] = nan
-
-
-At t = 8.2935e+14 repeated recoverable right-hand side function errors.
-Components with largest weighted error estimates:
-0: nan
-1: 0
-2: nan
-3: nan
-4: nan
-5: nan
-6: nan
-7: nan
-8: nan
-9: nan
-***********************************************************************
-
-CanteraError: 
-***********************************************************************
-CanteraError thrown by CVodesIntegrator::step:
-CVodes error encountered. Error code: -10
-Exceptions caught during RHS evaluation:
-ydot contains non-finite elements:
-
-ydot[0] = nan
-ydot[2] = nan
-ydot[3] = nan
-ydot[4] = nan
-ydot[5] = nan
-ydot[6] = nan
-ydot[7] = nan
-ydot[8] = nan
-ydot[9] = nan
-ydot[10] = nan
-ydot[11] = nan
-ydot[12] = nan
-ydot[13] = nan
-ydot[14] = nan
-ydot[15] = nan
-ydot[16] = nan
-ydot[17] = nan
-ydot[18] = nan
-ydot[19] = nan
-ydot[20] = nan
-ydot[21] = nan
-ydot[22] = nan
-ydot[23] = nan
-ydot[24] = nan
-ydot[25] = -inf
-ydot[26] = nan
-ydot[27] = -inf
-ydot[28] = inf
-ydot[29] = nan
-ydot[30] = nan
-ydot[31] = inf
-ydot[32] = -inf
-ydot[33] = -inf
-ydot[34] = -inf
-ydot[35] = nan
-
-ydot contains non-finite elements:
-
-ydot[0] = inf
-ydot[2] = nan
-ydot[3] = -inf
-ydot[4] = nan
-ydot[5] = nan
-ydot[6] = inf
-ydot[7] = -inf
-ydot[8] = nan
-ydot[9] = nan
-ydot[10] = nan
-ydot[11] = nan
-ydot[12] = nan
-ydot[13] = nan
-ydot[14] = nan
-ydot[15] = -inf
-ydot[16] = nan
-ydot[17] = nan
-ydot[18] = nan
-ydot[19] = nan
-ydot[20] = nan
-ydot[21] = nan
-ydot[22] = nan
-ydot[23] = nan
-ydot[24] = nan
-ydot[25] = -inf
-ydot[26] = nan
-ydot[27] = -inf
-ydot[28] = inf
-ydot[29] = -inf
-ydot[30] = inf
-ydot[31] = nan
-ydot[32] = nan
-ydot[33] = -inf
-ydot[34] = -inf
-ydot[35] = nan
-
-ydot contains non-finite elements:
-
-ydot[0] = inf
-ydot[2] = nan
-ydot[3] = -inf
-ydot[4] = nan
-ydot[5] = nan
-ydot[6] = nan
-ydot[7] = -inf
-ydot[8] = nan
-ydot[9] = nan
-ydot[10] = nan
-ydot[11] = nan
-ydot[12] = nan
-ydot[13] = nan
-ydot[14] = nan
-ydot[15] = -inf
-ydot[16] = nan
-ydot[17] = nan
-ydot[18] = nan
-ydot[19] = nan
-ydot[20] = nan
-ydot[21] = nan
-ydot[22] = nan
-ydot[23] = nan
-ydot[24] = nan
-ydot[25] = -inf
-ydot[26] = nan
-ydot[27] = -inf
-ydot[28] = inf
-ydot[29] = -inf
-ydot[30] = inf
-ydot[31] = nan
-ydot[32] = nan
-ydot[33] = -inf
-ydot[34] = -inf
-ydot[35] = nan
-
-ydot contains non-finite elements:
-
-ydot[0] = inf
-ydot[2] = nan
-ydot[3] = -inf
-ydot[4] = nan
-ydot[5] = nan
-ydot[6] = nan
-ydot[7] = -inf
-ydot[8] = nan
-ydot[9] = nan
-ydot[10] = nan
-ydot[11] = nan
-ydot[12] = nan
-ydot[13] = nan
-ydot[14] = nan
-ydot[15] = -inf
-ydot[16] = nan
-ydot[17] = nan
-ydot[18] = nan
-ydot[19] = nan
-ydot[20] = nan
-ydot[21] = nan
-ydot[22] = nan
-ydot[23] = nan
-ydot[24] = nan
-ydot[25] = -inf
-ydot[26] = nan
-ydot[27] = -inf
-ydot[28] = inf
-ydot[29] = -inf
-ydot[30] = inf
-ydot[31] = nan
-ydot[32] = nan
-ydot[33] = -inf
-ydot[34] = -inf
-ydot[35] = nan
-
-ydot contains non-finite elements:
-
-ydot[0] = inf
-ydot[2] = nan
-ydot[3] = -inf
-ydot[4] = nan
-ydot[5] = nan
-ydot[6] = nan
-ydot[7] = -inf
-ydot[8] = nan
-ydot[9] = nan
-ydot[10] = nan
-ydot[11] = nan
-ydot[12] = nan
-ydot[13] = nan
-ydot[14] = nan
-ydot[15] = -inf
-ydot[16] = nan
-ydot[17] = nan
-ydot[18] = nan
-ydot[19] = nan
-ydot[20] = nan
-ydot[21] = nan
-ydot[22] = nan
-ydot[23] = nan
-ydot[24] = nan
-ydot[25] = -inf
-ydot[26] = nan
-ydot[27] = -inf
-ydot[28] = inf
-ydot[29] = -inf
-ydot[30] = inf
-ydot[31] = nan
-ydot[32] = nan
-ydot[33] = -inf
-ydot[34] = -inf
-ydot[35] = nan
-
-ydot contains non-finite elements:
-
-ydot[0] = inf
-ydot[2] = nan
-ydot[3] = -inf
-ydot[4] = nan
-ydot[5] = nan
-ydot[6] = nan
-ydot[7] = -inf
-ydot[8] = nan
-ydot[9] = nan
-ydot[10] = nan
-ydot[11] = nan
-ydot[12] = nan
-ydot[13] = nan
-ydot[14] = nan
-ydot[15] = -inf
-ydot[16] = nan
-ydot[17] = nan
-ydot[18] = nan
-ydot[19] = nan
-ydot[20] = nan
-ydot[21] = nan
-ydot[22] = nan
-ydot[23] = nan
-ydot[24] = nan
-ydot[25] = -inf
-ydot[26] = nan
-ydot[27] = -inf
-ydot[28] = inf
-ydot[29] = -inf
-ydot[30] = inf
-ydot[31] = nan
-ydot[32] = nan
-ydot[33] = -inf
-ydot[34] = -inf
-ydot[35] = nan
-
-ydot contains non-finite elements:
-
-ydot[0] = inf
-ydot[2] = nan
-ydot[3] = -inf
-ydot[4] = nan
-ydot[5] = nan
-ydot[6] = nan
-ydot[7] = -inf
-ydot[8] = nan
-ydot[9] = nan
-ydot[10] = nan
-ydot[11] = nan
-ydot[12] = nan
-ydot[13] = nan
-ydot[14] = nan
-ydot[15] = -inf
-ydot[16] = nan
-ydot[17] = nan
-ydot[18] = nan
-ydot[19] = nan
-ydot[20] = nan
-ydot[21] = nan
-ydot[22] = nan
-ydot[23] = nan
-ydot[24] = nan
-ydot[25] = -inf
-ydot[26] = nan
-ydot[27] = -inf
-ydot[28] = inf
-ydot[29] = -inf
-ydot[30] = inf
-ydot[31] = nan
-ydot[32] = nan
-ydot[33] = -inf
-ydot[34] = -inf
-ydot[35] = nan
-
-ydot contains non-finite elements:
-
-ydot[0] = inf
-ydot[2] = nan
-ydot[3] = -inf
-ydot[4] = nan
-ydot[5] = nan
-ydot[6] = nan
-ydot[7] = -inf
-ydot[8] = nan
-ydot[9] = nan
-ydot[10] = nan
-ydot[11] = nan
-ydot[12] = nan
-ydot[13] = nan
-ydot[14] = nan
-ydot[15] = -inf
-ydot[16] = nan
-ydot[17] = nan
-ydot[18] = nan
-ydot[19] = nan
-ydot[20] = nan
-ydot[21] = nan
-ydot[22] = nan
-ydot[23] = nan
-ydot[24] = nan
-ydot[25] = -inf
-ydot[26] = nan
-ydot[27] = -inf
-ydot[28] = inf
-ydot[29] = -inf
-ydot[30] = inf
-ydot[31] = nan
-ydot[32] = nan
-ydot[33] = -inf
-ydot[34] = -inf
-ydot[35] = nan
-
-ydot contains non-finite elements:
-
-ydot[0] = inf
-ydot[2] = nan
-ydot[3] = -inf
-ydot[4] = nan
-ydot[5] = nan
-ydot[6] = nan
-ydot[7] = -inf
-ydot[8] = nan
-ydot[9] = nan
-ydot[10] = nan
-ydot[11] = nan
-ydot[12] = nan
-ydot[13] = nan
-ydot[14] = nan
-ydot[15] = -inf
-ydot[16] = nan
-ydot[17] = nan
-ydot[18] = nan
-ydot[19] = nan
-ydot[20] = nan
-ydot[21] = nan
-ydot[22] = nan
-ydot[23] = nan
-ydot[24] = nan
-ydot[25] = -inf
-ydot[26] = nan
-ydot[27] = -inf
-ydot[28] = inf
-ydot[29] = -inf
-ydot[30] = inf
-ydot[31] = nan
-ydot[32] = nan
-ydot[33] = -inf
-ydot[34] = -inf
-ydot[35] = nan
-
-ydot contains non-finite elements:
-
-ydot[0] = inf
-ydot[2] = nan
-ydot[3] = -inf
-ydot[4] = nan
-ydot[5] = nan
-ydot[6] = nan
-ydot[7] = -inf
-ydot[8] = nan
-ydot[9] = nan
-ydot[10] = nan
-ydot[11] = nan
-ydot[12] = nan
-ydot[13] = nan
-ydot[14] = nan
-ydot[15] = -inf
-ydot[16] = nan
-ydot[17] = nan
-ydot[18] = nan
-ydot[19] = nan
-ydot[20] = nan
-ydot[21] = nan
-ydot[22] = nan
-ydot[23] = nan
-ydot[24] = nan
-ydot[25] = -inf
-ydot[26] = nan
-ydot[27] = -inf
-ydot[28] = inf
-ydot[29] = -inf
-ydot[30] = inf
-ydot[31] = nan
-ydot[32] = nan
-ydot[33] = -inf
-ydot[34] = -inf
-ydot[35] = nan
-
-
-At t = 8.2935e+14 repeated recoverable right-hand side function errors.
-Components with largest weighted error estimates:
-0: nan
-1: 0
-2: nan
-3: nan
-4: nan
-5: nan
-6: nan
-7: nan
-8: nan
-9: nan
-***********************************************************************
-
+[0;31mValueError[0m: x and y must have same first dimension, but have shapes (15,) and (9,)
+ValueError: x and y must have same first dimension, but have shapes (15,) and (9,)
 
