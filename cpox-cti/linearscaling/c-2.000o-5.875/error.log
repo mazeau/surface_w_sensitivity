@@ -34,24 +34,15 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, out)
 CellExecutionError: An error occurred while executing the following cell:
 ------------------
-temps = np.linspace(700,730,4)
-out = []
-for t in temps:
-    a = monolithFull(gas,surf,t,[.061521,.0307,.115718])
-    gas_out, surf_out, gas_names, surf_names, dist_array, T_array = a
-    
-    out.append([gas_out,surf_out,gas_names,surf_names,T_array])
-    plotflow(a)
+a = monolithFull(gas,surf,t_in,[.061521,.0307,.115718])
+plotflow(a)
 ------------------
 
 [0;31m[0m
 [0;31mCanteraError[0mTraceback (most recent call last)
-[0;32m<ipython-input-4-e9cec062e94c>[0m in [0;36m<module>[0;34m()[0m
-[1;32m      2[0m [0mout[0m [0;34m=[0m [0;34m[[0m[0;34m][0m[0;34m[0m[0m
-[1;32m      3[0m [0;32mfor[0m [0mt[0m [0;32min[0m [0mtemps[0m[0;34m:[0m[0;34m[0m[0m
-[0;32m----> 4[0;31m     [0ma[0m [0;34m=[0m [0mmonolithFull[0m[0;34m([0m[0mgas[0m[0;34m,[0m[0msurf[0m[0;34m,[0m[0mt[0m[0;34m,[0m[0;34m[[0m[0;36m.061521[0m[0;34m,[0m[0;36m.0307[0m[0;34m,[0m[0;36m.115718[0m[0;34m][0m[0;34m)[0m[0;34m[0m[0m
-[0m[1;32m      5[0m     [0mgas_out[0m[0;34m,[0m [0msurf_out[0m[0;34m,[0m [0mgas_names[0m[0;34m,[0m [0msurf_names[0m[0;34m,[0m [0mdist_array[0m[0;34m,[0m [0mT_array[0m [0;34m=[0m [0ma[0m[0;34m[0m[0m
-[1;32m      6[0m [0;34m[0m[0m
+[0;32m<ipython-input-4-66d622deee57>[0m in [0;36m<module>[0;34m()[0m
+[0;32m----> 1[0;31m [0ma[0m [0;34m=[0m [0mmonolithFull[0m[0;34m([0m[0mgas[0m[0;34m,[0m[0msurf[0m[0;34m,[0m[0mt_in[0m[0;34m,[0m[0;34m[[0m[0;36m.061521[0m[0;34m,[0m[0;36m.0307[0m[0;34m,[0m[0;36m.115718[0m[0;34m][0m[0;34m)[0m[0;34m[0m[0m
+[0m[1;32m      2[0m [0mplotflow[0m[0;34m([0m[0ma[0m[0;34m)[0m[0;34m[0m[0m
 
 [0;32m<ipython-input-2-83d29678813a>[0m in [0;36mmonolithFull[0;34m(gas, surf, temp, mol_in, verbose, sens)[0m
 [1;32m     74[0m             [0msurf[0m[0;34m.[0m[0mset_multiplier[0m[0;34m([0m[0;36m0.0[0m[0;34m)[0m[0;34m[0m[0m
