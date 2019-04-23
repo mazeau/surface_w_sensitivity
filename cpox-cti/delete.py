@@ -45,4 +45,8 @@ for x in files:
     for file in glob.glob(x + "/*.csv"):
 	os.remove(file)
 for file in glob.glob("rxnpath*"):
-        os.remove(file)
+    os.remove(file)
+for file in glob.glob("/*.png"):
+    os.remove(file)
+for file in glob.glob("/*.csv"):
+    os.remove(file)

@@ -127,14 +127,6 @@ C2H4(18)
 5 H u0 p0 c0 {2,S}
 6 H u0 p0 c0 {2,S}
 
-CH4X(55)
-1 C u0 p0 c0 {2,S} {3,S} {4,S} {5,S}
-2 H u0 p0 c0 {1,S}
-3 H u0 p0 c0 {1,S}
-4 H u0 p0 c0 {1,S}
-5 H u0 p0 c0 {1,S}
-6 X u0 p0 c0
-
 OX(20)
 1 O u0 p2 c0 {2,D}
 2 X u0 p0 c0 {1,D}
@@ -181,12 +173,13 @@ OCX(25)
 2 C u0 p0 c0 {1,D} {3,D}
 3 X u0 p0 c0 {2,D}
 
-H2X(56)
-1 H u0 p0 c0 {2,S}
-2 H u0 p0 c0 {1,S}
-3 X u0 p0 c0
+CHOX(49)
+1 O u0 p2 c0 {2,D}
+2 C u0 p0 c0 {1,D} {3,S} {4,S}
+3 H u0 p0 c0 {2,S}
+4 X u0 p0 c0 {2,S}
 
-CH3OO(84)
+CH3OO(68)
 multiplicity 2
 1 O u0 p2 c0 {2,S} {3,S}
 2 O u1 p2 c0 {1,S}
