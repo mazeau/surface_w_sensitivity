@@ -1,39 +1,5 @@
 digraph reaction_paths {
 center=1;
-s13 -> s14[fontname="Helvetica", style="setlinewidth(4.09)", arrowsize=2.04, color="0.7, 0.579, 0.9"
-, label=" 0.0793"];
-s13 -> s15[fontname="Helvetica", style="setlinewidth(5.35)", arrowsize=2.67, color="0.7, 0.921, 0.9"
-, label=" 0.421"];
-s3 -> s13[fontname="Helvetica", style="setlinewidth(4.95)", arrowsize=2.48, color="0.7, 0.75, 0.9"
-, label=" 0.25"];
-s17 -> s13[fontname="Helvetica", style="setlinewidth(4.95)", arrowsize=2.48, color="0.7, 0.75, 0.9"
-, label=" 0.25"];
-s14 -> s15[fontname="Helvetica", style="setlinewidth(5.48)", arrowsize=2.74, color="0.7, 1, 0.9"
-, label=" 0.5"];
-s19 -> s14[fontname="Helvetica", style="setlinewidth(4.88)", arrowsize=2.44, color="0.7, 0.727, 0.9"
-, label=" 0.227"];
-s18 -> s14[fontname="Helvetica", style="setlinewidth(4.91)", arrowsize=2.46, color="0.7, 0.737, 0.9"
-, label=" 0.237"];
-s15 -> s6[fontname="Helvetica", style="setlinewidth(6)", arrowsize=3, color="0.7, 1.5, 0.9"
-, label=" 1"];
-s19 -> s15[fontname="Helvetica", style="setlinewidth(3.15)", arrowsize=1.57, color="0.7, 0.523, 0.9"
-, label=" 0.0229"];
-s18 -> s15[fontname="Helvetica", style="setlinewidth(2.71)", arrowsize=1.36, color="0.7, 0.513, 0.9"
-, label=" 0.0128"];
-s3 -> s19[fontname="Helvetica", style="setlinewidth(5.78)", arrowsize=2.89, color="0.7, 1.25, 0.9"
-, label=" 0.75"];
-s19 -> s18[fontname="Helvetica", style="setlinewidth(5.48)", arrowsize=2.74, color="0.7, 1, 0.9"
-, label=" 0.5"];
-s18 -> s17[fontname="Helvetica", style="setlinewidth(4.95)", arrowsize=2.48, color="0.7, 0.75, 0.9"
-, label=" 0.25"];
-s3 [ fontname="Helvetica", label="CH4"];
-s6 [ fontname="Helvetica", label="H2O"];
-s13 [ fontname="Helvetica", label="H(S)"];
-s14 [ fontname="Helvetica", label="OH(S)"];
-s15 [ fontname="Helvetica", label="H2O(S)"];
-s17 [ fontname="Helvetica", label="CH(S)"];
-s18 [ fontname="Helvetica", label="CH2_surf"];
-s19 [ fontname="Helvetica", label="CH3(S)"];
- label = "Scale = 2e-10\l Hrxn path";
+ label = "Scale = 1e-10\l Hrxn path";
  fontname = "Helvetica";
 }
