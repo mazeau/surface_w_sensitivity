@@ -1,0 +1,290 @@
+! rate data from Koop & Deutschmann, Applied Catalysis B, 2009, 47-58
+! Converted to Chemkin format by CFG
+! Super-irritatingly:  Chemkin coverage dependence must be in CAL/MOL, not KJ/mol.  Idiots!
+!*********************************************************************
+SITE/PT_SURFACE/    SDEN/2.72E-9/
+
+PT(S)  CO2(S) CO(S)  
+O(S)
+H(S)
+OH(S)
+H2O(S)
+CH3(S)
+CH2_surf
+CH(S)
+C(S)
+
+!HOCO(S) 
+!CH3CO(S)
+
+END
+!
+THERMO ALL
+  300.0   1000.0   5000.0
+
+PT(S)                  0PT  1               S    300.0    3000.0   1000.0      1
+ 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00    2
+ 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00    3
+ 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00                   4
+
+! For H(S):  H2(gas) --> 2*H(gas) = 103.32 kcal/mol
+! if Delta H ads for H2(gas) --> 2*H(surf) 69.1 kJ/mol (16.5 kcal/mol), then H(surf) des is 59.71 kcal/mol
+H(S)                   0H   1PT  1          I    300.00   3000.00 1000.00      1
+ 1.39056597E+00 2.72244974E-03-1.94308856E-06 6.54298757E-10-8.54654789E-14    2
+-4.55204248E+03-8.19956639E+00-1.33123104E+00 1.40876634E-02-2.03326997E-05    3
+ 1.42251460E-08-3.91011825E-12-4.01076318E+03 4.86408063E+00                   4
+
+! For O(S):  O2(gas) --> 2*O(gas) = 117.72 kcal/mol
+! if Delta H ads for O2(gas) --> 2*O(surf) 224.7 kJ/mol (53.67 kcal/mol), then O(surf) des is 85.70 kcal/mol
+O(S)                   0O   1PT  1          I    300.00   3000.00 1000.00      1
+ 3.03374529E+00-3.65326163E-04 5.01517007E-07-2.54917249E-10 4.50006689E-14    2
+-1.40768320E+04-1.42645735E+01 1.37292270E+00 7.01232169E-03-1.23967224E-05    3
+ 1.00520684E-08-3.08057082E-12-1.37570523E+04-6.37481467E+00                   4
+
+! OH(surf) obtained from thermodynamic cycle:
+! OH(gas) --> O(gas) + H(gas) = 102.17 kcal/mol
+! OH(gas) --> OH(surf) = X
+! O(gas) --> O(surf) = -85.70 kcal/mol
+! H(gas) --> H(surf) = -59.71 kcal/mol
+! OH adsorp = Delta_H_rxn_gas + Delta_H_ads O + Delta_H_ads H
+! 102.17 - 85.70 - 59.71 = -43.24 kcal/mol 
+OH(S)                  0O   1H   1PT  1     I    300.00   3000.00 1000.00      1
+ 4.00259186E+00 7.82430668E-04 4.46508689E-07-3.64655211E-10 6.79204026E-14    2
+-1.87391116E+04-1.86776247E+01 6.67926126E-01 1.53630652E-02-2.40148777E-05    3
+ 1.81549962E-08-5.23631337E-12-1.81100338E+04-2.83966988E+00                   4
+
+! For H2O(S):  E_a desorption = 49.2 kJ/mol 
+H2O(S)                 0O   1H   2PT  1     I    300.00   3000.00 1000.00      1
+ 5.77145374E+00-6.46089147E-05 2.08178625E-06-1.11108199E-09 1.81806848E-13    2
+-3.71536086E+04-2.36586421E+01 4.18118020E+00 6.96158912E-03-9.87200411E-06    3
+ 8.07912334E-09-2.49053262E-12-3.68549207E+04-1.61180414E+01                   4
+
+! For CO(S):  E_a desorption = 136.2 kJ/mol
+CO(S)                  0C   1O   1PT  1     I    300.00   3000.00 1000.00      1
+ 4.35765540E+00 1.42365778E-03-2.47318583E-07-1.40828856E-10 4.50902017E-14    2
+-3.10855388E+04-1.82136865E+01 3.90046832E+00 4.04868614E-03-6.23244391E-06    3
+ 5.78331612E-09-2.06177074E-12-3.10054882E+04-1.61360155E+01                   4
+
+! For CO2(S):  E_a desorption = 23.7 kJ/mol
+CO2(S)                 0C   1O   2PT  1     I   300.00   3000.00  1000.00      1
+ 3.71626409E+00 6.01300994E-03-3.73054353E-06 1.12504664E-09-1.34244457E-13    2
+-5.17873538E+04-7.76494075E+00 2.22257550E+00 1.24117083E-02-1.45569841E-05    3
+ 9.55668738E-09-2.64445434E-12-5.14900691E+04-6.15377951E-01                   4
+
+! CH3(surf) obtained from thermodynamic cycle:
+! CH4(gas) --> CH3(gas) + H(gas) = 103.29 kcal/mol
+! CH4(gas) --> CH3(surf) + H(surf) = -2.1 kcal/mol (taken from Norskov -- lots of slop, agrees with Vlachos of -2.3)
+! H(gas) --> H(surf) = -59.71 kcal/mol
+! CH3 desorp = Delta_H_rxn_gas - Delta_H_ads CH4 + Delta_H_ads H
+! 103.29 + 2.1 - 59.71 = 45.68 kcal/mol
+CH3(S)                 0C   1H   3PT  1     I    300.00   3000.00 1000.00      1
+ 4.77912752E+00 5.05022524E-03-4.62784906E-07-5.85622392E-10 1.51719573E-13    2
+-5.45052405E+03-2.33656084E+01 7.84666444E-01 2.38018417E-02-3.42041297E-05    3
+ 2.66204062E-08-8.07011966E-12-4.74189559E+03-4.66700927E+00                   4
+
+! CH2_surf obtained from thermodynamic cycle:
+! CH3(gas) --> CH2(gas, triplet) + H(gas) = 109.34 kcal/mol
+! CH3(gas) --> CH3(surf) = -45.68 kcal/mol
+! H(gas) --> H(surf) = -59.71 kcal/mol
+! CH3(surf) --> CH2_surf + H(surf) = E_{a,fwd} - E_{a,rev} = 70.4 - 0.4 kJ/mol = 16.72 kcal/mol
+! so CH2_surf desorption = 109.34 + 45.68 - 59.71 - 16.72 = 78.59 kcal/mol
+CH2_surf               0C   1H   2PT  1     I    300.00   3000.00 1000.00      1
+ 2.90446002E+00 5.97835810E-03-2.51240801E-06 4.70538475E-10-2.71925845E-14    2
+ 6.47074102E+03-1.50674321E+01-8.73327152E-01 2.27155365E-02-3.07634922E-05    3
+ 2.18724187E-08-6.13737979E-12 7.16853445E+03 2.81054758E+00                   4
+
+
+! CH(surf) obtained from thermodynamic cycle:
+! CH2(gas,triplet) --> CH(gas) + H(gas) = 99.43 kcal/mol
+! CH2(gas,triplet) --> CH2_surf = -78.59 kcal/mol
+! H(gas) --> H(surf) = -59.71 kcal/mol
+! CH2_surf --> CH(surf) + H(surf) = E_{a,fwd} - E_{a,rev} = 59.2 - 0.7 kJ/mol =  13.97 kcal/mol
+! so CH(surf) desorp = 99.43 + 78.59 - 59.71 - 13.97 = 104.34 kcal/mol
+CH(S)                  0C   1H   1PT  1     I    300.00   3000.00 1000.00      1
+ 1.67380477E+00 5.84073231E-03-3.60601973E-06 1.11012284E-09-1.37690735E-13    2
+ 1.83678423E+04-8.60505686E+00 4.92804562E-02 1.27655525E-02-1.48064708E-05    3
+ 9.23464512E-09-2.36205782E-12 1.86771831E+04-8.59917407E-01                   4
+
+! C(surf) obtained from thermodynamic cycle:
+! CH(gas) --> C(gas) + H(gas) = 80.16 kcal/mol
+! CH(gas) --> CH = -104.34 kcal/mol
+! H(gas) --> H(surf) = -59.71 kcal/mol
+! CH(surf) --> C(surf) + H(surf) = E_{a,fwd} - E_{a,rev} = 0.0 - 128.9 kJ/mol =  -30.79 kcal/mol
+! so C(surf) desorp = 80.16 + 104.34 - 59.71 + 30.79  = 155.58 kcal/mol
+C(S)                   0C   1PT  1          I    300.00   3000.00 1000.00      1
+ 2.62567171E+00 3.68367590E-04-5.29797727E-08-5.77523650E-11 1.78704217E-14    2
+ 7.03682865E+03-1.32893214E+01 2.69290384E-01 1.06486907E-02-1.75948860E-05    3
+ 1.36107795E-08-4.03269697E-12 7.49333103E+03-2.06492126E+00                   4
+
+
+! HOCO(S) obtained from thermodynamic cycle:
+! HOCO(gas) --> CO(gas) + OH(gas) = 24.87 kcal/mol
+! CO(gas) --> CO(surf) =  -136.2 kJ/mol = -32.53 kcal/mol
+! OH(gas) --> OH(surf) = -43.24 kcal/mol
+! HOCO(surf) --> CO(surf) + OH(surf) = E_{a,fwd} - E_{a,rev} = 0.9 - 93.3 kJ/mol =  -22.28 kcal/mol
+! so HOCO(surf) adsorb = 24.87 + 22.28 - 32.53 - 43.24  = -28.62 kcal/mol
+HOCO(S)                0C   1H   1O   2PT  1I   300.00   3000.00  1000.00      1
+ 6.52436878E+00 7.33385910E-03-4.56626481E-06 1.34442512E-09-1.53482346E-13    2
+-3.90191760E+04-2.85009251E+01 2.35288136E+00 2.53547253E-02-3.50562114E-05    3
+ 2.49479259E-08-7.11641538E-12-3.82030947E+04-8.58830412E+00                   4
+
+
+! CH3CO(S) obtained from thermodynamic cycle:
+! CH3CO(gas) --> CO(gas) + CH3(gas) = 9.15 kcal/mol
+! CO(gas) --> CO(surf) =  -136.2 kJ/mol = -32.53 kcal/mol
+! CH3(gas) --> CH3(surf) = -45.68 kcal/mol
+! CH3CO(surf) --> CO(surf) + CH3(surf) = E_{a,fwd} - E_{a,rev} = 6.1 - 82.9 kJ/mol =  -18.34 kcal/mol
+! so CH3CO(surf) adsorb = 9.15 + 18.34 - 32.53 - 45.68  = -50.72 kcal/mol
+CH3CO(S)               0C   2H   3O   1PT  1I   300.00   3000.00  1000.00      1
+ 2.88480920E+00 1.90559600E-02-1.16244088E-05 3.60174923E-09-4.55288488E-13    2
+-2.81106999E+04-1.03814160E+01 3.66653308E+00 1.49117728E-02-2.72537496E-06    3
+-4.89097680E-09 2.50086704E-12-2.82547244E+04-1.39948332E+01                   4
+
+HFCOV ! UNITS ARE IN KELVIN!
+    H(S)    H(S)    -721.6      !   6 kJ/mol / 2
+    O(S)    O(S)    -7216.3     !   120 kJ/mol / 2  ! Deutschmann
+    CO(S)   CO(S)   -3969.0     !   33 kJ/mol       ! Deutschmann
+!    O(S)    O(S)    -8058.2     !   134 kJ/mol / 2   ! Hauptmann
+!    CO(S)   CO(S)   -7577.1     !   63 kJ/mol        ! Hauptmann
+!    O(S)    CO(S)   -8000.0     ! CFG
+END
+
+END
+!
+!!******************************************************************************!
+!!*********         CH4-O2  Surface Reaction on Pt                    **********!
+!!******************************************************************************!
+ REACTIONS      CAL/MOLE
+!***********************************************************************
+!**** 1.  ADSORPTION/DESORPTION
+!***********************************************************************
+
+!H       +PT(S)  <=> H(S)                    1.000E-00   0.0     0.0
+!                            STICK
+
+H2      +PT(S)   +PT(S)  <=> H(S)    +H(S)  0.046       0.0     0.0
+COV/PT(S)                                   0.0        -1.0     0.0/
+                            STICK
+
+!O       +PT(S)  <=> O(S)                    1.000E-00   0.0     0.0
+!                            STICK
+
+O2 + 2PT(S) 	<=>	2O(S)			        0.07    	0.0   	0.0
+                            STICK
+
+!OH      +PT(S)  <=> OH(S)                   1.000E-00   0.0     0.0
+!                            STICK
+
+H2O     +PT(S)  <=> H2O(S)                  7.500E-01   0.0     0.0
+                            STICK
+
+CO      +PT(S)  <=>  CO(S)                  8.400E-01   0.0     0.0
+                            STICK
+
+CO2     +PT(S)  <=>  CO2(S)                 5.000E-03   0.0     0.0
+                            STICK
+
+CH4     +PT(S)   +PT(S)  <=>CH3(S)  +H(S)   9.000E-04   0.0     17244.7 !72.2 kJ/mol
+                            STICK
+
+
+!CH3     +PT(S)  <=>  CH3(S)                 1.000E-00   0.0     0.0
+!                            STICK
+
+!CH2     +PT(S)  <=>  CH2_surf               1.000E-00   0.0     0.0
+!                            STICK
+
+!CH      +PT(S)  <=>  CH(S)                  1.000E-00   0.0     0.0
+!                            STICK
+
+!C      +PT(S)   <=>  C(S)                   1.000E-00   0.0     0.0
+!                            STICK
+
+
+! funky boyz
+CH4     +O(S)   +PT(S)  <=> CH3(S)  +OH(S)  5.00E+18    0.7     10031.7 !42.0 kJ/mol
+COV/O(S)                                        0.0        0.0    -1910.8/ ! 8 kJ/mol
+
+CH4     +OH(S)   +PT(S) <=> CH3(S)  +H2O(S) 1.00        0.0     2388.5 !10.0 kJ/mol
+                            STICK
+
+H2      +C(S)   <=> CH2_surf                4.0E-2      0.0     7093.9 !29.7 kJ/mol
+COV/C(S)                                    0.0         0.0    -1098.7/ ! 4.6 kJ/mol
+
+
+!*********************************************************************
+!**** 3.  SURFACE REACTIONS
+!*********************************************************************
+
+! CO/CO2 reactions
+
+
+CO(S)   +PT(S)  <=>C(S)    +O(S)                1.700E+21   0.0     49059.8 !205.4 kJ/mol
+COV/CO(S)                                      0.0         0.0     -7882.1/ !33 kJ/mol
+COV/O(S)                                        0.0         0.0     14331.0/ !60 kJ/mol
+
+!CO(S)   +O(S)   <=>  CO2(S)  +PT(S)              3.700E+20  0.0     25795.8 !108 kJ/mol 
+!COV/CO(S)                                       0.0        0.0    -7882.1/  ! 33 kJ/mol 
+!COV/O(S)                                        0.0        0.0    -14331.0/ ! 60 kJ/mol
+!Hauptmann
+CO(S)   +O(S)   <=>  CO2(S)  +PT(S)              4.3E18  0.46     25812.6 ! 108 kJ/mol
+COV/CO(S)                                       0.0        0.0    -3585.1/ !15 kJ/mol
+COV/O(S)                                        0.0        0.0    -8365.2/ !35 kJ/mol
+
+
+! OH/H2O reactions
+
+H(S)    +O(S)   <=>  OH(S)   +PT(S)             3.7E+20     0.0     16838.9 !70.5 kJ/mol
+COV/O(S)                                        0.0        0.0    -14331.0/ ! 60 kJ/mol
+
+!OH(S)   +H(S)   <=>  H2O(S)  +PT(S)             3.7E+21     0.0     4156.0  !17.4 kJ/mol
+!OH(S)   +H(S)   <=>  H2O(S)  +PT(S)             1.46E+24	-1.049	13500.0  !from Vlachos
+OH(S)   +H(S)   <=>  H2O(S)  +PT(S)             1.46E+24	-1.049	13500.0  !
+!COV/O(S)                                        0.0        0.0    14331.0/ ! 60 kJ/mol cfg made up
+
+!OH(S)   +OH(S)  <=>  H2O(S)  +O(S)              3.7E+21     0.0     11512.6 !48.2 kJ/mol
+!COV/O(S)                                        0.0        0.0    14331.0/ ! 60 kJ/mol
+!OH(S)   +OH(S)  <=>  H2O(S)  +O(S)              9.79E+17	0.325	22700.0 !Vlachos
+OH(S)   +OH(S)  <=>  H2O(S)  +O(S)              9.79E+17	0.325	22700.0 !
+!COV/O(S)                                        0.0        0.0    14331.0/ ! 60 kJ/mol cfg made up
+
+CO(S)  + OH(S)  <=>  CO2(S)  + H(S)             1.0E+19     0.0     9243.5  !38.7 kJ/mol
+COV/CO(S)                                       0.0        0.0    -7882.1/  ! 33 kJ/mol
+
+! CH3/CH2/CH/C reactions
+CH3(S) + PT(S)  <=>  CH2_surf + H(S)            1.3E+22     0.0     16815.0 !70.4 kJ/mol
+
+CH3(S) + O(S)   <=>  CH2_surf + OH(S)           3.7E+21     0.0     8741.9  !36.6 kJ/mol
+COV/O(S)                                        0.0        0.0    -14331.0/ ! 60 kJ/mol
+
+
+CH2_surf + PT(S) <=>  CH(S) + H(S)              7.0E+22     0.0    14139.9  !59.2 kJ/mol
+
+CH2_surf + O(S)  <=>  CH(S) + OH(S)             3.7E+21     0.0     5995.14 !25.1 kJ/mol
+COV/O(S)                                        0.0        0.0    -14331.0/ ! 60 kJ/mol
+
+CH(S) + PT(S)    <=>  C(S) + H(S)               3.1E+22     0.0    0.0  !0.0 kJ/mol
+
+CH(S) + O(S)     <=>  C(S) + OH(S)              3.7E+21     0.0     5995.14 !25.1 kJ/mol
+COV/O(S)                                        0.0        0.0    -14331.0/ ! 60 kJ/mol
+
+
+
+
+!*********************************************************************
+END
+!!endofreactionset endofreactionset endofreactionset endofreactionset endofreacti
+! cfg says, comment out the CH4 + C(S), CO(S)+O(S), etc, for speed.
+!HOCO      +PT(S)   <=>  HOCO(S)             1.000E-00   0.0     0.0
+!                            STICK
+
+!CH3CO     +PT(S)   <=>  CH3CO(S)            1.000E-00   0.0     0.0
+!                            STICK
+
+!CO(S) + OH(S)   <=> HOCO(S) + PT(S)             3.7E+21     0.0     22499.7 !94.2 kJ/mol
+
+!OH(S) + CO2(S)  <=> HOCO(S) + O(S)              2.8E+21     0.0     36090.2 !151.1 kJ/mol
+
+!H(S) + CO2(S)   <=> HOCO(S) + PT(S)             2.8E+21     0.0     21520.4 !90.1 kJ/mol
+
+!CH3(S) + CO(S)  <=> CH3CO(S) + PT(S)            3.7E+21     0.0     19800.7 !82.9 kJ/mol
