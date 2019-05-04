@@ -1,30 +1,21 @@
 digraph reaction_paths {
 center=1;
-s4 -> s10[fontname="Helvetica", style="setlinewidth(5.56)", arrowsize=2.78, color="0.7, 1.06, 0.9"
-, label=" 0.561"];
-s10 -> s11[fontname="Helvetica", style="setlinewidth(4.69)", arrowsize=2.34, color="0.7, 0.675, 0.9"
-, label=" 0.175"];
-s10 -> s14[fontname="Helvetica", style="setlinewidth(6)", arrowsize=3, color="0.7, 1.5, 0.9"
+s4 -> s12[fontname="Helvetica", style="setlinewidth(5.47)", arrowsize=2.73, color="0.7, 0.993, 0.9"
+, label=" 0.493"];
+s12 -> s11[fontname="Helvetica", style="setlinewidth(6)", arrowsize=3, color="0.7, 1.5, 0.9"
+, label=" 0.998"];
+s14 -> s12[fontname="Helvetica", style="setlinewidth(2.63)", arrowsize=1.32, color="0.7, 0.512, 0.9"
+, label=" 0.0116"];
+s15 -> s14[fontname="Helvetica", style="setlinewidth(2.62)", arrowsize=1.31, color="0.7, 0.511, 0.9"
+, label=" 0.0114"];
+s11 -> s8[fontname="Helvetica", style="setlinewidth(6)", arrowsize=3, color="0.7, 1.5, 0.9"
 , label=" 1"];
-s11 -> s8[fontname="Helvetica", style="setlinewidth(5.25)", arrowsize=2.62, color="0.7, 0.869, 0.9"
-, label=" 0.369"];
-s14 -> s11[fontname="Helvetica", style="setlinewidth(4.77)", arrowsize=2.39, color="0.7, 0.697, 0.9"
-, label=" 0.197"];
-s12 -> s5[fontname="Helvetica", style="setlinewidth(2.3)", arrowsize=1.15, color="0.7, 0.507, 0.9"
-, label=" 0.00741"];
-s14 -> s15[fontname="Helvetica", style="setlinewidth(5.72)", arrowsize=2.86, color="0.7, 1.19, 0.9"
-, label=" 0.687"];
-s15 -> s6[fontname="Helvetica", style="setlinewidth(5.78)", arrowsize=2.89, color="0.7, 1.24, 0.9"
-, label=" 0.745"];
 s4 [ fontname="Helvetica", label="O2"];
-s5 [ fontname="Helvetica", label="CO2"];
-s6 [ fontname="Helvetica", label="H2O"];
 s8 [ fontname="Helvetica", label="CO"];
-s10 [ fontname="Helvetica", label="O(S)"];
 s11 [ fontname="Helvetica", label="CO(S)"];
-s12 [ fontname="Helvetica", label="CO2(S)"];
+s12 [ fontname="Helvetica", label="O(S)"];
 s14 [ fontname="Helvetica", label="OH(S)"];
 s15 [ fontname="Helvetica", label="H2O(S)"];
- label = "Scale = 1.5e-06\l Orxn path";
+ label = "Scale = 2.3e-09\l Orxn path";
  fontname = "Helvetica";
 }
