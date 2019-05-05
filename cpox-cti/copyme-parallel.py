@@ -433,33 +433,43 @@ def plotZoom(a):
     os.path.exists(out_dir) or os.makedirs(out_dir)
     fig.savefig(out_dir + '/' + str(ratio) + 'ratioZoom.png', bbox_inches='tight')
 
+def simulationWorker(gas, surf, temp, ratio):
+    # ratio is the worker input
+    try:
+        a = monolithFull(gas, surf, temp, ratio)
+        plotflow(a)
+        plotZoom(a)
+        gas_out, surf_out, gas_names, surf_names, dist_array, T_array = a
+
+        return [r, [gas_out, gas_names, dist_array, T_array]]
+    except:
+        print('Unable to run simulation at a C/O ratio of {:.0f}'.format(r))
+        errors.append(r)
+        pass
+
 
 # at different ratios
 tot_flow = 0.208  # from Horn 2007, constant inlet flow rate in mol/min, equivalent to 4.7 slpm
 ratios = [.6, .7, .8, .9, 1., 1.1, 1.2, 1.3, 1.4, 1.6, 1.8, 2., 2.2, 2.4, 2.6]  # 15 items
 
 data = []
-t = t_in  # temperature, in K
 
+num_threads = len(ratios)
+pool = multiprocessing.Pool(processes = num_threads)
+
+worker_input = []
 for r in ratios:
     # get the moles in for a certain ratio
     fo2 = tot_flow / (2. * r + 1 + 79 / 21)
     fch4 = 2 * fo2 * r
     far = 79 * fo2 / 21
     moles_in = [fch4, fo2, far]
+    worker_input.append(moles_in)
 
-    try:
-        a = monolithFull(gas, surf, t, moles_in, False)
-        plotflow(a)
-        plotZoom(a)
+data = pool.map(partial(simulationWorker,gas=gas,surf=surf,temp=t_in,dk=dk),worker_input)
+pool.close()
+pool.join()
 
-        gas_out, surf_out, gas_names, surf_names, dist_array, T_array = a
-
-        data.append([r, [gas_out, gas_names, dist_array, T_array]])
-    except:
-        print('Unable to run simulation at a C/O ratio of {:.0f}'.format(r))
-        errors.append(r)
-        pass
 
 # finding exit conversions
 end_temp = []
