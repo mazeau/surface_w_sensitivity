@@ -197,8 +197,8 @@ def monolithFull(gas, surf, temp, mol_in, verbose=False, sens=False):
                 diagram = ct.ReactionPathDiagram(surf, 'X')
                 diagram.title = 'rxn path'
                 diagram.label_threshold = 1e-9
-                dot_file = out_dir + '/rxnpath-' + ratio + '-x-' + location + 'mm.dot'
-                img_file = out_dir + '/rxnpath-' + ratio + '-x-' + location + 'mm.png'
+                dot_file = out_dir + '/rxnpath-' + str(ratio) + '-x-' + location + 'mm.dot'
+                img_file = out_dir + '/rxnpath-' + str(ratio) + '-x-' + location + 'mm.png'
                 img_path = os.path.join(os.getcwd(), img_file)
                 diagram.write_dot(dot_file)
                 os.system('dot {0} -Tpng -o{1} -Gdpi=200'.format(dot_file, img_file))
@@ -216,8 +216,8 @@ def monolithFull(gas, surf, temp, mol_in, verbose=False, sens=False):
                     diagram = ct.ReactionPathDiagram(surf, element)
                     diagram.title = element + 'rxn path'
                     diagram.label_threshold = 1e-9
-                    dot_file = out_dir + '/rxnpath-' + ratio + '-surf-' + location + 'mm-' + element + '.dot'
-                    img_file = out_dir + '/rxnpath-' + ratio + '-surf-' + location + 'mm-' + element + '.png'
+                    dot_file = out_dir + '/rxnpath-' + str(ratio) + '-surf-' + location + 'mm-' + element + '.dot'
+                    img_file = out_dir + '/rxnpath-' + str(ratio) + '-surf-' + location + 'mm-' + element + '.png'
                     img_path = os.path.join(out_dir, img_file)
                     diagram.write_dot(dot_file)
                     os.system('dot {0} -Tpng -o{1} -Gdpi=200'.format(dot_file, img_file))
