@@ -517,6 +517,9 @@ for r in data:
 output = []
 for x in range(len(ratios_real)):
     output.append([ratios_real[x], ch4_conv[x], o2_conv[x], co_sel[x], h2_sel[x], h2o_sel[x]])
+
+print output
+
 # todo: some sort of check/something to output to know that all ratios were sucessfully run
 k = (pd.DataFrame.from_dict(data=output, orient='columns'))
 k.columns = ['C/O ratio', 'CH4 Conv', 'O2 Conv', 'CO Selec', 'H2 Selec', 'H2O Selec']
