@@ -108,8 +108,10 @@ def monolithFull(gas, surf, temp, mol_in, verbose=False, sens=False):
 
     # toto: change n2 to ar
     ch4, o2, ar = mol_in
-    ch4 = str(ch4);
-    o2 = str(o2);
+    ratio = ch4/(2*o2)
+    ratio = round(ratio,1)
+    ch4 = str(ch4)
+    o2 = str(o2)
     ar = str(ar)
     X = str('CH4(2):' + ch4 + ', O2(3):' + o2 + ', Ar:' + ar)
     gas.TPX = temp, ct.one_atm, X
@@ -195,8 +197,8 @@ def monolithFull(gas, surf, temp, mol_in, verbose=False, sens=False):
                 diagram = ct.ReactionPathDiagram(surf, 'X')
                 diagram.title = 'rxn path'
                 diagram.label_threshold = 1e-9
-                dot_file = out_dir + '/rxnpath-x-' + location + 'mm' + '.dot'
-                img_file = out_dir + '/rxnpath-x-' + location + 'mm' + '.png'
+                dot_file = out_dir + '/rxnpath-' + ratio + '-x-' + location + 'mm.dot'
+                img_file = out_dir + '/rxnpath-' + ratio + '-x-' + location + 'mm.png'
                 img_path = os.path.join(os.getcwd(), img_file)
                 diagram.write_dot(dot_file)
                 os.system('dot {0} -Tpng -o{1} -Gdpi=200'.format(dot_file, img_file))
@@ -214,8 +216,8 @@ def monolithFull(gas, surf, temp, mol_in, verbose=False, sens=False):
                     diagram = ct.ReactionPathDiagram(surf, element)
                     diagram.title = element + 'rxn path'
                     diagram.label_threshold = 1e-9
-                    dot_file = out_dir + '/rxnpath-surf-' + location + 'mm-' + element + '.dot'
-                    img_file = out_dir + '/rxnpath-surf-' + location + 'mm-' + element + '.png'
+                    dot_file = out_dir + '/rxnpath-' + ratio + '-surf-' + location + 'mm-' + element + '.dot'
+                    img_file = out_dir + '/rxnpath-' + ratio + '-surf-' + location + 'mm-' + element + '.png'
                     img_path = os.path.join(out_dir, img_file)
                     diagram.write_dot(dot_file)
                     os.system('dot {0} -Tpng -o{1} -Gdpi=200'.format(dot_file, img_file))
@@ -233,7 +235,6 @@ def monolithFull(gas, surf, temp, mol_in, verbose=False, sens=False):
     gas_names = np.array(gas_names)
     surf_names = np.array(surf_names)
     return gas_out, surf_out, gas_names, surf_names, dist_array, T_array
-
 
 def plotflow(a):
     gas_out, surf_out, gas_names, surf_names, dist_array, T_array = a
@@ -444,7 +445,6 @@ for r in ratios:
     fo2 = tot_flow / (2. * r + 1 + 79 / 21)
     fch4 = 2 * fo2 * r
     far = 79 * fo2 / 21
-
     moles_in = [fch4, fo2, far]
 
     try:
