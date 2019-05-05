@@ -466,7 +466,7 @@ for r in ratios:
     moles_in = [fch4, fo2, far]
     worker_input.append(moles_in)
 
-data = pool.map(partial(simulationWorker,gas=gas,surf=surf,temp=t_in,dk=dk),worker_input)
+data = pool.map(partial(simulationWorker,gas=gas,surf=surf,temp=t_in),worker_input)
 pool.close()
 pool.join()
 
