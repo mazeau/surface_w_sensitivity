@@ -328,9 +328,6 @@ def plotflow(a):
     out_dir = 'figures'
     os.path.exists(out_dir) or os.makedirs(out_dir)
     fig.savefig(out_dir + '/' + str(ratio) + 'ratio.png', bbox_inches='tight')
-    #plt.savefig(out_dir + '/' + str(ratio) + 'ratio.png', bbox_inches='tight')
-    #fig.close(fig)
-    #plt.close(plt)
 
 def plotZoom(a):
     gas_out, surf_out, gas_names, surf_names, dist_array, T_array = a
@@ -611,7 +608,6 @@ fig.set_figwidth(16)
 out_dir = 'figures'
 os.path.exists(out_dir) or os.makedirs(out_dir)
 fig.savefig(out_dir + '/' + 'conversion&selectivity.png', bbox_inches='tight')
-fig.close(fig)
 
 # plot all on one
 temps = []
@@ -684,7 +680,6 @@ fig.set_figwidth(8)
 out_dir = 'figures'
 os.path.exists(out_dir) or os.makedirs(out_dir)
 fig.savefig(out_dir + '/' + 'flows.png', bbox_inches='tight')
-fig.close(fig)
 
 ##################
 ## SENSITIVITY

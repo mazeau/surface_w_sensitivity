@@ -82,24 +82,35 @@ velocity = flow_rate/area # m/s
 
 # The PFR will be simulated by a chain of 'NReactors' stirred reactors.
 NReactors = 7001
+
 on_catalyst = 1000
 off_catalyst = 2000
 dt = 1.0
+
 reactor_len = length/(NReactors-1)
 rvol = area * reactor_len * porosity
+
 # catalyst area in one reactor
 cat_area = cat_area_per_vol * rvol
+
 mass_flow_rate = velocity * gas.density * area # kg/s
 
-def plotFlow(a):
+def plotflow(a):
     gas_out, surf_out, gas_names, surf_names, dist_array, T_array = a
     gas_out = gas_out * tot_flow
+
+    # Plot in mol/min
+
+    # configure the plot
     fig, axs = plt.subplots(1, 2)
+
     axs[0].set_prop_cycle(cycler('color', ['m', 'g', 'b', 'y', 'c', 'r', 'k', 'g']))
+
     # PLOT WITH GAS PHASE REACTIONS INCLUDED
     for i in range(len(gas_out[0, :])):
         if i != i_ar:
             if gas_out[:, i].max() > 5.e-3:
+                #             print(gas_names[i])
                 axs[0].plot(dist_array, gas_out[:, i], label=gas_names[i])
                 species_name = gas_names[i]
                 if species_name.endswith(')'):
@@ -135,9 +146,12 @@ def plotFlow(a):
                                     ha=('center'))
             else:
                 axs[0].plot(0, 0)
+
     axs[1].set_prop_cycle(cycler('color', ['m', 'g', 'b', 'y', 'c', 'r', 'k', 'g']))
     axs[1].plot(dist_array, T_array, label="surface + gas reactions")
+
     axs[0].set_prop_cycle(cycler('color', ['m', 'g', 'b', 'y', 'c', 'r', 'k', 'g']))
+
     axs[0].plot([dist_array[on_catalyst], dist_array[on_catalyst]], [0, 0.3], linestyle='--', color='xkcd:grey')
     axs[0].plot([dist_array[off_catalyst], dist_array[off_catalyst]], [0, 0.3], linestyle='--', color='xkcd:grey')
     axs[0].annotate("catalyst", fontsize=13, xy=(dist_array[on_catalyst], 0.275), va=('bottom'), ha=('left'))
@@ -151,14 +165,18 @@ def plotFlow(a):
 
     axs[1].legend(loc='upper center', bbox_to_anchor=(0.5, -0.2), fancybox=False, shadow=False, ncol=2)
     axs[0].legend(loc='upper center', bbox_to_anchor=(0.5, -0.2), fancybox=False, shadow=False, ncol=4)
-    axs[0].set_ylim(0., 0.15);axs[1].set_ylim(400.0, 2400)
-    axs[0].set_xlim(0.0, length / mm);axs[1].set_xlim(0.0, length / mm)
+    axs[0].set_ylim(0., 0.15);
+    axs[1].set_ylim(400.0, 2400)
+    axs[0].set_xlim(0.0, length / mm);
+    axs[1].set_xlim(0.0, length / mm)
     axs[0].set_xlabel('Distance (mm)', fontsize=13);
     axs[1].set_xlabel('Distance (mm)', fontsize=13);  # axs[0,1].set_xlabel('time (s)'); axs[1,1].set_xlabel('time (s)')
     axs[0].set_ylabel('flow/ mol/min', fontsize=13);
     axs[1].set_ylabel('Temperature (K)', fontsize=13)
     fig.set_figheight(6)
     fig.set_figwidth(18)
+
+    #     temperature = np.round(T_array[0],0)
 
     for n in range(len(gas_names)):
         if gas_names[n] == 'CH4(2)':
@@ -167,19 +185,26 @@ def plotFlow(a):
             o_in = gas_out[0][n]
     ratio = round(c_in / (o_in * 2), 1)
 
+    # uncomment to save figure
     out_dir = 'figures'
     os.path.exists(out_dir) or os.makedirs(out_dir)
     fig.savefig(out_dir + '/' + str(ratio) + 'ratio.png', bbox_inches='tight')
 
 def plotZoom(a):
     gas_out, surf_out, gas_names, surf_names, dist_array, T_array = a
+    #     gas2_out, surf2_out, gas2_names, surf2_names, dist2_array, T2_array = b
+    # configure the plot
     gas_out = gas_out * tot_flow
+
     fig, axs = plt.subplots(1, 2)
+
     axs[0].set_prop_cycle(cycler('color', ['m', 'g', 'b', 'y', 'c', 'r', 'k', 'g']))
+
     # PLOT WITH GAS PHASE REACTIONS INCLUDED
     for i in range(len(gas_out[0, :])):
         if i != i_ar:
             if gas_out[:, i].max() > 5.e-3:
+                #             print(gas_names[i])
                 axs[0].plot(dist_array, gas_out[:, i], label=gas_names[i])
                 species_name = gas_names[i]
                 if species_name.endswith(')'):
@@ -215,10 +240,14 @@ def plotZoom(a):
                                     ha=('center'))
             else:
                 axs[0].plot(0, 0)
+
     axs[1].set_prop_cycle(cycler('color', ['m', 'g', 'b', 'y', 'c', 'r', 'k', 'g']))
     # Plot two temperatures (of gas-phase and surface vs only surface.)
     axs[1].plot(dist_array, T_array, label="surface + gas reactions")
+    #     axs[1].plot(dist_array, T2_array, "--", label="surface reactions only")
+
     axs[0].set_prop_cycle(cycler('color', ['m', 'g', 'b', 'y', 'c', 'r', 'k', 'g']))
+
     axs[0].plot([dist_array[on_catalyst], dist_array[on_catalyst]], [0, 0.2], linestyle='--', color='xkcd:grey')
     axs[0].plot([dist_array[off_catalyst], dist_array[off_catalyst]], [0, 0.2], linestyle='--', color='xkcd:grey')
     axs[0].annotate("catalyst", fontsize=13, xy=(dist_array[on_catalyst], 0.175), va=('bottom'), ha=('left'))
@@ -232,15 +261,22 @@ def plotZoom(a):
 
     axs[1].legend(loc='upper center', bbox_to_anchor=(0.5, -0.2), fancybox=False, shadow=False, ncol=2)
     axs[0].legend(loc='upper center', bbox_to_anchor=(0.5, -0.2), fancybox=False, shadow=False, ncol=4)
-    axs[0].set_ylim(0., 0.1);axs[1].set_ylim(600.0, 2000)
-    axs[0].set_xlim(8, 25);axs[1].set_xlim(8, 25)
+    axs[0].set_ylim(0., 0.1);
+    axs[1].set_ylim(600.0, 2000)
+    axs[0].set_xlim(8, 25);
+    axs[1].set_xlim(8, 25)
     axs[0].set_xlabel('Distance (mm)', fontsize=13);
     axs[1].set_xlabel('Distance (mm)', fontsize=13);  # axs[0,1].set_xlabel('time (s)'); axs[1,1].set_xlabel('time (s)')
     axs[0].set_ylabel('flow/ mol/min', fontsize=13);
     axs[1].set_ylabel('Temperature (K)', fontsize=13)
+    # fig.tight_layout()
+    # axs[1,0].ticklabel_format(axis='x', style='sci', scilimits=(0,0))
+    # axs[0,1].ticklabel_format(axis='x', style='sci', scilimits=(0,0))
+    # axs[1,1].ticklabel_format(axis='x', style='sci', scilimits=(0,0))
     fig.set_figheight(6)
     fig.set_figwidth(18)
 
+    #     temperature = np.round(T_array[0],0)
     for n in range(len(gas_names)):
         if gas_names[n] == 'CH4(2)':
             c_in = gas_out[0][n]
@@ -249,6 +285,7 @@ def plotZoom(a):
     ratio = c_in / (o_in * 2)
     ratio = round(ratio, 1)
 
+    # uncomment to save figure
     out_dir = 'figures'
     os.path.exists(out_dir) or os.makedirs(out_dir)
     fig.savefig(out_dir + '/' + str(ratio) + 'ratioZoom.png', bbox_inches='tight')
@@ -261,7 +298,7 @@ def monolithFull(gas, surf, temp, mol_in, verbose=False, sens=False):
     ch4, o2, ar = mol_in
     ratio = ch4/(2*o2)
     ratio = round(ratio,1)
-    ratio_str = str(ratio)
+    ratio = str(ratio)
     ch4 = str(ch4)
     o2 = str(o2)
     ar = str(ar)
@@ -349,8 +386,8 @@ def monolithFull(gas, surf, temp, mol_in, verbose=False, sens=False):
                 diagram = ct.ReactionPathDiagram(surf, 'X')
                 diagram.title = 'rxn path'
                 diagram.label_threshold = 1e-9
-                dot_file = out_dir + '/rxnpath-' + ratio_str + '-x-' + location + 'mm.dot'
-                img_file = out_dir + '/rxnpath-' + ratio_str + '-x-' + location + 'mm.png'
+                dot_file = out_dir + '/rxnpath-' + ratio + '-x-' + location + 'mm.dot'
+                img_file = out_dir + '/rxnpath-' + ratio + '-x-' + location + 'mm.png'
                 img_path = os.path.join(os.getcwd(), img_file)
                 diagram.write_dot(dot_file)
                 os.system('dot {0} -Tpng -o{1} -Gdpi=200'.format(dot_file, img_file))
@@ -368,11 +405,12 @@ def monolithFull(gas, surf, temp, mol_in, verbose=False, sens=False):
                     diagram = ct.ReactionPathDiagram(surf, element)
                     diagram.title = element + 'rxn path'
                     diagram.label_threshold = 1e-9
-                    dot_file = out_dir + '/rxnpath-' + ratio_str + '-surf-' + location + 'mm-' + element + '.dot'
-                    img_file = out_dir + '/rxnpath-' + ratio_str + '-surf-' + location + 'mm-' + element + '.png'
+                    dot_file = out_dir + '/rxnpath-' + ratio + '-surf-' + location + 'mm-' + element + '.dot'
+                    img_file = out_dir + '/rxnpath-' + ratio + '-surf-' + location + 'mm-' + element + '.png'
                     img_path = os.path.join(out_dir, img_file)
                     diagram.write_dot(dot_file)
                     os.system('dot {0} -Tpng -o{1} -Gdpi=200'.format(dot_file, img_file))
+
         if verbose is True:
             if not n % 100:
                 print('  {0:10f}  {1:10f}  {2:10f}  {3:10f} {4:10f} {5:10f} {6:10f}'.format(dist, *gas[
@@ -380,38 +418,45 @@ def monolithFull(gas, surf, temp, mol_in, verbose=False, sens=False):
                 # print(surf.T)
                 # print(gas.P)
                 # print(surf.coverages)
+
     gas_out = np.array(gas_out)
     surf_out = np.array(surf_out)
     gas_names = np.array(gas_names)
     surf_names = np.array(surf_names)
-    all_data = gas_out, surf_out, gas_names, surf_names, dist_array, T_array
-    # graph the simulation
-    plotFlow(all_data)
-    plotZoom(all_data)
-    return all_data
+    data_out = gas_out, surf_out, gas_names, surf_names, dist_array, T_array
+    plotflow(data_out)
+    plotZoom(data_out)
+    return data_out
 
-def simulationWorker(rat):
-    temp = t_in
-#    try:
-    a = monolithFull(gas, surf, temp, rat)
+def simulationWorker(ratio):
+    fo2 = tot_flow / (2. * ratio + 1 + 79 / 21)
+    fch4 = 2 * fo2 * ratio
+    far = 79 * fo2 / 21
+    ratio_in = [fch4, fo2, far]
+    
+    a = monolithFull(gas, surf, t_in, ratio_in, verbose=True)
     gas_out, surf_out, gas_names, surf_names, dist_array, T_array = a
-    return [rat, [gas_out, gas_names, dist_array, T_array]]
+    return [ratio, [gas_out, gas_names, dist_array, T_array]]
 #    except:
-#        print('Unable to run simulation at a C/O ratio of {:.1f}'.format(rat))
+#        print('Unable to run simulation at a C/O ratio of {:.1f}'.format(ratio))
 #        pass
 
-# at different ratios
 ratios = [.6, .7, .8, .9, 1., 1.1, 1.2, 1.3, 1.4, 1.6, 1.8, 2., 2.2, 2.4, 2.6]  # 15 items
-
 data = []
+t = t_in
 num_threads = len(ratios)
 pool = multiprocessing.Pool(processes = num_threads)
-data = pool.map(simulationWorker, ratios)
+data = pool.map(simulationWorker,ratios)
 pool.close()
 pool.join()
 
 # finding exit conversions
-end_temp = [];ch4_conv = [];o2_conv = [];co_sel = [];h2_sel = [];h2o_sel = []
+end_temp = []
+ch4_conv = []
+o2_conv = []
+co_sel = []
+h2_sel = []
+h2o_sel = []
 ratios_real = []
 for r in data:
     #     gas_out,gas_names,dist_array,T_array = r[1]
@@ -456,9 +501,12 @@ for r in data:
             h2_out = r[1][0][-1][x]
             h2_sel.append(h2_out / (1 - ch4_out - o2_out - ar))
 
+# write this metal data to a csv file for later use in the lsr volcano plot
+
 output = []
 for x in range(len(ratios_real)):
     output.append([ratios_real[x], ch4_conv[x], o2_conv[x], co_sel[x], h2_sel[x], h2o_sel[x]])
+print output
 
 # todo: some sort of check/something to output to know that all ratios were sucessfully run
 k = (pd.DataFrame.from_dict(data=output, orient='columns'))
@@ -485,13 +533,16 @@ axs[1].set_xlabel('C/O Ratio', fontsize=13)
 plt.tight_layout()
 fig.set_figheight(6)
 fig.set_figwidth(16)
-
 out_dir = 'figures'
 os.path.exists(out_dir) or os.makedirs(out_dir)
 fig.savefig(out_dir + '/' + 'conversion&selectivity.png', bbox_inches='tight')
 
 # plot all on one
-temps = [];o2 = [];co = [];h2 = [];ratios = []
+temps = []
+o2 = []
+co = []
+h2 = []
+ratios = []
 for r in data:
     gas_out, gas_names, dist_array, T_array = r[1]
     for x in range(len(r[1][1])):
@@ -502,25 +553,21 @@ for r in data:
         if r[1][1][x] == 'H2(6)':
             h2.append(r[1][0][:, x])
     dist_array = r[1][2]
-
     temps.append(r[1][3])
     ratios.append(r[0])
 
 fig, axs = plt.subplots(3, 1)
 sns.set_palette(sns.color_palette("coolwarm", 15))
-# sns.set_palette(sns.cubehelix_palette(15, start=.5, rot=-1))
-
 # plot exit conversion and temp
 for r in range(len(ratios)):
     axs[0].plot(dist_array, o2[r] * .208, label=ratios[r])
     axs[1].plot(dist_array, h2[r] * .208, label=ratios[r])
     axs[2].plot(dist_array, co[r] * .208, label=ratios[r])
-ax2 = axs[0].twinx()
-
 sns.set_palette(sns.color_palette("coolwarm", 15))
+ax2 = axs[0].twinx()
+sns.set_palette(sns.color_palette("coolwarm",15))
 for r in range(len(ratios)):
     ax2.plot(dist_array, temps[r])
-
 axs[0].plot([dist_array[on_catalyst], dist_array[on_catalyst]], [-0.02, 0.2], linestyle='--', color='xkcd:grey')
 axs[0].plot([dist_array[off_catalyst], dist_array[off_catalyst]], [-0.02, 0.2], linestyle='--', color='xkcd:grey')
 axs[0].annotate("catalyst", fontsize=13, xy=(dist_array[on_catalyst], 0.08), va=('bottom'), ha=('left'))
@@ -530,7 +577,6 @@ axs[0].annotate("catalyst", fontsize=13, xy=(dist_array[on_catalyst], 0.08), va=
 # axs[2].plot([dist_array[on_catalyst], dist_array[on_catalyst]],[-.02,.2], linestyle='--', color='xkcd:grey')
 # axs[2].plot([dist_array[off_catalyst], dist_array[off_catalyst]],[-.02,.2], linestyle='--', color='xkcd:grey')
 # axs[2].annotate("catalyst", fontsize=13, xy=(dist_array[on_catalyst], .08), va =('bottom'), ha = ('left'))
-
 axs[0].legend(loc='center left')
 # axs[1].legend(loc='center left')
 axs[0].set_ylabel('O2 Flow (mol/mm)', fontsize=13);
@@ -542,14 +588,19 @@ axs[2].set_ylabel('CO Flow (mol/min)', fontsize=13)
 axs[1].set_xlabel('Position (mm)', fontsize=13)
 axs[2].set_xlabel('Position (mm)', fontsize=13)
 # axs[0].set_title('O2');axs[1].set_title('H2');axs[2].set_title('CO')
-ax2.set_ylim(200, 2000);axs[0].set_ylim(0, .1)
-axs[0].set_xlim(5, 25);axs[1].set_xlim(5, 25);axs[2].set_xlim(5, 25)
+ax2.set_ylim(200, 2000)
+axs[0].set_ylim(0, .1);axs[0].set_xlim(5, 25)
+axs[1].set_xlim(5, 25);axs[2].set_xlim(5, 25)
+# plt.tight_layout()
 fig.set_figheight(14)
 fig.set_figwidth(8)
-
 out_dir = 'figures'
 os.path.exists(out_dir) or os.makedirs(out_dir)
 fig.savefig(out_dir + '/' + 'flows.png', bbox_inches='tight')
+
+##################
+## SENSITIVITY
+##################
 
 def sensitivity(gas, surf, old_data, temp, dk):
     """
@@ -562,6 +613,7 @@ def sensitivity(gas, surf, old_data, temp, dk):
     written so that the other ways could be commented out.
     """
     rxns = [];sens1 = [];sens2 = [];sens3 = []
+
     gas_out_data, gas_names_data, dist_array_data, T_array_data = old_data
 
     reference = []
@@ -706,7 +758,6 @@ def sensitivity(gas, surf, old_data, temp, dk):
 
 sens_by_ratio = []
 dk = 1.0e-2
-num_threads = len(data)
 
 species_dict = rmgpy.data.kinetics.KineticsLibrary().getSpecies('species_dictionary.txt')
 keys = species_dict.keys()
@@ -734,36 +785,33 @@ def export(rxns_translated, ratio, sens_vals, sens_type=1):
     (pd.DataFrame.from_dict(data=sorted_answer, orient='columns')
      .to_csv(outdir + '/dict_{}ratio_{}.csv'.format(ratio, sens_type), header=False))
 
-# export everything
-# for x in sens_by_ratio:
-#     for s in range(len(x)-1):
-#         export(rxns_translated,x[0],x[s+1],s+1)
-
-def sensitivityWorker(data):
-    temp = t_in
+def sensitivityWorker(gas, surf, data, temp, dk):
+    # data is the worker input
     print('Starting sensitivity simulation for a C/O ratio of {:.1f}'.format(data[0]))
     reactions, sensitivity1, sensitivity2, sensitivity3 = sensitivity(gas, surf, data[1], temp, dk)
     print('Finished sensitivity simulation for a C/O ratio of {:.1f}'.format(data[0]))
     sensitivities = [data[0], sensitivity1, sensitivity2, sensitivity3]
+    
     rxns_translated = []
-    # now replace each molecule with smiles
     for x in reactions:
         for key, smile in names.iteritems():
             x = re.sub(re.escape(key), smile, x)
         rxns_translated.append(x)
-    #export into a to_csv
     for s in range(len(sensitivities)-1):
         export(rxns_translated,sensitivities[0],sensitivities[s+1],s+1)
-    return True
-    # return sensitivities
-    # except:
-        # print('Unable to run sensitivity simulation at a C/O ratio of {:.1f}'.format(data[0]))
-        # pass
+    return False
+#    except:
+#        print('Unable to run sensitivity simulation at a C/O ratio of {:.1f}'.format(data[0]))
+#        pass
 
+num_threads = len(data)
 pool = multiprocessing.Pool(processes = num_threads)
+
 worker_input = []
 for r in range(len(data)):
     worker_input.append([data[r][0],[data[r][1]]])
 pool.map(sensitivityWorker,worker_input)
-# pool.close()
-# pool.join()
+#pool.close()
+#pool.join()
+
+
