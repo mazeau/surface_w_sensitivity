@@ -30,6 +30,7 @@ import matplotlib.pyplot  as plt
 import matplotlib.gridspec as gridspec
 from matplotlib.pyplot import cm
 from matplotlib.ticker import NullFormatter, MaxNLocator, LogLocator
+plt.switch_backend('agg')
 import csv
 from pydas.dassl import DASSL
 import os
@@ -468,18 +469,27 @@ for r in ratios:
     
     moles_in = [fch4,fo2,far]
     
-    try:
-	print('Starting simulation for C/O ratio of {:.1f}'.format(r))
-        a = monolithFull(gas,surf,t,moles_in,verbose=True)
-        gas_out, surf_out, gas_names, surf_names, dist_array, T_array = a
-        plotflow(a)
-	plotZoom(a)
-	
-	print('Finished simulation for C/O ratio of {:.0f}'.format(r))
-        data.append([r,[gas_out,gas_names,dist_array,T_array]])
-    except:
-	print('Unable to run simulation at a C/O ratio of {:.1f}'.format(r))
-        pass
+#    try:
+#	print('Starting simulation for C/O ratio of {:.1f}'.format(r))
+#        a = monolithFull(gas,surf,t,moles_in,verbose=True)
+#        gas_out, surf_out, gas_names, surf_names, dist_array, T_array = a
+#        data.append([r,[gas_out,gas_names,dist_array,T_array]])
+#        plotflow(a)
+#	plotZoom(a)
+#	
+#	print('Finished simulation for C/O ratio of {:.0f}'.format(r))
+#    except:
+#	print('Unable to run simulation at a C/O ratio of {:.1f}'.format(r))
+#        pass
+
+    print('Starting simulation for C/O ratio of {:.1f}'.format(r))
+    a = monolithFull(gas,surf,t,moles_in,verbose=True)
+    gas_out, surf_out, gas_names, surf_names, dist_array, T_array = a
+    plotflow(a)
+    plotZoom(a)
+       
+    print('Finished simulation for C/O ratio of {:.0f}'.format(r))
+    data.append([r,[gas_out,gas_names,dist_array,T_array]])
 
 ### TRYING TO MULTIPROCESS THIS BUT SOLUTION OBJECT IS NOT PICKELABLE ###
 #data = []
