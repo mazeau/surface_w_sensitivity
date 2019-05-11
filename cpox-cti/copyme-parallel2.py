@@ -434,7 +434,8 @@ def simulationWorker(ratio):
     far = 79 * fo2 / 21
     ratio_in = [fch4, fo2, far]
     
-    a = monolithFull(gas, surf, t_in, ratio_in, verbose=True)
+    a = monolithFull(gas, surf, t_in, ratio_in)
+    print("Finished simulation at a C/O ratio of {:.1f}".format(ratio))
     gas_out, surf_out, gas_names, surf_names, dist_array, T_array = a
     return [ratio, [gas_out, gas_names, dist_array, T_array]]
 #    except:
@@ -785,21 +786,20 @@ def export(rxns_translated, ratio, sens_vals, sens_type=1):
     (pd.DataFrame.from_dict(data=sorted_answer, orient='columns')
      .to_csv(outdir + '/dict_{}ratio_{}.csv'.format(ratio, sens_type), header=False))
 
-def sensitivityWorker(gas, surf, data, temp, dk):
-    # data is the worker input
+def sensitivityWorker(data):
     print('Starting sensitivity simulation for a C/O ratio of {:.1f}'.format(data[0]))
-    reactions, sensitivity1, sensitivity2, sensitivity3 = sensitivity(gas, surf, data[1], temp, dk)
+    reactions, sensitivity1, sensitivity2, sensitivity3 = sensitivity(gas, surf, data[1], t_in, dk)
     print('Finished sensitivity simulation for a C/O ratio of {:.1f}'.format(data[0]))
     sensitivities = [data[0], sensitivity1, sensitivity2, sensitivity3]
-    
     rxns_translated = []
     for x in reactions:
         for key, smile in names.iteritems():
             x = re.sub(re.escape(key), smile, x)
         rxns_translated.append(x)
+    print("was able to translate things, about to write them to a csv for {:.1f}".format(data[0]))
     for s in range(len(sensitivities)-1):
         export(rxns_translated,sensitivities[0],sensitivities[s+1],s+1)
-    return False
+    return ratio
 #    except:
 #        print('Unable to run sensitivity simulation at a C/O ratio of {:.1f}'.format(data[0]))
 #        pass
