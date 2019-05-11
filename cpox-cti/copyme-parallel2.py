@@ -507,7 +507,6 @@ for r in data:
 output = []
 for x in range(len(ratios_real)):
     output.append([ratios_real[x], ch4_conv[x], o2_conv[x], co_sel[x], h2_sel[x], h2o_sel[x]])
-print output
 
 # todo: some sort of check/something to output to know that all ratios were sucessfully run
 k = (pd.DataFrame.from_dict(data=output, orient='columns'))
@@ -810,7 +809,7 @@ pool = multiprocessing.Pool(processes = num_threads)
 worker_input = []
 for r in range(len(data)):
     worker_input.append([data[r][0],[data[r][1]]])
-pool.map(sensitivityWorker,worker_input)
+the_end = pool.map(sensitivityWorker, worker_input)
 #pool.close()
 #pool.join()
 
