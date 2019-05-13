@@ -691,10 +691,6 @@ def sensitivity(gas, surf, old_data, temp, dk):
         c = monolithFull(gas, surf, temp, moles_in, sens=[dk, rxn])
         gas_out, surf_out, gas_names, surf_names, dist_array, T_array = c
 
-        # uncomment if sensitivity for surface only reactions are wanted
-        #         d = monolithNoGas(gas,surf,temp,sens=[dk,rxn])
-        #         gas2_out, surf2_out, gas2_names, surf2_names, dist2_array, T2_array = d
-
         new_amts = []
         for a in range(len(gas_names)):
             new_amts.append([gas_names[a], [gas_out[:, a]]])
@@ -731,28 +727,25 @@ def sensitivity(gas, surf, old_data, temp, dk):
         new_syngas_selectivity = new_co_sel + new_h2_sel
         Sens1 = (reference_syngas_selectivity - new_syngas_selectivity) / (reference_syngas_selectivity * dk)
         sens1.append(Sens1)
-        #         print "%d %s %.3F"%(rxn,surf.reaction_equations()[rxn],Sens1)
+        #print "%d %s %.3F"%(rxn,surf.reaction_equations()[rxn],Sens1)
 
         #####################################
         ## Sensitivity definition 2:
         #####################################
         new_norm_syngas_selectivity = new_syngas_selectivity * new_ch4_conv
-        Sens2 = (reference_norm_syngas_selectivity - new_norm_syngas_selectivity) / (
-                    reference_norm_syngas_selectivity * dk)
+        Sens2 = (reference_norm_syngas_selectivity - new_norm_syngas_selectivity) / (reference_norm_syngas_selectivity * dk)
         sens2.append(Sens2)
-        #         print "%d %s %.3F"%(rxn,surf.reaction_equations()[rxn],Sens2)
+        #print "%d %s %.3F"%(rxn,surf.reaction_equations()[rxn],Sens2)
 
         #####################################
         ## Sensitivity definition 3:
         #####################################
         new_norm_syngas_selectivity2 = new_norm_syngas_selectivity * new_syngas_selectivity
-        Sens3 = (reference_norm_syngas_selectivity2 - new_norm_syngas_selectivity2) / (
-                    reference_norm_syngas_selectivity2 * dk)
+        Sens3 = (reference_norm_syngas_selectivity2 - new_norm_syngas_selectivity2) / (reference_norm_syngas_selectivity2 * dk)
         sens3.append(Sens3)
-        #         print "%d %s %.3F"%(rxn,surf.reaction_equations()[rxn],Sens3)
+        #print "%d %s %.3F"%(rxn,surf.reaction_equations()[rxn],Sens3)
 
         print "%d %s %.3F %.3F %.3F" % (rxn, surf.reaction_equations()[rxn], Sens1, Sens2, Sens3)
-
         rxns.append(surf.reaction_equations()[rxn])
     return rxns, sens1, sens2, sens3
 
@@ -787,7 +780,8 @@ def export(rxns_translated, ratio, sens_vals, sens_type=1):
 
 def sensitivityWorker(data):
     print('Starting sensitivity simulation for a C/O ratio of {:.1f}'.format(data[0]))
-    reactions, sensitivity1, sensitivity2, sensitivity3 = sensitivity(gas, surf, data[1], t_in, dk)
+    old_data = data[1][0]
+    reactions, sensitivity1, sensitivity2, sensitivity3 = sensitivity(gas, surf, old_data, t_in, dk)
     print('Finished sensitivity simulation for a C/O ratio of {:.1f}'.format(data[0]))
     sensitivities = [data[0], sensitivity1, sensitivity2, sensitivity3]
     rxns_translated = []
@@ -809,7 +803,9 @@ pool = multiprocessing.Pool(processes = num_threads)
 worker_input = []
 for r in range(len(data)):
     worker_input.append([data[r][0],[data[r][1]]])
-the_end = pool.map(sensitivityWorker, worker_input)
+print len(worker_input)
+
+pool.map(sensitivityWorker,worker_input)
 #pool.close()
 #pool.join()
 
