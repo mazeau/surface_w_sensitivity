@@ -845,7 +845,7 @@ def export(rxns_translated, ratio, sens_vals, sens_type=1.):
     out_dir = 'sensitivities'
     os.path.exists(out_dir) or os.makedirs(out_dir)
     (pd.DataFrame.from_dict(data=sorted_answer, orient='columns')
-    .to_csv(out_dir + '/dict_{:.1f}ratio_{:0f}.csv'.format(ratio, sens_type), header=False))
+    .to_csv(out_dir + '/dict_{:.1f}ratio_{:.0f}.csv'.format(ratio, sens_type), header=False))
 
 
 def sensitivityWorker(data):
