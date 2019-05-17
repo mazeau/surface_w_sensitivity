@@ -411,37 +411,40 @@ def monolithFull(gas, surf, temp, mol_in, verbose=False, sens=False):
         os.path.exists(out_dir) or os.makedirs(out_dir)
         elements = ['H', 'O']
         locations_of_interest = [1000, 1200, 1400, 1600, 1800, 1999]
-        for l in locations_of_interest:
-            if n == l:
-                location = str(int(n / 100))
+        if sens is False:
+            for l in locations_of_interest:
+                if n == l:
+                    location = str(int(n / 100))
 
-                diagram = ct.ReactionPathDiagram(surf, 'X')
-                diagram.title = 'rxn path'
-                diagram.label_threshold = 1e-9
-                dot_file = out_dir + '/rxnpath-' + ratio + '-x-' + location + 'mm.dot'
-                img_file = out_dir + '/rxnpath-' + ratio + '-x-' + location + 'mm.png'
-                img_path = os.path.join(os.getcwd(), img_file)
-                diagram.write_dot(dot_file)
-                os.system('dot {0} -Tpng -o{1} -Gdpi=200'.format(dot_file, img_file))
-
-                for element in elements:
-                    #                     diagram = ct.ReactionPathDiagram(gas,element)
-                    #                     diagram.title = element + 'rxn path'
-                    #                     diagram.label_threshold = 1e-9
-                    #                     dot_file = 'rxnpath-gas-' + location + 'mm-' + element + '.dot'
-                    #                     img_file = 'rxnpath-gas-' + location + 'mm-' + element + '.png'
-                    #                     img_path = os.path.join(os.getcwd(), img_file)
-                    #                     diagram.write_dot(dot_file)
-                    #                     os.system('dot {0} -Tpng -o{1} -Gdpi=200'.format(dot_file, img_file))
-
-                    diagram = ct.ReactionPathDiagram(surf, element)
-                    diagram.title = element + 'rxn path'
+                    diagram = ct.ReactionPathDiagram(surf, 'X')
+                    diagram.title = 'rxn path'
                     diagram.label_threshold = 1e-9
-                    dot_file = out_dir + '/rxnpath-' + ratio + '-surf-' + location + 'mm-' + element + '.dot'
-                    img_file = out_dir + '/rxnpath-' + ratio + '-surf-' + location + 'mm-' + element + '.png'
-                    img_path = os.path.join(out_dir, img_file)
+                    dot_file = out_dir + '/rxnpath-' + ratio + '-x-' + location + 'mm.dot'
+                    img_file = out_dir + '/rxnpath-' + ratio + '-x-' + location + 'mm.png'
+                    img_path = os.path.join(os.getcwd(), img_file)
                     diagram.write_dot(dot_file)
                     os.system('dot {0} -Tpng -o{1} -Gdpi=200'.format(dot_file, img_file))
+
+                    for element in elements:
+                        #                     diagram = ct.ReactionPathDiagram(gas,element)
+                        #                     diagram.title = element + 'rxn path'
+                        #                     diagram.label_threshold = 1e-9
+                        #                     dot_file = 'rxnpath-gas-' + location + 'mm-' + element + '.dot'
+                        #                     img_file = 'rxnpath-gas-' + location + 'mm-' + element + '.png'
+                        #                     img_path = os.path.join(os.getcwd(), img_file)
+                        #                     diagram.write_dot(dot_file)
+                        #                     os.system('dot {0} -Tpng -o{1} -Gdpi=200'.format(dot_file, img_file))
+
+                        diagram = ct.ReactionPathDiagram(surf, element)
+                        diagram.title = element + 'rxn path'
+                        diagram.label_threshold = 1e-9
+                        dot_file = out_dir + '/rxnpath-' + ratio + '-surf-' + location + 'mm-' + element + '.dot'
+                        img_file = out_dir + '/rxnpath-' + ratio + '-surf-' + location + 'mm-' + element + '.png'
+                        img_path = os.path.join(out_dir, img_file)
+                        diagram.write_dot(dot_file)
+                        os.system('dot {0} -Tpng -o{1} -Gdpi=200'.format(dot_file, img_file))
+        else:
+            pass
 
         if verbose is True:
             if not n % 100:
