@@ -1,0 +1,40 @@
+digraph reaction_paths {
+center=1;
+s9 -> s0[fontname="Helvetica", style="setlinewidth(3.29)", arrowsize=1.64, color="0.7, 0.528, 0.9"
+, label=" 0.0276"];
+s3 -> s9[fontname="Helvetica", style="setlinewidth(3.88)", arrowsize=1.94, color="0.7, 0.56, 0.9"
+, label=" 0.06"];
+s14 -> s9[fontname="Helvetica", style="setlinewidth(4.99)", arrowsize=2.5, color="0.7, 0.764, 0.9"
+, label=" 0.264"];
+s9 -> s11[fontname="Helvetica", style="setlinewidth(5.82)", arrowsize=2.91, color="0.7, 1.29, 0.9"
+, label=" 0.791"];
+s9 -> s10[fontname="Helvetica", style="setlinewidth(2.02)", arrowsize=1.01, color="0.7, 0.505, 0.9"
+, label=" 0.00511"];
+s15 -> s9[fontname="Helvetica", style="setlinewidth(4.99)", arrowsize=2.5, color="0.7, 0.764, 0.9"
+, label=" 0.264"];
+s16 -> s9[fontname="Helvetica", style="setlinewidth(4.99)", arrowsize=2.5, color="0.7, 0.764, 0.9"
+, label=" 0.264"];
+s3 -> s14[fontname="Helvetica", style="setlinewidth(5.79)", arrowsize=2.89, color="0.7, 1.25, 0.9"
+, label=" 0.752"];
+s3 -> s11[fontname="Helvetica", style="setlinewidth(4.75)", arrowsize=2.37, color="0.7, 0.691, 0.9"
+, label=" 0.191"];
+s14 -> s15[fontname="Helvetica", style="setlinewidth(5.52)", arrowsize=2.76, color="0.7, 1.03, 0.9"
+, label=" 0.528"];
+s11 -> s10[fontname="Helvetica", style="setlinewidth(5.46)", arrowsize=2.73, color="0.7, 0.987, 0.9"
+, label=" 0.487"];
+s10 -> s2[fontname="Helvetica", style="setlinewidth(6)", arrowsize=3, color="0.7, 1.5, 0.9"
+, label=" 1"];
+s15 -> s16[fontname="Helvetica", style="setlinewidth(4.99)", arrowsize=2.5, color="0.7, 0.764, 0.9"
+, label=" 0.264"];
+s0 [ fontname="Helvetica", label="H2"];
+s2 [ fontname="Helvetica", label="H2O"];
+s3 [ fontname="Helvetica", label="CH4"];
+s9 [ fontname="Helvetica", label="H_ads"];
+s10 [ fontname="Helvetica", label="H2O_ads"];
+s11 [ fontname="Helvetica", label="OH_ads"];
+s14 [ fontname="Helvetica", label="CH3_ads"];
+s15 [ fontname="Helvetica", label="CH2_ads"];
+s16 [ fontname="Helvetica", label="CH_ads"];
+ label = "Scale = 1.9e-05\l Hrxn path";
+ fontname = "Helvetica";
+}
