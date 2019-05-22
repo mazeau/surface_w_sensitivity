@@ -1064,15 +1064,15 @@ def sensitivityThermoWorker(data):
     print('Starting thermo sensitivity simulation for a C/O ratio of {:.1f}'.format(data[0]))
     old_data = data[1][0]
     ratio = data[0]
-    # try:
-    species_on_surface, sensitivity1, sensitivity2, sensitivity3, sensitivity4, sensitivity5 = sensitivityThermo(gas, surf, old_data, t_in, dk)
-    print('Finished thermo sensitivity simulation for a C/O ratio of {:.1f}'.format(ratio))
-    sensitivities = data[0], sensitivity1, sensitivity2, sensitivity3, sensitivity4, sensitivity5
-    for s in range(len(sensitivities)-1):
-        exportThermo(species_on_surface, sensitivities[0], sensitivities[s+1], s+1)
-    # except:
-    #     print('Unable to run thermo sensitivity simulation at a C/O ratio of {:.1f}'.format(data[0]))
-    #     pass
+    try:
+        species_on_surface, sensitivity1, sensitivity2, sensitivity3, sensitivity4, sensitivity5 = sensitivityThermo(gas, surf, old_data, t_in, dk)
+        print('Finished thermo sensitivity simulation for a C/O ratio of {:.1f}'.format(ratio))
+        sensitivities = data[0], sensitivity1, sensitivity2, sensitivity3, sensitivity4, sensitivity5
+        for s in range(len(sensitivities)-1):
+            exportThermo(species_on_surface, sensitivities[0], sensitivities[s+1], s+1)
+    except:
+        print('Unable to run thermo sensitivity simulation at a C/O ratio of {:.1f}'.format(data[0]))
+        pass
 
 
 worker_input = []
