@@ -939,7 +939,7 @@ def sensitivityThermo(gas, surf, old_data, temp, dk):
         #         perturbed_coeffs[13] = original_coeffs[13] + original_coeffs[13]*dk
         perturbed_coeffs[6] = original_coeffs[6] + dk
         perturbed_coeffs[13] = original_coeffs[13] + dk
-        s.thermo = ct.NasaPoly2(100.000, 2000.000, ct.one_atm, perturbed_coeffs)
+        s.thermo = ct.NasaPoly2(100.000, 5000.000, ct.one_atm, perturbed_coeffs)
         surf.modify_species(m, s)
         c = monolithFull(gas, surf, temp, moles_in)
         gas_out, surf_out, gas_names, surf_names, dist_array, T_array = c
@@ -1015,7 +1015,7 @@ def sensitivityThermo(gas, surf, old_data, temp, dk):
         species.append(surf.species_name(m))
 
         # this step is essential, otherwise mechanism will have been altered
-        s.thermo = ct.NasaPoly2(100.000, 2000.000, ct.one_atm, original_coeffs)
+        s.thermo = ct.NasaPoly2(100.000, 5000.000, ct.one_atm, original_coeffs)
         surf.modify_species(m, s)
     return species, sens1, sens2, sens3, sens4, sens5
 
@@ -1062,16 +1062,17 @@ def sensitivityWorker(data):
 
 def sensitivityThermoWorker(data):
     print('Starting thermo sensitivity simulation for a C/O ratio of {:.1f}'.format(data[0]))
-    old_data = data[1][0]; ratio = data[0]
-    try:
-        species, sensitivity1, sensitivity2, sensitivity3, sensitivity4, sensitivity5= sensitivityThermo(gas, surf, old_data, t_in, dk)
-        print('Finished thermo sensitivity simulation for a C/O ratio of {:.1f}'.format(ratio))
-        sensitivities = data[0], sensitivity1, sensitivity2, sensitivity3, sensitivity4, sensitivity5
-        for s in range(len(sensitivities)-1):
-            exportThermo(species, sensitivities[0], sensitivities[s+1], s+1)
-    except:
-        print('Unable to run thermo sensitivity simulation at a C/O ratio of {:.1f}'.format(data[0]))
-        pass
+    old_data = data[1][0]
+    ratio = data[0]
+    # try:
+    species_on_surface, sensitivity1, sensitivity2, sensitivity3, sensitivity4, sensitivity5 = sensitivityThermo(gas, surf, old_data, t_in, dk)
+    print('Finished thermo sensitivity simulation for a C/O ratio of {:.1f}'.format(ratio))
+    sensitivities = data[0], sensitivity1, sensitivity2, sensitivity3, sensitivity4, sensitivity5
+    for s in range(len(sensitivities)-1):
+        exportThermo(species_on_surface, sensitivities[0], sensitivities[s+1], s+1)
+    # except:
+    #     print('Unable to run thermo sensitivity simulation at a C/O ratio of {:.1f}'.format(data[0]))
+    #     pass
 
 
 worker_input = []
