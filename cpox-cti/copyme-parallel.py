@@ -91,8 +91,6 @@ rvol = area * reactor_len * porosity
 # catalyst area in one reactor
 cat_area = cat_area_per_vol * rvol
 
-mass_flow_rate = velocity * gas.density * area  # kg/s
-
 
 def plotflow(a):
     gas_out, surf_out, gas_names, surf_names, dist_array, T_array = a
@@ -366,6 +364,7 @@ def monolithFull(gas, surf, temp, mol_in, verbose=False, sens=False):
 
     # The mass flow rate into the reactor will be fixed by using a
     # MassFlowController object.
+    mass_flow_rate = velocity * gas.density * area  # kg/s
     m = ct.MassFlowController(upstream, r, mdot=mass_flow_rate)
 
     # We need an outlet to the downstream reservoir. This will determine the
@@ -378,7 +377,7 @@ def monolithFull(gas, surf, temp, mol_in, verbose=False, sens=False):
 
     # set relative and absolute tolerances on the simulation
     sim.rtol = 1.0e-10
-    sim.atol = 1.0e-18
+    sim.atol = 1.0e-19
 
     gas_names = gas.species_names
     surf_names = surf.species_names
@@ -469,19 +468,19 @@ def simulationWorker(ratio):
     fch4 = 2 * fo2 * ratio
     far = 79 * fo2 / 21
     ratio_in = [fch4, fo2, far]
-    
-    a = monolithFull(gas, surf, t_in, ratio_in)
-    print("Finished simulation at a C/O ratio of {:.1f}".format(ratio))
-    gas_out, surf_out, gas_names, surf_names, dist_array, T_array = a
-    return [ratio, [gas_out, gas_names, dist_array, T_array]]
-#    except:
-#        print('Unable to run simulation at a C/O ratio of {:.1f}'.format(ratio))
-#        pass
+
+    try:
+        a = monolithFull(gas, surf, t_in, ratio_in, verbose=True)
+        print("Finished simulation at a C/O ratio of {:.1f}".format(ratio))
+        gas_out, surf_out, gas_names, surf_names, dist_array, T_array = a
+        return [ratio, [gas_out, gas_names, dist_array, T_array]]
+    except:
+        print('Unable to run simulation at a C/O ratio of {:.1f}'.format(ratio))
+        pass
 
 
 ratios = [.6, .7, .8, .9, 1., 1.1, 1.2, 1.3, 1.4, 1.6, 1.8, 2., 2.2, 2.4, 2.6]  # 15 items
 data = []
-t = t_in
 num_threads = len(ratios)
 pool = multiprocessing.Pool(processes=num_threads)
 data = pool.map(simulationWorker, ratios)
@@ -593,15 +592,15 @@ for r in data:
     ratios.append(r[0])
 
 fig, axs = plt.subplots(3, 1)
-sns.set_palette(sns.color_palette("coolwarm", 15))
+sns.set_palette(sns.color_palette("hls", 15))
 # plot exit conversion and temp
 for r in range(len(ratios)):
     axs[0].plot(dist_array, o2[r] * .208, label=ratios[r])
     axs[1].plot(dist_array, h2[r] * .208, label=ratios[r])
     axs[2].plot(dist_array, co[r] * .208, label=ratios[r])
-sns.set_palette(sns.color_palette("coolwarm", 15))
+# sns.set_palette(sns.color_palette("coolwarm", 15))
 ax2 = axs[0].twinx()
-sns.set_palette(sns.color_palette("coolwarm",15))
+# sns.set_palette(sns.color_palette("coolwarm", 15))
 for r in range(len(ratios)):
     ax2.plot(dist_array, temps[r])
 axs[0].plot([dist_array[on_catalyst], dist_array[on_catalyst]], [-0.02, 0.2], linestyle='--', color='xkcd:grey')
@@ -1077,12 +1076,14 @@ def sensitivityThermoWorker(data):
 
 worker_input = []
 sens_thermo = []
-dk = 5.0e-2
+dk = 3.0e-2
 num_threads = len(data)
 pool = multiprocessing.Pool(processes=num_threads)
 for r in range(len(data)):
     worker_input.append([data[r][0], [data[r][1]]])
 pool.map(sensitivityThermoWorker, worker_input)
+pool.close()
+pool.join()
 
 species_dict = rmgpy.data.kinetics.KineticsLibrary().getSpecies('species_dictionary.txt')
 keys = species_dict.keys()
