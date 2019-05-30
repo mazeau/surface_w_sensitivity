@@ -420,7 +420,7 @@ def monolithFull(gas, surf, temp, mol_in, verbose=False, sens=False):
                     diagram.label_threshold = 1e-9
                     dot_file = out_dir + '/rxnpath-' + ratio + '-x-' + location + 'mm.dot'
                     img_file = out_dir + '/rxnpath-' + ratio + '-x-' + location + 'mm.png'
-                    img_path = os.path.join(os.getcwd(), img_file)
+                    img_path = os.path.join(out_dir, img_file)
                     diagram.write_dot(dot_file)
                     os.system('dot {0} -Tpng -o{1} -Gdpi=200'.format(dot_file, img_file))
 
@@ -470,7 +470,7 @@ def simulationWorker(ratio):
     ratio_in = [fch4, fo2, far]
 
     try:
-        a = monolithFull(gas, surf, t_in, ratio_in, verbose=True)
+        a = monolithFull(gas, surf, t_in, ratio_in)
         print("Finished simulation at a C/O ratio of {:.1f}".format(ratio))
         gas_out, surf_out, gas_names, surf_names, dist_array, T_array = a
         return [ratio, [gas_out, gas_names, dist_array, T_array]]
@@ -549,15 +549,15 @@ k.to_csv('dict_conversions_selectivities.csv', header=True)
 
 fig, axs = plt.subplots(1, 2)
 # plot exit conversion and temp
-axs[0].plot(ratios_real, ch4_conv, 'bo-', label='CH4', color='green')
+axs[0].plot(ratios_real, ch4_conv, 'bo-', label='CH4', color='limegreen')
 axs[0].plot(ratios_real, o2_conv, 'bo-', label='O2', color='blue')
 ax2 = axs[0].twinx()
 ax2.plot(ratios_real, end_temp, 'bo-', label='temp', color='red')
 ax2.set_ylim(600.0, 2000)
 # plot exit selectivities
-axs[1].plot(ratios_real, h2o_sel, 'bo-', label='H2O', color='pink')
-axs[1].plot(ratios_real, co_sel, 'bo-', label='CO', color='purple')
-axs[1].plot(ratios_real, h2_sel, 'bo-', label='H2', color='orange')
+axs[1].plot(ratios_real, h2o_sel, 'bo-', label='H2O', color='dodgerblue')
+axs[1].plot(ratios_real, co_sel, 'bo-', label='CO', color='green')
+axs[1].plot(ratios_real, h2_sel, 'bo-', label='H2', color='blueviolet')
 axs[0].legend()
 axs[1].legend()
 axs[0].set_ylabel('Exit conversion (%)', fontsize=13)
@@ -1067,23 +1067,17 @@ def sensitivityThermoWorker(data):
         species_on_surface, sensitivity1, sensitivity2, sensitivity3, sensitivity4, sensitivity5 = sensitivityThermo(gas, surf, old_data, t_in, dk)
         print('Finished thermo sensitivity simulation for a C/O ratio of {:.1f}'.format(ratio))
         sensitivities = data[0], sensitivity1, sensitivity2, sensitivity3, sensitivity4, sensitivity5
+        species_translated = []
+        for x in species_on_surface:
+            for key, smile in names.iteritems():
+                x = re.sub(re.escape(key), smile, x)
+            species_translated.append(x)
         for s in range(len(sensitivities)-1):
             exportThermo(species_on_surface, sensitivities[0], sensitivities[s+1], s+1)
     except:
         print('Unable to run thermo sensitivity simulation at a C/O ratio of {:.1f}'.format(data[0]))
         pass
 
-
-worker_input = []
-sens_thermo = []
-dk = 3.0e-2
-num_threads = len(data)
-pool = multiprocessing.Pool(processes=num_threads)
-for r in range(len(data)):
-    worker_input.append([data[r][0], [data[r][1]]])
-pool.map(sensitivityThermoWorker, worker_input)
-pool.close()
-pool.join()
 
 species_dict = rmgpy.data.kinetics.KineticsLibrary().getSpecies('species_dictionary.txt')
 keys = species_dict.keys()
@@ -1109,3 +1103,14 @@ worker_input = []
 for r in range(len(data)):
     worker_input.append([data[r][0], [data[r][1]]])
 pool.map(sensitivityWorker, worker_input)
+
+worker_input = []
+sens_thermo = []
+dk = 1.0e-2
+num_threads = len(data)
+pool = multiprocessing.Pool(processes=num_threads)
+for r in range(len(data)):
+    worker_input.append([data[r][0], [data[r][1]]])
+pool.map(sensitivityThermoWorker, worker_input)
+pool.close()
+pool.join()
