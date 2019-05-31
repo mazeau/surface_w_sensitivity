@@ -291,10 +291,10 @@ def plotSurf(a):
     axs[0].plot([dist_array[off_catalyst], dist_array[off_catalyst]], [0, xmax], linestyle='--', color='xkcd:grey')
     axs[0].plot([dist_array[off_catalyst], dist_array[off_catalyst]], [0, xmax], linestyle='--', color='xkcd:grey')
     axs[0].plot([dist_array[1230], dist_array[1230]], [0, xmax], linestyle='--', color='xkcd:grey')
-    axs[0].annotate("catalyst", fontsize=13, xy=(dist_array[on_catalyst], 0.275), va='bottom', ha='left')
-    axs[1].plot([dist_array[on_catalyst], dist_array[on_catalyst]], [200.0, 1300], linestyle='--', color='xkcd:grey')
-    axs[1].plot([dist_array[off_catalyst], dist_array[off_catalyst]], [200.0, 1300], linestyle='--', color='xkcd:grey')
-    axs[1].annotate("catalyst", fontsize=13, xy=(dist_array[on_catalyst], 1005), va='bottom', ha='left')
+    axs[0].annotate("catalyst", fontsize=13, xy=(dist_array[on_catalyst], 0.175), va='bottom', ha='left')
+    # axs[1].plot([dist_array[on_catalyst], dist_array[on_catalyst]], [600.0, 2000], linestyle='--', color='xkcd:grey')
+    # axs[1].plot([dist_array[off_catalyst], dist_array[off_catalyst]], [600.0, 2000], linestyle='--', color='xkcd:grey')
+    # axs[1].annotate("catalyst", fontsize=13, xy=(dist_array[on_catalyst], 1800), va='bottom', ha='left')
 
     for item in (axs[0].get_xticklabels() + axs[0].get_yticklabels() + axs[1].get_xticklabels() + axs[1].get_yticklabels()):
         item.set_fontsize(12)
@@ -458,8 +458,6 @@ def monolithFull(gas, surf, temp, mol_in, verbose=False, sens=False):
     gas_names = np.array(gas_names)
     surf_names = np.array(surf_names)
     data_out = gas_out, surf_out, gas_names, surf_names, dist_array, T_array
-    plotflow(data_out)
-    plotZoom(data_out)
     return data_out
 
 
@@ -473,6 +471,9 @@ def simulationWorker(ratio):
         a = monolithFull(gas, surf, t_in, ratio_in)
         print("Finished simulation at a C/O ratio of {:.1f}".format(ratio))
         gas_out, surf_out, gas_names, surf_names, dist_array, T_array = a
+        plotflow(a)
+        plotZoom(a)
+        # plotSurf(a)  # broken
         return [ratio, [gas_out, gas_names, dist_array, T_array]]
     except:
         print('Unable to run simulation at a C/O ratio of {:.1f}'.format(ratio))
@@ -483,7 +484,7 @@ ratios = [.6, .7, .8, .9, 1., 1.1, 1.2, 1.3, 1.4, 1.6, 1.8, 2., 2.2, 2.4, 2.6]  
 data = []
 num_threads = len(ratios)
 pool = multiprocessing.Pool(processes=num_threads)
-data = pool.map(simulationWorker, ratios)
+data = pool.map(simulationWorker, ratios, 1)
 pool.close()
 pool.join()
 
@@ -557,7 +558,7 @@ ax2.set_ylim(600.0, 2000)
 # plot exit selectivities
 axs[1].plot(ratios_real, h2o_sel, 'bo-', label='H2O', color='dodgerblue')
 axs[1].plot(ratios_real, co_sel, 'bo-', label='CO', color='green')
-axs[1].plot(ratios_real, h2_sel, 'bo-', label='H2', color='blueviolet')
+axs[1].plot(ratios_real, h2_sel, 'bo-', label='H2', color='purple')
 axs[0].legend()
 axs[1].legend()
 axs[0].set_ylabel('Exit conversion (%)', fontsize=13)
@@ -591,16 +592,15 @@ for r in data:
     temps.append(r[1][3])
     ratios.append(r[0])
 
-fig, axs = plt.subplots(3, 1)
 sns.set_palette(sns.color_palette("hls", 15))
+fig, axs = plt.subplots(3, 1)
+# sns.set_palette(sns.color_palette("hls", 15))
 # plot exit conversion and temp
 for r in range(len(ratios)):
     axs[0].plot(dist_array, o2[r] * .208, label=ratios[r])
     axs[1].plot(dist_array, h2[r] * .208, label=ratios[r])
     axs[2].plot(dist_array, co[r] * .208, label=ratios[r])
-# sns.set_palette(sns.color_palette("coolwarm", 15))
 ax2 = axs[0].twinx()
-# sns.set_palette(sns.color_palette("coolwarm", 15))
 for r in range(len(ratios)):
     ax2.plot(dist_array, temps[r])
 axs[0].plot([dist_array[on_catalyst], dist_array[on_catalyst]], [-0.02, 0.2], linestyle='--', color='xkcd:grey')
@@ -940,7 +940,7 @@ def sensitivityThermo(gas, surf, old_data, temp, dk):
         perturbed_coeffs[13] = original_coeffs[13] + dk
         s.thermo = ct.NasaPoly2(100.000, 5000.000, ct.one_atm, perturbed_coeffs)
         surf.modify_species(m, s)
-        c = monolithFull(gas, surf, temp, moles_in)
+        c = monolithFull(gas, surf, temp, moles_in)  # will overwrite rxn paths
         gas_out, surf_out, gas_names, surf_names, dist_array, T_array = c
 
         new_amts = []
@@ -1019,41 +1019,49 @@ def sensitivityThermo(gas, surf, old_data, temp, dk):
     return species, sens1, sens2, sens3, sens4, sens5
 
 
-def export(rxns_translated, ratio, sens_vals, sens_type=1.):
-    answer = dict(zip(rxns_translated, sens_vals))
-    sorted_answer = sorted(answer.items(), key=operator.itemgetter(1), reverse=False)
-    # write to csv file
+def export(rxns_translated, ratio):
+    k = (pd.DataFrame.from_dict(data=rxns_translated, orient='columns'))
+    k.columns = ['Reaction', 'H2+CO Selec', 'Normalized H2+CO Selec', 'Normalized2 H2+CO Selec', 'CO Yield', 'H2 Yield']
     out_dir = 'sensitivities'
     os.path.exists(out_dir) or os.makedirs(out_dir)
-    (pd.DataFrame.from_dict(data=sorted_answer, orient='columns')
-    .to_csv(out_dir + '/dict_{:.1f}ratio_{:.0f}.csv'.format(ratio, sens_type), header=False))
+    k.to_csv(out_dir + '/{:.1f}RxnSensitivity.csv'.format(ratio), header=True)
 
 
-def exportThermo(species, ratio, sens_vals, sens_type=1.):
-    answer = dict(zip(species, sens_vals))
-    sorted_answer = sorted(answer.items(), key=operator.itemgetter(1), reverse=False)
-    # write to csv file
+# def exportThermo(species_translated, ratio, sens_vals, sens_type=1.):
+#     j = (pd.DataFrame.from_dict(data=species_translated, orient='columns'))
+#     answer = dict(zip(species, sens_vals))
+#     sorted_answer = sorted(answer.items(), key=operator.itemgetter(1), reverse=False)
+#     out_dir = 'sensitivities'
+#     os.path.exists(out_dir) or os.makedirs(out_dir)
+#     (pd.DataFrame.from_dict(data=sorted_answer, orient='columns')
+#     .to_csv(out_dir + '/dict_{:.1f}ratio_{:.0f}_species.csv'.format(ratio, sens_type), header=False))
+
+
+def exportThermo(species_translated, ratio):
+    j = (pd.DataFrame.from_dict(data=species_translated, orient='columns'))
+    j.columns = ['Species', 'H2+CO Selec', 'Normalized H2+CO Selec', 'Normalized2 H2+CO Selec', 'CO Yield', 'H2 Yield']
     out_dir = 'sensitivities'
     os.path.exists(out_dir) or os.makedirs(out_dir)
-    (pd.DataFrame.from_dict(data=sorted_answer, orient='columns')
-    .to_csv(out_dir + '/dict_{:.1f}ratio_{:.0f}_species.csv'.format(ratio, sens_type), header=False))
+    j.to_csv(out_dir + '/{:.1f}ThermoSensitivity.csv'.format(ratio), header=True)
 
 
 def sensitivityWorker(data):
     print('Starting sensitivity simulation for a C/O ratio of {:.1f}'.format(data[0]))
-    old_data = data[1][0]; ratio = data[0]
+    old_data = data[1][0]
+    ratio = data[0]
     try:
-        reactions, sensitivity1, sensitivity2, sensitivity3, sensitivity4, sensitivity5= sensitivity(gas, surf, old_data, t_in, dk)
+        reactions, sensitivity1, sensitivity2, sensitivity3, sensitivity4, sensitivity5 = sensitivity(gas, surf, old_data, t_in, dk)
         print('Finished sensitivity simulation for a C/O ratio of {:.1f}'.format(ratio))
-        sensitivities = data[0], sensitivity1, sensitivity2, sensitivity3, sensitivity4, sensitivity5
         rxns_translated = []
         for x in reactions:
             for key, smile in names.iteritems():
                 x = re.sub(re.escape(key), smile, x)
             rxns_translated.append(x)
         print('Finished translating for C/O ratio of {:.1f}'.format(ratio))
-        for s in range(len(sensitivities)-1):
-            export(rxns_translated, sensitivities[0], sensitivities[s+1], s+1)
+        output = []
+        for x in range(len(rxns_translated)):
+            output.append([rxns_translated[x], sensitivity1[x], sensitivity2[x], sensitivity3[x], sensitivity4[x], sensitivity5[x]])
+        export(output, ratio)
     except:
         print('Unable to run sensitivity simulation at a C/O ratio of {:.1f}'.format(data[0]))
         pass
@@ -1066,17 +1074,38 @@ def sensitivityThermoWorker(data):
     try:
         species_on_surface, sensitivity1, sensitivity2, sensitivity3, sensitivity4, sensitivity5 = sensitivityThermo(gas, surf, old_data, t_in, dk)
         print('Finished thermo sensitivity simulation for a C/O ratio of {:.1f}'.format(ratio))
-        sensitivities = data[0], sensitivity1, sensitivity2, sensitivity3, sensitivity4, sensitivity5
         species_translated = []
         for x in species_on_surface:
             for key, smile in names.iteritems():
                 x = re.sub(re.escape(key), smile, x)
             species_translated.append(x)
-        for s in range(len(sensitivities)-1):
-            exportThermo(species_on_surface, sensitivities[0], sensitivities[s+1], s+1)
+        output = []
+        for x in range(len(species_on_surface)):
+            output.append([species_translated[x], sensitivity1[x], sensitivity2[x], sensitivity3[x], sensitivity4[x], sensitivity5[x]])
+        exportThermo(output, ratio)
     except:
         print('Unable to run thermo sensitivity simulation at a C/O ratio of {:.1f}'.format(data[0]))
         pass
+
+
+# def sensitivityThermoWorker(data):
+#     print('Starting thermo sensitivity simulation for a C/O ratio of {:.1f}'.format(data[0]))
+#     old_data = data[1][0]
+#     ratio = data[0]
+#     try:
+#         species_on_surface, sensitivity1, sensitivity2, sensitivity3, sensitivity4, sensitivity5 = sensitivityThermo(gas, surf, old_data, t_in, dk)
+#         print('Finished thermo sensitivity simulation for a C/O ratio of {:.1f}'.format(ratio))
+#         sensitivities = data[0], sensitivity1, sensitivity2, sensitivity3, sensitivity4, sensitivity5
+#         species_translated = []
+#         for x in species_on_surface:
+#             for key, smile in names.iteritems():
+#                 x = re.sub(re.escape(key), smile, x)
+#             species_translated.append(x)
+#         for s in range(len(sensitivities)-1):
+#             exportThermo(species_on_surface, sensitivities[0], sensitivities[s+1], s+1)
+#     except:
+#         print('Unable to run thermo sensitivity simulation at a C/O ratio of {:.1f}'.format(data[0]))
+#         pass
 
 
 species_dict = rmgpy.data.kinetics.KineticsLibrary().getSpecies('species_dictionary.txt')
@@ -1102,7 +1131,9 @@ pool = multiprocessing.Pool(processes=num_threads)
 worker_input = []
 for r in range(len(data)):
     worker_input.append([data[r][0], [data[r][1]]])
-pool.map(sensitivityWorker, worker_input)
+pool.map(sensitivityWorker, worker_input, 1)
+# pool.close()
+# pool.join()
 
 worker_input = []
 sens_thermo = []
@@ -1111,6 +1142,4 @@ num_threads = len(data)
 pool = multiprocessing.Pool(processes=num_threads)
 for r in range(len(data)):
     worker_input.append([data[r][0], [data[r][1]]])
-pool.map(sensitivityThermoWorker, worker_input)
-pool.close()
-pool.join()
+pool.map(sensitivityThermoWorker, worker_input, 1)
