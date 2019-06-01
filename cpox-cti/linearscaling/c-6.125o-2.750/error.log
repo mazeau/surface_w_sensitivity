@@ -1,13 +1,1 @@
-[NbConvertApp] Converting notebook copyme.ipynb to notebook
-[NbConvertApp] Executing notebook with kernel: python2
-[IPKernelApp] ERROR | Failed to create history session in /home/mazeau.e/.ipython/profile_default/history.sqlite. History will not be saved.
-Traceback (most recent call last):
-  File "/home/mazeau.e/anaconda2/envs/rmg_env3/lib/python2.7/site-packages/IPython/core/history.py", line 549, in __init__
-    self.new_session()
-  File "<decorator-gen-22>", line 2, in new_session
-  File "/home/mazeau.e/anaconda2/envs/rmg_env3/lib/python2.7/site-packages/IPython/core/history.py", line 60, in needs_sqlite
-    return f(self, *a, **kw)
-  File "/home/mazeau.e/anaconda2/envs/rmg_env3/lib/python2.7/site-packages/IPython/core/history.py", line 575, in new_session
-    NULL, "") """, (datetime.datetime.now(),))
-OperationalError: database is locked
-[NbConvertApp] Writing 1482626 bytes to alldone.ipynb
+Using Theano backend.
