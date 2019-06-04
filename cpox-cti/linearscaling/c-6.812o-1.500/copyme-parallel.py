@@ -377,7 +377,7 @@ def monolithFull(gas, surf, temp, mol_in, verbose=False, sens=False):
 
     # set relative and absolute tolerances on the simulation
     sim.rtol = 1.0e-10
-    sim.atol = 1.0e-21
+    sim.atol = 1.0e-19
 
     gas_names = gas.species_names
     surf_names = surf.species_names
@@ -543,10 +543,9 @@ output = []
 for x in range(len(ratios_real)):
     output.append([ratios_real[x], ch4_conv[x], o2_conv[x], co_sel[x], h2_sel[x], h2o_sel[x]])
 
-# todo: some sort of check/something to output to know that all ratios were sucessfully run
-k = (pd.DataFrame.from_dict(data=output, orient='columns'))
-k.columns = ['C/O ratio', 'CH4 Conv', 'O2 Conv', 'CO Selec', 'H2 Selec', 'H2O Selec']
-k.to_csv('dict_conversions_selectivities.csv', header=True)
+# k = (pd.DataFrame.from_dict(data=output, orient='columns'))
+# k.columns = ['C/O ratio', 'CH4 Conv', 'O2 Conv', 'CO Selec', 'H2 Selec', 'H2O Selec']
+# k.to_csv('dict_conversions_selectivities.csv', header=True)
 
 fig, axs = plt.subplots(1, 2)
 # plot exit conversion and temp
@@ -656,6 +655,15 @@ def sensitivity(gas, surf, old_data, temp, dk):
     sens3 = []
     sens4 = []
     sens5 = []
+    sens6 = []
+    sens7 = []
+    sens8 = []
+    sens9 = []
+    sens10 = []
+    sens11 = []
+    sens12 = []
+    sens13 = []
+    sens14 = []
 
     gas_out_data, gas_names_data, dist_array_data, T_array_data = old_data
 
@@ -674,14 +682,6 @@ def sensitivity(gas, surf, old_data, temp, dk):
     ratio = ch4_in / (2 * o2_in)
     moles_in = [ch4_in, o2_in, ar_in]
 
-    #####################################
-    # Sensitivity definition 1:
-    #
-    # selectivity of h2 and co added together
-    # to give a syngas selectivity
-    #
-    # negative sensitivity is higher selectivity
-    #####################################
     for x in reference:
         if x[0] == 'CH4(2)':
             ch4_in = x[1][0][0]
@@ -691,10 +691,21 @@ def sensitivity(gas, surf, old_data, temp, dk):
             elif ch4_out > ch4_in:
                 ch4_out = ch4_in
             conv = (ch4_in - ch4_out) / (ch4_in)
-            if conv < 0:
+            if conv <= 0:
                 reference_ch4_conv = 1e-15
             else:
                 reference_ch4_conv = conv
+            # to find distance when at 50% ch4 conversion
+            # ch4_at_50_conv = ch4_in - 0.5 * ch4_in
+            # if ch4_out >= ch4_at_50_conv:
+            #     reference_dist_to_50ch4_conv = 70.01
+            # else:
+            #     for c in range(len(x[1][0])):
+            #         ch4_conc = x[1][0][c]
+            #         if ch4_conc >= ch4_at_50_conv:
+            #             location = c
+            #             reference_dist_to_50ch4_conv = location / 100
+            #             break
         if x[0] == 'Ar':
             ar = x[1][0][-1]
         if x[0] == 'O2(3)':
@@ -709,41 +720,67 @@ def sensitivity(gas, surf, old_data, temp, dk):
         if x[0] == 'H2(6)':
             h2_out = x[1][0][-1]
             reference_h2_sel = h2_out / (1 - ch4_out - o2_out - ar)
+        if x[0] == 'H2O(5)':
+            h2o_out = x[1][0][-1]
+            reference_h2o_sel = h2o_out / (1 - ch4_out - o2_out - ar)
+        if x[0] == 'CO2(4)':
+            co2_out = x[1][0][-1]
+            reference_co2_sel = co2_out / (1 - ch4_out - o2_out - ar)
+
+    # Sensitivity definition 1: SYNGAS selectivity
+    # negative sensitivity is higher selectivity
+    if reference_h2_sel <= 0:
+        reference_h2_sel = 1.0e-15
+    if reference_co_sel <= 0:
+        reference_co_sel = 1.0e-15
     reference_syngas_selectivity = reference_co_sel + reference_h2_sel
 
-    #####################################
-    # Sensitivity definition 2:
-    #
-    # defining by syngas selectivity multiplied
-    # by ch4 conversion to 'normalize'
-    #
-    #####################################
+    # Sensitivity definition 2: SYNGAS yield
+    if reference_ch4_conv <= 0:
+        reference_ch4_conv = 1.0e-15
     reference_norm_syngas_selectivity = reference_syngas_selectivity * reference_ch4_conv
+    if reference_norm_syngas_selectivity <= 0:
+        reference_norm_syngas_selectivity = 1.0e-15
 
-    #####################################
-    # Sensitivity definition 3:
-    #
-    # defining by normalized syngas selectivity
-    # multiplied by syngas selectivity
-    #
-    #####################################
-    reference_norm_syngas_selectivity2 = reference_norm_syngas_selectivity * reference_syngas_selectivity
+    # Sensitivity definition 3: CO selectivity
 
-    #####################################
-    # Sensitivity definition 4:
-    #
-    # CO yield
-    #
-    #####################################
-    reference_co_yield = co_out/ch4_in
+    # Sensitivity definition 4: CO yield
+    # reference_co_yield = co_out/ch4_in  # what richard said it was
+    reference_co_yield = reference_co_sel * reference_ch4_conv
 
-    #####################################
-    # Sensitivity definition 5:
-    #
-    # H2 yield
-    #
-    #####################################
-    reference_h2_yield = h2_out/(2*ch4_in)
+    # Sensitivity definition 5: H2 selectivity
+
+    # Sensitivity definition 6: H2 yield
+    # reference_h2_yield = h2_out/(2*ch4_in)  # what richard said it was
+    reference_h2_yield = reference_h2_sel * reference_ch4_conv
+
+    # Sensitivity definition 7: CH4 conversion
+
+    # Sensitivity definition 8: H2O + CO2 selectivity
+    if reference_h2o_sel <= 0:
+        reference_h2o_sel = 1.0e-15
+    if reference_co2_sel <= 0:
+        reference_co2_sel = 1.0e-15
+    reference_full_oxidation_selectivity = reference_h2o_sel + reference_co2_sel
+
+    # Sensitivity definition 9: H2O + CO2 yield
+    reference_full_oxidation_yield = reference_full_oxidation_selectivity * reference_ch4_conv
+
+    # Sensitivity definition 10: exit temperature
+    reference_exit_temp = T_array_data[-1]
+
+    # Sensitivity definition 11: peak temperature
+    reference_peak_temp = max(T_array_data)
+
+    # Sensitivity definition 12: distance to peak temperautre
+    reference_peak_temp_dist = T_array_data.index(max(T_array_data))/100
+
+    # Sensitivity definition 13: distance to 50% ch4 conversion
+    # reference_dist_to_50ch4_conv
+
+    # Sensitivity definition 14: distance to 50% of final conversion
+
+
 
     # run the simulations
     for rxn in range(surf.n_reactions):
@@ -754,9 +791,6 @@ def sensitivity(gas, surf, old_data, temp, dk):
         for a in range(len(gas_names)):
             new_amts.append([gas_names[a], [gas_out[:, a]]])
 
-        #####################################
-        # Sensitivity definition 1:
-        #####################################
         for x in new_amts:
             if x[0] == 'CH4(2)':
                 new_ch4_in = x[1][0][0]
@@ -768,10 +802,21 @@ def sensitivity(gas, surf, old_data, temp, dk):
                 new_ch4_conv = (new_ch4_in - new_ch4_out) / new_ch4_in
                 if new_ch4_conv < 0:
                     new_ch4_conv = 1e-15
+                # to find distance when at 50% ch4 conversion
+                # new_ch4_at_50_conv = new_ch4_in - 0.5 * new_ch4_in
+                # if new_ch4_out >= new_ch4_at_50_conv:
+                #     new_dist_to_50ch4_conv = 70.01
+                # else:
+                #     for c in range(len(x[1][0])):
+                #         new_ch4_conc = x[1][0][c]
+                #         if new_ch4_conc >= new_ch4_at_50_conv:
+                #             location = c
+                #             new_dist_to_50ch4_conv = location / 100
+                #             break
             if x[0] == 'Ar':
                 ar = x[1][0][-1]
             if x[0] == 'O2(3)':
-                new_o2_in = c[1][0][0]
+                new_o2_in = x[1][0][0]
                 new_o2_out = x[1][0][-1]
                 if new_o2_out < 0:
                     new_o2_out = 0.
@@ -783,41 +828,77 @@ def sensitivity(gas, surf, old_data, temp, dk):
             if x[0] == 'H2(6)':
                 new_h2_out = x[1][0][-1]
                 new_h2_sel = new_h2_out / (1 - new_o2_out - new_ch4_out - ar)
+            if x[0] == 'H2O(5)':
+                new_h2o_out = x[1][0][-1]
+                new_h2o_sel = new_h2o_out / (1 - new_ch4_out - new_o2_out - ar)
+            if x[0] == 'CO2(4)':
+                new_co2_out = x[1][0][-1]
+                new_co2_sel = new_co2_out / (1 - new_ch4_out - new_o2_out - ar)
+        # Sensitivity definition 1:
         new_syngas_selectivity = new_co_sel + new_h2_sel
         Sens1 = (reference_syngas_selectivity - new_syngas_selectivity) / (reference_syngas_selectivity * dk)
         sens1.append(Sens1)
 
-        #####################################
         # Sensitivity definition 2:
-        #####################################
         new_norm_syngas_selectivity = new_syngas_selectivity * new_ch4_conv
         Sens2 = (reference_norm_syngas_selectivity - new_norm_syngas_selectivity) / (reference_norm_syngas_selectivity * dk)
         sens2.append(Sens2)
 
-        #####################################
         # Sensitivity definition 3:
-        #####################################
-        new_norm_syngas_selectivity2 = new_norm_syngas_selectivity * new_syngas_selectivity
-        Sens3 = (reference_norm_syngas_selectivity2 - new_norm_syngas_selectivity2) / (reference_norm_syngas_selectivity2 * dk)
+        Sens3 = (new_co_sel - reference_co_sel) / (reference_co_sel * dk)
         sens3.append(Sens3)
 
-        #####################################
         # Sensitivity definition 4:
-        #####################################
-        new_co_yield = new_co_out / new_ch4_in
-        Sens4 = (reference_co_yield-new_co_yield)/(reference_co_yield*dk)
+        new_co_yield = new_co_sel * new_ch4_conv
+        Sens4 = (reference_co_yield-new_co_yield) / (reference_co_yield * dk)
         sens4.append(Sens4)
 
-        #####################################
         # Sensitivity definition 5:
-        #####################################
-        new_h2_yield = new_h2_out/(2*new_ch4_in)
-        Sens5 = (reference_h2_yield-new_h2_yield)/(reference_h2_yield*dk)
+        Sens5 = (new_h2_sel - reference_h2_sel) / (reference_h2_sel * dk)
         sens5.append(Sens5)
 
-        print "%d %s %.3F %.3F %.3F %.3F %.3F" % (rxn, surf.reaction_equations()[rxn], Sens1, Sens2, Sens3, Sens4, Sens5)
+        # Sensitivity definition 6:
+        new_h2_yield = new_h2_out / (2 * new_ch4_in)
+        Sens6 = (reference_h2_yield - new_h2_yield) / (reference_h2_yield * dk)
+        sens6.append(Sens6)
+
+        # Sensitivity definition 7:
+        Sens7 = (new_ch4_conv - reference_ch4_conv) / (reference_ch4_conv * dk)
+        sens7.append(Sens7)
+
+        # Sensitivity definition 8:
+        new_full_oxidation_selectivity = new_h2o_sel + new_co2_sel
+        Sens8 = (new_full_oxidation_selectivity - reference_full_oxidation_selectivity) / (reference_full_oxidation_selectivity * dk)
+        sens8.append(Sens8)
+
+        # Sensitivity definition 9:
+        new_full_oxidation_yield = new_full_oxidation_selectivity * new_ch4_conv
+        Sens9 = (new_full_oxidation_yield - reference_full_oxidation_yield) / (reference_full_oxidation_yield * dk)
+        sens9.append(Sens9)
+
+        # Sensitivity definition 10:
+        new_exit_temp = T_array[-1]
+        Sens10 = (new_exit_temp - reference_exit_temp) / (reference_exit_temp * dk)
+        sens10.append(Sens10)
+
+        # Sensitivity definition 11:
+        new_peak_temp = max(T_array)
+        Sens11 = (new_peak_temp - reference_peak_temp) / (reference_peak_temp * dk)
+        sens11.append(Sens11)
+
+        # Sensitivity definition 12:
+        new_peak_temp_dist = T_array.index(max(T_array)) / 100
+        Sens12 = (new_peak_temp_dist - reference_peak_temp_dist) / (reference_peak_temp_dist * dk)
+        sens12.append(Sens12)
+
+        # Sensitivity definition 13:
+        # Sens13 = (new_dist_to_50ch4_conv - reference_dist_to_50ch4_conv) / (reference_dist_to_50ch4_conv * dk)
+        # sens13.append(Sens13)
+
+        # print "%d %s %.3F %.3F %.3F %.3F %.3F" % (rxn, surf.reaction_equations()[rxn], Sens1, Sens2, Sens3, Sens4, Sens5)
+        print "%d %s %.3F %.3F" % (rxn, surf.reaction_equations()[rxn], Sens1, Sens2)
         rxns.append(surf.reaction_equations()[rxn])
-    return rxns, sens1, sens2, sens3, sens4, sens5
+    return rxns, sens1, sens2, sens3, sens4, sens5, sens6, sens7, sens8, sens9, sens10, sens11, sens12#, sens13
 
 
 def sensitivityThermo(gas, surf, old_data, temp, dk):
@@ -836,6 +917,15 @@ def sensitivityThermo(gas, surf, old_data, temp, dk):
     sens3 = []
     sens4 = []
     sens5 = []
+    sens6 = []
+    sens7 = []
+    sens8 = []
+    sens9 = []
+    sens10 = []
+    sens11 = []
+    sens12 = []
+    sens13 = []
+    sens14 = []
 
     gas_out_data, gas_names_data, dist_array_data, T_array_data = old_data
 
@@ -854,14 +944,6 @@ def sensitivityThermo(gas, surf, old_data, temp, dk):
     ratio = ch4_in / (2 * o2_in)
     moles_in = [ch4_in, o2_in, ar_in]
 
-    #####################################
-    # Sensitivity definition 1:
-    #
-    # selectivity of h2 and co added together
-    # to give a syngas selectivity
-    #
-    # negative sensitivity is higher selectivity
-    #####################################
     for x in reference:
         if x[0] == 'CH4(2)':
             ch4_in = x[1][0][0]
@@ -875,6 +957,17 @@ def sensitivityThermo(gas, surf, old_data, temp, dk):
                 reference_ch4_conv = 1e-15
             else:
                 reference_ch4_conv = conv
+            # to find distance when at 50% ch4 conversion
+            # ch4_at_50_conv = ch4_in - 0.5 * ch4_in
+            # if ch4_out >= ch4_at_50_conv:
+            #     reference_dist_to_50ch4_conv = 70.01
+            # else:
+            #     for c in range(len(x[1][0])):
+            #         ch4_conc = x[1][0][c]
+            #         if ch4_conc >= ch4_at_50_conv:
+            #             location = c
+            #             reference_dist_to_50ch4_conv = location / 100
+            #             break
         if x[0] == 'Ar':
             ar = x[1][0][-1]
         if x[0] == 'O2(3)':
@@ -885,45 +978,57 @@ def sensitivityThermo(gas, surf, old_data, temp, dk):
                 o2_out = o2_in
         if x[0] == 'CO(7)':
             co_out = x[1][0][-1]
+            reference_co_sel = co_out / (1 - ch4_out - o2_out - ar)
         if x[0] == 'H2(6)':
             h2_out = x[1][0][-1]
-    reference_h2_sel = h2_out / (1 - ch4_out - o2_out - ar)
-    reference_co_sel = co_out / (1 - ch4_out - o2_out - ar)
+            reference_h2_sel = h2_out / (1 - ch4_out - o2_out - ar)
+        if x[0] == 'H2O(5)':
+            h2o_out = x[1][0][-1]
+            reference_h2o_sel = h2o_out / (1 - ch4_out - o2_out - ar)
+        if x[0] == 'CO2(4)':
+            co2_out = x[1][0][-1]
+            reference_co2_sel = co2_out / (1 - ch4_out - o2_out - ar)
+
+    # Sensitivity definition 1: SYNGAS selectivity
+    # negative sensitivity is higher selectivity
     reference_syngas_selectivity = reference_co_sel + reference_h2_sel
 
-    #####################################
-    # Sensitivity definition 2:
-    #
-    # defining by syngas selectivity multiplied
-    # by ch4 conversion to 'normalize'
-    #
-    #####################################
+    # Sensitivity definition 2: SYNGAS yield
     reference_norm_syngas_selectivity = reference_syngas_selectivity * reference_ch4_conv
 
-    #####################################
-    # Sensitivity definition 3:
-    #
-    # defining by normalized syngas selectivity
-    # multiplied by syngas selectivity
-    #
-    #####################################
-    reference_norm_syngas_selectivity2 = reference_norm_syngas_selectivity * reference_syngas_selectivity
+    # Sensitivity definition 3: CO selectivity
 
-    #####################################
-    # Sensitivity definition 4:
-    #
-    # CO yield
-    #
-    #####################################
-    reference_co_yield = co_out / ch4_in
+    # Sensitivity definition 4: CO yield
+    # reference_co_yield = co_out/ch4_in  # what richard said it was
+    reference_co_yield = reference_co_sel * reference_ch4_conv
 
-    #####################################
-    # Sensitivity definition 5:
-    #
-    # H2 yield
-    #
-    #####################################
-    reference_h2_yield = h2_out / (2 * ch4_in)
+    # Sensitivity definition 5: H2 selectivity
+
+    # Sensitivity definition 6: H2 yield
+    # reference_h2_yield = h2_out/(2*ch4_in)  # what richard said it was
+    reference_h2_yield = reference_h2_sel * reference_ch4_conv
+
+    # Sensitivity definition 7: CH4 conversion
+
+    # Sensitivity definition 8: H2O + CO2 selectivity
+    reference_full_oxidation_selectivity = reference_h2o_sel + reference_co2_sel
+
+    # Sensitivity definition 9: H2O + CO2 yield
+    reference_full_oxidation_yield = reference_full_oxidation_selectivity * reference_ch4_conv
+
+    # Sensitivity definition 10: exit temperature
+    reference_exit_temp = T_array_data[-1]
+
+    # Sensitivity definition 11: peak temperature
+    reference_peak_temp = max(T_array_data)
+
+    # Sensitivity definition 12: distance to peak temperautre
+    reference_peak_temp_dist = T_array_data.index(max(T_array_data))/100
+
+    # Sensitivity definition 13: distance to 50% ch4 conversion
+    # reference_dist_to_50ch4_conv
+
+    # Sensitivity definition 14: distance to 50% of final conversion
 
     # run the simulations
     for m in range(surf.n_species):
@@ -947,9 +1052,6 @@ def sensitivityThermo(gas, surf, old_data, temp, dk):
         for a in range(len(gas_names)):
             new_amts.append([gas_names[a], [gas_out[:, a]]])
 
-        #####################################
-        # Sensitivity definition 1:
-        #####################################
         for x in new_amts:
             if x[0] == 'CH4(2)':
                 new_ch4_in = x[1][0][0]
@@ -959,12 +1061,23 @@ def sensitivityThermo(gas, surf, old_data, temp, dk):
                 elif new_ch4_out > new_ch4_in:
                     new_ch4_out = new_ch4_in
                 new_ch4_conv = (new_ch4_in - new_ch4_out) / new_ch4_in
-                if new_ch4_conv < 0:
+                if new_ch4_conv <= 0:
                     new_ch4_conv = 1e-15
+                # to find distance when at 50% ch4 conversion
+                # new_ch4_at_50_conv = new_ch4_in - 0.5 * new_ch4_in
+                # if new_ch4_out >= new_ch4_at_50_conv:
+                #     new_dist_to_50ch4_conv = 70.01
+                # else:
+                #     for c in range(len(x[1][0])):
+                #         new_ch4_conc = x[1][0][c]
+                #         if new_ch4_conc >= new_ch4_at_50_conv:
+                #             location = c
+                #             new_dist_to_50ch4_conv = location / 100
+                #             break
             if x[0] == 'Ar':
                 ar = x[1][0][-1]
             if x[0] == 'O2(3)':
-                new_o2_in = c[1][0][0]
+                new_o2_in = x[1][0][0]
                 new_o2_out = x[1][0][-1]
                 if new_o2_out < 0:
                     new_o2_out = 0.
@@ -972,74 +1085,101 @@ def sensitivityThermo(gas, surf, old_data, temp, dk):
                     new_o2_out = new_o2_in
             if x[0] == 'CO(7)':
                 new_co_out = x[1][0][-1]
+                new_co_sel = new_co_out / (1 - new_o2_out - new_ch4_out - ar)
             if x[0] == 'H2(6)':
                 new_h2_out = x[1][0][-1]
-        new_h2_sel = new_h2_out / (1 - new_o2_out - new_ch4_out - ar)
-        new_co_sel = new_co_out / (1 - new_o2_out - new_ch4_out - ar)
+                new_h2_sel = new_h2_out / (1 - new_o2_out - new_ch4_out - ar)
+            if x[0] == 'H2O(5)':
+                new_h2o_out = x[1][0][-1]
+                new_h2o_sel = new_h2o_out / (1 - new_ch4_out - new_o2_out - ar)
+            if x[0] == 'CO2(4)':
+                new_co2_out = x[1][0][-1]
+                new_co2_sel = new_co2_out / (1 - new_ch4_out - new_o2_out - ar)
+        # Sensitivity definition 1:
         new_syngas_selectivity = new_co_sel + new_h2_sel
         Sens1 = (reference_syngas_selectivity - new_syngas_selectivity) / (reference_syngas_selectivity * dk)
         sens1.append(Sens1)
 
-        #####################################
         # Sensitivity definition 2:
-        #####################################
         new_norm_syngas_selectivity = new_syngas_selectivity * new_ch4_conv
-        Sens2 = (reference_norm_syngas_selectivity - new_norm_syngas_selectivity) / (
-                    reference_norm_syngas_selectivity * dk)
+        Sens2 = (reference_norm_syngas_selectivity - new_norm_syngas_selectivity) / (reference_norm_syngas_selectivity * dk)
         sens2.append(Sens2)
 
-        #####################################
         # Sensitivity definition 3:
-        #####################################
-        new_norm_syngas_selectivity2 = new_norm_syngas_selectivity * new_syngas_selectivity
-        Sens3 = (reference_norm_syngas_selectivity2 - new_norm_syngas_selectivity2) / (
-                    reference_norm_syngas_selectivity2 * dk)
+        Sens3 = (new_co_sel - reference_co_sel) / (reference_co_sel * dk)
         sens3.append(Sens3)
 
-        #####################################
         # Sensitivity definition 4:
-        #####################################
-        new_co_yield = new_co_out / new_ch4_in
-        Sens4 = (reference_co_yield - new_co_yield) / (reference_co_yield * dk)
+        new_co_yield = new_co_sel * new_ch4_conv
+        Sens4 = (reference_co_yield-new_co_yield) / (reference_co_yield * dk)
         sens4.append(Sens4)
 
-        #####################################
         # Sensitivity definition 5:
-        #####################################
-        new_h2_yield = new_h2_out / (2 * new_ch4_in)
-        Sens5 = (reference_h2_yield - new_h2_yield) / (reference_h2_yield * dk)
+        Sens5 = (new_h2_sel - reference_h2_sel) / (reference_h2_sel * dk)
         sens5.append(Sens5)
 
-        print "%d %s %.3F %.3F %.3F %.3F %.3F" % (m, surf.species_name(m), Sens1, Sens2, Sens3, Sens4, Sens5)
+        # Sensitivity definition 6:
+        new_h2_yield = new_h2_out / (2 * new_ch4_in)
+        Sens6 = (reference_h2_yield - new_h2_yield) / (reference_h2_yield * dk)
+        sens6.append(Sens6)
+
+        # Sensitivity definition 7:
+        Sens7 = (new_ch4_conv - reference_ch4_conv) / (reference_ch4_conv * dk)
+        sens7.append(Sens7)
+
+        # Sensitivity definition 8:
+        new_full_oxidation_selectivity = new_h2o_sel + new_co2_sel
+        Sens8 = (new_full_oxidation_selectivity - reference_full_oxidation_selectivity) / (reference_full_oxidation_selectivity * dk)
+        sens8.append(Sens8)
+
+        # Sensitivity definition 9:
+        new_full_oxidation_yield = new_full_oxidation_selectivity * new_ch4_conv
+        Sens9 = (new_full_oxidation_yield - reference_full_oxidation_yield) / (reference_full_oxidation_yield * dk)
+        sens9.append(Sens9)
+
+        # Sensitivity definition 10:
+        new_exit_temp = T_array[-1]
+        Sens10 = (new_exit_temp - reference_exit_temp) / (reference_exit_temp * dk)
+        sens10.append(Sens10)
+
+        # Sensitivity definition 11:
+        new_peak_temp = max(T_array)
+        Sens11 = (new_peak_temp - reference_peak_temp) / (reference_peak_temp * dk)
+        sens11.append(Sens11)
+
+        # Sensitivity definition 12:
+        new_peak_temp_dist = T_array.index(max(T_array)) / 100
+        Sens12 = (new_peak_temp_dist - reference_peak_temp_dist) / (reference_peak_temp_dist * dk)
+        sens12.append(Sens12)
+
+        # Sensitivity definition 13:
+        # Sens13 = (new_dist_to_50ch4_conv - reference_dist_to_50ch4_conv) / (reference_dist_to_50ch4_conv * dk)
+        # sens13.append(Sens13)
+
+        # print "%d %s %.3F %.3F" % (m, surf.species_name(m), Sens1, Sens2)
         species.append(surf.species_name(m))
 
         # this step is essential, otherwise mechanism will have been altered
         s.thermo = ct.NasaPoly2(100.000, 5000.000, ct.one_atm, original_coeffs)
         surf.modify_species(m, s)
-    return species, sens1, sens2, sens3, sens4, sens5
+    return species, sens1, sens2, sens3, sens4, sens5, sens6, sens7, sens8, sens9, sens10, sens11, sens12#, sens13
 
 
 def export(rxns_translated, ratio):
     k = (pd.DataFrame.from_dict(data=rxns_translated, orient='columns'))
-    k.columns = ['Reaction', 'H2+CO Selec', 'Normalized H2+CO Selec', 'Normalized2 H2+CO Selec', 'CO Yield', 'H2 Yield']
+    k.columns = ['Reaction', 'SYNGAS Selec', 'SYNGAS Yield', 'CO Selectivity', 'CO Yield', 'H2 Selectivity', 'H2 Yield',
+                 'CH4 Conversion', 'H2O+CO2 Selectivity', 'H2O+CO2 yield', 'Exit Temp', 'Peak Temp',
+                 'Dist to peak temp']
     out_dir = 'sensitivities'
     os.path.exists(out_dir) or os.makedirs(out_dir)
     k.to_csv(out_dir + '/{:.1f}RxnSensitivity.csv'.format(ratio), header=True)
 
 
-# def exportThermo(species_translated, ratio, sens_vals, sens_type=1.):
-#     j = (pd.DataFrame.from_dict(data=species_translated, orient='columns'))
-#     answer = dict(zip(species, sens_vals))
-#     sorted_answer = sorted(answer.items(), key=operator.itemgetter(1), reverse=False)
-#     out_dir = 'sensitivities'
-#     os.path.exists(out_dir) or os.makedirs(out_dir)
-#     (pd.DataFrame.from_dict(data=sorted_answer, orient='columns')
-#     .to_csv(out_dir + '/dict_{:.1f}ratio_{:.0f}_species.csv'.format(ratio, sens_type), header=False))
-
-
 def exportThermo(species_translated, ratio):
     j = (pd.DataFrame.from_dict(data=species_translated, orient='columns'))
-    j.columns = ['Species', 'H2+CO Selec', 'Normalized H2+CO Selec', 'Normalized2 H2+CO Selec', 'CO Yield', 'H2 Yield']
+    j.columns = ['Reaction', 'SYNGAS Selec', 'SYNGAS Yield', 'CO Selectivity', 'CO Yield', 'H2 Selectivity', 'H2 Yield',
+                 'CH4 Conversion', 'H2O+CO2 Selectivity', 'H2O+CO2 yield', 'Exit Temp', 'Peak Temp',
+                 'Dist to peak temp']
     out_dir = 'sensitivities'
     os.path.exists(out_dir) or os.makedirs(out_dir)
     j.to_csv(out_dir + '/{:.1f}ThermoSensitivity.csv'.format(ratio), header=True)
@@ -1050,7 +1190,7 @@ def sensitivityWorker(data):
     old_data = data[1][0]
     ratio = data[0]
     try:
-        reactions, sensitivity1, sensitivity2, sensitivity3, sensitivity4, sensitivity5 = sensitivity(gas, surf, old_data, t_in, dk)
+        reactions, sensitivity1, sensitivity2, sensitivity3, sensitivity4, sensitivity5, sensitivity6, sensitivity7, sensitivity8, sensitivity9, sensitivity10, sensitivity11, sensitivity12 = sensitivity(gas, surf, old_data, t_in, dk)
         print('Finished sensitivity simulation for a C/O ratio of {:.1f}'.format(ratio))
         rxns_translated = []
         for x in reactions:
@@ -1060,7 +1200,9 @@ def sensitivityWorker(data):
         print('Finished translating for C/O ratio of {:.1f}'.format(ratio))
         output = []
         for x in range(len(rxns_translated)):
-            output.append([rxns_translated[x], sensitivity1[x], sensitivity2[x], sensitivity3[x], sensitivity4[x], sensitivity5[x]])
+            output.append([rxns_translated[x], sensitivity1[x], sensitivity2[x], sensitivity3[x], sensitivity4[x],
+                           sensitivity5[x], sensitivity6[x], sensitivity7[x], sensitivity8[x], sensitivity9[x],
+                           sensitivity10[x], sensitivity11[x], sensitivity12[x]])
         export(output, ratio)
     except:
         print('Unable to run sensitivity simulation at a C/O ratio of {:.1f}'.format(data[0]))
@@ -1072,7 +1214,7 @@ def sensitivityThermoWorker(data):
     old_data = data[1][0]
     ratio = data[0]
     try:
-        species_on_surface, sensitivity1, sensitivity2, sensitivity3, sensitivity4, sensitivity5 = sensitivityThermo(gas, surf, old_data, t_in, dk)
+        species_on_surface, sensitivity1, sensitivity2, sensitivity3, sensitivity4, sensitivity5, sensitivity6, sensitivity7, sensitivity8, sensitivity9, sensitivity10, sensitivity11, sensitivity12 = sensitivityThermo(gas, surf, old_data, t_in, dk)
         print('Finished thermo sensitivity simulation for a C/O ratio of {:.1f}'.format(ratio))
         species_translated = []
         for x in species_on_surface:
@@ -1081,31 +1223,13 @@ def sensitivityThermoWorker(data):
             species_translated.append(x)
         output = []
         for x in range(len(species_on_surface)):
-            output.append([species_translated[x], sensitivity1[x], sensitivity2[x], sensitivity3[x], sensitivity4[x], sensitivity5[x]])
+            output.append([species_translated[x], sensitivity1[x], sensitivity2[x], sensitivity3[x], sensitivity4[x],
+                           sensitivity5[x], sensitivity6[x], sensitivity7[x], sensitivity8[x], sensitivity9[x],
+                           sensitivity10[x], sensitivity11[x], sensitivity12[x]])
         exportThermo(output, ratio)
     except:
         print('Unable to run thermo sensitivity simulation at a C/O ratio of {:.1f}'.format(data[0]))
         pass
-
-
-# def sensitivityThermoWorker(data):
-#     print('Starting thermo sensitivity simulation for a C/O ratio of {:.1f}'.format(data[0]))
-#     old_data = data[1][0]
-#     ratio = data[0]
-#     try:
-#         species_on_surface, sensitivity1, sensitivity2, sensitivity3, sensitivity4, sensitivity5 = sensitivityThermo(gas, surf, old_data, t_in, dk)
-#         print('Finished thermo sensitivity simulation for a C/O ratio of {:.1f}'.format(ratio))
-#         sensitivities = data[0], sensitivity1, sensitivity2, sensitivity3, sensitivity4, sensitivity5
-#         species_translated = []
-#         for x in species_on_surface:
-#             for key, smile in names.iteritems():
-#                 x = re.sub(re.escape(key), smile, x)
-#             species_translated.append(x)
-#         for s in range(len(sensitivities)-1):
-#             exportThermo(species_on_surface, sensitivities[0], sensitivities[s+1], s+1)
-#     except:
-#         print('Unable to run thermo sensitivity simulation at a C/O ratio of {:.1f}'.format(data[0]))
-#         pass
 
 
 species_dict = rmgpy.data.kinetics.KineticsLibrary().getSpecies('species_dictionary.txt')
@@ -1132,14 +1256,14 @@ worker_input = []
 for r in range(len(data)):
     worker_input.append([data[r][0], [data[r][1]]])
 pool.map(sensitivityWorker, worker_input, 1)
-# pool.close()
-# pool.join()
+pool.close()
+pool.join()
 
-worker_input = []
-sens_thermo = []
-dk = 1.0e-2
-num_threads = len(data)
-pool = multiprocessing.Pool(processes=num_threads)
-for r in range(len(data)):
-    worker_input.append([data[r][0], [data[r][1]]])
-pool.map(sensitivityThermoWorker, worker_input, 1)
+# worker_input = []
+# sens_thermo = []
+# dk = 1.0e-2
+# num_threads = len(data)
+# pool = multiprocessing.Pool(processes=num_threads)
+# for r in range(len(data)):
+#     worker_input.append([data[r][0], [data[r][1]]])
+# pool.map(sensitivityThermoWorker, worker_input, 1)
