@@ -7,7 +7,7 @@ files = ['./linearscaling/' + x for x in array]
 for x in files:
     # copying the copyme file and pasting into each linearscaling folder
     shutil.copy('copyme-parallel.py', x)
-    shutil.copy('runparallel.sh', x)
+    #shutil.copy('runparallel.sh', x)
     #shutil.copy('copyme-fixed-temp-profile.ipynb', x)
     #shutil.copy('run_ft.sh' ,x)
     # removing prior error and output logs, as well as old results
