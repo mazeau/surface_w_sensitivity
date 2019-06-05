@@ -327,8 +327,7 @@ def monolithFull(gas, surf, temp, mol_in, verbose=False, sens=False):
     """
     ch4, o2, ar = mol_in
     ratio = ch4/(2*o2)
-    ratio = round(ratio,1)
-    ratio = str(ratio)
+    ratio = round(ratio, 1)
     ch4 = str(ch4)
     o2 = str(o2)
     ar = str(ar)
@@ -377,7 +376,7 @@ def monolithFull(gas, surf, temp, mol_in, verbose=False, sens=False):
 
     # set relative and absolute tolerances on the simulation
     sim.rtol = 1.0e-10
-    sim.atol = 1.0e-20
+    sim.atol = 1.0e-19
 
     gas_names = gas.species_names
     surf_names = surf.species_names
@@ -421,27 +420,18 @@ def monolithFull(gas, surf, temp, mol_in, verbose=False, sens=False):
         #             diagram = ct.ReactionPathDiagram(surf, 'X')
         #             diagram.title = 'rxn path'
         #             diagram.label_threshold = 1e-9
-        #             dot_file = out_dir + '/rxnpath-' + ratio + '-x-' + location + 'mm.dot'
-        #             img_file = out_dir + '/rxnpath-' + ratio + '-x-' + location + 'mm.png'
+        #             dot_file = out_dir + '/rxnpath-' + str(ratio) + '-x-' + location + 'mm.dot'
+        #             img_file = out_dir + '/rxnpath-' + str(ratio) + '-x-' + location + 'mm.png'
         #             img_path = os.path.join(out_dir, img_file)
         #             diagram.write_dot(dot_file)
         #             os.system('dot {0} -Tpng -o{1} -Gdpi=200'.format(dot_file, img_file))
         #
         #             for element in elements:
-        #                 # diagram = ct.ReactionPathDiagram(gas,element)
-        #                 # diagram.title = element + 'rxn path'
-        #                 # diagram.label_threshold = 1e-9
-        #                 # dot_file = 'rxnpath-gas-' + location + 'mm-' + element + '.dot'
-        #                 # img_file = 'rxnpath-gas-' + location + 'mm-' + element + '.png'
-        #                 # img_path = os.path.join(os.getcwd(), img_file)
-        #                 # diagram.write_dot(dot_file)
-        #                 # os.system('dot {0} -Tpng -o{1} -Gdpi=200'.format(dot_file, img_file))
-        #
         #                 diagram = ct.ReactionPathDiagram(surf, element)
         #                 diagram.title = element + 'rxn path'
         #                 diagram.label_threshold = 1e-9
-        #                 dot_file = out_dir + '/rxnpath-' + ratio + '-surf-' + location + 'mm-' + element + '.dot'
-        #                 img_file = out_dir + '/rxnpath-' + ratio + '-surf-' + location + 'mm-' + element + '.png'
+        #                 dot_file = out_dir + '/rxnpath-' + str(ratio) + '-surf-' + location + 'mm-' + element + '.dot'
+        #                 img_file = out_dir + '/rxnpath-' + str(ratio) + '-surf-' + location + 'mm-' + element + '.png'
         #                 img_path = os.path.join(out_dir, img_file)
         #                 diagram.write_dot(dot_file)
         #                 os.system('dot {0} -Tpng -o{1} -Gdpi=200'.format(dot_file, img_file))
@@ -449,12 +439,13 @@ def monolithFull(gas, surf, temp, mol_in, verbose=False, sens=False):
         #     pass
 
         if verbose is True:
-            if not n % 100:
-                print('  {0:10f}  {1:10f}  {2:10f}  {3:10f} {4:10f} {5:10f} {6:10f}'.format(dist, *gas[
-                    'CH4(2)', 'O2(3)', 'H2(6)', 'CO(7)', 'H2O(5)', 'CO2(4)'].X))
-                # print(surf.T)
-                # print(gas.P)
-                # print(surf.coverages)
+            if ratio is 1.:
+                if not n % 100:
+                    print('  {0:10f}  {1:10f}  {2:10f}  {3:10f} {4:10f} {5:10f} {6:10f}'.format(dist, *gas[
+                        'CH4(2)', 'O2(3)', 'H2(6)', 'CO(7)', 'H2O(5)', 'CO2(4)'].X * 1000 * 60 * kmole_flow_rate ))
+                    # print(surf.T)
+                    # print(gas.P)
+                    # print(surf.coverages)
 
     gas_out = np.array(gas_out)
     surf_out = np.array(surf_out)
@@ -468,10 +459,10 @@ def simulationWorker(ratio):
     fo2 = tot_flow / (2. * ratio + 1 + 79 / 21)
     fch4 = 2 * fo2 * ratio
     far = 79 * fo2 / 21
-    ratio_in = [fch4, fo2, far]
+    ratio_in = [fch4, fo2, far]  # mol fractions
 
     try:
-        a = monolithFull(gas, surf, t_in, ratio_in)
+        a = monolithFull(gas, surf, t_in, ratio_in, verbose=True)
         print("Finished simulation at a C/O ratio of {:.1f}".format(ratio))
         gas_out, surf_out, gas_names, surf_names, dist_array, T_array = a
         plotflow(a)
@@ -492,63 +483,78 @@ pool.join()
 
 # finding exit conversions
 end_temp = []
+max_temp = []
+dist_max_temp = []
+ch4_in = []
+ch4_out = []
 ch4_conv = []
 o2_conv = []
 co_sel = []
+co_out = []
 h2_sel = []
+h2_out = []
 h2o_sel = []
+h2o_out = []
 co2_sel = []
+co2_out = []
 ratios_real = []
 for r in data:
-    #     gas_out,gas_names,dist_array,T_array = r[1]
+    # gas_out,gas_names,dist_array,T_array = r[1]
     for x in range(len(r[1][1])):
         if r[1][1][x] == 'CH4(2)':
-            ch4_in = r[1][0][0][x]
-            ch4_out = r[1][0][-1][x]
-            if ch4_out < 0:
-                ch4_out = 0.
-            ch4_depletion = ch4_in - ch4_out
+            ch4_i = r[1][0][0][x]
+            ch4_in.append(ch4_i)
+            ch4_o = r[1][0][-1][x]
+            if ch4_o < 0:
+                ch4_o = 0.
+            ch4_out.append(ch4_o)
+            ch4_depletion = ch4_i - ch4_o
             if ch4_depletion <= 0:
                 ch4_depletion = 0.
-            ch4_conv.append(ch4_depletion / ch4_in)
+            ch4_conv.append(ch4_depletion / ch4_i)
         if r[1][1][x] == 'O2(3)':
             o2_in = r[1][0][0][x]
             o2_out = r[1][0][-1][x]
             if o2_out < 0:
-                o2_out = 1.0e-15
+                o2_out = 0.
             elif o2_out > o2_in:
                 o2_out = o2_in
             conv = (o2_in - o2_out) / o2_in
             if conv < 0:
-                o2_conv.append(1e-15)
+                o2_conv.append(0.)
             else:
                 o2_conv.append(conv)
-    ratios_real.append(ch4_in / (2 * o2_in))
+    ratios_real.append(ch4_i / (2 * o2_in))
     end_temp.append(r[1][3][-1])
+    max_temp.append(max(r[1][3]))
+    dist_max_temp.append(r[1][2][r[1][3].index(max(r[1][3]))])
 
     for x in range(len(r[1][1])):
         if r[1][1][x] == 'Ar':
             ar = r[1][0][-1][x]
         if r[1][1][x] == 'CO(7)':
-            co_out = r[1][0][-1][x]
-            co_sel.append(co_out / ch4_depletion)
+            co_o = r[1][0][-1][x]
+            co_out.append(co_o)
+            co_sel.append(co_o / ch4_depletion)
         if r[1][1][x] == 'H2O(5)':
-            h2o_out = r[1][0][-1][x]
-            h2o_sel.append(h2o_out / (ch4_depletion * 2))
+            h2o_o = r[1][0][-1][x]
+            h2o_out.append(h2o_o)
+            h2o_sel.append(h2o_o / (ch4_depletion * 2))
         if r[1][1][x] == 'H2(6)':
-            h2_out = r[1][0][-1][x]
-            h2_sel.append(h2_out / (ch4_depletion * 2))
+            h2_o = r[1][0][-1][x]
+            h2_out.append(h2_o)
+            h2_sel.append(h2_o / (ch4_depletion * 2))
         if r[1][1][x] == 'CO2(4)':
-            co2_out = r[1][0][-1][x]
-            co2_sel.append(co2_out / ch4_depletion)
+            co2_o = r[1][0][-1][x]
+            co2_out.append(co2_o)
+            co2_sel.append(co2_o / ch4_depletion)
 
-# output = []
-# for x in range(len(ratios_real)):
-#     output.append([ratios_real[x], ch4_conv[x], o2_conv[x], co_sel[x], h2_sel[x], h2o_sel[x]])
-#
-# k = (pd.DataFrame.from_dict(data=output, orient='columns'))
-# k.columns = ['C/O ratio', 'CH4 Conv', 'O2 Conv', 'CO Selec', 'H2 Selec', 'H2O Selec']
-# k.to_csv('dict_conversions_selectivities.csv', header=True)
+output = []
+for x in range(len(ratios_real)):
+    output.append([ratios_real[x], ch4_in[x], ch4_out[x], co_out[x], h2_out[x], h2o_out[x], co2_out[x], end_temp[x], max_temp[x], dist_max_temp[x]])
+k = (pd.DataFrame.from_dict(data=output, orient='columns'))
+k.columns = ['C/O ratio', 'CH4 in', 'CH4 out', 'CO out', 'H2 out', 'H2O out', 'CO2 out', 'Exit temp', 'Max temp', 'Dist to max temp']
+k.to_csv('dict_conversions_selectivities.csv', header=True)
 
 fig, axs = plt.subplots(1, 2)
 # plot exit conversion and temp
@@ -753,7 +759,6 @@ def sensitivity(gas, surf, old_data, temp, dk, thermo=False):
     reference_peak_temp_dist = dist_array_data[T_array_data.index(max(T_array_data))]
 
     # run the simulations
-
     for rxn in range(surf.n_reactions):
         if thermo is True:  # broken, line above should be surf.n_species instead
             s = surf.species(rxn)
