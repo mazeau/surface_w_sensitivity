@@ -439,13 +439,12 @@ def monolithFull(gas, surf, temp, mol_in, verbose=False, sens=False):
         #     pass
 
         if verbose is True:
-            if ratio is 1.:
-                if not n % 100:
-                    print('  {0:10f}  {1:10f}  {2:10f}  {3:10f} {4:10f} {5:10f} {6:10f}'.format(dist, *gas[
-                        'CH4(2)', 'O2(3)', 'H2(6)', 'CO(7)', 'H2O(5)', 'CO2(4)'].X * 1000 * 60 * kmole_flow_rate ))
-                    # print(surf.T)
-                    # print(gas.P)
-                    # print(surf.coverages)
+            if not n % 100:
+                print('  {0:10f}  {1:10f}  {2:10f}  {3:10f} {4:10f} {5:10f} {6:10f}'.format(dist, *gas[
+                    'CH4(2)', 'O2(3)', 'H2(6)', 'CO(7)', 'H2O(5)', 'CO2(4)'].X * 1000 * 60 * kmole_flow_rate ))
+                # print(surf.T)
+                # print(gas.P)
+                # print(surf.coverages)
 
     gas_out = np.array(gas_out)
     surf_out = np.array(surf_out)
