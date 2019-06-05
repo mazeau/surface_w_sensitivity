@@ -375,8 +375,8 @@ def monolithFull(gas, surf, temp, mol_in, verbose=False, sens=False):
     sim.max_err_test_fails = 12
 
     # set relative and absolute tolerances on the simulation
-    sim.rtol = 1.0e-11
-    sim.atol = 1.0e-22
+    sim.rtol = 1.0e-12
+    sim.atol = 1.0e-23
 
     gas_names = gas.species_names
     surf_names = surf.species_names
@@ -406,7 +406,7 @@ def monolithFull(gas, surf, temp, mol_in, verbose=False, sens=False):
         kmole_flow_rate = mass_flow_rate / gas.mean_molecular_weight  # kmol/s
         gas_out.append(1000 * 60 * kmole_flow_rate * gas.X.copy())  # molar flow rate in moles/minute
         surf_out.append(surf.X.copy())
-
+		
         # make reaction diagrams
         out_dir = 'rxnpath'
         os.path.exists(out_dir) or os.makedirs(out_dir)
@@ -461,7 +461,7 @@ def simulationWorker(ratio):
     ratio_in = [fch4, fo2, far]  # mol fractions
 
     try:
-        a = monolithFull(gas, surf, t_in, ratio_in, verbose=True)
+        a = monolithFull(gas, surf, t_in, ratio_in)
         print("Finished simulation at a C/O ratio of {:.1f}".format(ratio))
         gas_out, surf_out, gas_names, surf_names, dist_array, T_array = a
         plotflow(a)
