@@ -349,7 +349,7 @@ def plotSurf(a):
     axs[0].set_xlabel('Distance (mm)', fontsize=13)
     axs[1].set_xlabel('Distance (mm)', fontsize=13)  # axs[0,1].set_xlabel('time (s)'); axs[1,1].set_xlabel('time (s)')
     axs[0].set_ylabel('flow/ mol/min', fontsize=13)
-    axs[1].set_ylabel('flow/ mol/min', fontsize=13)
+    axs[1].set_ylabel('Site fraction', fontsize=13)
     # fig.tight_layout()
     # axs[1,0].ticklabel_format(axis='x', style='sci', scilimits=(0,0))
     # axs[0,1].ticklabel_format(axis='x', style='sci', scilimits=(0,0))
