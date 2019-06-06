@@ -72,8 +72,8 @@ length = 70 * mm  # Reactor length- m
 diam = 16.5*mm  # Reactor diameter - in m
 area = (diam/2.0)**2*np.pi  # Reactor cross section area (area of tube) in m^2
 porosity = 0.81  # Monolith channel porosity, from Horn ref 17 sec 2.2.2
-# cat_area_per_vol = 1600.  # Catalyst particle surface area per unit volume in m-1
-cat_area_per_vol = 1600.  # I made this up
+cat_area_per_vol = 1600.  # Catalyst particle surface area per unit volume in m-1
+# cat_area_per_vol = 10000.  # I made this up, in m-1
 flow_rate = 4.7  # slpm
 flow_rate = flow_rate*.001/60  # m^3/s
 tot_flow = 0.208  # from Horn 2007, constant inlet flow rate in mol/min, equivalent to 4.7 slpm
@@ -278,48 +278,97 @@ def plotZoom(a):
 
 def plotSurf(a):
     gas_out, surf_out, gas_names, surf_names, dist_array, T_array = a
-    fig, axs = plt.subplots(1, 2)
 
-    for i in range(len(surf_out[0, :])):
-        if surf_out[:, i].max() > 5.e-3:
-            axs[0].plot(dist_array, surf_out[:, i], label=surf_names[i])
+    fig, axs = plt.subplots(1, 2)
+    axs[0].set_prop_cycle(cycler('color', ['m', 'g', 'b', 'y', 'c', 'r', 'k', 'g']))
+
+    for i in range(len(gas_out[0, :])):
+        if i != i_ar:
+            if gas_out[:, i].max() > 5.e-3:
+                #             print(gas_names[i])
+                axs[0].plot(dist_array, gas_out[:, i], label=gas_names[i])
+                species_name = gas_names[i]
+                if species_name.endswith(')'):
+                    if species_name[-3] == '(':
+                        species_name = species_name[0:-3]
+                    else:
+                        species_name = species_name[0:-4]
+                if species_name == "O2":
+                    axs[0].annotate("O$_2$", fontsize=12,
+                                    xy=(dist_array[2200], gas_out[:, i][2200] + gas_out[:, i][2200] / 100.0),
+                                    va='bottom', ha='center')
+                elif species_name == "CO2":
+                    axs[0].annotate("CO$_2$", fontsize=12,
+                                    xy=(dist_array[2200], gas_out[:, i][2200] + gas_out[:, i][2200] / 10.0), va='top',
+                                    ha='center')
+                elif species_name == "CO":
+                    axs[0].annotate("CO", fontsize=12, xy=(dist_array[2200], gas_out[:, i][2200] + 0.001),
+                                    va='bottom', ha='center')
+                elif species_name == "CH2O":
+                    axs[0].annotate("CH$_2$O", fontsize=12, xy=(dist_array[2200], gas_out[:, i][2200] + 0.001),
+                                    va='bottom', ha='center')
+                elif species_name == "CH4":
+                    axs[0].annotate("CH$_4$", fontsize=12,
+                                    xy=(dist_array[2200], gas_out[:, i][2200] + gas_out[:, i][2200] / 100.0),
+                                    va='bottom', ha='center')
+                elif species_name == "H2O":
+                    axs[0].annotate("H$_2$O", fontsize=12,
+                                    xy=(dist_array[2200], gas_out[:, i][2200] + gas_out[:, i][2200] / 40.0), va='top',
+                                    ha='center')
+                else:
+                    axs[0].annotate(species_name, fontsize=12,
+                                    xy=(dist_array[-1], gas_out[:, i][-1] + gas_out[:, i][-1] / 10.0), va='top',
+                                    ha='center')
+            else:
+                axs[0].plot(0, 0)
 
     axs[1].set_prop_cycle(cycler('color', ['m', 'g', 'b', 'y', 'c', 'r', 'k', 'g']))
-    axs[1].plot(dist_array, T_array, label="surface + gas reactions")
+    # Plot two temperatures (of gas-phase and surface vs only surface.)
+    for i in range(len(surf_out[0, :])):
+        if surf_out[:, i].max() > 5.e-3:
+            axs[1].plot(dist_array, surf_out[:, i], label=surf_names[i])
     axs[0].set_prop_cycle(cycler('color', ['m', 'g', 'b', 'y', 'c', 'r', 'k', 'g']))
-    xmax = 1.1
-    axs[0].plot([dist_array[on_catalyst], dist_array[on_catalyst]], [0, xmax], linestyle='--', color='xkcd:grey')
-    axs[0].plot([dist_array[off_catalyst], dist_array[off_catalyst]], [0, xmax], linestyle='--', color='xkcd:grey')
-    axs[0].plot([dist_array[off_catalyst], dist_array[off_catalyst]], [0, xmax], linestyle='--', color='xkcd:grey')
-    axs[0].plot([dist_array[1230], dist_array[1230]], [0, xmax], linestyle='--', color='xkcd:grey')
-    axs[0].annotate("catalyst", fontsize=13, xy=(dist_array[on_catalyst], 0.175), va='bottom', ha='left')
-    # axs[1].plot([dist_array[on_catalyst], dist_array[on_catalyst]], [600.0, 2000], linestyle='--', color='xkcd:grey')
-    # axs[1].plot([dist_array[off_catalyst], dist_array[off_catalyst]], [600.0, 2000], linestyle='--', color='xkcd:grey')
-    # axs[1].annotate("catalyst", fontsize=13, xy=(dist_array[on_catalyst], 1800), va='bottom', ha='left')
 
-    for item in (axs[0].get_xticklabels() + axs[0].get_yticklabels() + axs[1].get_xticklabels() + axs[1].get_yticklabels()):
+    axs[0].plot([dist_array[on_catalyst], dist_array[on_catalyst]], [0, 0.2], linestyle='--', color='xkcd:grey')
+    axs[0].plot([dist_array[off_catalyst], dist_array[off_catalyst]], [0, 0.2], linestyle='--', color='xkcd:grey')
+    axs[0].annotate("catalyst", fontsize=13, xy=(dist_array[on_catalyst], 0.175), va='bottom', ha='left')
+    axs[1].plot([dist_array[on_catalyst], dist_array[on_catalyst]], [0, 1.2], linestyle='--', color='xkcd:grey')
+    axs[1].plot([dist_array[off_catalyst], dist_array[off_catalyst]], [0, 1.2], linestyle='--', color='xkcd:grey')
+    axs[1].annotate("catalyst", fontsize=13, xy=(dist_array[on_catalyst], 1.1), va='bottom', ha='left')
+
+    for item in (
+            axs[0].get_xticklabels() + axs[0].get_yticklabels() + axs[1].get_xticklabels() + axs[1].get_yticklabels()):
         item.set_fontsize(12)
 
-    axs[1].legend(loc='upper center', bbox_to_anchor=(0.5, -0.2),fancybox=False, shadow=False, ncol=2)
-    axs[0].legend(loc='upper center', bbox_to_anchor=(0.5, -0.2),fancybox=False, shadow=False, ncol=4)
-    axs[0].set_ylim(5., xmax); axs[1].set_ylim(200.0, 1300)
-    axs[0].set_xlim(0.0, length/mm); axs[1].set_xlim(0.0, length/mm)
+    axs[1].legend(loc='upper center', bbox_to_anchor=(0.5, -0.2), fancybox=False, shadow=False, ncol=2)
+    axs[0].legend(loc='upper center', bbox_to_anchor=(0.5, -0.2), fancybox=False, shadow=False, ncol=4)
+    axs[0].set_ylim(0., 0.1)
+    axs[1].set_ylim(0, 1.2)
+    axs[0].set_xlim(5, 25)
+    axs[1].set_xlim(5, 25)
     axs[0].set_xlabel('Distance (mm)', fontsize=13)
     axs[1].set_xlabel('Distance (mm)', fontsize=13)  # axs[0,1].set_xlabel('time (s)'); axs[1,1].set_xlabel('time (s)')
     axs[0].set_ylabel('flow/ mol/min', fontsize=13)
-    axs[1].set_ylabel('Temperature (K)', fontsize=13)
+    axs[1].set_ylabel('flow/ mol/min', fontsize=13)
+    # fig.tight_layout()
+    # axs[1,0].ticklabel_format(axis='x', style='sci', scilimits=(0,0))
+    # axs[0,1].ticklabel_format(axis='x', style='sci', scilimits=(0,0))
+    # axs[1,1].ticklabel_format(axis='x', style='sci', scilimits=(0,0))
     fig.set_figheight(6)
     fig.set_figwidth(18)
+
+    #     temperature = np.round(T_array[0],0)
     for n in range(len(gas_names)):
         if gas_names[n] == 'CH4(2)':
             c_in = gas_out[0][n]
         if gas_names[n] == 'O2(3)':
             o_in = gas_out[0][n]
-    ratio = round(c_in / (o_in * 2), 1)
+    ratio = c_in / (o_in * 2)
+    ratio = round(ratio, 1)
+
     out_dir = 'figures'
     os.path.exists(out_dir) or os.makedirs(out_dir)
-    fig.savefig(out_dir + '/' + str(ratio) + 'surface.png', bbox_inches='tight')
-
+    fig.savefig(out_dir + '/' + str(ratio) + 'surf.png', bbox_inches='tight')
 
 def monolithFull(gas, surf, temp, mol_in, verbose=False, sens=False):
     """
@@ -471,6 +520,7 @@ def simulationWorker(ratio):
         gas_out, surf_out, gas_names, surf_names, dist_array, T_array = a
         plotflow(a)
         plotZoom(a)
+        plotSurf(a)
         return [ratio, [gas_out, gas_names, dist_array, T_array]]
     except:
         print('Unable to run simulation at a C/O ratio of {:.1f}'.format(ratio))
