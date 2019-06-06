@@ -68,11 +68,12 @@ minute = 60.0
 #######################################################################
 t_in = 700  # K - in the paper, it was ~698.15K at the start of the cat surface and ~373.15 for the gas inlet temp
 t_cat = t_in
-length = 70 * mm  # Reactor length - catalyst length 10mm, but it doesn't say where.  let's guess at 1 cm?
-diam = 16.5*mm  # Reactor diameter
+length = 70 * mm  # Reactor length- m
+diam = 16.5*mm  # Reactor diameter - in m
 area = (diam/2.0)**2*np.pi  # Reactor cross section area (area of tube) in m^2
 porosity = 0.81  # Monolith channel porosity, from Horn ref 17 sec 2.2.2
-cat_area_per_vol = 1600.  # Catalyst particle surface area per unit volume in m-1
+# cat_area_per_vol = 1600.  # Catalyst particle surface area per unit volume in m-1
+cat_area_per_vol = 1600.  # I made this up
 flow_rate = 4.7  # slpm
 flow_rate = flow_rate*.001/60  # m^3/s
 tot_flow = 0.208  # from Horn 2007, constant inlet flow rate in mol/min, equivalent to 4.7 slpm
@@ -81,7 +82,7 @@ velocity = flow_rate/area  # m/s
 # The PFR will be simulated by a chain of 'NReactors' stirred reactors.
 NReactors = 7001
 
-on_catalyst = 1000
+on_catalyst = 1000  # catalyst length 10mm, but it doesn't say where.  let's guess at 1 cm?
 off_catalyst = 2000
 dt = 1.0
 
@@ -332,6 +333,9 @@ def monolithFull(gas, surf, temp, mol_in, verbose=False, sens=False):
     o2 = str(o2)
     ar = str(ar)
     X = str('CH4(2):' + ch4 + ', O2(3):' + o2 + ', Ar:' + ar)
+    gas.TPX = 273.15, ct.one_atm, X  # need to initialize mass flow rate at STP
+    # mass_flow_rate = velocity * gas.density_mass * area  # kg/s
+    mass_flow_rate = flow_rate * gas.density_mass
     gas.TPX = temp, ct.one_atm, X
     temp_cat = temp
     surf.TP = temp_cat, ct.one_atm
@@ -363,7 +367,8 @@ def monolithFull(gas, surf, temp, mol_in, verbose=False, sens=False):
 
     # The mass flow rate into the reactor will be fixed by using a
     # MassFlowController object.
-    mass_flow_rate = velocity * gas.density * area  # kg/s
+    # mass_flow_rate = velocity * gas.density_mass * area  # kg/s
+    # mass_flow_rate = flow_rate * gas.density_mass
     m = ct.MassFlowController(upstream, r, mdot=mass_flow_rate)
 
     # We need an outlet to the downstream reservoir. This will determine the
