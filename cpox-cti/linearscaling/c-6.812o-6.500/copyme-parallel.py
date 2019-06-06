@@ -376,7 +376,7 @@ def monolithFull(gas, surf, temp, mol_in, verbose=False, sens=False):
 
     # set relative and absolute tolerances on the simulation
     sim.rtol = 1.0e-10
-    sim.atol = 1.0e-21
+    sim.atol = 1.0e-20
 
     gas_names = gas.species_names
     surf_names = surf.species_names
@@ -461,7 +461,7 @@ def simulationWorker(ratio):
     ratio_in = [fch4, fo2, far]  # mol fractions
 
     try:
-        a = monolithFull(gas, surf, t_in, ratio_in, verbose=True)
+        a = monolithFull(gas, surf, t_in, ratio_in)
         print("Finished simulation at a C/O ratio of {:.1f}".format(ratio))
         gas_out, surf_out, gas_names, surf_names, dist_array, T_array = a
         plotflow(a)

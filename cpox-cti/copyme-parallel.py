@@ -441,7 +441,7 @@ def monolithFull(gas, surf, temp, mol_in, verbose=False, sens=False):
         if verbose is True:
             if not n % 100:
                 print('  {0:10f}  {1:10f}  {2:10f}  {3:10f} {4:10f} {5:10f} {6:10f}'.format(dist, *gas[
-                    'CH4(2)', 'O2(3)', 'H2(6)', 'CO(7)', 'H2O(5)', 'CO2(4)'].X * 1000 * 60 * kmole_flow_rate ))
+                    'CH4(2)', 'O2(3)', 'H2(6)', 'CO(7)', 'H2O(5)', 'CO2(4)'].X * 1000 * 60 * kmole_flow_rate))
                 # print(surf.T)
                 # print(gas.P)
                 # print(surf.coverages)
@@ -455,13 +455,13 @@ def monolithFull(gas, surf, temp, mol_in, verbose=False, sens=False):
 
 
 def simulationWorker(ratio):
-    fo2 = tot_flow / (2. * ratio + 1 + 79 / 21)
+    fo2 = 1 / (2. * ratio + 1 + 79 / 21)
     fch4 = 2 * fo2 * ratio
     far = 79 * fo2 / 21
     ratio_in = [fch4, fo2, far]  # mol fractions
 
     try:
-        a = monolithFull(gas, surf, t_in, ratio_in, verbose=True)
+        a = monolithFull(gas, surf, t_in, ratio_in)
         print("Finished simulation at a C/O ratio of {:.1f}".format(ratio))
         gas_out, surf_out, gas_names, surf_names, dist_array, T_array = a
         plotflow(a)
