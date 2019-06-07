@@ -7,8 +7,10 @@
 #SBATCH --ntasks=1
 #SBATCH --nodes=1
 #SBATCH --cpus-per-task=15
-#SBATCH --mem-per-cpu=1Gb
+#SBATCH --mem=10Gb
 #SBATCH --time=1:00:00
+#SBATCH --mail-type=end,fail
+#SBATCH --mail-user=mazeau.e@husky.neu.edu
 
 source activate rmg_env
 python copyme-parallel.py
