@@ -429,8 +429,8 @@ def monolithFull(gas, surf, temp, mol_in, verbose=False, sens=False):
     sim.max_err_test_fails = 12
 
     # set relative and absolute tolerances on the simulation
-    sim.rtol = 1.0e-10
-    sim.atol = 1.0e-19
+    sim.rtol = 1.0e-12
+    sim.atol = 1.0e-20
 
     gas_names = gas.species_names
     surf_names = surf.species_names
