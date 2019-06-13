@@ -68,11 +68,12 @@ minute = 60.0
 #######################################################################
 t_in = 700  # K - in the paper, it was ~698.15K at the start of the cat surface and ~373.15 for the gas inlet temp
 t_cat = t_in
-length = 70 * mm  # Reactor length - catalyst length 10mm, but it doesn't say where.  let's guess at 1 cm?
-diam = 16.5*mm  # Reactor diameter
+length = 70 * mm  # Reactor length- m
+diam = 16.5*mm  # Reactor diameter - in m
 area = (diam/2.0)**2*np.pi  # Reactor cross section area (area of tube) in m^2
 porosity = 0.81  # Monolith channel porosity, from Horn ref 17 sec 2.2.2
-cat_area_per_vol = 1600.  # Catalyst particle surface area per unit volume in m-1
+# cat_area_per_vol = 1600.  # Catalyst particle surface area per unit volume in m-1
+cat_area_per_vol = 5000  # I made this up, in m-1. 4500 is lowest that "work" for all base
 flow_rate = 4.7  # slpm
 flow_rate = flow_rate*.001/60  # m^3/s
 tot_flow = 0.208  # from Horn 2007, constant inlet flow rate in mol/min, equivalent to 4.7 slpm
@@ -81,7 +82,7 @@ velocity = flow_rate/area  # m/s
 # The PFR will be simulated by a chain of 'NReactors' stirred reactors.
 NReactors = 7001
 
-on_catalyst = 1000
+on_catalyst = 1000  # catalyst length 10mm, but it doesn't say where.  let's guess at 1 cm?
 off_catalyst = 2000
 dt = 1.0
 
@@ -277,48 +278,97 @@ def plotZoom(a):
 
 def plotSurf(a):
     gas_out, surf_out, gas_names, surf_names, dist_array, T_array = a
-    fig, axs = plt.subplots(1, 2)
 
-    for i in range(len(surf_out[0, :])):
-        if surf_out[:, i].max() > 5.e-3:
-            axs[0].plot(dist_array, surf_out[:, i], label=surf_names[i])
+    fig, axs = plt.subplots(1, 2)
+    axs[0].set_prop_cycle(cycler('color', ['m', 'g', 'b', 'y', 'c', 'r', 'k', 'g']))
+
+    for i in range(len(gas_out[0, :])):
+        if i != i_ar:
+            if gas_out[:, i].max() > 5.e-3:
+                #             print(gas_names[i])
+                axs[0].plot(dist_array, gas_out[:, i], label=gas_names[i])
+                species_name = gas_names[i]
+                if species_name.endswith(')'):
+                    if species_name[-3] == '(':
+                        species_name = species_name[0:-3]
+                    else:
+                        species_name = species_name[0:-4]
+                if species_name == "O2":
+                    axs[0].annotate("O$_2$", fontsize=12,
+                                    xy=(dist_array[2200], gas_out[:, i][2200] + gas_out[:, i][2200] / 100.0),
+                                    va='bottom', ha='center')
+                elif species_name == "CO2":
+                    axs[0].annotate("CO$_2$", fontsize=12,
+                                    xy=(dist_array[2200], gas_out[:, i][2200] + gas_out[:, i][2200] / 10.0), va='top',
+                                    ha='center')
+                elif species_name == "CO":
+                    axs[0].annotate("CO", fontsize=12, xy=(dist_array[2200], gas_out[:, i][2200] + 0.001),
+                                    va='bottom', ha='center')
+                elif species_name == "CH2O":
+                    axs[0].annotate("CH$_2$O", fontsize=12, xy=(dist_array[2200], gas_out[:, i][2200] + 0.001),
+                                    va='bottom', ha='center')
+                elif species_name == "CH4":
+                    axs[0].annotate("CH$_4$", fontsize=12,
+                                    xy=(dist_array[2200], gas_out[:, i][2200] + gas_out[:, i][2200] / 100.0),
+                                    va='bottom', ha='center')
+                elif species_name == "H2O":
+                    axs[0].annotate("H$_2$O", fontsize=12,
+                                    xy=(dist_array[2200], gas_out[:, i][2200] + gas_out[:, i][2200] / 40.0), va='top',
+                                    ha='center')
+                else:
+                    axs[0].annotate(species_name, fontsize=12,
+                                    xy=(dist_array[-1], gas_out[:, i][-1] + gas_out[:, i][-1] / 10.0), va='top',
+                                    ha='center')
+            else:
+                axs[0].plot(0, 0)
 
     axs[1].set_prop_cycle(cycler('color', ['m', 'g', 'b', 'y', 'c', 'r', 'k', 'g']))
-    axs[1].plot(dist_array, T_array, label="surface + gas reactions")
+    # Plot two temperatures (of gas-phase and surface vs only surface.)
+    for i in range(len(surf_out[0, :])):
+        if surf_out[:, i].max() > 5.e-3:
+            axs[1].plot(dist_array, surf_out[:, i], label=surf_names[i])
     axs[0].set_prop_cycle(cycler('color', ['m', 'g', 'b', 'y', 'c', 'r', 'k', 'g']))
-    xmax = 1.1
-    axs[0].plot([dist_array[on_catalyst], dist_array[on_catalyst]], [0, xmax], linestyle='--', color='xkcd:grey')
-    axs[0].plot([dist_array[off_catalyst], dist_array[off_catalyst]], [0, xmax], linestyle='--', color='xkcd:grey')
-    axs[0].plot([dist_array[off_catalyst], dist_array[off_catalyst]], [0, xmax], linestyle='--', color='xkcd:grey')
-    axs[0].plot([dist_array[1230], dist_array[1230]], [0, xmax], linestyle='--', color='xkcd:grey')
-    axs[0].annotate("catalyst", fontsize=13, xy=(dist_array[on_catalyst], 0.175), va='bottom', ha='left')
-    # axs[1].plot([dist_array[on_catalyst], dist_array[on_catalyst]], [600.0, 2000], linestyle='--', color='xkcd:grey')
-    # axs[1].plot([dist_array[off_catalyst], dist_array[off_catalyst]], [600.0, 2000], linestyle='--', color='xkcd:grey')
-    # axs[1].annotate("catalyst", fontsize=13, xy=(dist_array[on_catalyst], 1800), va='bottom', ha='left')
 
-    for item in (axs[0].get_xticklabels() + axs[0].get_yticklabels() + axs[1].get_xticklabels() + axs[1].get_yticklabels()):
+    axs[0].plot([dist_array[on_catalyst], dist_array[on_catalyst]], [0, 0.2], linestyle='--', color='xkcd:grey')
+    axs[0].plot([dist_array[off_catalyst], dist_array[off_catalyst]], [0, 0.2], linestyle='--', color='xkcd:grey')
+    axs[0].annotate("catalyst", fontsize=13, xy=(dist_array[on_catalyst], 0.175), va='bottom', ha='left')
+    axs[1].plot([dist_array[on_catalyst], dist_array[on_catalyst]], [0, 1.2], linestyle='--', color='xkcd:grey')
+    axs[1].plot([dist_array[off_catalyst], dist_array[off_catalyst]], [0, 1.2], linestyle='--', color='xkcd:grey')
+    axs[1].annotate("catalyst", fontsize=13, xy=(dist_array[on_catalyst], 1.1), va='bottom', ha='left')
+
+    for item in (
+            axs[0].get_xticklabels() + axs[0].get_yticklabels() + axs[1].get_xticklabels() + axs[1].get_yticklabels()):
         item.set_fontsize(12)
 
-    axs[1].legend(loc='upper center', bbox_to_anchor=(0.5, -0.2),fancybox=False, shadow=False, ncol=2)
-    axs[0].legend(loc='upper center', bbox_to_anchor=(0.5, -0.2),fancybox=False, shadow=False, ncol=4)
-    axs[0].set_ylim(5., xmax); axs[1].set_ylim(200.0, 1300)
-    axs[0].set_xlim(0.0, length/mm); axs[1].set_xlim(0.0, length/mm)
+    axs[1].legend(loc='upper center', bbox_to_anchor=(0.5, -0.2), fancybox=False, shadow=False, ncol=2)
+    axs[0].legend(loc='upper center', bbox_to_anchor=(0.5, -0.2), fancybox=False, shadow=False, ncol=4)
+    axs[0].set_ylim(0., 0.1)
+    axs[1].set_ylim(0, 1.2)
+    axs[0].set_xlim(5, 25)
+    axs[1].set_xlim(5, 25)
     axs[0].set_xlabel('Distance (mm)', fontsize=13)
     axs[1].set_xlabel('Distance (mm)', fontsize=13)  # axs[0,1].set_xlabel('time (s)'); axs[1,1].set_xlabel('time (s)')
     axs[0].set_ylabel('flow/ mol/min', fontsize=13)
-    axs[1].set_ylabel('Temperature (K)', fontsize=13)
+    axs[1].set_ylabel('Site fraction', fontsize=13)
+    # fig.tight_layout()
+    # axs[1,0].ticklabel_format(axis='x', style='sci', scilimits=(0,0))
+    # axs[0,1].ticklabel_format(axis='x', style='sci', scilimits=(0,0))
+    # axs[1,1].ticklabel_format(axis='x', style='sci', scilimits=(0,0))
     fig.set_figheight(6)
     fig.set_figwidth(18)
+
+    #     temperature = np.round(T_array[0],0)
     for n in range(len(gas_names)):
         if gas_names[n] == 'CH4(2)':
             c_in = gas_out[0][n]
         if gas_names[n] == 'O2(3)':
             o_in = gas_out[0][n]
-    ratio = round(c_in / (o_in * 2), 1)
+    ratio = c_in / (o_in * 2)
+    ratio = round(ratio, 1)
+
     out_dir = 'figures'
     os.path.exists(out_dir) or os.makedirs(out_dir)
-    fig.savefig(out_dir + '/' + str(ratio) + 'surface.png', bbox_inches='tight')
-
+    fig.savefig(out_dir + '/' + str(ratio) + 'surf.png', bbox_inches='tight')
 
 def monolithFull(gas, surf, temp, mol_in, verbose=False, sens=False):
     """
@@ -332,6 +382,9 @@ def monolithFull(gas, surf, temp, mol_in, verbose=False, sens=False):
     o2 = str(o2)
     ar = str(ar)
     X = str('CH4(2):' + ch4 + ', O2(3):' + o2 + ', Ar:' + ar)
+    gas.TPX = 273.15, ct.one_atm, X  # need to initialize mass flow rate at STP
+    # mass_flow_rate = velocity * gas.density_mass * area  # kg/s
+    mass_flow_rate = flow_rate * gas.density_mass
     gas.TPX = temp, ct.one_atm, X
     temp_cat = temp
     surf.TP = temp_cat, ct.one_atm
@@ -363,7 +416,8 @@ def monolithFull(gas, surf, temp, mol_in, verbose=False, sens=False):
 
     # The mass flow rate into the reactor will be fixed by using a
     # MassFlowController object.
-    mass_flow_rate = velocity * gas.density * area  # kg/s
+    # mass_flow_rate = velocity * gas.density_mass * area  # kg/s
+    # mass_flow_rate = flow_rate * gas.density_mass
     m = ct.MassFlowController(upstream, r, mdot=mass_flow_rate)
 
     # We need an outlet to the downstream reservoir. This will determine the
@@ -376,7 +430,7 @@ def monolithFull(gas, surf, temp, mol_in, verbose=False, sens=False):
 
     # set relative and absolute tolerances on the simulation
     sim.rtol = 1.0e-10
-    sim.atol = 1.0e-20
+    sim.atol = 1.0e-19
 
     gas_names = gas.species_names
     surf_names = surf.species_names
@@ -441,7 +495,7 @@ def monolithFull(gas, surf, temp, mol_in, verbose=False, sens=False):
         if verbose is True:
             if not n % 100:
                 print('  {0:10f}  {1:10f}  {2:10f}  {3:10f} {4:10f} {5:10f} {6:10f}'.format(dist, *gas[
-                    'CH4(2)', 'O2(3)', 'H2(6)', 'CO(7)', 'H2O(5)', 'CO2(4)'].X * 1000 * 60 * kmole_flow_rate ))
+                    'CH4(2)', 'O2(3)', 'H2(6)', 'CO(7)', 'H2O(5)', 'CO2(4)'].X * 1000 * 60 * kmole_flow_rate))
                 # print(surf.T)
                 # print(gas.P)
                 # print(surf.coverages)
@@ -455,17 +509,18 @@ def monolithFull(gas, surf, temp, mol_in, verbose=False, sens=False):
 
 
 def simulationWorker(ratio):
-    fo2 = tot_flow / (2. * ratio + 1 + 79 / 21)
+    fo2 = 1 / (2. * ratio + 1 + 79 / 21)
     fch4 = 2 * fo2 * ratio
     far = 79 * fo2 / 21
     ratio_in = [fch4, fo2, far]  # mol fractions
 
     try:
-        a = monolithFull(gas, surf, t_in, ratio_in, verbose=True)
+        a = monolithFull(gas, surf, t_in, ratio_in)
         print("Finished simulation at a C/O ratio of {:.1f}".format(ratio))
         gas_out, surf_out, gas_names, surf_names, dist_array, T_array = a
         plotflow(a)
         plotZoom(a)
+        plotSurf(a)
         return [ratio, [gas_out, gas_names, dist_array, T_array]]
     except:
         print('Unable to run simulation at a C/O ratio of {:.1f}'.format(ratio))
