@@ -73,7 +73,7 @@ diam = 16.5*mm  # Reactor diameter - in m
 area = (diam/2.0)**2*np.pi  # Reactor cross section area (area of tube) in m^2
 porosity = 0.81  # Monolith channel porosity, from Horn ref 17 sec 2.2.2
 # cat_area_per_vol = 1600.  # Catalyst particle surface area per unit volume in m-1
-cat_area_per_vol = 1.0e6  # I made this up, in m-1. 4500 is lowest that "work" for all base
+cat_area_per_vol = 5000  # I made this up, in m-1. 4500 is lowest that "work" for all base
 flow_rate = 4.7  # slpm
 flow_rate = flow_rate*.001/60  # m^3/s
 tot_flow = 0.208  # from Horn 2007, constant inlet flow rate in mol/min, equivalent to 4.7 slpm
@@ -430,7 +430,7 @@ def monolithFull(gas, surf, temp, mol_in, verbose=False, sens=False):
 
     # set relative and absolute tolerances on the simulation
     sim.rtol = 1.0e-10
-    sim.atol = 1.0e-20
+    sim.atol = 1.0e-19
 
     gas_names = gas.species_names
     surf_names = surf.species_names

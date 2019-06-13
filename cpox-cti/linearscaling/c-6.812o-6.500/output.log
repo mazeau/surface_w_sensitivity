@@ -1,1460 +1,469 @@
 This mechanism contains 38 gas reactions and 41 surface reactions
-Finished simulation at a C/O ratio of 0.9
+Finished simulation at a C/O ratio of 0.8
+Finished simulation at a C/O ratio of 1.0
+Finished simulation at a C/O ratio of 1.4
+Finished simulation at a C/O ratio of 1.6
+Finished simulation at a C/O ratio of 2.4
 Finished simulation at a C/O ratio of 2.6
 Finished simulation at a C/O ratio of 2.0
-Finished simulation at a C/O ratio of 1.3
-Finished simulation at a C/O ratio of 1.8
-Finished simulation at a C/O ratio of 1.1
-Finished simulation at a C/O ratio of 1.6
-Finished simulation at a C/O ratio of 1.2
-Finished simulation at a C/O ratio of 0.6
-Finished simulation at a C/O ratio of 0.8
-Finished simulation at a C/O ratio of 2.4
-Finished simulation at a C/O ratio of 1.0
-Finished simulation at a C/O ratio of 0.7
-Finished simulation at a C/O ratio of 1.4
 Finished simulation at a C/O ratio of 2.2
-Starting sensitivity simulation for a C/O ratio of 0.6
+Finished simulation at a C/O ratio of 1.8
+Finished simulation at a C/O ratio of 1.2
+Finished simulation at a C/O ratio of 1.3
+Finished simulation at a C/O ratio of 1.1
+Finished simulation at a C/O ratio of 0.7
+Finished simulation at a C/O ratio of 0.6
+Finished simulation at a C/O ratio of 0.9
+Starting sensitivity simulation for a C/O ratio of 1.2
 0 CH4(2) + X(1) <=> CH4X(48) -0.000 -0.000
-1 O2(3) + 2 X(1) <=> 2 OX(20) 0.000 -0.747
+1 O2(3) + 2 X(1) <=> 2 OX(20) 0.000 -0.805
 2 H2(6) + 2 X(1) <=> 2 HX(19) -0.000 -0.000
 3 H(12) + X(1) <=> HX(19) 0.000 -0.000
-4 HX(19) + OX(20) <=> HOX(22) + X(1) -0.000 0.000
-5 H2O(5) + 2 X(1) <=> HOX(22) + HX(19) 0.000 -0.000
-6 OH(17) + X(1) <=> HOX(22) -0.000 0.000
-7 CH4(2) + 2 X(1) <=> CH3X(21) + HX(19) 0.000 0.000
-8 CH4(2) + OX(20) + X(1) <=> CH3X(21) + HOX(22) -0.000 0.515
-9 C2H6(8) + 2 X(1) <=> 2 CH3X(21) 0.000 -0.000
-10 CH3(10) + X(1) <=> CH3X(21) 0.000 -0.000
-11 CH3OH(14) + 2 X(1) <=> CH3X(21) + HOX(22) 0.000 -0.000
-12 CH2X(27) + HX(19) <=> CH3X(21) + X(1) 0.000 0.000
-13 CH2X(27) + HOX(22) <=> CH3X(21) + OX(20) 0.000 -0.000
-14 CHX(28) + HX(19) <=> CH2X(27) + X(1) 0.000 -0.000
-15 CHX(28) + HOX(22) <=> CH2X(27) + OX(20) -0.000 0.000
-16 2 CH2X(27) <=> CH3X(21) + CHX(28) 0.000 -0.000
-17 CHX(28) + X(1) <=> CX(26) + HX(19) 0.000 -0.000
-18 CX(26) + H2(6) <=> CH2X(27) -0.000 -0.066
-19 CX(26) + HOX(22) <=> CHX(28) + OX(20) 0.000 -0.000
-20 CH3X(21) + CX(26) <=> CH2X(27) + CHX(28) -0.000 0.000
-
-***********************************************************************
-CanteraError thrown by CVodesIntegrator::step:
-CVodes error encountered. Error code: -10
-Exceptions caught during RHS evaluation:
-ydot contains non-finite elements:
-
-ydot[0] = inf
-ydot[2] = nan
-ydot[3] = -inf
-ydot[4] = nan
-ydot[5] = nan
-ydot[6] = nan
-ydot[7] = nan
-ydot[8] = -inf
-ydot[9] = nan
-ydot[10] = nan
-ydot[11] = nan
-ydot[12] = nan
-ydot[13] = nan
-ydot[14] = nan
-ydot[15] = -inf
-ydot[16] = nan
-ydot[17] = nan
-ydot[18] = nan
-ydot[19] = nan
-ydot[20] = nan
-ydot[21] = nan
-ydot[22] = nan
-ydot[23] = -inf
-ydot[24] = -inf
-ydot[25] = nan
-ydot[26] = nan
-ydot[27] = nan
-ydot[28] = -inf
-ydot[29] = nan
-ydot[30] = -inf
-ydot[31] = inf
-ydot[32] = -inf
-ydot[33] = inf
-ydot[34] = nan
-ydot[35] = nan
-ydot[36] = -inf
-ydot[37] = -inf
-ydot[39] = nan
-
-ydot contains non-finite elements:
-
-ydot[0] = inf
-ydot[2] = nan
-ydot[3] = -inf
-ydot[4] = nan
-ydot[5] = nan
-ydot[6] = nan
-ydot[7] = nan
-ydot[8] = -inf
-ydot[9] = nan
-ydot[10] = nan
-ydot[11] = nan
-ydot[12] = nan
-ydot[13] = nan
-ydot[14] = nan
-ydot[15] = -inf
-ydot[16] = nan
-ydot[17] = nan
-ydot[18] = nan
-ydot[19] = nan
-ydot[20] = nan
-ydot[21] = nan
-ydot[22] = nan
-ydot[23] = -inf
-ydot[24] = -inf
-ydot[25] = nan
-ydot[26] = nan
-ydot[27] = nan
-ydot[28] = -inf
-ydot[29] = nan
-ydot[30] = -inf
-ydot[31] = inf
-ydot[32] = -inf
-ydot[33] = inf
-ydot[34] = nan
-ydot[35] = nan
-ydot[36] = -inf
-ydot[37] = -inf
-ydot[39] = nan
-
-ydot contains non-finite elements:
-
-ydot[0] = inf
-ydot[2] = nan
-ydot[3] = -inf
-ydot[4] = nan
-ydot[5] = nan
-ydot[6] = nan
-ydot[7] = nan
-ydot[8] = -inf
-ydot[9] = nan
-ydot[10] = nan
-ydot[11] = nan
-ydot[12] = nan
-ydot[13] = nan
-ydot[14] = nan
-ydot[15] = -inf
-ydot[16] = nan
-ydot[17] = nan
-ydot[18] = nan
-ydot[19] = nan
-ydot[20] = nan
-ydot[21] = nan
-ydot[22] = nan
-ydot[23] = -inf
-ydot[24] = -inf
-ydot[25] = nan
-ydot[26] = nan
-ydot[27] = nan
-ydot[28] = -inf
-ydot[29] = nan
-ydot[30] = -inf
-ydot[31] = inf
-ydot[32] = -inf
-ydot[33] = inf
-ydot[34] = nan
-ydot[35] = nan
-ydot[36] = -inf
-ydot[37] = -inf
-ydot[39] = nan
-
-ydot contains non-finite elements:
-
-ydot[0] = inf
-ydot[2] = nan
-ydot[3] = -inf
-ydot[4] = nan
-ydot[5] = nan
-ydot[6] = nan
-ydot[7] = nan
-ydot[8] = -inf
-ydot[9] = nan
-ydot[10] = nan
-ydot[11] = nan
-ydot[12] = nan
-ydot[13] = nan
-ydot[14] = nan
-ydot[15] = -inf
-ydot[16] = nan
-ydot[17] = nan
-ydot[18] = nan
-ydot[19] = nan
-ydot[20] = nan
-ydot[21] = nan
-ydot[22] = nan
-ydot[23] = -inf
-ydot[24] = -inf
-ydot[25] = nan
-ydot[26] = nan
-ydot[27] = nan
-ydot[28] = -inf
-ydot[29] = nan
-ydot[30] = -inf
-ydot[31] = inf
-ydot[32] = -inf
-ydot[33] = inf
-ydot[34] = nan
-ydot[35] = nan
-ydot[36] = -inf
-ydot[37] = -inf
-ydot[39] = nan
-
-ydot contains non-finite elements:
-
-ydot[0] = inf
-ydot[2] = nan
-ydot[3] = -inf
-ydot[4] = nan
-ydot[5] = nan
-ydot[6] = nan
-ydot[7] = nan
-ydot[8] = -inf
-ydot[9] = nan
-ydot[10] = nan
-ydot[11] = nan
-ydot[12] = nan
-ydot[13] = nan
-ydot[14] = nan
-ydot[15] = -inf
-ydot[16] = nan
-ydot[17] = nan
-ydot[18] = nan
-ydot[19] = nan
-ydot[20] = nan
-ydot[21] = nan
-ydot[22] = nan
-ydot[23] = -inf
-ydot[24] = -inf
-ydot[25] = nan
-ydot[26] = nan
-ydot[27] = nan
-ydot[28] = -inf
-ydot[29] = nan
-ydot[30] = -inf
-ydot[31] = inf
-ydot[32] = -inf
-ydot[33] = inf
-ydot[34] = nan
-ydot[35] = nan
-ydot[36] = -inf
-ydot[37] = -inf
-ydot[39] = nan
-
-ydot contains non-finite elements:
-
-ydot[0] = inf
-ydot[2] = nan
-ydot[3] = -inf
-ydot[4] = nan
-ydot[5] = nan
-ydot[6] = nan
-ydot[7] = nan
-ydot[8] = -inf
-ydot[9] = nan
-ydot[10] = nan
-ydot[11] = nan
-ydot[12] = nan
-ydot[13] = nan
-ydot[14] = nan
-ydot[15] = -inf
-ydot[16] = nan
-ydot[17] = nan
-ydot[18] = nan
-ydot[19] = nan
-ydot[20] = nan
-ydot[21] = nan
-ydot[22] = nan
-ydot[23] = -inf
-ydot[24] = -inf
-ydot[25] = nan
-ydot[26] = nan
-ydot[27] = nan
-ydot[28] = -inf
-ydot[29] = nan
-ydot[30] = -inf
-ydot[31] = inf
-ydot[32] = -inf
-ydot[33] = inf
-ydot[34] = nan
-ydot[35] = nan
-ydot[36] = -inf
-ydot[37] = -inf
-ydot[39] = nan
-
-ydot contains non-finite elements:
-
-ydot[0] = inf
-ydot[2] = nan
-ydot[3] = -inf
-ydot[4] = nan
-ydot[5] = nan
-ydot[6] = nan
-ydot[7] = nan
-ydot[8] = -inf
-ydot[9] = nan
-ydot[10] = nan
-ydot[11] = nan
-ydot[12] = nan
-ydot[13] = nan
-ydot[14] = nan
-ydot[15] = -inf
-ydot[16] = nan
-ydot[17] = nan
-ydot[18] = nan
-ydot[19] = nan
-ydot[20] = nan
-ydot[21] = nan
-ydot[22] = nan
-ydot[23] = -inf
-ydot[24] = -inf
-ydot[25] = nan
-ydot[26] = nan
-ydot[27] = nan
-ydot[28] = -inf
-ydot[29] = nan
-ydot[30] = -inf
-ydot[31] = inf
-ydot[32] = -inf
-ydot[33] = inf
-ydot[34] = nan
-ydot[35] = nan
-ydot[36] = -inf
-ydot[37] = -inf
-ydot[39] = nan
-
-ydot contains non-finite elements:
-
-ydot[0] = inf
-ydot[2] = nan
-ydot[3] = -inf
-ydot[4] = nan
-ydot[5] = nan
-ydot[6] = nan
-ydot[7] = nan
-ydot[8] = -inf
-ydot[9] = nan
-ydot[10] = nan
-ydot[11] = nan
-ydot[12] = nan
-ydot[13] = nan
-ydot[14] = nan
-ydot[15] = -inf
-ydot[16] = nan
-ydot[17] = nan
-ydot[18] = nan
-ydot[19] = nan
-ydot[20] = nan
-ydot[21] = nan
-ydot[22] = nan
-ydot[23] = -inf
-ydot[24] = -inf
-ydot[25] = nan
-ydot[26] = nan
-ydot[27] = nan
-ydot[28] = -inf
-ydot[29] = nan
-ydot[30] = -inf
-ydot[31] = inf
-ydot[32] = -inf
-ydot[33] = inf
-ydot[34] = nan
-ydot[35] = nan
-ydot[36] = -inf
-ydot[37] = -inf
-ydot[39] = nan
-
-ydot contains non-finite elements:
-
-ydot[0] = inf
-ydot[2] = nan
-ydot[3] = -inf
-ydot[4] = nan
-ydot[5] = nan
-ydot[6] = nan
-ydot[7] = nan
-ydot[8] = -inf
-ydot[9] = nan
-ydot[10] = nan
-ydot[11] = nan
-ydot[12] = nan
-ydot[13] = nan
-ydot[14] = nan
-ydot[15] = -inf
-ydot[16] = nan
-ydot[17] = nan
-ydot[18] = nan
-ydot[19] = nan
-ydot[20] = nan
-ydot[21] = nan
-ydot[22] = nan
-ydot[23] = -inf
-ydot[24] = -inf
-ydot[25] = nan
-ydot[26] = nan
-ydot[27] = nan
-ydot[28] = -inf
-ydot[29] = nan
-ydot[30] = -inf
-ydot[31] = inf
-ydot[32] = -inf
-ydot[33] = inf
-ydot[34] = nan
-ydot[35] = nan
-ydot[36] = -inf
-ydot[37] = -inf
-ydot[39] = nan
-
-ydot contains non-finite elements:
-
-ydot[0] = inf
-ydot[2] = nan
-ydot[3] = -inf
-ydot[4] = nan
-ydot[5] = nan
-ydot[6] = nan
-ydot[7] = nan
-ydot[8] = -inf
-ydot[9] = nan
-ydot[10] = nan
-ydot[11] = nan
-ydot[12] = nan
-ydot[13] = nan
-ydot[14] = nan
-ydot[15] = -inf
-ydot[16] = nan
-ydot[17] = nan
-ydot[18] = nan
-ydot[19] = nan
-ydot[20] = nan
-ydot[21] = nan
-ydot[22] = nan
-ydot[23] = -inf
-ydot[24] = -inf
-ydot[25] = nan
-ydot[26] = nan
-ydot[27] = nan
-ydot[28] = -inf
-ydot[29] = nan
-ydot[30] = -inf
-ydot[31] = inf
-ydot[32] = -inf
-ydot[33] = inf
-ydot[34] = nan
-ydot[35] = nan
-ydot[36] = -inf
-ydot[37] = -inf
-ydot[39] = nan
-
-
-At t = 5.30983e+16 repeated recoverable right-hand side function errors.
-Components with largest weighted error estimates:
-3: -inf
-1: 0
-2: nan
-4: nan
-5: nan
-6: nan
-7: nan
-8: -inf
-0: inf
-9: nan
-***********************************************************************
-
-Starting sensitivity simulation for a C/O ratio of 2.2
-0 CH4(2) + X(1) <=> CH4X(48) 0.000 0.000
-1 O2(3) + 2 X(1) <=> 2 OX(20) 0.000 -0.828
-2 H2(6) + 2 X(1) <=> 2 HX(19) 0.000 -0.000
-3 H(12) + X(1) <=> HX(19) 0.000 0.000
-4 HX(19) + OX(20) <=> HOX(22) + X(1) 0.000 0.000
-5 H2O(5) + 2 X(1) <=> HOX(22) + HX(19) 0.000 -0.000
-6 OH(17) + X(1) <=> HOX(22) 0.000 0.000
-7 CH4(2) + 2 X(1) <=> CH3X(21) + HX(19) 0.000 0.000
-8 CH4(2) + OX(20) + X(1) <=> CH3X(21) + HOX(22) 0.000 0.645
-9 C2H6(8) + 2 X(1) <=> 2 CH3X(21) 0.000 -0.000
-10 CH3(10) + X(1) <=> CH3X(21) 0.000 -0.000
-11 CH3OH(14) + 2 X(1) <=> CH3X(21) + HOX(22) 0.000 0.000
-12 CH2X(27) + HX(19) <=> CH3X(21) + X(1) 0.000 -0.000
-13 CH2X(27) + HOX(22) <=> CH3X(21) + OX(20) 0.000 -0.000
-14 CHX(28) + HX(19) <=> CH2X(27) + X(1) 0.000 -0.000
-15 CHX(28) + HOX(22) <=> CH2X(27) + OX(20) 0.000 -0.000
-16 2 CH2X(27) <=> CH3X(21) + CHX(28) 0.000 0.000
-17 CHX(28) + X(1) <=> CX(26) + HX(19) 0.000 -0.000
-18 CX(26) + H2(6) <=> CH2X(27) 0.000 -0.052
-19 CX(26) + HOX(22) <=> CHX(28) + OX(20) 0.000 -0.000
-20 CH3X(21) + CX(26) <=> CH2X(27) + CHX(28) 0.000 0.000
-21 CH2X(27) + CX(26) <=> 2 CHX(28) 0.000 0.000
-22 CO(7) + X(1) <=> OCX(25) 0.000 -0.333
-23 CX(26) + OX(20) <=> OCX(25) + X(1) 0.000 -0.000
-24 H2(6) + X(1) <=> H2X(49) 0.000 0.000
-25 CO(7) + X(1) <=> COX(50) 0.000 -0.000
-26 CO2(4) + X(1) <=> CO2X(24) 0.000 -0.000
-27 OCX(25) + OX(20) <=> CO2X(24) + X(1) 0.000 -0.000
-28 CO2X(24) + HX(19) <=> HOX(22) + OCX(25) 0.000 -0.000
-29 CH2O(9) + 2 X(1) <=> CHOX(53) + HX(19) 0.000 0.000
-30 HCO(15) + X(1) <=> CHOX(53) 0.000 0.000
-31 CH3CHO(16) + 2 X(1) <=> CH3X(21) + CHOX(53) 0.000 0.000
-32 CHOX(53) + X(1) <=> HX(19) + OCX(25) 0.000 -0.000
-33 HOX(22) + OCX(25) <=> CHOX(53) + OX(20) 0.000 0.000
-34 CH2X(27) + CHOX(53) <=> CH3X(21) + OCX(25) 0.000 0.000
-35 CHOX(53) + CHX(28) <=> CH2X(27) + OCX(25) 0.000 -0.000
-36 CHOX(53) + CX(26) <=> CHX(28) + OCX(25) 0.000 0.000
-37 CH4(2) + HOX(22) + X(1) <=> CH3X(21) + H2OX(23) 0.000 -0.000
-38 H2O(5) + X(1) <=> H2OX(23) 0.000 0.000
-39 H2OX(23) + OX(20) <=> 2 HOX(22) 0.000 0.000
-40 HOX(22) + HX(19) <=> H2OX(23) + X(1) 0.000 0.000
-Finished sensitivity simulation for a C/O ratio of 2.2
-Finished translating for C/O ratio of 2.2
-Starting sensitivity simulation for a C/O ratio of 2.6
-0 CH4(2) + X(1) <=> CH4X(48) 0.000 0.000
-1 O2(3) + 2 X(1) <=> 2 OX(20) -0.000 -0.835
-2 H2(6) + 2 X(1) <=> 2 HX(19) -0.000 -0.000
-3 H(12) + X(1) <=> HX(19) -0.000 -0.000
-4 HX(19) + OX(20) <=> HOX(22) + X(1) -0.000 0.000
-5 H2O(5) + 2 X(1) <=> HOX(22) + HX(19) -0.000 -0.000
-6 OH(17) + X(1) <=> HOX(22) -0.000 0.000
-7 CH4(2) + 2 X(1) <=> CH3X(21) + HX(19) 0.000 0.000
-8 CH4(2) + OX(20) + X(1) <=> CH3X(21) + HOX(22) -0.000 0.655
-9 C2H6(8) + 2 X(1) <=> 2 CH3X(21) -0.000 -0.000
-10 CH3(10) + X(1) <=> CH3X(21) -0.000 -0.000
-11 CH3OH(14) + 2 X(1) <=> CH3X(21) + HOX(22) -0.000 0.000
-12 CH2X(27) + HX(19) <=> CH3X(21) + X(1) -0.000 0.000
-13 CH2X(27) + HOX(22) <=> CH3X(21) + OX(20) -0.000 0.000
-14 CHX(28) + HX(19) <=> CH2X(27) + X(1) -0.000 -0.000
-15 CHX(28) + HOX(22) <=> CH2X(27) + OX(20) 0.000 -0.000
-16 2 CH2X(27) <=> CH3X(21) + CHX(28) -0.000 -0.000
-17 CHX(28) + X(1) <=> CX(26) + HX(19) -0.000 0.000
-18 CX(26) + H2(6) <=> CH2X(27) -0.000 -0.050
-19 CX(26) + HOX(22) <=> CHX(28) + OX(20) 0.000 0.000
-20 CH3X(21) + CX(26) <=> CH2X(27) + CHX(28) -0.000 0.000
-21 CH2X(27) + CX(26) <=> 2 CHX(28) -0.000 0.000
-22 CO(7) + X(1) <=> OCX(25) -0.000 -0.340
-23 CX(26) + OX(20) <=> OCX(25) + X(1) -0.000 -0.000
-24 H2(6) + X(1) <=> H2X(49) -0.000 0.000
-25 CO(7) + X(1) <=> COX(50) -0.000 0.000
-26 CO2(4) + X(1) <=> CO2X(24) -0.000 -0.000
-27 OCX(25) + OX(20) <=> CO2X(24) + X(1) -0.000 0.000
-28 CO2X(24) + HX(19) <=> HOX(22) + OCX(25) -0.000 -0.000
-29 CH2O(9) + 2 X(1) <=> CHOX(53) + HX(19) -0.000 0.000
-30 HCO(15) + X(1) <=> CHOX(53) -0.000 -0.000
-31 CH3CHO(16) + 2 X(1) <=> CH3X(21) + CHOX(53) -0.000 -0.000
-32 CHOX(53) + X(1) <=> HX(19) + OCX(25) -0.000 0.000
-33 HOX(22) + OCX(25) <=> CHOX(53) + OX(20) -0.000 -0.000
-34 CH2X(27) + CHOX(53) <=> CH3X(21) + OCX(25) -0.000 0.000
-35 CHOX(53) + CHX(28) <=> CH2X(27) + OCX(25) -0.000 -0.000
-36 CHOX(53) + CX(26) <=> CHX(28) + OCX(25) -0.000 -0.000
-37 CH4(2) + HOX(22) + X(1) <=> CH3X(21) + H2OX(23) -0.000 -0.000
-38 H2O(5) + X(1) <=> H2OX(23) -0.000 0.000
-39 H2OX(23) + OX(20) <=> 2 HOX(22) -0.000 0.000
-40 HOX(22) + HX(19) <=> H2OX(23) + X(1) 0.000 -0.000
-Finished sensitivity simulation for a C/O ratio of 2.6
-Finished translating for C/O ratio of 2.6
-Starting sensitivity simulation for a C/O ratio of 1.4
-0 CH4(2) + X(1) <=> CH4X(48) 0.000 0.000
-1 O2(3) + 2 X(1) <=> 2 OX(20) 0.000 -0.806
-2 H2(6) + 2 X(1) <=> 2 HX(19) 0.000 -0.000
-3 H(12) + X(1) <=> HX(19) 0.000 0.000
-4 HX(19) + OX(20) <=> HOX(22) + X(1) 0.000 0.000
-5 H2O(5) + 2 X(1) <=> HOX(22) + HX(19) 0.000 0.000
-6 OH(17) + X(1) <=> HOX(22) 0.000 0.000
-7 CH4(2) + 2 X(1) <=> CH3X(21) + HX(19) 0.000 0.000
-8 CH4(2) + OX(20) + X(1) <=> CH3X(21) + HOX(22) 0.000 0.615
-9 C2H6(8) + 2 X(1) <=> 2 CH3X(21) 0.000 -0.000
-10 CH3(10) + X(1) <=> CH3X(21) 0.000 0.000
-11 CH3OH(14) + 2 X(1) <=> CH3X(21) + HOX(22) 0.000 0.000
-12 CH2X(27) + HX(19) <=> CH3X(21) + X(1) 0.000 0.000
-13 CH2X(27) + HOX(22) <=> CH3X(21) + OX(20) 0.000 0.000
-14 CHX(28) + HX(19) <=> CH2X(27) + X(1) 0.000 -0.000
-15 CHX(28) + HOX(22) <=> CH2X(27) + OX(20) 0.000 -0.000
-16 2 CH2X(27) <=> CH3X(21) + CHX(28) 0.000 0.000
-17 CHX(28) + X(1) <=> CX(26) + HX(19) 0.000 -0.000
-18 CX(26) + H2(6) <=> CH2X(27) -0.000 -0.058
-19 CX(26) + HOX(22) <=> CHX(28) + OX(20) 0.000 0.000
-
-***********************************************************************
-CanteraError thrown by CVodesIntegrator::step:
-CVodes error encountered. Error code: -10
-Exceptions caught during RHS evaluation:
-ydot contains non-finite elements:
-
-ydot[0] = inf
-ydot[2] = nan
-ydot[3] = -inf
-ydot[4] = nan
-ydot[5] = nan
-ydot[6] = nan
-ydot[7] = nan
-ydot[8] = -inf
-ydot[9] = nan
-ydot[10] = nan
-ydot[11] = nan
-ydot[12] = nan
-ydot[13] = nan
-ydot[14] = nan
-ydot[15] = -inf
-ydot[16] = nan
-ydot[17] = nan
-ydot[18] = nan
-ydot[19] = nan
-ydot[20] = nan
-ydot[21] = nan
-ydot[22] = nan
-ydot[23] = -inf
-ydot[24] = -inf
-ydot[25] = nan
-ydot[26] = nan
-ydot[27] = nan
-ydot[28] = -inf
-ydot[29] = nan
-ydot[30] = -inf
-ydot[31] = inf
-ydot[32] = -inf
-ydot[33] = inf
-ydot[34] = nan
-ydot[35] = nan
-ydot[36] = -inf
-ydot[37] = -inf
-ydot[39] = nan
-
-ydot contains non-finite elements:
-
-ydot[0] = inf
-ydot[2] = nan
-ydot[3] = -inf
-ydot[4] = nan
-ydot[5] = nan
-ydot[6] = nan
-ydot[7] = nan
-ydot[8] = -inf
-ydot[9] = nan
-ydot[10] = nan
-ydot[11] = nan
-ydot[12] = nan
-ydot[13] = nan
-ydot[14] = nan
-ydot[15] = -inf
-ydot[16] = nan
-ydot[17] = nan
-ydot[18] = nan
-ydot[19] = nan
-ydot[20] = nan
-ydot[21] = nan
-ydot[22] = nan
-ydot[23] = -inf
-ydot[24] = -inf
-ydot[25] = nan
-ydot[26] = nan
-ydot[27] = nan
-ydot[28] = -inf
-ydot[29] = nan
-ydot[30] = -inf
-ydot[31] = inf
-ydot[32] = -inf
-ydot[33] = inf
-ydot[34] = nan
-ydot[35] = nan
-ydot[36] = -inf
-ydot[37] = -inf
-ydot[39] = nan
-
-ydot contains non-finite elements:
-
-ydot[0] = inf
-ydot[2] = nan
-ydot[3] = -inf
-ydot[4] = nan
-ydot[5] = nan
-ydot[6] = nan
-ydot[7] = nan
-ydot[8] = -inf
-ydot[9] = nan
-ydot[10] = nan
-ydot[11] = nan
-ydot[12] = nan
-ydot[13] = nan
-ydot[14] = nan
-ydot[15] = -inf
-ydot[16] = nan
-ydot[17] = nan
-ydot[18] = nan
-ydot[19] = nan
-ydot[20] = nan
-ydot[21] = nan
-ydot[22] = nan
-ydot[23] = -inf
-ydot[24] = -inf
-ydot[25] = nan
-ydot[26] = nan
-ydot[27] = nan
-ydot[28] = -inf
-ydot[29] = nan
-ydot[30] = -inf
-ydot[31] = inf
-ydot[32] = -inf
-ydot[33] = inf
-ydot[34] = nan
-ydot[35] = nan
-ydot[36] = -inf
-ydot[37] = -inf
-ydot[39] = nan
-
-ydot contains non-finite elements:
-
-ydot[0] = inf
-ydot[2] = nan
-ydot[3] = -inf
-ydot[4] = nan
-ydot[5] = nan
-ydot[6] = nan
-ydot[7] = nan
-ydot[8] = -inf
-ydot[9] = nan
-ydot[10] = nan
-ydot[11] = nan
-ydot[12] = nan
-ydot[13] = nan
-ydot[14] = nan
-ydot[15] = -inf
-ydot[16] = nan
-ydot[17] = nan
-ydot[18] = nan
-ydot[19] = nan
-ydot[20] = nan
-ydot[21] = nan
-ydot[22] = nan
-ydot[23] = -inf
-ydot[24] = -inf
-ydot[25] = nan
-ydot[26] = nan
-ydot[27] = nan
-ydot[28] = -inf
-ydot[29] = nan
-ydot[30] = -inf
-ydot[31] = inf
-ydot[32] = -inf
-ydot[33] = inf
-ydot[34] = nan
-ydot[35] = nan
-ydot[36] = -inf
-ydot[37] = -inf
-ydot[39] = nan
-
-ydot contains non-finite elements:
-
-ydot[0] = inf
-ydot[2] = nan
-ydot[3] = -inf
-ydot[4] = nan
-ydot[5] = nan
-ydot[6] = nan
-ydot[7] = nan
-ydot[8] = -inf
-ydot[9] = nan
-ydot[10] = nan
-ydot[11] = nan
-ydot[12] = nan
-ydot[13] = nan
-ydot[14] = nan
-ydot[15] = -inf
-ydot[16] = nan
-ydot[17] = nan
-ydot[18] = nan
-ydot[19] = nan
-ydot[20] = nan
-ydot[21] = nan
-ydot[22] = nan
-ydot[23] = -inf
-ydot[24] = -inf
-ydot[25] = nan
-ydot[26] = nan
-ydot[27] = nan
-ydot[28] = -inf
-ydot[29] = nan
-ydot[30] = -inf
-ydot[31] = inf
-ydot[32] = -inf
-ydot[33] = inf
-ydot[34] = nan
-ydot[35] = nan
-ydot[36] = -inf
-ydot[37] = -inf
-ydot[39] = nan
-
-ydot contains non-finite elements:
-
-ydot[0] = inf
-ydot[2] = nan
-ydot[3] = -inf
-ydot[4] = nan
-ydot[5] = nan
-ydot[6] = nan
-ydot[7] = nan
-ydot[8] = -inf
-ydot[9] = nan
-ydot[10] = nan
-ydot[11] = nan
-ydot[12] = nan
-ydot[13] = nan
-ydot[14] = nan
-ydot[15] = -inf
-ydot[16] = nan
-ydot[17] = nan
-ydot[18] = nan
-ydot[19] = nan
-ydot[20] = nan
-ydot[21] = nan
-ydot[22] = nan
-ydot[23] = -inf
-ydot[24] = -inf
-ydot[25] = nan
-ydot[26] = nan
-ydot[27] = nan
-ydot[28] = -inf
-ydot[29] = nan
-ydot[30] = -inf
-ydot[31] = inf
-ydot[32] = -inf
-ydot[33] = inf
-ydot[34] = nan
-ydot[35] = nan
-ydot[36] = -inf
-ydot[37] = -inf
-ydot[39] = nan
-
-ydot contains non-finite elements:
-
-ydot[0] = inf
-ydot[2] = nan
-ydot[3] = -inf
-ydot[4] = nan
-ydot[5] = nan
-ydot[6] = nan
-ydot[7] = nan
-ydot[8] = -inf
-ydot[9] = nan
-ydot[10] = nan
-ydot[11] = nan
-ydot[12] = nan
-ydot[13] = nan
-ydot[14] = nan
-ydot[15] = -inf
-ydot[16] = nan
-ydot[17] = nan
-ydot[18] = nan
-ydot[19] = nan
-ydot[20] = nan
-ydot[21] = nan
-ydot[22] = nan
-ydot[23] = -inf
-ydot[24] = -inf
-ydot[25] = nan
-ydot[26] = nan
-ydot[27] = nan
-ydot[28] = -inf
-ydot[29] = nan
-ydot[30] = -inf
-ydot[31] = inf
-ydot[32] = -inf
-ydot[33] = inf
-ydot[34] = nan
-ydot[35] = nan
-ydot[36] = -inf
-ydot[37] = -inf
-ydot[39] = nan
-
-ydot contains non-finite elements:
-
-ydot[0] = inf
-ydot[2] = nan
-ydot[3] = -inf
-ydot[4] = nan
-ydot[5] = nan
-ydot[6] = nan
-ydot[7] = nan
-ydot[8] = -inf
-ydot[9] = nan
-ydot[10] = nan
-ydot[11] = nan
-ydot[12] = nan
-ydot[13] = nan
-ydot[14] = nan
-ydot[15] = -inf
-ydot[16] = nan
-ydot[17] = nan
-ydot[18] = nan
-ydot[19] = nan
-ydot[20] = nan
-ydot[21] = nan
-ydot[22] = nan
-ydot[23] = -inf
-ydot[24] = -inf
-ydot[25] = nan
-ydot[26] = nan
-ydot[27] = nan
-ydot[28] = -inf
-ydot[29] = nan
-ydot[30] = -inf
-ydot[31] = inf
-ydot[32] = -inf
-ydot[33] = inf
-ydot[34] = nan
-ydot[35] = nan
-ydot[36] = -inf
-ydot[37] = -inf
-ydot[39] = nan
-
-ydot contains non-finite elements:
-
-ydot[0] = inf
-ydot[2] = nan
-ydot[3] = -inf
-ydot[4] = nan
-ydot[5] = nan
-ydot[6] = nan
-ydot[7] = nan
-ydot[8] = -inf
-ydot[9] = nan
-ydot[10] = nan
-ydot[11] = nan
-ydot[12] = nan
-ydot[13] = nan
-ydot[14] = nan
-ydot[15] = -inf
-ydot[16] = nan
-ydot[17] = nan
-ydot[18] = nan
-ydot[19] = nan
-ydot[20] = nan
-ydot[21] = nan
-ydot[22] = nan
-ydot[23] = -inf
-ydot[24] = -inf
-ydot[25] = nan
-ydot[26] = nan
-ydot[27] = nan
-ydot[28] = -inf
-ydot[29] = nan
-ydot[30] = -inf
-ydot[31] = inf
-ydot[32] = -inf
-ydot[33] = inf
-ydot[34] = nan
-ydot[35] = nan
-ydot[36] = -inf
-ydot[37] = -inf
-ydot[39] = nan
-
-ydot contains non-finite elements:
-
-ydot[0] = inf
-ydot[2] = nan
-ydot[3] = -inf
-ydot[4] = nan
-ydot[5] = nan
-ydot[6] = nan
-ydot[7] = nan
-ydot[8] = -inf
-ydot[9] = nan
-ydot[10] = nan
-ydot[11] = nan
-ydot[12] = nan
-ydot[13] = nan
-ydot[14] = nan
-ydot[15] = -inf
-ydot[16] = nan
-ydot[17] = nan
-ydot[18] = nan
-ydot[19] = nan
-ydot[20] = nan
-ydot[21] = nan
-ydot[22] = nan
-ydot[23] = -inf
-ydot[24] = -inf
-ydot[25] = nan
-ydot[26] = nan
-ydot[27] = nan
-ydot[28] = -inf
-ydot[29] = nan
-ydot[30] = -inf
-ydot[31] = inf
-ydot[32] = -inf
-ydot[33] = inf
-ydot[34] = nan
-ydot[35] = nan
-ydot[36] = -inf
-ydot[37] = -inf
-ydot[39] = nan
-
-
-At t = 5.54661e+17 repeated recoverable right-hand side function errors.
-Components with largest weighted error estimates:
-3: -inf
-1: 0
-2: nan
-4: nan
-5: nan
-6: nan
-7: nan
-8: -inf
-0: inf
-9: nan
-***********************************************************************
-
-Starting sensitivity simulation for a C/O ratio of 2.4
-0 CH4(2) + X(1) <=> CH4X(48) 0.000 -0.000
-1 O2(3) + 2 X(1) <=> 2 OX(20) 0.000 -0.832
-2 H2(6) + 2 X(1) <=> 2 HX(19) 0.000 -0.000
-3 H(12) + X(1) <=> HX(19) 0.000 -0.000
-4 HX(19) + OX(20) <=> HOX(22) + X(1) 0.000 0.000
-5 H2O(5) + 2 X(1) <=> HOX(22) + HX(19) 0.000 -0.000
-6 OH(17) + X(1) <=> HOX(22) 0.000 0.000
-7 CH4(2) + 2 X(1) <=> CH3X(21) + HX(19) -0.000 0.000
-8 CH4(2) + OX(20) + X(1) <=> CH3X(21) + HOX(22) 0.000 0.651
-9 C2H6(8) + 2 X(1) <=> 2 CH3X(21) 0.000 -0.000
-10 CH3(10) + X(1) <=> CH3X(21) 0.000 -0.000
-11 CH3OH(14) + 2 X(1) <=> CH3X(21) + HOX(22) 0.000 -0.000
-12 CH2X(27) + HX(19) <=> CH3X(21) + X(1) 0.000 0.000
-13 CH2X(27) + HOX(22) <=> CH3X(21) + OX(20) 0.000 -0.000
-14 CHX(28) + HX(19) <=> CH2X(27) + X(1) 0.000 -0.000
-15 CHX(28) + HOX(22) <=> CH2X(27) + OX(20) 0.000 0.000
-16 2 CH2X(27) <=> CH3X(21) + CHX(28) 0.000 -0.000
-17 CHX(28) + X(1) <=> CX(26) + HX(19) 0.000 -0.000
-18 CX(26) + H2(6) <=> CH2X(27) 0.000 -0.051
-19 CX(26) + HOX(22) <=> CHX(28) + OX(20) 0.000 0.000
-20 CH3X(21) + CX(26) <=> CH2X(27) + CHX(28) 0.000 0.000
-21 CH2X(27) + CX(26) <=> 2 CHX(28) 0.000 -0.000
-22 CO(7) + X(1) <=> OCX(25) 0.000 -0.337
-23 CX(26) + OX(20) <=> OCX(25) + X(1) -0.000 -0.000
-24 H2(6) + X(1) <=> H2X(49) 0.000 -0.000
-25 CO(7) + X(1) <=> COX(50) 0.000 -0.000
-26 CO2(4) + X(1) <=> CO2X(24) 0.000 -0.000
-27 OCX(25) + OX(20) <=> CO2X(24) + X(1) 0.000 -0.000
-28 CO2X(24) + HX(19) <=> HOX(22) + OCX(25) 0.000 -0.000
-29 CH2O(9) + 2 X(1) <=> CHOX(53) + HX(19) 0.000 -0.000
-30 HCO(15) + X(1) <=> CHOX(53) 0.000 0.000
-31 CH3CHO(16) + 2 X(1) <=> CH3X(21) + CHOX(53) 0.000 -0.000
-32 CHOX(53) + X(1) <=> HX(19) + OCX(25) 0.000 -0.000
-33 HOX(22) + OCX(25) <=> CHOX(53) + OX(20) 0.000 -0.000
-34 CH2X(27) + CHOX(53) <=> CH3X(21) + OCX(25) 0.000 -0.000
-35 CHOX(53) + CHX(28) <=> CH2X(27) + OCX(25) 0.000 -0.000
-36 CHOX(53) + CX(26) <=> CHX(28) + OCX(25) 0.000 -0.000
-37 CH4(2) + HOX(22) + X(1) <=> CH3X(21) + H2OX(23) 0.000 -0.000
-38 H2O(5) + X(1) <=> H2OX(23) 0.000 -0.000
-39 H2OX(23) + OX(20) <=> 2 HOX(22) 0.000 -0.000
-40 HOX(22) + HX(19) <=> H2OX(23) + X(1) 0.000 0.000
-Finished sensitivity simulation for a C/O ratio of 2.4
-Finished translating for C/O ratio of 2.4
-Starting sensitivity simulation for a C/O ratio of 1.1
-0 CH4(2) + X(1) <=> CH4X(48) 0.000 0.000
-1 O2(3) + 2 X(1) <=> 2 OX(20) 0.000 -0.793
-2 H2(6) + 2 X(1) <=> 2 HX(19) 0.000 -0.000
-3 H(12) + X(1) <=> HX(19) -0.000 -0.000
-4 HX(19) + OX(20) <=> HOX(22) + X(1) 0.000 0.000
-5 H2O(5) + 2 X(1) <=> HOX(22) + HX(19) 0.000 0.000
-6 OH(17) + X(1) <=> HOX(22) 0.000 -0.000
-7 CH4(2) + 2 X(1) <=> CH3X(21) + HX(19) -0.000 0.000
-8 CH4(2) + OX(20) + X(1) <=> CH3X(21) + HOX(22) -0.000 0.594
-9 C2H6(8) + 2 X(1) <=> 2 CH3X(21) 0.000 -0.000
-10 CH3(10) + X(1) <=> CH3X(21) 0.000 -0.000
-11 CH3OH(14) + 2 X(1) <=> CH3X(21) + HOX(22) -0.000 -0.000
-12 CH2X(27) + HX(19) <=> CH3X(21) + X(1) 0.000 0.000
-13 CH2X(27) + HOX(22) <=> CH3X(21) + OX(20) 0.000 0.000
-14 CHX(28) + HX(19) <=> CH2X(27) + X(1) -0.000 -0.000
-15 CHX(28) + HOX(22) <=> CH2X(27) + OX(20) 0.000 0.000
-16 2 CH2X(27) <=> CH3X(21) + CHX(28) 0.000 -0.000
-17 CHX(28) + X(1) <=> CX(26) + HX(19) 0.000 0.000
-18 CX(26) + H2(6) <=> CH2X(27) -0.000 -0.061
-19 CX(26) + HOX(22) <=> CHX(28) + OX(20) 0.000 -0.000
-20 CH3X(21) + CX(26) <=> CH2X(27) + CHX(28) -0.000 0.000
-21 CH2X(27) + CX(26) <=> 2 CHX(28) 0.000 0.000
-22 CO(7) + X(1) <=> OCX(25) 0.000 -0.303
-23 CX(26) + OX(20) <=> OCX(25) + X(1) 0.000 -0.000
-24 H2(6) + X(1) <=> H2X(49) 0.000 0.000
-25 CO(7) + X(1) <=> COX(50) 0.000 -0.000
-26 CO2(4) + X(1) <=> CO2X(24) 0.000 0.000
-27 OCX(25) + OX(20) <=> CO2X(24) + X(1) 0.000 -0.000
-28 CO2X(24) + HX(19) <=> HOX(22) + OCX(25) 0.000 0.000
-29 CH2O(9) + 2 X(1) <=> CHOX(53) + HX(19) 0.000 -0.000
-30 HCO(15) + X(1) <=> CHOX(53) 0.000 -0.000
-31 CH3CHO(16) + 2 X(1) <=> CH3X(21) + CHOX(53) 0.000 -0.000
-32 CHOX(53) + X(1) <=> HX(19) + OCX(25) 0.000 -0.000
-33 HOX(22) + OCX(25) <=> CHOX(53) + OX(20) 0.000 -0.000
-34 CH2X(27) + CHOX(53) <=> CH3X(21) + OCX(25) 0.000 0.000
-35 CHOX(53) + CHX(28) <=> CH2X(27) + OCX(25) 0.000 -0.000
-36 CHOX(53) + CX(26) <=> CHX(28) + OCX(25) 0.000 -0.000
-37 CH4(2) + HOX(22) + X(1) <=> CH3X(21) + H2OX(23) 0.000 -0.000
-38 H2O(5) + X(1) <=> H2OX(23) 0.000 0.000
-39 H2OX(23) + OX(20) <=> 2 HOX(22) -0.000 -0.000
-40 HOX(22) + HX(19) <=> H2OX(23) + X(1) 0.000 -0.000
-Finished sensitivity simulation for a C/O ratio of 1.1
-Finished translating for C/O ratio of 1.1
-Starting sensitivity simulation for a C/O ratio of 0.9
-0 CH4(2) + X(1) <=> CH4X(48) -0.000 -0.000
-1 O2(3) + 2 X(1) <=> 2 OX(20) 0.000 -0.781
-2 H2(6) + 2 X(1) <=> 2 HX(19) 0.000 -0.000
-3 H(12) + X(1) <=> HX(19) 0.000 -0.000
-4 HX(19) + OX(20) <=> HOX(22) + X(1) 0.000 0.000
-5 H2O(5) + 2 X(1) <=> HOX(22) + HX(19) -0.000 -0.000
-6 OH(17) + X(1) <=> HOX(22) 0.000 -0.000
-7 CH4(2) + 2 X(1) <=> CH3X(21) + HX(19) 0.000 0.000
-8 CH4(2) + OX(20) + X(1) <=> CH3X(21) + HOX(22) -0.000 0.574
-9 C2H6(8) + 2 X(1) <=> 2 CH3X(21) 0.000 -0.000
-10 CH3(10) + X(1) <=> CH3X(21) 0.000 -0.000
-11 CH3OH(14) + 2 X(1) <=> CH3X(21) + HOX(22) -0.000 -0.000
-12 CH2X(27) + HX(19) <=> CH3X(21) + X(1) 0.000 0.000
-13 CH2X(27) + HOX(22) <=> CH3X(21) + OX(20) -0.000 -0.000
-14 CHX(28) + HX(19) <=> CH2X(27) + X(1) -0.000 -0.000
-15 CHX(28) + HOX(22) <=> CH2X(27) + OX(20) 0.000 -0.000
-16 2 CH2X(27) <=> CH3X(21) + CHX(28) 0.000 -0.000
-17 CHX(28) + X(1) <=> CX(26) + HX(19) 0.000 -0.000
-18 CX(26) + H2(6) <=> CH2X(27) -0.000 -0.063
-19 CX(26) + HOX(22) <=> CHX(28) + OX(20) 0.000 0.000
-20 CH3X(21) + CX(26) <=> CH2X(27) + CHX(28) 0.000 0.000
-21 CH2X(27) + CX(26) <=> 2 CHX(28) 0.000 -0.000
-22 CO(7) + X(1) <=> OCX(25) 0.000 -0.294
-23 CX(26) + OX(20) <=> OCX(25) + X(1) 0.000 -0.000
-24 H2(6) + X(1) <=> H2X(49) 0.000 -0.000
-25 CO(7) + X(1) <=> COX(50) 0.000 -0.000
-26 CO2(4) + X(1) <=> CO2X(24) -0.000 -0.000
-27 OCX(25) + OX(20) <=> CO2X(24) + X(1) 0.000 -0.000
-28 CO2X(24) + HX(19) <=> HOX(22) + OCX(25) 0.000 -0.000
-29 CH2O(9) + 2 X(1) <=> CHOX(53) + HX(19) 0.000 -0.000
-30 HCO(15) + X(1) <=> CHOX(53) 0.000 -0.000
-31 CH3CHO(16) + 2 X(1) <=> CH3X(21) + CHOX(53) -0.000 -0.000
-32 CHOX(53) + X(1) <=> HX(19) + OCX(25) 0.000 -0.000
-33 HOX(22) + OCX(25) <=> CHOX(53) + OX(20) 0.000 -0.000
-34 CH2X(27) + CHOX(53) <=> CH3X(21) + OCX(25) 0.000 0.000
-35 CHOX(53) + CHX(28) <=> CH2X(27) + OCX(25) -0.000 -0.000
-36 CHOX(53) + CX(26) <=> CHX(28) + OCX(25) -0.000 0.000
-37 CH4(2) + HOX(22) + X(1) <=> CH3X(21) + H2OX(23) -0.000 -0.000
-38 H2O(5) + X(1) <=> H2OX(23) -0.000 -0.000
-39 H2OX(23) + OX(20) <=> 2 HOX(22) 0.000 -0.000
-40 HOX(22) + HX(19) <=> H2OX(23) + X(1) 0.000 -0.000
-Finished sensitivity simulation for a C/O ratio of 0.9
-Finished translating for C/O ratio of 0.9
-Starting sensitivity simulation for a C/O ratio of 1.0
-0 CH4(2) + X(1) <=> CH4X(48) -0.000 0.000
-1 O2(3) + 2 X(1) <=> 2 OX(20) 0.000 -0.788
-2 H2(6) + 2 X(1) <=> 2 HX(19) 0.000 -0.000
-3 H(12) + X(1) <=> HX(19) -0.000 0.000
 4 HX(19) + OX(20) <=> HOX(22) + X(1) 0.000 0.000
 5 H2O(5) + 2 X(1) <=> HOX(22) + HX(19) -0.000 0.000
 6 OH(17) + X(1) <=> HOX(22) 0.000 0.000
-7 CH4(2) + 2 X(1) <=> CH3X(21) + HX(19) 0.000 0.000
-8 CH4(2) + OX(20) + X(1) <=> CH3X(21) + HOX(22) -0.000 0.585
-9 C2H6(8) + 2 X(1) <=> 2 CH3X(21) 0.000 0.000
-10 CH3(10) + X(1) <=> CH3X(21) 0.000 0.000
-11 CH3OH(14) + 2 X(1) <=> CH3X(21) + HOX(22) -0.000 0.000
-12 CH2X(27) + HX(19) <=> CH3X(21) + X(1) 0.000 0.000
-13 CH2X(27) + HOX(22) <=> CH3X(21) + OX(20) 0.000 0.000
-14 CHX(28) + HX(19) <=> CH2X(27) + X(1) 0.000 0.000
+7 CH4(2) + 2 X(1) <=> CH3X(21) + HX(19) -0.000 0.000
+8 CH4(2) + OX(20) + X(1) <=> CH3X(21) + HOX(22) -0.000 0.598
+9 C2H6(8) + 2 X(1) <=> 2 CH3X(21) -0.000 -0.000
+10 CH3(10) + X(1) <=> CH3X(21) 0.000 -0.000
+11 CH3OH(14) + 2 X(1) <=> CH3X(21) + HOX(22) 0.000 0.000
+12 CH2X(27) + HX(19) <=> CH3X(21) + X(1) -0.000 0.000
+13 CH2X(27) + HOX(22) <=> CH3X(21) + OX(20) -0.000 -0.000
+14 CHX(28) + HX(19) <=> CH2X(27) + X(1) -0.000 -0.000
 15 CHX(28) + HOX(22) <=> CH2X(27) + OX(20) 0.000 0.000
 16 2 CH2X(27) <=> CH3X(21) + CHX(28) 0.000 0.000
-17 CHX(28) + X(1) <=> CX(26) + HX(19) 0.000 0.000
-18 CX(26) + H2(6) <=> CH2X(27) -0.000 -0.062
-19 CX(26) + HOX(22) <=> CHX(28) + OX(20) -0.000 0.000
-20 CH3X(21) + CX(26) <=> CH2X(27) + CHX(28) 0.000 0.000
-21 CH2X(27) + CX(26) <=> 2 CHX(28) -0.000 0.000
-22 CO(7) + X(1) <=> OCX(25) 0.000 -0.298
-23 CX(26) + OX(20) <=> OCX(25) + X(1) 0.000 0.000
-24 H2(6) + X(1) <=> H2X(49) -0.000 0.000
+17 CHX(28) + X(1) <=> CX(26) + HX(19) -0.000 0.000
+18 CX(26) + H2(6) <=> CH2X(27) -0.000 -0.052
+19 CX(26) + HOX(22) <=> CHX(28) + OX(20) 0.000 0.000
+20 CH3X(21) + CX(26) <=> CH2X(27) + CHX(28) -0.000 0.000
+21 CH2X(27) + CX(26) <=> 2 CHX(28) 0.000 0.000
+22 CO(7) + X(1) <=> OCX(25) 0.000 -0.276
+23 CX(26) + OX(20) <=> OCX(25) + X(1) -0.000 0.000
+24 H2(6) + X(1) <=> H2X(49) 0.000 0.000
 25 CO(7) + X(1) <=> COX(50) -0.000 0.000
-26 CO2(4) + X(1) <=> CO2X(24) 0.000 0.000
+26 CO2(4) + X(1) <=> CO2X(24) -0.000 0.000
 27 OCX(25) + OX(20) <=> CO2X(24) + X(1) 0.000 0.000
-28 CO2X(24) + HX(19) <=> HOX(22) + OCX(25) 0.000 0.000
-29 CH2O(9) + 2 X(1) <=> CHOX(53) + HX(19) -0.000 0.000
+28 CO2X(24) + HX(19) <=> HOX(22) + OCX(25) -0.000 0.000
+29 CH2O(9) + 2 X(1) <=> CHOX(53) + HX(19) 0.000 0.000
 30 HCO(15) + X(1) <=> CHOX(53) -0.000 0.000
 31 CH3CHO(16) + 2 X(1) <=> CH3X(21) + CHOX(53) -0.000 0.000
 32 CHOX(53) + X(1) <=> HX(19) + OCX(25) -0.000 0.000
 33 HOX(22) + OCX(25) <=> CHOX(53) + OX(20) -0.000 0.000
 34 CH2X(27) + CHOX(53) <=> CH3X(21) + OCX(25) -0.000 0.000
 35 CHOX(53) + CHX(28) <=> CH2X(27) + OCX(25) 0.000 0.000
-36 CHOX(53) + CX(26) <=> CHX(28) + OCX(25) 0.000 0.000
+36 CHOX(53) + CX(26) <=> CHX(28) + OCX(25) -0.000 0.000
 37 CH4(2) + HOX(22) + X(1) <=> CH3X(21) + H2OX(23) -0.000 0.000
-38 H2O(5) + X(1) <=> H2OX(23) 0.000 0.000
-39 H2OX(23) + OX(20) <=> 2 HOX(22) -0.000 -0.000
-40 HOX(22) + HX(19) <=> H2OX(23) + X(1) 0.000 0.000
-Finished sensitivity simulation for a C/O ratio of 1.0
-Finished translating for C/O ratio of 1.0
-Starting sensitivity simulation for a C/O ratio of 0.8
-0 CH4(2) + X(1) <=> CH4X(48) -0.000 -0.000
-1 O2(3) + 2 X(1) <=> 2 OX(20) 0.000 -0.773
-2 H2(6) + 2 X(1) <=> 2 HX(19) 0.000 -0.000
-3 H(12) + X(1) <=> HX(19) 0.000 -0.000
-4 HX(19) + OX(20) <=> HOX(22) + X(1) 0.000 0.000
-5 H2O(5) + 2 X(1) <=> HOX(22) + HX(19) -0.000 -0.000
-6 OH(17) + X(1) <=> HOX(22) -0.000 -0.000
-7 CH4(2) + 2 X(1) <=> CH3X(21) + HX(19) 0.000 0.000
-8 CH4(2) + OX(20) + X(1) <=> CH3X(21) + HOX(22) -0.000 0.559
-9 C2H6(8) + 2 X(1) <=> 2 CH3X(21) 0.000 -0.000
-10 CH3(10) + X(1) <=> CH3X(21) 0.000 -0.000
-11 CH3OH(14) + 2 X(1) <=> CH3X(21) + HOX(22) -0.000 -0.000
-12 CH2X(27) + HX(19) <=> CH3X(21) + X(1) 0.000 0.000
-13 CH2X(27) + HOX(22) <=> CH3X(21) + OX(20) -0.000 -0.000
-14 CHX(28) + HX(19) <=> CH2X(27) + X(1) -0.000 -0.000
-15 CHX(28) + HOX(22) <=> CH2X(27) + OX(20) -0.000 -0.000
-16 2 CH2X(27) <=> CH3X(21) + CHX(28) -0.000 -0.000
-17 CHX(28) + X(1) <=> CX(26) + HX(19) -0.000 -0.000
-18 CX(26) + H2(6) <=> CH2X(27) -0.000 -0.064
-19 CX(26) + HOX(22) <=> CHX(28) + OX(20) -0.000 -0.000
-20 CH3X(21) + CX(26) <=> CH2X(27) + CHX(28) -0.000 0.000
-21 CH2X(27) + CX(26) <=> 2 CHX(28) 0.000 -0.000
-22 CO(7) + X(1) <=> OCX(25) 0.000 -0.288
-23 CX(26) + OX(20) <=> OCX(25) + X(1) -0.000 -0.000
-24 H2(6) + X(1) <=> H2X(49) -0.000 -0.000
-25 CO(7) + X(1) <=> COX(50) -0.000 -0.000
-26 CO2(4) + X(1) <=> CO2X(24) -0.000 -0.000
-27 OCX(25) + OX(20) <=> CO2X(24) + X(1) -0.000 -0.000
-28 CO2X(24) + HX(19) <=> HOX(22) + OCX(25) 0.000 -0.000
-29 CH2O(9) + 2 X(1) <=> CHOX(53) + HX(19) -0.000 -0.000
-30 HCO(15) + X(1) <=> CHOX(53) -0.000 -0.000
-31 CH3CHO(16) + 2 X(1) <=> CH3X(21) + CHOX(53) -0.000 -0.000
-32 CHOX(53) + X(1) <=> HX(19) + OCX(25) -0.000 -0.000
-33 HOX(22) + OCX(25) <=> CHOX(53) + OX(20) 0.000 -0.000
-34 CH2X(27) + CHOX(53) <=> CH3X(21) + OCX(25) -0.000 -0.000
-35 CHOX(53) + CHX(28) <=> CH2X(27) + OCX(25) 0.000 -0.000
-36 CHOX(53) + CX(26) <=> CHX(28) + OCX(25) -0.000 -0.000
-37 CH4(2) + HOX(22) + X(1) <=> CH3X(21) + H2OX(23) -0.000 -0.000
-38 H2O(5) + X(1) <=> H2OX(23) 0.000 -0.000
-39 H2OX(23) + OX(20) <=> 2 HOX(22) 0.000 -0.000
-40 HOX(22) + HX(19) <=> H2OX(23) + X(1) 0.000 -0.000
-Finished sensitivity simulation for a C/O ratio of 0.8
-Finished translating for C/O ratio of 0.8
-Starting sensitivity simulation for a C/O ratio of 2.0
-0 CH4(2) + X(1) <=> CH4X(48) -0.000 0.000
-1 O2(3) + 2 X(1) <=> 2 OX(20) -0.000 -0.824
-2 H2(6) + 2 X(1) <=> 2 HX(19) -0.000 -0.000
-3 H(12) + X(1) <=> HX(19) -0.000 -0.000
-4 HX(19) + OX(20) <=> HOX(22) + X(1) -0.000 0.000
-5 H2O(5) + 2 X(1) <=> HOX(22) + HX(19) -0.000 -0.000
-6 OH(17) + X(1) <=> HOX(22) -0.000 -0.000
-7 CH4(2) + 2 X(1) <=> CH3X(21) + HX(19) -0.000 0.000
-8 CH4(2) + OX(20) + X(1) <=> CH3X(21) + HOX(22) -0.000 0.640
-9 C2H6(8) + 2 X(1) <=> 2 CH3X(21) -0.000 -0.000
-10 CH3(10) + X(1) <=> CH3X(21) -0.000 -0.000
-11 CH3OH(14) + 2 X(1) <=> CH3X(21) + HOX(22) -0.000 -0.000
-12 CH2X(27) + HX(19) <=> CH3X(21) + X(1) -0.000 0.000
-13 CH2X(27) + HOX(22) <=> CH3X(21) + OX(20) -0.000 0.000
-14 CHX(28) + HX(19) <=> CH2X(27) + X(1) -0.000 -0.000
-15 CHX(28) + HOX(22) <=> CH2X(27) + OX(20) -0.000 -0.000
-16 2 CH2X(27) <=> CH3X(21) + CHX(28) -0.000 0.000
-17 CHX(28) + X(1) <=> CX(26) + HX(19) -0.000 -0.000
-18 CX(26) + H2(6) <=> CH2X(27) -0.000 -0.053
-19 CX(26) + HOX(22) <=> CHX(28) + OX(20) -0.000 -0.000
-20 CH3X(21) + CX(26) <=> CH2X(27) + CHX(28) -0.000 0.000
-21 CH2X(27) + CX(26) <=> 2 CHX(28) 0.000 -0.000
-22 CO(7) + X(1) <=> OCX(25) -0.000 -0.329
-23 CX(26) + OX(20) <=> OCX(25) + X(1) -0.000 0.000
-24 H2(6) + X(1) <=> H2X(49) -0.000 -0.000
-25 CO(7) + X(1) <=> COX(50) -0.000 0.000
-26 CO2(4) + X(1) <=> CO2X(24) -0.000 -0.000
-27 OCX(25) + OX(20) <=> CO2X(24) + X(1) -0.000 -0.000
-28 CO2X(24) + HX(19) <=> HOX(22) + OCX(25) -0.000 0.000
-29 CH2O(9) + 2 X(1) <=> CHOX(53) + HX(19) -0.000 0.000
-30 HCO(15) + X(1) <=> CHOX(53) 0.000 0.000
-31 CH3CHO(16) + 2 X(1) <=> CH3X(21) + CHOX(53) -0.000 -0.000
-32 CHOX(53) + X(1) <=> HX(19) + OCX(25) -0.000 -0.000
-33 HOX(22) + OCX(25) <=> CHOX(53) + OX(20) 0.000 -0.000
-34 CH2X(27) + CHOX(53) <=> CH3X(21) + OCX(25) -0.000 0.000
-35 CHOX(53) + CHX(28) <=> CH2X(27) + OCX(25) -0.000 -0.000
-36 CHOX(53) + CX(26) <=> CHX(28) + OCX(25) -0.000 -0.000
-37 CH4(2) + HOX(22) + X(1) <=> CH3X(21) + H2OX(23) -0.000 -0.000
-38 H2O(5) + X(1) <=> H2OX(23) -0.000 -0.000
+38 H2O(5) + X(1) <=> H2OX(23) -0.000 0.000
 39 H2OX(23) + OX(20) <=> 2 HOX(22) -0.000 0.000
-40 HOX(22) + HX(19) <=> H2OX(23) + X(1) -0.000 -0.000
-Finished sensitivity simulation for a C/O ratio of 2.0
-Finished translating for C/O ratio of 2.0
-Starting sensitivity simulation for a C/O ratio of 1.6
-0 CH4(2) + X(1) <=> CH4X(48) -0.000 0.000
-1 O2(3) + 2 X(1) <=> 2 OX(20) 0.000 -0.813
-2 H2(6) + 2 X(1) <=> 2 HX(19) -0.000 -0.000
-3 H(12) + X(1) <=> HX(19) -0.000 0.000
-4 HX(19) + OX(20) <=> HOX(22) + X(1) 0.000 0.000
-5 H2O(5) + 2 X(1) <=> HOX(22) + HX(19) 0.000 0.000
-6 OH(17) + X(1) <=> HOX(22) 0.000 -0.000
-7 CH4(2) + 2 X(1) <=> CH3X(21) + HX(19) 0.000 0.000
-8 CH4(2) + OX(20) + X(1) <=> CH3X(21) + HOX(22) 0.000 0.625
-9 C2H6(8) + 2 X(1) <=> 2 CH3X(21) -0.000 -0.000
-10 CH3(10) + X(1) <=> CH3X(21) 0.000 -0.000
-11 CH3OH(14) + 2 X(1) <=> CH3X(21) + HOX(22) 0.000 0.000
-12 CH2X(27) + HX(19) <=> CH3X(21) + X(1) -0.000 0.000
-13 CH2X(27) + HOX(22) <=> CH3X(21) + OX(20) -0.000 0.000
-14 CHX(28) + HX(19) <=> CH2X(27) + X(1) 0.000 -0.000
-15 CHX(28) + HOX(22) <=> CH2X(27) + OX(20) -0.000 -0.000
-16 2 CH2X(27) <=> CH3X(21) + CHX(28) 0.000 0.000
-17 CHX(28) + X(1) <=> CX(26) + HX(19) 0.000 0.000
-18 CX(26) + H2(6) <=> CH2X(27) -0.000 -0.056
-19 CX(26) + HOX(22) <=> CHX(28) + OX(20) -0.000 0.000
-20 CH3X(21) + CX(26) <=> CH2X(27) + CHX(28) 0.000 0.000
-21 CH2X(27) + CX(26) <=> 2 CHX(28) 0.000 0.000
-22 CO(7) + X(1) <=> OCX(25) 0.000 -0.319
-23 CX(26) + OX(20) <=> OCX(25) + X(1) 0.000 0.000
-24 H2(6) + X(1) <=> H2X(49) 0.000 -0.000
-25 CO(7) + X(1) <=> COX(50) 0.000 -0.000
-26 CO2(4) + X(1) <=> CO2X(24) -0.000 0.000
-27 OCX(25) + OX(20) <=> CO2X(24) + X(1) -0.000 -0.000
-28 CO2X(24) + HX(19) <=> HOX(22) + OCX(25) 0.000 -0.000
-29 CH2O(9) + 2 X(1) <=> CHOX(53) + HX(19) 0.000 0.000
-30 HCO(15) + X(1) <=> CHOX(53) 0.000 0.000
-31 CH3CHO(16) + 2 X(1) <=> CH3X(21) + CHOX(53) 0.000 0.000
-32 CHOX(53) + X(1) <=> HX(19) + OCX(25) 0.000 -0.000
-33 HOX(22) + OCX(25) <=> CHOX(53) + OX(20) 0.000 -0.000
-34 CH2X(27) + CHOX(53) <=> CH3X(21) + OCX(25) 0.000 0.000
-35 CHOX(53) + CHX(28) <=> CH2X(27) + OCX(25) 0.000 0.000
-36 CHOX(53) + CX(26) <=> CHX(28) + OCX(25) 0.000 0.000
-37 CH4(2) + HOX(22) + X(1) <=> CH3X(21) + H2OX(23) 0.000 0.000
-38 H2O(5) + X(1) <=> H2OX(23) -0.000 -0.000
-39 H2OX(23) + OX(20) <=> 2 HOX(22) 0.000 0.000
-40 HOX(22) + HX(19) <=> H2OX(23) + X(1) 0.000 -0.000
-Finished sensitivity simulation for a C/O ratio of 1.6
-Finished translating for C/O ratio of 1.6
-Starting sensitivity simulation for a C/O ratio of 1.3
+40 HOX(22) + HX(19) <=> H2OX(23) + X(1) -0.000 0.000
+Finished sensitivity simulation for a C/O ratio of 1.2
+Finished translating for C/O ratio of 1.2
+Starting sensitivity simulation for a C/O ratio of 2.6
 0 CH4(2) + X(1) <=> CH4X(48) 0.000 0.000
-1 O2(3) + 2 X(1) <=> 2 OX(20) 0.000 -0.803
+1 O2(3) + 2 X(1) <=> 2 OX(20) 0.000 -0.838
 2 H2(6) + 2 X(1) <=> 2 HX(19) 0.000 -0.000
-3 H(12) + X(1) <=> HX(19) 0.000 0.000
-4 HX(19) + OX(20) <=> HOX(22) + X(1) 0.000 0.000
+3 H(12) + X(1) <=> HX(19) -0.000 0.000
+4 HX(19) + OX(20) <=> HOX(22) + X(1) -0.000 0.000
 5 H2O(5) + 2 X(1) <=> HOX(22) + HX(19) 0.000 0.000
-6 OH(17) + X(1) <=> HOX(22) 0.000 0.000
+6 OH(17) + X(1) <=> HOX(22) -0.000 -0.000
 7 CH4(2) + 2 X(1) <=> CH3X(21) + HX(19) 0.000 0.000
-8 CH4(2) + OX(20) + X(1) <=> CH3X(21) + HOX(22) -0.000 0.609
+8 CH4(2) + OX(20) + X(1) <=> CH3X(21) + HOX(22) 0.000 0.646
 9 C2H6(8) + 2 X(1) <=> 2 CH3X(21) 0.000 0.000
 10 CH3(10) + X(1) <=> CH3X(21) 0.000 -0.000
 11 CH3OH(14) + 2 X(1) <=> CH3X(21) + HOX(22) 0.000 0.000
 12 CH2X(27) + HX(19) <=> CH3X(21) + X(1) 0.000 0.000
-13 CH2X(27) + HOX(22) <=> CH3X(21) + OX(20) -0.000 0.000
-14 CHX(28) + HX(19) <=> CH2X(27) + X(1) -0.000 -0.000
-15 CHX(28) + HOX(22) <=> CH2X(27) + OX(20) 0.000 0.000
+13 CH2X(27) + HOX(22) <=> CH3X(21) + OX(20) 0.000 0.000
+14 CHX(28) + HX(19) <=> CH2X(27) + X(1) 0.000 -0.000
+15 CHX(28) + HOX(22) <=> CH2X(27) + OX(20) 0.000 -0.000
 16 2 CH2X(27) <=> CH3X(21) + CHX(28) 0.000 0.000
 17 CHX(28) + X(1) <=> CX(26) + HX(19) 0.000 0.000
-18 CX(26) + H2(6) <=> CH2X(27) -0.000 -0.059
+18 CX(26) + H2(6) <=> CH2X(27) -0.000 -0.043
 19 CX(26) + HOX(22) <=> CHX(28) + OX(20) 0.000 0.000
 20 CH3X(21) + CX(26) <=> CH2X(27) + CHX(28) 0.000 0.000
-21 CH2X(27) + CX(26) <=> 2 CHX(28) -0.000 0.000
-22 CO(7) + X(1) <=> OCX(25) 0.000 -0.310
+21 CH2X(27) + CX(26) <=> 2 CHX(28) 0.000 -0.000
+22 CO(7) + X(1) <=> OCX(25) 0.000 -0.307
 23 CX(26) + OX(20) <=> OCX(25) + X(1) 0.000 0.000
 24 H2(6) + X(1) <=> H2X(49) -0.000 0.000
-25 CO(7) + X(1) <=> COX(50) 0.000 0.000
-26 CO2(4) + X(1) <=> CO2X(24) -0.000 0.000
-27 OCX(25) + OX(20) <=> CO2X(24) + X(1) 0.000 0.000
+25 CO(7) + X(1) <=> COX(50) -0.000 -0.000
+26 CO2(4) + X(1) <=> CO2X(24) 0.000 -0.000
+27 OCX(25) + OX(20) <=> CO2X(24) + X(1) 0.000 -0.000
 28 CO2X(24) + HX(19) <=> HOX(22) + OCX(25) 0.000 0.000
-29 CH2O(9) + 2 X(1) <=> CHOX(53) + HX(19) 0.000 0.000
-30 HCO(15) + X(1) <=> CHOX(53) 0.000 0.000
-31 CH3CHO(16) + 2 X(1) <=> CH3X(21) + CHOX(53) -0.000 0.000
+29 CH2O(9) + 2 X(1) <=> CHOX(53) + HX(19) 0.000 -0.000
+30 HCO(15) + X(1) <=> CHOX(53) 0.000 -0.000
+31 CH3CHO(16) + 2 X(1) <=> CH3X(21) + CHOX(53) 0.000 0.000
 32 CHOX(53) + X(1) <=> HX(19) + OCX(25) 0.000 0.000
-33 HOX(22) + OCX(25) <=> CHOX(53) + OX(20) 0.000 0.000
+33 HOX(22) + OCX(25) <=> CHOX(53) + OX(20) 0.000 -0.000
 34 CH2X(27) + CHOX(53) <=> CH3X(21) + OCX(25) 0.000 -0.000
-35 CHOX(53) + CHX(28) <=> CH2X(27) + OCX(25) 0.000 0.000
+35 CHOX(53) + CHX(28) <=> CH2X(27) + OCX(25) 0.000 -0.000
 36 CHOX(53) + CX(26) <=> CHX(28) + OCX(25) 0.000 0.000
 37 CH4(2) + HOX(22) + X(1) <=> CH3X(21) + H2OX(23) 0.000 0.000
 38 H2O(5) + X(1) <=> H2OX(23) 0.000 0.000
-39 H2OX(23) + OX(20) <=> 2 HOX(22) -0.000 0.000
-40 HOX(22) + HX(19) <=> H2OX(23) + X(1) 0.000 0.000
-Finished sensitivity simulation for a C/O ratio of 1.3
-Finished translating for C/O ratio of 1.3
+39 H2OX(23) + OX(20) <=> 2 HOX(22) 0.000 -0.000
+40 HOX(22) + HX(19) <=> H2OX(23) + X(1) 0.000 -0.000
+Finished sensitivity simulation for a C/O ratio of 2.6
+Finished translating for C/O ratio of 2.6
 Starting sensitivity simulation for a C/O ratio of 1.8
-0 CH4(2) + X(1) <=> CH4X(48) -0.000 0.000
-1 O2(3) + 2 X(1) <=> 2 OX(20) 0.000 -0.819
-2 H2(6) + 2 X(1) <=> 2 HX(19) -0.000 -0.000
-3 H(12) + X(1) <=> HX(19) -0.000 -0.000
+0 CH4(2) + X(1) <=> CH4X(48) 0.000 -0.000
+1 O2(3) + 2 X(1) <=> 2 OX(20) 0.000 -0.823
+2 H2(6) + 2 X(1) <=> 2 HX(19) 0.000 -0.000
+3 H(12) + X(1) <=> HX(19) 0.000 -0.000
 4 HX(19) + OX(20) <=> HOX(22) + X(1) 0.000 0.000
-5 H2O(5) + 2 X(1) <=> HOX(22) + HX(19) -0.000 0.000
+5 H2O(5) + 2 X(1) <=> HOX(22) + HX(19) 0.000 -0.000
 6 OH(17) + X(1) <=> HOX(22) 0.000 -0.000
-7 CH4(2) + 2 X(1) <=> CH3X(21) + HX(19) -0.000 0.000
-8 CH4(2) + OX(20) + X(1) <=> CH3X(21) + HOX(22) 0.000 0.633
+7 CH4(2) + 2 X(1) <=> CH3X(21) + HX(19) 0.000 0.000
+8 CH4(2) + OX(20) + X(1) <=> CH3X(21) + HOX(22) 0.000 0.626
 9 C2H6(8) + 2 X(1) <=> 2 CH3X(21) 0.000 -0.000
 10 CH3(10) + X(1) <=> CH3X(21) 0.000 -0.000
-11 CH3OH(14) + 2 X(1) <=> CH3X(21) + HOX(22) -0.000 0.000
-12 CH2X(27) + HX(19) <=> CH3X(21) + X(1) -0.000 0.000
-13 CH2X(27) + HOX(22) <=> CH3X(21) + OX(20) 0.000 0.000
-14 CHX(28) + HX(19) <=> CH2X(27) + X(1) -0.000 -0.000
-15 CHX(28) + HOX(22) <=> CH2X(27) + OX(20) 0.000 0.000
+11 CH3OH(14) + 2 X(1) <=> CH3X(21) + HOX(22) 0.000 -0.000
+12 CH2X(27) + HX(19) <=> CH3X(21) + X(1) -0.000 -0.000
+13 CH2X(27) + HOX(22) <=> CH3X(21) + OX(20) 0.000 -0.000
+14 CHX(28) + HX(19) <=> CH2X(27) + X(1) 0.000 -0.000
+15 CHX(28) + HOX(22) <=> CH2X(27) + OX(20) 0.000 -0.000
 16 2 CH2X(27) <=> CH3X(21) + CHX(28) 0.000 -0.000
 17 CHX(28) + X(1) <=> CX(26) + HX(19) 0.000 -0.000
-18 CX(26) + H2(6) <=> CH2X(27) 0.000 -0.055
-19 CX(26) + HOX(22) <=> CHX(28) + OX(20) -0.000 0.000
+18 CX(26) + H2(6) <=> CH2X(27) -0.000 -0.047
+19 CX(26) + HOX(22) <=> CHX(28) + OX(20) 0.000 -0.000
 20 CH3X(21) + CX(26) <=> CH2X(27) + CHX(28) -0.000 0.000
-21 CH2X(27) + CX(26) <=> 2 CHX(28) -0.000 -0.000
-22 CO(7) + X(1) <=> OCX(25) 0.000 -0.325
+21 CH2X(27) + CX(26) <=> 2 CHX(28) 0.000 -0.000
+22 CO(7) + X(1) <=> OCX(25) 0.000 -0.293
 23 CX(26) + OX(20) <=> OCX(25) + X(1) 0.000 -0.000
 24 H2(6) + X(1) <=> H2X(49) -0.000 -0.000
 25 CO(7) + X(1) <=> COX(50) 0.000 -0.000
 26 CO2(4) + X(1) <=> CO2X(24) 0.000 -0.000
 27 OCX(25) + OX(20) <=> CO2X(24) + X(1) 0.000 -0.000
 28 CO2X(24) + HX(19) <=> HOX(22) + OCX(25) 0.000 -0.000
-29 CH2O(9) + 2 X(1) <=> CHOX(53) + HX(19) -0.000 -0.000
-30 HCO(15) + X(1) <=> CHOX(53) 0.000 0.000
-31 CH3CHO(16) + 2 X(1) <=> CH3X(21) + CHOX(53) 0.000 -0.000
-32 CHOX(53) + X(1) <=> HX(19) + OCX(25) -0.000 -0.000
-33 HOX(22) + OCX(25) <=> CHOX(53) + OX(20) 0.000 0.000
-34 CH2X(27) + CHOX(53) <=> CH3X(21) + OCX(25) -0.000 0.000
-35 CHOX(53) + CHX(28) <=> CH2X(27) + OCX(25) 0.000 0.000
-36 CHOX(53) + CX(26) <=> CHX(28) + OCX(25) -0.000 -0.000
-37 CH4(2) + HOX(22) + X(1) <=> CH3X(21) + H2OX(23) -0.000 -0.000
+29 CH2O(9) + 2 X(1) <=> CHOX(53) + HX(19) 0.000 -0.000
+30 HCO(15) + X(1) <=> CHOX(53) -0.000 -0.000
+31 CH3CHO(16) + 2 X(1) <=> CH3X(21) + CHOX(53) -0.000 -0.000
+32 CHOX(53) + X(1) <=> HX(19) + OCX(25) 0.000 -0.000
+33 HOX(22) + OCX(25) <=> CHOX(53) + OX(20) 0.000 -0.000
+34 CH2X(27) + CHOX(53) <=> CH3X(21) + OCX(25) 0.000 -0.000
+35 CHOX(53) + CHX(28) <=> CH2X(27) + OCX(25) 0.000 -0.000
+36 CHOX(53) + CX(26) <=> CHX(28) + OCX(25) 0.000 -0.000
+37 CH4(2) + HOX(22) + X(1) <=> CH3X(21) + H2OX(23) 0.000 -0.000
 38 H2O(5) + X(1) <=> H2OX(23) 0.000 -0.000
-39 H2OX(23) + OX(20) <=> 2 HOX(22) -0.000 -0.000
-40 HOX(22) + HX(19) <=> H2OX(23) + X(1) 0.000 0.000
+39 H2OX(23) + OX(20) <=> 2 HOX(22) 0.000 0.000
+40 HOX(22) + HX(19) <=> H2OX(23) + X(1) 0.000 -0.000
 Finished sensitivity simulation for a C/O ratio of 1.8
 Finished translating for C/O ratio of 1.8
-Starting sensitivity simulation for a C/O ratio of 1.2
+Starting sensitivity simulation for a C/O ratio of 2.2
 0 CH4(2) + X(1) <=> CH4X(48) 0.000 0.000
-1 O2(3) + 2 X(1) <=> 2 OX(20) 0.000 -0.798
-2 H2(6) + 2 X(1) <=> 2 HX(19) -0.000 -0.000
-3 H(12) + X(1) <=> HX(19) 0.000 -0.000
+1 O2(3) + 2 X(1) <=> 2 OX(20) 0.000 -0.831
+2 H2(6) + 2 X(1) <=> 2 HX(19) 0.000 -0.000
+3 H(12) + X(1) <=> HX(19) 0.000 0.000
 4 HX(19) + OX(20) <=> HOX(22) + X(1) 0.000 0.000
-5 H2O(5) + 2 X(1) <=> HOX(22) + HX(19) -0.000 -0.000
-6 OH(17) + X(1) <=> HOX(22) -0.000 -0.000
+5 H2O(5) + 2 X(1) <=> HOX(22) + HX(19) 0.000 -0.000
+6 OH(17) + X(1) <=> HOX(22) -0.000 0.000
 7 CH4(2) + 2 X(1) <=> CH3X(21) + HX(19) 0.000 0.000
-8 CH4(2) + OX(20) + X(1) <=> CH3X(21) + HOX(22) -0.000 0.602
+8 CH4(2) + OX(20) + X(1) <=> CH3X(21) + HOX(22) 0.000 0.638
 9 C2H6(8) + 2 X(1) <=> 2 CH3X(21) 0.000 -0.000
 10 CH3(10) + X(1) <=> CH3X(21) 0.000 -0.000
 11 CH3OH(14) + 2 X(1) <=> CH3X(21) + HOX(22) 0.000 -0.000
 12 CH2X(27) + HX(19) <=> CH3X(21) + X(1) 0.000 0.000
-13 CH2X(27) + HOX(22) <=> CH3X(21) + OX(20) 0.000 -0.000
+13 CH2X(27) + HOX(22) <=> CH3X(21) + OX(20) 0.000 0.000
 14 CHX(28) + HX(19) <=> CH2X(27) + X(1) 0.000 -0.000
-15 CHX(28) + HOX(22) <=> CH2X(27) + OX(20) -0.000 -0.000
-16 2 CH2X(27) <=> CH3X(21) + CHX(28) 0.000 0.000
+15 CHX(28) + HOX(22) <=> CH2X(27) + OX(20) 0.000 -0.000
+16 2 CH2X(27) <=> CH3X(21) + CHX(28) 0.000 -0.000
 17 CHX(28) + X(1) <=> CX(26) + HX(19) -0.000 -0.000
-18 CX(26) + H2(6) <=> CH2X(27) 0.000 -0.060
+18 CX(26) + H2(6) <=> CH2X(27) 0.000 -0.045
 19 CX(26) + HOX(22) <=> CHX(28) + OX(20) 0.000 0.000
 20 CH3X(21) + CX(26) <=> CH2X(27) + CHX(28) 0.000 0.000
-21 CH2X(27) + CX(26) <=> 2 CHX(28) -0.000 -0.000
-22 CO(7) + X(1) <=> OCX(25) 0.000 -0.307
+21 CH2X(27) + CX(26) <=> 2 CHX(28) 0.000 0.000
+22 CO(7) + X(1) <=> OCX(25) 0.000 -0.300
 23 CX(26) + OX(20) <=> OCX(25) + X(1) 0.000 -0.000
-24 H2(6) + X(1) <=> H2X(49) 0.000 0.000
+24 H2(6) + X(1) <=> H2X(49) 0.000 -0.000
 25 CO(7) + X(1) <=> COX(50) -0.000 -0.000
-26 CO2(4) + X(1) <=> CO2X(24) 0.000 0.000
-27 OCX(25) + OX(20) <=> CO2X(24) + X(1) 0.000 -0.000
+26 CO2(4) + X(1) <=> CO2X(24) 0.000 -0.000
+27 OCX(25) + OX(20) <=> CO2X(24) + X(1) 0.000 0.000
 28 CO2X(24) + HX(19) <=> HOX(22) + OCX(25) 0.000 0.000
-29 CH2O(9) + 2 X(1) <=> CHOX(53) + HX(19) -0.000 -0.000
-30 HCO(15) + X(1) <=> CHOX(53) 0.000 -0.000
+29 CH2O(9) + 2 X(1) <=> CHOX(53) + HX(19) 0.000 0.000
+30 HCO(15) + X(1) <=> CHOX(53) 0.000 0.000
 31 CH3CHO(16) + 2 X(1) <=> CH3X(21) + CHOX(53) 0.000 -0.000
-32 CHOX(53) + X(1) <=> HX(19) + OCX(25) 0.000 0.000
+32 CHOX(53) + X(1) <=> HX(19) + OCX(25) 0.000 -0.000
 33 HOX(22) + OCX(25) <=> CHOX(53) + OX(20) 0.000 -0.000
-34 CH2X(27) + CHOX(53) <=> CH3X(21) + OCX(25) -0.000 -0.000
-35 CHOX(53) + CHX(28) <=> CH2X(27) + OCX(25) 0.000 0.000
+34 CH2X(27) + CHOX(53) <=> CH3X(21) + OCX(25) 0.000 -0.000
+35 CHOX(53) + CHX(28) <=> CH2X(27) + OCX(25) 0.000 -0.000
 36 CHOX(53) + CX(26) <=> CHX(28) + OCX(25) 0.000 -0.000
-37 CH4(2) + HOX(22) + X(1) <=> CH3X(21) + H2OX(23) 0.000 -0.000
+37 CH4(2) + HOX(22) + X(1) <=> CH3X(21) + H2OX(23) -0.000 0.000
+38 H2O(5) + X(1) <=> H2OX(23) 0.000 -0.000
+39 H2OX(23) + OX(20) <=> 2 HOX(22) 0.000 0.000
+40 HOX(22) + HX(19) <=> H2OX(23) + X(1) 0.000 -0.000
+Finished sensitivity simulation for a C/O ratio of 2.2
+Finished translating for C/O ratio of 2.2
+Starting sensitivity simulation for a C/O ratio of 2.0
+0 CH4(2) + X(1) <=> CH4X(48) -0.000 -0.000
+1 O2(3) + 2 X(1) <=> 2 OX(20) -0.000 -0.827
+2 H2(6) + 2 X(1) <=> 2 HX(19) -0.000 -0.000
+3 H(12) + X(1) <=> HX(19) -0.000 -0.000
+4 HX(19) + OX(20) <=> HOX(22) + X(1) -0.000 0.000
+5 H2O(5) + 2 X(1) <=> HOX(22) + HX(19) -0.000 -0.000
+6 OH(17) + X(1) <=> HOX(22) -0.000 -0.000
+7 CH4(2) + 2 X(1) <=> CH3X(21) + HX(19) -0.000 0.000
+8 CH4(2) + OX(20) + X(1) <=> CH3X(21) + HOX(22) -0.000 0.632
+9 C2H6(8) + 2 X(1) <=> 2 CH3X(21) -0.000 -0.000
+10 CH3(10) + X(1) <=> CH3X(21) -0.000 -0.000
+11 CH3OH(14) + 2 X(1) <=> CH3X(21) + HOX(22) -0.000 -0.000
+12 CH2X(27) + HX(19) <=> CH3X(21) + X(1) -0.000 -0.000
+13 CH2X(27) + HOX(22) <=> CH3X(21) + OX(20) -0.000 -0.000
+14 CHX(28) + HX(19) <=> CH2X(27) + X(1) -0.000 -0.000
+15 CHX(28) + HOX(22) <=> CH2X(27) + OX(20) -0.000 -0.000
+16 2 CH2X(27) <=> CH3X(21) + CHX(28) -0.000 -0.000
+17 CHX(28) + X(1) <=> CX(26) + HX(19) -0.000 -0.000
+18 CX(26) + H2(6) <=> CH2X(27) -0.000 -0.046
+19 CX(26) + HOX(22) <=> CHX(28) + OX(20) -0.000 -0.000
+20 CH3X(21) + CX(26) <=> CH2X(27) + CHX(28) -0.000 0.000
+21 CH2X(27) + CX(26) <=> 2 CHX(28) -0.000 -0.000
+22 CO(7) + X(1) <=> OCX(25) -0.000 -0.297
+23 CX(26) + OX(20) <=> OCX(25) + X(1) -0.000 -0.000
+24 H2(6) + X(1) <=> H2X(49) -0.000 -0.000
+25 CO(7) + X(1) <=> COX(50) -0.000 -0.000
+26 CO2(4) + X(1) <=> CO2X(24) -0.000 -0.000
+27 OCX(25) + OX(20) <=> CO2X(24) + X(1) -0.000 -0.000
+28 CO2X(24) + HX(19) <=> HOX(22) + OCX(25) -0.000 -0.000
+29 CH2O(9) + 2 X(1) <=> CHOX(53) + HX(19) -0.000 -0.000
+30 HCO(15) + X(1) <=> CHOX(53) -0.000 -0.000
+31 CH3CHO(16) + 2 X(1) <=> CH3X(21) + CHOX(53) -0.000 -0.000
+32 CHOX(53) + X(1) <=> HX(19) + OCX(25) -0.000 -0.000
+33 HOX(22) + OCX(25) <=> CHOX(53) + OX(20) -0.000 -0.000
+34 CH2X(27) + CHOX(53) <=> CH3X(21) + OCX(25) -0.000 -0.000
+35 CHOX(53) + CHX(28) <=> CH2X(27) + OCX(25) -0.000 -0.000
+36 CHOX(53) + CX(26) <=> CHX(28) + OCX(25) -0.000 -0.000
+37 CH4(2) + HOX(22) + X(1) <=> CH3X(21) + H2OX(23) -0.000 -0.000
 38 H2O(5) + X(1) <=> H2OX(23) -0.000 -0.000
 39 H2OX(23) + OX(20) <=> 2 HOX(22) -0.000 -0.000
-40 HOX(22) + HX(19) <=> H2OX(23) + X(1) 0.000 -0.000
-Finished sensitivity simulation for a C/O ratio of 1.2
-Finished translating for C/O ratio of 1.2
-Starting sensitivity simulation for a C/O ratio of 0.7
+40 HOX(22) + HX(19) <=> H2OX(23) + X(1) -0.000 -0.000
+Finished sensitivity simulation for a C/O ratio of 2.0
+Finished translating for C/O ratio of 2.0
+Starting sensitivity simulation for a C/O ratio of 0.8
+0 CH4(2) + X(1) <=> CH4X(48) -0.000 -0.000
+1 O2(3) + 2 X(1) <=> 2 OX(20) 0.000 -0.784
+2 H2(6) + 2 X(1) <=> 2 HX(19) -0.000 -0.000
+3 H(12) + X(1) <=> HX(19) -0.000 -0.000
+4 HX(19) + OX(20) <=> HOX(22) + X(1) -0.000 0.000
+5 H2O(5) + 2 X(1) <=> HOX(22) + HX(19) -0.000 0.000
+6 OH(17) + X(1) <=> HOX(22) -0.000 -0.000
+7 CH4(2) + 2 X(1) <=> CH3X(21) + HX(19) -0.000 0.000
+8 CH4(2) + OX(20) + X(1) <=> CH3X(21) + HOX(22) -0.000 0.559
+9 C2H6(8) + 2 X(1) <=> 2 CH3X(21) 0.000 -0.000
+10 CH3(10) + X(1) <=> CH3X(21) 0.000 -0.000
+11 CH3OH(14) + 2 X(1) <=> CH3X(21) + HOX(22) -0.000 0.000
+12 CH2X(27) + HX(19) <=> CH3X(21) + X(1) 0.000 0.000
+13 CH2X(27) + HOX(22) <=> CH3X(21) + OX(20) -0.000 0.000
+14 CHX(28) + HX(19) <=> CH2X(27) + X(1) -0.000 0.000
+15 CHX(28) + HOX(22) <=> CH2X(27) + OX(20) -0.000 0.000
+16 2 CH2X(27) <=> CH3X(21) + CHX(28) 0.000 -0.000
+17 CHX(28) + X(1) <=> CX(26) + HX(19) -0.000 -0.000
+18 CX(26) + H2(6) <=> CH2X(27) -0.000 -0.055
+19 CX(26) + HOX(22) <=> CHX(28) + OX(20) 0.000 0.000
+20 CH3X(21) + CX(26) <=> CH2X(27) + CHX(28) 0.000 0.000
+21 CH2X(27) + CX(26) <=> 2 CHX(28) -0.000 0.000
+22 CO(7) + X(1) <=> OCX(25) 0.000 -0.260
+23 CX(26) + OX(20) <=> OCX(25) + X(1) -0.000 -0.000
+24 H2(6) + X(1) <=> H2X(49) -0.000 -0.000
+25 CO(7) + X(1) <=> COX(50) -0.000 -0.000
+26 CO2(4) + X(1) <=> CO2X(24) -0.000 0.000
+27 OCX(25) + OX(20) <=> CO2X(24) + X(1) -0.000 0.000
+28 CO2X(24) + HX(19) <=> HOX(22) + OCX(25) -0.000 -0.000
+29 CH2O(9) + 2 X(1) <=> CHOX(53) + HX(19) -0.000 -0.000
+30 HCO(15) + X(1) <=> CHOX(53) -0.000 0.000
+31 CH3CHO(16) + 2 X(1) <=> CH3X(21) + CHOX(53) -0.000 -0.000
+32 CHOX(53) + X(1) <=> HX(19) + OCX(25) -0.000 0.000
+33 HOX(22) + OCX(25) <=> CHOX(53) + OX(20) -0.000 0.000
+34 CH2X(27) + CHOX(53) <=> CH3X(21) + OCX(25) -0.000 -0.000
+35 CHOX(53) + CHX(28) <=> CH2X(27) + OCX(25) -0.000 -0.000
+36 CHOX(53) + CX(26) <=> CHX(28) + OCX(25) -0.000 -0.000
+37 CH4(2) + HOX(22) + X(1) <=> CH3X(21) + H2OX(23) 0.000 -0.000
+38 H2O(5) + X(1) <=> H2OX(23) -0.000 -0.000
+39 H2OX(23) + OX(20) <=> 2 HOX(22) -0.000 0.000
+40 HOX(22) + HX(19) <=> H2OX(23) + X(1) -0.000 0.000
+Finished sensitivity simulation for a C/O ratio of 0.8
+Finished translating for C/O ratio of 0.8
+Starting sensitivity simulation for a C/O ratio of 2.4
+0 CH4(2) + X(1) <=> CH4X(48) -0.000 -0.000
+1 O2(3) + 2 X(1) <=> 2 OX(20) -0.000 -0.835
+2 H2(6) + 2 X(1) <=> 2 HX(19) -0.000 -0.000
+3 H(12) + X(1) <=> HX(19) -0.000 -0.000
+4 HX(19) + OX(20) <=> HOX(22) + X(1) -0.000 0.000
+5 H2O(5) + 2 X(1) <=> HOX(22) + HX(19) -0.000 -0.000
+6 OH(17) + X(1) <=> HOX(22) -0.000 0.000
+7 CH4(2) + 2 X(1) <=> CH3X(21) + HX(19) -0.000 0.000
+8 CH4(2) + OX(20) + X(1) <=> CH3X(21) + HOX(22) -0.000 0.642
+9 C2H6(8) + 2 X(1) <=> 2 CH3X(21) -0.000 -0.000
+10 CH3(10) + X(1) <=> CH3X(21) 0.000 -0.000
+11 CH3OH(14) + 2 X(1) <=> CH3X(21) + HOX(22) -0.000 -0.000
+12 CH2X(27) + HX(19) <=> CH3X(21) + X(1) -0.000 -0.000
+13 CH2X(27) + HOX(22) <=> CH3X(21) + OX(20) 0.000 -0.000
+14 CHX(28) + HX(19) <=> CH2X(27) + X(1) -0.000 -0.000
+15 CHX(28) + HOX(22) <=> CH2X(27) + OX(20) -0.000 -0.000
+16 2 CH2X(27) <=> CH3X(21) + CHX(28) -0.000 -0.000
+17 CHX(28) + X(1) <=> CX(26) + HX(19) -0.000 -0.000
+18 CX(26) + H2(6) <=> CH2X(27) -0.000 -0.044
+19 CX(26) + HOX(22) <=> CHX(28) + OX(20) -0.000 0.000
+20 CH3X(21) + CX(26) <=> CH2X(27) + CHX(28) -0.000 0.000
+21 CH2X(27) + CX(26) <=> 2 CHX(28) -0.000 -0.000
+22 CO(7) + X(1) <=> OCX(25) 0.000 -0.304
+23 CX(26) + OX(20) <=> OCX(25) + X(1) -0.000 -0.000
+24 H2(6) + X(1) <=> H2X(49) -0.000 -0.000
+25 CO(7) + X(1) <=> COX(50) -0.000 -0.000
+26 CO2(4) + X(1) <=> CO2X(24) -0.000 -0.000
+27 OCX(25) + OX(20) <=> CO2X(24) + X(1) -0.000 -0.000
+28 CO2X(24) + HX(19) <=> HOX(22) + OCX(25) -0.000 0.000
+29 CH2O(9) + 2 X(1) <=> CHOX(53) + HX(19) -0.000 -0.000
+30 HCO(15) + X(1) <=> CHOX(53) -0.000 -0.000
+31 CH3CHO(16) + 2 X(1) <=> CH3X(21) + CHOX(53) -0.000 -0.000
+32 CHOX(53) + X(1) <=> HX(19) + OCX(25) -0.000 -0.000
+33 HOX(22) + OCX(25) <=> CHOX(53) + OX(20) -0.000 -0.000
+34 CH2X(27) + CHOX(53) <=> CH3X(21) + OCX(25) -0.000 0.000
+35 CHOX(53) + CHX(28) <=> CH2X(27) + OCX(25) -0.000 -0.000
+36 CHOX(53) + CX(26) <=> CHX(28) + OCX(25) -0.000 -0.000
+37 CH4(2) + HOX(22) + X(1) <=> CH3X(21) + H2OX(23) -0.000 -0.000
+38 H2O(5) + X(1) <=> H2OX(23) -0.000 -0.000
+39 H2OX(23) + OX(20) <=> 2 HOX(22) -0.000 -0.000
+40 HOX(22) + HX(19) <=> H2OX(23) + X(1) -0.000 -0.000
+Finished sensitivity simulation for a C/O ratio of 2.4
+Finished translating for C/O ratio of 2.4
+Starting sensitivity simulation for a C/O ratio of 1.6
+0 CH4(2) + X(1) <=> CH4X(48) -0.000 0.000
+1 O2(3) + 2 X(1) <=> 2 OX(20) 0.000 -0.818
+2 H2(6) + 2 X(1) <=> 2 HX(19) -0.000 -0.000
+3 H(12) + X(1) <=> HX(19) -0.000 0.000
+4 HX(19) + OX(20) <=> HOX(22) + X(1) -0.000 0.000
+5 H2O(5) + 2 X(1) <=> HOX(22) + HX(19) -0.000 0.000
+6 OH(17) + X(1) <=> HOX(22) -0.000 0.000
+7 CH4(2) + 2 X(1) <=> CH3X(21) + HX(19) -0.000 0.000
+8 CH4(2) + OX(20) + X(1) <=> CH3X(21) + HOX(22) -0.000 0.619
+9 C2H6(8) + 2 X(1) <=> 2 CH3X(21) 0.000 -0.000
+10 CH3(10) + X(1) <=> CH3X(21) 0.000 -0.000
+11 CH3OH(14) + 2 X(1) <=> CH3X(21) + HOX(22) -0.000 0.000
+12 CH2X(27) + HX(19) <=> CH3X(21) + X(1) -0.000 0.000
+13 CH2X(27) + HOX(22) <=> CH3X(21) + OX(20) -0.000 0.000
+14 CHX(28) + HX(19) <=> CH2X(27) + X(1) -0.000 -0.000
+15 CHX(28) + HOX(22) <=> CH2X(27) + OX(20) -0.000 0.000
+16 2 CH2X(27) <=> CH3X(21) + CHX(28) -0.000 0.000
+17 CHX(28) + X(1) <=> CX(26) + HX(19) -0.000 0.000
+18 CX(26) + H2(6) <=> CH2X(27) -0.000 -0.049
+19 CX(26) + HOX(22) <=> CHX(28) + OX(20) -0.000 0.000
+20 CH3X(21) + CX(26) <=> CH2X(27) + CHX(28) 0.000 0.000
+21 CH2X(27) + CX(26) <=> 2 CHX(28) -0.000 0.000
+22 CO(7) + X(1) <=> OCX(25) -0.000 -0.288
+23 CX(26) + OX(20) <=> OCX(25) + X(1) -0.000 -0.000
+24 H2(6) + X(1) <=> H2X(49) -0.000 0.000
+25 CO(7) + X(1) <=> COX(50) -0.000 -0.000
+26 CO2(4) + X(1) <=> CO2X(24) -0.000 0.000
+27 OCX(25) + OX(20) <=> CO2X(24) + X(1) -0.000 0.000
+28 CO2X(24) + HX(19) <=> HOX(22) + OCX(25) -0.000 0.000
+29 CH2O(9) + 2 X(1) <=> CHOX(53) + HX(19) 0.000 0.000
+30 HCO(15) + X(1) <=> CHOX(53) -0.000 0.000
+31 CH3CHO(16) + 2 X(1) <=> CH3X(21) + CHOX(53) -0.000 0.000
+32 CHOX(53) + X(1) <=> HX(19) + OCX(25) -0.000 0.000
+33 HOX(22) + OCX(25) <=> CHOX(53) + OX(20) -0.000 0.000
+34 CH2X(27) + CHOX(53) <=> CH3X(21) + OCX(25) -0.000 0.000
+35 CHOX(53) + CHX(28) <=> CH2X(27) + OCX(25) -0.000 0.000
+36 CHOX(53) + CX(26) <=> CHX(28) + OCX(25) 0.000 0.000
+37 CH4(2) + HOX(22) + X(1) <=> CH3X(21) + H2OX(23) -0.000 -0.000
+38 H2O(5) + X(1) <=> H2OX(23) 0.000 0.000
+39 H2OX(23) + OX(20) <=> 2 HOX(22) -0.000 0.000
+40 HOX(22) + HX(19) <=> H2OX(23) + X(1) -0.000 0.000
+Finished sensitivity simulation for a C/O ratio of 1.6
+Finished translating for C/O ratio of 1.6
+Starting sensitivity simulation for a C/O ratio of 1.3
+0 CH4(2) + X(1) <=> CH4X(48) -0.000 0.000
+1 O2(3) + 2 X(1) <=> 2 OX(20) -0.000 -0.809
+2 H2(6) + 2 X(1) <=> 2 HX(19) -0.000 -0.000
+3 H(12) + X(1) <=> HX(19) -0.000 0.000
+4 HX(19) + OX(20) <=> HOX(22) + X(1) -0.000 0.000
+5 H2O(5) + 2 X(1) <=> HOX(22) + HX(19) -0.000 0.000
+6 OH(17) + X(1) <=> HOX(22) -0.000 0.000
+7 CH4(2) + 2 X(1) <=> CH3X(21) + HX(19) -0.000 0.000
+8 CH4(2) + OX(20) + X(1) <=> CH3X(21) + HOX(22) -0.000 0.604
+9 C2H6(8) + 2 X(1) <=> 2 CH3X(21) -0.000 -0.000
+10 CH3(10) + X(1) <=> CH3X(21) -0.000 -0.000
+11 CH3OH(14) + 2 X(1) <=> CH3X(21) + HOX(22) -0.000 0.000
+12 CH2X(27) + HX(19) <=> CH3X(21) + X(1) -0.000 0.000
+13 CH2X(27) + HOX(22) <=> CH3X(21) + OX(20) -0.000 0.000
+14 CHX(28) + HX(19) <=> CH2X(27) + X(1) -0.000 -0.000
+15 CHX(28) + HOX(22) <=> CH2X(27) + OX(20) -0.000 0.000
+16 2 CH2X(27) <=> CH3X(21) + CHX(28) -0.000 0.000
+17 CHX(28) + X(1) <=> CX(26) + HX(19) -0.000 0.000
+18 CX(26) + H2(6) <=> CH2X(27) -0.000 -0.051
+19 CX(26) + HOX(22) <=> CHX(28) + OX(20) -0.000 0.000
+20 CH3X(21) + CX(26) <=> CH2X(27) + CHX(28) -0.000 0.000
+21 CH2X(27) + CX(26) <=> 2 CHX(28) -0.000 0.000
+22 CO(7) + X(1) <=> OCX(25) -0.000 -0.280
+23 CX(26) + OX(20) <=> OCX(25) + X(1) -0.000 0.000
+24 H2(6) + X(1) <=> H2X(49) -0.000 0.000
+25 CO(7) + X(1) <=> COX(50) -0.000 0.000
+26 CO2(4) + X(1) <=> CO2X(24) -0.000 0.000
+27 OCX(25) + OX(20) <=> CO2X(24) + X(1) -0.000 0.000
+28 CO2X(24) + HX(19) <=> HOX(22) + OCX(25) -0.000 0.000
+29 CH2O(9) + 2 X(1) <=> CHOX(53) + HX(19) -0.000 0.000
+30 HCO(15) + X(1) <=> CHOX(53) -0.000 0.000
+31 CH3CHO(16) + 2 X(1) <=> CH3X(21) + CHOX(53) -0.000 0.000
+32 CHOX(53) + X(1) <=> HX(19) + OCX(25) -0.000 0.000
+33 HOX(22) + OCX(25) <=> CHOX(53) + OX(20) -0.000 0.000
+34 CH2X(27) + CHOX(53) <=> CH3X(21) + OCX(25) -0.000 0.000
+35 CHOX(53) + CHX(28) <=> CH2X(27) + OCX(25) -0.000 0.000
+36 CHOX(53) + CX(26) <=> CHX(28) + OCX(25) -0.000 0.000
+37 CH4(2) + HOX(22) + X(1) <=> CH3X(21) + H2OX(23) -0.000 -0.000
+38 H2O(5) + X(1) <=> H2OX(23) -0.000 0.000
+39 H2OX(23) + OX(20) <=> 2 HOX(22) -0.000 0.000
+40 HOX(22) + HX(19) <=> H2OX(23) + X(1) -0.000 -0.000
+Finished sensitivity simulation for a C/O ratio of 1.3
+Finished translating for C/O ratio of 1.3
+Starting sensitivity simulation for a C/O ratio of 0.9
 0 CH4(2) + X(1) <=> CH4X(48) 0.000 0.000
-1 O2(3) + 2 X(1) <=> 2 OX(20) 0.000 -0.762
+1 O2(3) + 2 X(1) <=> 2 OX(20) 0.000 -0.791
+2 H2(6) + 2 X(1) <=> 2 HX(19) 0.000 -0.000
+3 H(12) + X(1) <=> HX(19) 0.000 -0.000
+4 HX(19) + OX(20) <=> HOX(22) + X(1) 0.000 0.000
+5 H2O(5) + 2 X(1) <=> HOX(22) + HX(19) 0.000 0.000
+6 OH(17) + X(1) <=> HOX(22) 0.000 0.000
+7 CH4(2) + 2 X(1) <=> CH3X(21) + HX(19) 0.000 0.000
+8 CH4(2) + OX(20) + X(1) <=> CH3X(21) + HOX(22) 0.000 0.572
+9 C2H6(8) + 2 X(1) <=> 2 CH3X(21) 0.000 -0.000
+10 CH3(10) + X(1) <=> CH3X(21) 0.000 -0.000
+11 CH3OH(14) + 2 X(1) <=> CH3X(21) + HOX(22) 0.000 0.000
+12 CH2X(27) + HX(19) <=> CH3X(21) + X(1) 0.000 0.000
+13 CH2X(27) + HOX(22) <=> CH3X(21) + OX(20) 0.000 -0.000
+14 CHX(28) + HX(19) <=> CH2X(27) + X(1) 0.000 0.000
+15 CHX(28) + HOX(22) <=> CH2X(27) + OX(20) 0.000 0.000
+16 2 CH2X(27) <=> CH3X(21) + CHX(28) 0.000 -0.000
+17 CHX(28) + X(1) <=> CX(26) + HX(19) 0.000 0.000
+18 CX(26) + H2(6) <=> CH2X(27) 0.000 -0.054
+19 CX(26) + HOX(22) <=> CHX(28) + OX(20) 0.000 0.000
+20 CH3X(21) + CX(26) <=> CH2X(27) + CHX(28) 0.000 0.000
+21 CH2X(27) + CX(26) <=> 2 CHX(28) 0.000 0.000
+22 CO(7) + X(1) <=> OCX(25) 0.000 -0.265
+23 CX(26) + OX(20) <=> OCX(25) + X(1) 0.000 0.000
+24 H2(6) + X(1) <=> H2X(49) 0.000 0.000
+25 CO(7) + X(1) <=> COX(50) 0.000 -0.000
+26 CO2(4) + X(1) <=> CO2X(24) 0.000 -0.000
+27 OCX(25) + OX(20) <=> CO2X(24) + X(1) 0.000 0.000
+28 CO2X(24) + HX(19) <=> HOX(22) + OCX(25) 0.000 0.000
+29 CH2O(9) + 2 X(1) <=> CHOX(53) + HX(19) 0.000 0.000
+30 HCO(15) + X(1) <=> CHOX(53) 0.000 0.000
+31 CH3CHO(16) + 2 X(1) <=> CH3X(21) + CHOX(53) 0.000 0.000
+32 CHOX(53) + X(1) <=> HX(19) + OCX(25) 0.000 0.000
+33 HOX(22) + OCX(25) <=> CHOX(53) + OX(20) 0.000 0.000
+34 CH2X(27) + CHOX(53) <=> CH3X(21) + OCX(25) 0.000 -0.000
+35 CHOX(53) + CHX(28) <=> CH2X(27) + OCX(25) 0.000 -0.000
+36 CHOX(53) + CX(26) <=> CHX(28) + OCX(25) 0.000 0.000
+37 CH4(2) + HOX(22) + X(1) <=> CH3X(21) + H2OX(23) 0.000 0.000
+38 H2O(5) + X(1) <=> H2OX(23) 0.000 0.000
+39 H2OX(23) + OX(20) <=> 2 HOX(22) 0.000 0.000
+40 HOX(22) + HX(19) <=> H2OX(23) + X(1) 0.000 -0.000
+Finished sensitivity simulation for a C/O ratio of 0.9
+Finished translating for C/O ratio of 0.9
+Starting sensitivity simulation for a C/O ratio of 1.0
+0 CH4(2) + X(1) <=> CH4X(48) 0.000 0.000
+1 O2(3) + 2 X(1) <=> 2 OX(20) 0.000 -0.796
 2 H2(6) + 2 X(1) <=> 2 HX(19) 0.000 -0.000
 3 H(12) + X(1) <=> HX(19) 0.000 0.000
 4 HX(19) + OX(20) <=> HOX(22) + X(1) 0.000 0.000
-5 H2O(5) + 2 X(1) <=> HOX(22) + HX(19) -0.000 0.000
-6 OH(17) + X(1) <=> HOX(22) 0.000 0.000
+5 H2O(5) + 2 X(1) <=> HOX(22) + HX(19) 0.000 -0.000
+6 OH(17) + X(1) <=> HOX(22) 0.000 -0.000
 7 CH4(2) + 2 X(1) <=> CH3X(21) + HX(19) 0.000 0.000
-8 CH4(2) + OX(20) + X(1) <=> CH3X(21) + HOX(22) -0.000 0.541
+8 CH4(2) + OX(20) + X(1) <=> CH3X(21) + HOX(22) -0.000 0.582
 9 C2H6(8) + 2 X(1) <=> 2 CH3X(21) 0.000 -0.000
 10 CH3(10) + X(1) <=> CH3X(21) 0.000 -0.000
 11 CH3OH(14) + 2 X(1) <=> CH3X(21) + HOX(22) 0.000 -0.000
@@ -1462,30 +471,206 @@ Starting sensitivity simulation for a C/O ratio of 0.7
 13 CH2X(27) + HOX(22) <=> CH3X(21) + OX(20) 0.000 0.000
 14 CHX(28) + HX(19) <=> CH2X(27) + X(1) 0.000 -0.000
 15 CHX(28) + HOX(22) <=> CH2X(27) + OX(20) 0.000 0.000
-16 2 CH2X(27) <=> CH3X(21) + CHX(28) -0.000 0.000
-17 CHX(28) + X(1) <=> CX(26) + HX(19) 0.000 -0.000
-18 CX(26) + H2(6) <=> CH2X(27) -0.000 -0.065
+16 2 CH2X(27) <=> CH3X(21) + CHX(28) 0.000 -0.000
+17 CHX(28) + X(1) <=> CX(26) + HX(19) 0.000 0.000
+18 CX(26) + H2(6) <=> CH2X(27) 0.000 -0.054
 19 CX(26) + HOX(22) <=> CHX(28) + OX(20) 0.000 0.000
 20 CH3X(21) + CX(26) <=> CH2X(27) + CHX(28) 0.000 0.000
 21 CH2X(27) + CX(26) <=> 2 CHX(28) 0.000 0.000
-22 CO(7) + X(1) <=> OCX(25) 0.000 -0.282
-23 CX(26) + OX(20) <=> OCX(25) + X(1) 0.000 0.000
-24 H2(6) + X(1) <=> H2X(49) 0.000 0.000
-25 CO(7) + X(1) <=> COX(50) -0.000 -0.000
-26 CO2(4) + X(1) <=> CO2X(24) -0.000 0.000
+22 CO(7) + X(1) <=> OCX(25) 0.000 -0.269
+23 CX(26) + OX(20) <=> OCX(25) + X(1) 0.000 -0.000
+24 H2(6) + X(1) <=> H2X(49) 0.000 -0.000
+25 CO(7) + X(1) <=> COX(50) 0.000 -0.000
+26 CO2(4) + X(1) <=> CO2X(24) 0.000 -0.000
 27 OCX(25) + OX(20) <=> CO2X(24) + X(1) 0.000 -0.000
 28 CO2X(24) + HX(19) <=> HOX(22) + OCX(25) 0.000 0.000
-29 CH2O(9) + 2 X(1) <=> CHOX(53) + HX(19) 0.000 0.000
+29 CH2O(9) + 2 X(1) <=> CHOX(53) + HX(19) 0.000 -0.000
+30 HCO(15) + X(1) <=> CHOX(53) 0.000 -0.000
+31 CH3CHO(16) + 2 X(1) <=> CH3X(21) + CHOX(53) 0.000 -0.000
+32 CHOX(53) + X(1) <=> HX(19) + OCX(25) 0.000 -0.000
+33 HOX(22) + OCX(25) <=> CHOX(53) + OX(20) 0.000 -0.000
+34 CH2X(27) + CHOX(53) <=> CH3X(21) + OCX(25) 0.000 -0.000
+35 CHOX(53) + CHX(28) <=> CH2X(27) + OCX(25) 0.000 0.000
+36 CHOX(53) + CX(26) <=> CHX(28) + OCX(25) 0.000 0.000
+37 CH4(2) + HOX(22) + X(1) <=> CH3X(21) + H2OX(23) 0.000 -0.000
+38 H2O(5) + X(1) <=> H2OX(23) 0.000 -0.000
+39 H2OX(23) + OX(20) <=> 2 HOX(22) 0.000 -0.000
+40 HOX(22) + HX(19) <=> H2OX(23) + X(1) 0.000 0.000
+Finished sensitivity simulation for a C/O ratio of 1.0
+Finished translating for C/O ratio of 1.0
+Starting sensitivity simulation for a C/O ratio of 0.6
+0 CH4(2) + X(1) <=> CH4X(48) 0.000 -0.000
+1 O2(3) + 2 X(1) <=> 2 OX(20) 0.000 -0.762
+2 H2(6) + 2 X(1) <=> 2 HX(19) -0.000 -0.000
+3 H(12) + X(1) <=> HX(19) -0.000 -0.000
+4 HX(19) + OX(20) <=> HOX(22) + X(1) -0.000 0.000
+5 H2O(5) + 2 X(1) <=> HOX(22) + HX(19) 0.000 -0.000
+6 OH(17) + X(1) <=> HOX(22) -0.000 -0.000
+7 CH4(2) + 2 X(1) <=> CH3X(21) + HX(19) -0.000 0.000
+8 CH4(2) + OX(20) + X(1) <=> CH3X(21) + HOX(22) -0.000 0.518
+9 C2H6(8) + 2 X(1) <=> 2 CH3X(21) 0.000 -0.000
+10 CH3(10) + X(1) <=> CH3X(21) 0.000 -0.000
+11 CH3OH(14) + 2 X(1) <=> CH3X(21) + HOX(22) -0.000 -0.000
+12 CH2X(27) + HX(19) <=> CH3X(21) + X(1) -0.000 0.000
+13 CH2X(27) + HOX(22) <=> CH3X(21) + OX(20) -0.000 -0.000
+14 CHX(28) + HX(19) <=> CH2X(27) + X(1) 0.000 -0.000
+15 CHX(28) + HOX(22) <=> CH2X(27) + OX(20) -0.000 -0.000
+16 2 CH2X(27) <=> CH3X(21) + CHX(28) -0.000 -0.000
+17 CHX(28) + X(1) <=> CX(26) + HX(19) 0.000 -0.000
+18 CX(26) + H2(6) <=> CH2X(27) -0.000 -0.056
+19 CX(26) + HOX(22) <=> CHX(28) + OX(20) -0.000 -0.000
+20 CH3X(21) + CX(26) <=> CH2X(27) + CHX(28) -0.000 0.000
+21 CH2X(27) + CX(26) <=> 2 CHX(28) -0.000 -0.000
+22 CO(7) + X(1) <=> OCX(25) 0.000 -0.249
+23 CX(26) + OX(20) <=> OCX(25) + X(1) 0.000 -0.000
+24 H2(6) + X(1) <=> H2X(49) -0.000 -0.000
+25 CO(7) + X(1) <=> COX(50) 0.000 -0.000
+26 CO2(4) + X(1) <=> CO2X(24) -0.000 -0.000
+27 OCX(25) + OX(20) <=> CO2X(24) + X(1) -0.000 -0.000
+28 CO2X(24) + HX(19) <=> HOX(22) + OCX(25) -0.000 -0.000
+29 CH2O(9) + 2 X(1) <=> CHOX(53) + HX(19) 0.000 -0.000
+30 HCO(15) + X(1) <=> CHOX(53) -0.000 -0.000
+31 CH3CHO(16) + 2 X(1) <=> CH3X(21) + CHOX(53) -0.000 -0.000
+32 CHOX(53) + X(1) <=> HX(19) + OCX(25) -0.000 -0.000
+33 HOX(22) + OCX(25) <=> CHOX(53) + OX(20) -0.000 -0.000
+34 CH2X(27) + CHOX(53) <=> CH3X(21) + OCX(25) 0.000 -0.000
+35 CHOX(53) + CHX(28) <=> CH2X(27) + OCX(25) -0.000 -0.000
+36 CHOX(53) + CX(26) <=> CHX(28) + OCX(25) 0.000 -0.000
+37 CH4(2) + HOX(22) + X(1) <=> CH3X(21) + H2OX(23) -0.000 -0.000
+38 H2O(5) + X(1) <=> H2OX(23) -0.000 -0.000
+39 H2OX(23) + OX(20) <=> 2 HOX(22) -0.000 -0.000
+40 HOX(22) + HX(19) <=> H2OX(23) + X(1) -0.000 -0.000
+Finished sensitivity simulation for a C/O ratio of 0.6
+Finished translating for C/O ratio of 0.6
+Starting sensitivity simulation for a C/O ratio of 0.7
+0 CH4(2) + X(1) <=> CH4X(48) -0.000 -0.000
+1 O2(3) + 2 X(1) <=> 2 OX(20) 0.000 -0.775
+2 H2(6) + 2 X(1) <=> 2 HX(19) 0.000 -0.000
+3 H(12) + X(1) <=> HX(19) -0.000 0.000
+4 HX(19) + OX(20) <=> HOX(22) + X(1) -0.000 0.000
+5 H2O(5) + 2 X(1) <=> HOX(22) + HX(19) -0.000 0.000
+6 OH(17) + X(1) <=> HOX(22) -0.000 0.000
+7 CH4(2) + 2 X(1) <=> CH3X(21) + HX(19) -0.000 0.000
+8 CH4(2) + OX(20) + X(1) <=> CH3X(21) + HOX(22) -0.000 0.542
+9 C2H6(8) + 2 X(1) <=> 2 CH3X(21) 0.000 -0.000
+10 CH3(10) + X(1) <=> CH3X(21) 0.000 -0.000
+11 CH3OH(14) + 2 X(1) <=> CH3X(21) + HOX(22) -0.000 0.000
+12 CH2X(27) + HX(19) <=> CH3X(21) + X(1) -0.000 0.000
+13 CH2X(27) + HOX(22) <=> CH3X(21) + OX(20) -0.000 -0.000
+14 CHX(28) + HX(19) <=> CH2X(27) + X(1) -0.000 -0.000
+15 CHX(28) + HOX(22) <=> CH2X(27) + OX(20) -0.000 0.000
+16 2 CH2X(27) <=> CH3X(21) + CHX(28) -0.000 -0.000
+17 CHX(28) + X(1) <=> CX(26) + HX(19) -0.000 -0.000
+18 CX(26) + H2(6) <=> CH2X(27) -0.000 -0.056
+19 CX(26) + HOX(22) <=> CHX(28) + OX(20) -0.000 0.000
+20 CH3X(21) + CX(26) <=> CH2X(27) + CHX(28) -0.000 0.000
+21 CH2X(27) + CX(26) <=> 2 CHX(28) -0.000 0.000
+22 CO(7) + X(1) <=> OCX(25) 0.000 -0.255
+23 CX(26) + OX(20) <=> OCX(25) + X(1) -0.000 -0.000
+24 H2(6) + X(1) <=> H2X(49) -0.000 0.000
+25 CO(7) + X(1) <=> COX(50) -0.000 0.000
+26 CO2(4) + X(1) <=> CO2X(24) -0.000 -0.000
+27 OCX(25) + OX(20) <=> CO2X(24) + X(1) -0.000 0.000
+28 CO2X(24) + HX(19) <=> HOX(22) + OCX(25) -0.000 0.000
+29 CH2O(9) + 2 X(1) <=> CHOX(53) + HX(19) -0.000 0.000
+30 HCO(15) + X(1) <=> CHOX(53) -0.000 0.000
+31 CH3CHO(16) + 2 X(1) <=> CH3X(21) + CHOX(53) -0.000 0.000
+32 CHOX(53) + X(1) <=> HX(19) + OCX(25) -0.000 0.000
+33 HOX(22) + OCX(25) <=> CHOX(53) + OX(20) -0.000 0.000
+34 CH2X(27) + CHOX(53) <=> CH3X(21) + OCX(25) -0.000 -0.000
+35 CHOX(53) + CHX(28) <=> CH2X(27) + OCX(25) -0.000 0.000
+36 CHOX(53) + CX(26) <=> CHX(28) + OCX(25) -0.000 0.000
+37 CH4(2) + HOX(22) + X(1) <=> CH3X(21) + H2OX(23) -0.000 0.000
+38 H2O(5) + X(1) <=> H2OX(23) -0.000 0.000
+39 H2OX(23) + OX(20) <=> 2 HOX(22) -0.000 -0.000
+40 HOX(22) + HX(19) <=> H2OX(23) + X(1) -0.000 0.000
+Finished sensitivity simulation for a C/O ratio of 0.7
+Finished translating for C/O ratio of 0.7
+Starting sensitivity simulation for a C/O ratio of 1.4
+0 CH4(2) + X(1) <=> CH4X(48) 0.000 0.000
+1 O2(3) + 2 X(1) <=> 2 OX(20) 0.000 -0.812
+2 H2(6) + 2 X(1) <=> 2 HX(19) -0.000 -0.000
+3 H(12) + X(1) <=> HX(19) 0.000 0.000
+4 HX(19) + OX(20) <=> HOX(22) + X(1) 0.000 0.000
+5 H2O(5) + 2 X(1) <=> HOX(22) + HX(19) 0.000 0.000
+6 OH(17) + X(1) <=> HOX(22) 0.000 0.000
+7 CH4(2) + 2 X(1) <=> CH3X(21) + HX(19) 0.000 0.000
+8 CH4(2) + OX(20) + X(1) <=> CH3X(21) + HOX(22) -0.000 0.610
+9 C2H6(8) + 2 X(1) <=> 2 CH3X(21) 0.000 -0.000
+10 CH3(10) + X(1) <=> CH3X(21) 0.000 -0.000
+11 CH3OH(14) + 2 X(1) <=> CH3X(21) + HOX(22) 0.000 0.000
+12 CH2X(27) + HX(19) <=> CH3X(21) + X(1) 0.000 0.000
+13 CH2X(27) + HOX(22) <=> CH3X(21) + OX(20) 0.000 -0.000
+14 CHX(28) + HX(19) <=> CH2X(27) + X(1) -0.000 -0.000
+15 CHX(28) + HOX(22) <=> CH2X(27) + OX(20) -0.000 0.000
+16 2 CH2X(27) <=> CH3X(21) + CHX(28) 0.000 0.000
+17 CHX(28) + X(1) <=> CX(26) + HX(19) 0.000 0.000
+18 CX(26) + H2(6) <=> CH2X(27) -0.000 -0.050
+19 CX(26) + HOX(22) <=> CHX(28) + OX(20) 0.000 0.000
+20 CH3X(21) + CX(26) <=> CH2X(27) + CHX(28) -0.000 0.000
+21 CH2X(27) + CX(26) <=> 2 CHX(28) 0.000 0.000
+22 CO(7) + X(1) <=> OCX(25) 0.000 -0.283
+23 CX(26) + OX(20) <=> OCX(25) + X(1) 0.000 -0.000
+24 H2(6) + X(1) <=> H2X(49) 0.000 0.000
+25 CO(7) + X(1) <=> COX(50) 0.000 0.000
+26 CO2(4) + X(1) <=> CO2X(24) 0.000 0.000
+27 OCX(25) + OX(20) <=> CO2X(24) + X(1) -0.000 0.000
+28 CO2X(24) + HX(19) <=> HOX(22) + OCX(25) -0.000 -0.000
+29 CH2O(9) + 2 X(1) <=> CHOX(53) + HX(19) 0.000 -0.000
 30 HCO(15) + X(1) <=> CHOX(53) 0.000 0.000
 31 CH3CHO(16) + 2 X(1) <=> CH3X(21) + CHOX(53) 0.000 0.000
 32 CHOX(53) + X(1) <=> HX(19) + OCX(25) 0.000 0.000
 33 HOX(22) + OCX(25) <=> CHOX(53) + OX(20) 0.000 0.000
-34 CH2X(27) + CHOX(53) <=> CH3X(21) + OCX(25) 0.000 0.000
+34 CH2X(27) + CHOX(53) <=> CH3X(21) + OCX(25) 0.000 -0.000
 35 CHOX(53) + CHX(28) <=> CH2X(27) + OCX(25) 0.000 0.000
-36 CHOX(53) + CX(26) <=> CHX(28) + OCX(25) 0.000 0.000
+36 CHOX(53) + CX(26) <=> CHX(28) + OCX(25) -0.000 -0.000
+37 CH4(2) + HOX(22) + X(1) <=> CH3X(21) + H2OX(23) 0.000 -0.000
+38 H2O(5) + X(1) <=> H2OX(23) 0.000 -0.000
+39 H2OX(23) + OX(20) <=> 2 HOX(22) -0.000 0.000
+40 HOX(22) + HX(19) <=> H2OX(23) + X(1) 0.000 0.000
+Finished sensitivity simulation for a C/O ratio of 1.4
+Finished translating for C/O ratio of 1.4
+Starting sensitivity simulation for a C/O ratio of 1.1
+0 CH4(2) + X(1) <=> CH4X(48) -0.000 0.000
+1 O2(3) + 2 X(1) <=> 2 OX(20) 0.000 -0.801
+2 H2(6) + 2 X(1) <=> 2 HX(19) -0.000 -0.000
+3 H(12) + X(1) <=> HX(19) -0.000 -0.000
+4 HX(19) + OX(20) <=> HOX(22) + X(1) -0.000 0.000
+5 H2O(5) + 2 X(1) <=> HOX(22) + HX(19) -0.000 -0.000
+6 OH(17) + X(1) <=> HOX(22) -0.000 0.000
+7 CH4(2) + 2 X(1) <=> CH3X(21) + HX(19) -0.000 0.000
+8 CH4(2) + OX(20) + X(1) <=> CH3X(21) + HOX(22) -0.000 0.591
+9 C2H6(8) + 2 X(1) <=> 2 CH3X(21) -0.000 -0.000
+10 CH3(10) + X(1) <=> CH3X(21) 0.000 -0.000
+11 CH3OH(14) + 2 X(1) <=> CH3X(21) + HOX(22) -0.000 0.000
+12 CH2X(27) + HX(19) <=> CH3X(21) + X(1) -0.000 0.000
+13 CH2X(27) + HOX(22) <=> CH3X(21) + OX(20) -0.000 0.000
+14 CHX(28) + HX(19) <=> CH2X(27) + X(1) -0.000 -0.000
+15 CHX(28) + HOX(22) <=> CH2X(27) + OX(20) -0.000 0.000
+16 2 CH2X(27) <=> CH3X(21) + CHX(28) -0.000 0.000
+17 CHX(28) + X(1) <=> CX(26) + HX(19) -0.000 0.000
+18 CX(26) + H2(6) <=> CH2X(27) -0.000 -0.053
+19 CX(26) + HOX(22) <=> CHX(28) + OX(20) -0.000 0.000
+20 CH3X(21) + CX(26) <=> CH2X(27) + CHX(28) -0.000 0.000
+21 CH2X(27) + CX(26) <=> 2 CHX(28) -0.000 -0.000
+22 CO(7) + X(1) <=> OCX(25) -0.000 -0.273
+23 CX(26) + OX(20) <=> OCX(25) + X(1) -0.000 -0.000
+24 H2(6) + X(1) <=> H2X(49) -0.000 -0.000
+25 CO(7) + X(1) <=> COX(50) -0.000 0.000
+26 CO2(4) + X(1) <=> CO2X(24) -0.000 -0.000
+27 OCX(25) + OX(20) <=> CO2X(24) + X(1) -0.000 -0.000
+28 CO2X(24) + HX(19) <=> HOX(22) + OCX(25) -0.000 -0.000
+29 CH2O(9) + 2 X(1) <=> CHOX(53) + HX(19) -0.000 0.000
+30 HCO(15) + X(1) <=> CHOX(53) -0.000 -0.000
+31 CH3CHO(16) + 2 X(1) <=> CH3X(21) + CHOX(53) -0.000 -0.000
+32 CHOX(53) + X(1) <=> HX(19) + OCX(25) -0.000 -0.000
+33 HOX(22) + OCX(25) <=> CHOX(53) + OX(20) -0.000 -0.000
+34 CH2X(27) + CHOX(53) <=> CH3X(21) + OCX(25) -0.000 0.000
+35 CHOX(53) + CHX(28) <=> CH2X(27) + OCX(25) -0.000 0.000
+36 CHOX(53) + CX(26) <=> CHX(28) + OCX(25) -0.000 -0.000
 37 CH4(2) + HOX(22) + X(1) <=> CH3X(21) + H2OX(23) -0.000 0.000
-38 H2O(5) + X(1) <=> H2OX(23) 0.000 0.000
-39 H2OX(23) + OX(20) <=> 2 HOX(22) 0.000 0.000
+38 H2O(5) + X(1) <=> H2OX(23) -0.000 -0.000
+39 H2OX(23) + OX(20) <=> 2 HOX(22) -0.000 -0.000
 40 HOX(22) + HX(19) <=> H2OX(23) + X(1) -0.000 0.000
-Finished sensitivity simulation for a C/O ratio of 0.7
-Finished translating for C/O ratio of 0.7
+Finished sensitivity simulation for a C/O ratio of 1.1
+Finished translating for C/O ratio of 1.1

@@ -12,3 +12,4 @@
 
 source activate rmg_env3
 python copyme-parallel.py
+#python copymetest.py
