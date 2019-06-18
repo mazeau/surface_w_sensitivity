@@ -430,7 +430,7 @@ def monolithFull(gas, surf, temp, mol_in, verbose=False, sens=False):
 
     # set relative and absolute tolerances on the simulation
     sim.rtol = 1.0e-10
-    sim.atol = 1.0e-22
+    sim.atol = 1.0e-20
 
     gas_names = gas.species_names
     surf_names = surf.species_names
@@ -906,16 +906,16 @@ def sensitivity(gas, surf, old_data, temp, dk, thermo=False):
             Sens3 = (new_co_sel - reference_co_sel) / (reference_co_sel * dk)
             sens3.append(Sens3)
 
-            Sens1 = (reference_syngas_selectivity - new_syngas_selectivity) / (reference_syngas_selectivity * dk)
+            Sens1 = (new_syngas_selectivity - reference_syngas_selectivity) / (reference_syngas_selectivity * dk)
             sens1.append(Sens1)
 
-            Sens2 = (reference_syngas_yield - new_syngas_yield) / (reference_syngas_yield * dk)
+            Sens2 = (new_syngas_yield - reference_syngas_yield) / (reference_syngas_yield * dk)
             sens2.append(Sens2)
 
-            Sens4 = (reference_co_yield - new_co_yield) / (reference_co_yield * dk)
+            Sens4 = (new_co_yield - reference_co_yield) / (reference_co_yield * dk)
             sens4.append(Sens4)
 
-            Sens6 = (reference_h2_yield - new_h2_yield) / (reference_h2_yield * dk)
+            Sens6 = (new_h2_yield - reference_h2_yield) / (reference_h2_yield * dk)
             sens6.append(Sens6)
 
             Sens7 = (new_ch4_conv - reference_ch4_conv) / (
@@ -1014,24 +1014,24 @@ def sensitivity(gas, surf, old_data, temp, dk, thermo=False):
             Sens3 = (new_co_sel - reference_co_sel) / (reference_co_sel * dk)
             sens3.append(Sens3)
 
-            Sens1 = (reference_syngas_selectivity - new_syngas_selectivity) / (reference_syngas_selectivity * dk)
+            Sens1 = (new_syngas_selectivity - reference_syngas_selectivity) / (reference_syngas_selectivity * dk)
             sens1.append(Sens1)
 
-            Sens2 = (reference_syngas_yield - new_syngas_yield) / (reference_syngas_yield * dk)
+            Sens2 = (new_syngas_yield - reference_syngas_yield) / (reference_syngas_yield * dk)
             sens2.append(Sens2)
 
-            Sens4 = (reference_co_yield - new_co_yield) / (reference_co_yield * dk)
+            Sens4 = (new_co_yield - reference_co_yield) / (reference_co_yield * dk)
             sens4.append(Sens4)
 
-            Sens6 = (reference_h2_yield - new_h2_yield) / (reference_h2_yield * dk)
+            Sens6 = (new_h2_yield - reference_h2_yield) / (reference_h2_yield * dk)
             sens6.append(Sens6)
 
             Sens7 = (new_ch4_conv - reference_ch4_conv) / (
-                        reference_ch4_conv * dk)
+                    reference_ch4_conv * dk)
             sens7.append(Sens7)
 
             Sens8 = (new_full_oxidation_selectivity - reference_full_oxidation_selectivity) / (
-                        reference_full_oxidation_selectivity * dk)
+                    reference_full_oxidation_selectivity * dk)
             sens8.append(Sens8)
 
             Sens9 = (new_full_oxidation_yield - reference_full_oxidation_yield) / (reference_full_oxidation_yield * dk)
