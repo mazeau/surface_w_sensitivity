@@ -200,26 +200,26 @@ def plotZoom(a):
                     else:
                         species_name = species_name[0:-4]
                 if species_name == "O2":
-                    axs[0].annotate("O$_2$", fontsize=12,
-                                    xy=(dist_array[2200], gas_out[:, i][2200] + gas_out[:, i][2200] / 100.0),
+                    axs[0].annotate("O$_2$", fontsize=12, color='y',
+                                    xy=(dist_array[1200], gas_out[:, i][1200] + gas_out[:, i][1200] / 100.0),
                                     va='bottom', ha='center')
                 elif species_name == "CO2":
-                    axs[0].annotate("CO$_2$", fontsize=12,
-                                    xy=(dist_array[2200], gas_out[:, i][2200] + gas_out[:, i][2200] / 10.0), va='top',
+                    axs[0].annotate("CO$_2$", fontsize=12, color='c',
+                                    xy=(dist_array[2300], gas_out[:, i][2300] + gas_out[:, i][2300] / 10.0), va='bottom',
                                     ha='center')
                 elif species_name == "CO":
-                    axs[0].annotate("CO", fontsize=12, xy=(dist_array[2200], gas_out[:, i][2200] + 0.001),
+                    axs[0].annotate("CO", fontsize=12, color='g', xy=(dist_array[2200], gas_out[:, i][2200] + 0.001),
                                     va='bottom', ha='center')
-                elif species_name == "CH2O":
-                    axs[0].annotate("CH$_2$O", fontsize=12, xy=(dist_array[2200], gas_out[:, i][2200] + 0.001),
-                                    va='bottom', ha='center')
+                elif species_name == "H2":
+                    axs[0].annotate("H$_2$", fontsize=12, color='k', xy=(dist_array[2300], gas_out[:, i][2300] + 0.001),
+                                    va='top', ha='center')
                 elif species_name == "CH4":
-                    axs[0].annotate("CH$_4$", fontsize=12,
-                                    xy=(dist_array[2200], gas_out[:, i][2200] + gas_out[:, i][2200] / 100.0),
+                    axs[0].annotate("CH$_4$", fontsize=12, color='b',
+                                    xy=(dist_array[1200], gas_out[:, i][1200] + gas_out[:, i][1200] / 100.0),
                                     va='bottom', ha='center')
                 elif species_name == "H2O":
-                    axs[0].annotate("H$_2$O", fontsize=12,
-                                    xy=(dist_array[2200], gas_out[:, i][2200] + gas_out[:, i][2200] / 40.0), va='top',
+                    axs[0].annotate("H$_2$O", fontsize=12, color='r',
+                                    xy=(dist_array[2200], gas_out[:, i][2200] + gas_out[:, i][2200] / 40.0), va='bottom',
                                     ha='center')
                 else:
                     axs[0].annotate(species_name, fontsize=12,
@@ -230,7 +230,7 @@ def plotZoom(a):
 
     axs[1].set_prop_cycle(cycler('color', ['m', 'g', 'b', 'y', 'c', 'r', 'k', 'g']))
     # Plot two temperatures (of gas-phase and surface vs only surface.)
-    axs[1].plot(dist_array, T_array, label="surface + gas reactions")
+    axs[1].plot(dist_array, T_array, label="temperature")
     #     axs[1].plot(dist_array, T2_array, "--", label="surface reactions only")
     axs[0].set_prop_cycle(cycler('color', ['m', 'g', 'b', 'y', 'c', 'r', 'k', 'g']))
 
@@ -243,18 +243,18 @@ def plotZoom(a):
 
     for item in (
             axs[0].get_xticklabels() + axs[0].get_yticklabels() + axs[1].get_xticklabels() + axs[1].get_yticklabels()):
-        item.set_fontsize(12)
+        item.set_fontsize(18)
 
-    axs[1].legend(loc='upper center', bbox_to_anchor=(0.5, -0.2), fancybox=False, shadow=False, ncol=2)
+    #axs[1].legend(loc='upper center', bbox_to_anchor=(0.5, -0.2), fancybox=False, shadow=False, ncol=2)
     axs[0].legend(loc='upper center', bbox_to_anchor=(0.5, -0.2), fancybox=False, shadow=False, ncol=4)
     axs[0].set_ylim(0., 0.1);
     axs[1].set_ylim(600.0, 2000)
     axs[0].set_xlim(8, 25);
     axs[1].set_xlim(8, 25)
-    axs[0].set_xlabel('Distance (mm)', fontsize=13)
-    axs[1].set_xlabel('Distance (mm)', fontsize=13)  # axs[0,1].set_xlabel('time (s)'); axs[1,1].set_xlabel('time (s)')
-    axs[0].set_ylabel('flow/ mol/min', fontsize=13)
-    axs[1].set_ylabel('Temperature (K)', fontsize=13)
+    axs[0].set_xlabel('Distance (mm)', fontsize=20)
+    axs[1].set_xlabel('Distance (mm)', fontsize=20)  # axs[0,1].set_xlabel('time (s)'); axs[1,1].set_xlabel('time (s)')
+    axs[0].set_ylabel('flow/ mol/min', fontsize=20)
+    axs[1].set_ylabel('Temperature (K)', fontsize=20)
     # fig.tight_layout()
     # axs[1,0].ticklabel_format(axis='x', style='sci', scilimits=(0,0))
     # axs[0,1].ticklabel_format(axis='x', style='sci', scilimits=(0,0))
@@ -430,7 +430,7 @@ def monolithFull(gas, surf, temp, mol_in, verbose=False, sens=False):
 
     # set relative and absolute tolerances on the simulation
     sim.rtol = 1.0e-10
-    sim.atol = 1.0e-20
+    sim.atol = 1.0e-19
 
     gas_names = gas.species_names
     surf_names = surf.species_names
