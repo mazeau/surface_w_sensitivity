@@ -200,29 +200,29 @@ def plotZoom(a):
                     else:
                         species_name = species_name[0:-4]
                 if species_name == "O2":
-                    axs[0].annotate("O$_2$", fontsize=12, color='y',
+                    axs[0].annotate("O$_2$", fontsize=14, color='y',
                                     xy=(dist_array[1200], gas_out[:, i][1200] + gas_out[:, i][1200] / 100.0),
                                     va='bottom', ha='center')
                 elif species_name == "CO2":
-                    axs[0].annotate("CO$_2$", fontsize=12, color='c',
+                    axs[0].annotate("CO$_2$", fontsize=14, color='c',
                                     xy=(dist_array[2300], gas_out[:, i][2300] + gas_out[:, i][2300] / 10.0), va='bottom',
                                     ha='center')
                 elif species_name == "CO":
-                    axs[0].annotate("CO", fontsize=12, color='g', xy=(dist_array[2200], gas_out[:, i][2200] + 0.001),
+                    axs[0].annotate("CO", fontsize=14, color='g', xy=(dist_array[2200], gas_out[:, i][2200] + 0.001),
                                     va='bottom', ha='center')
                 elif species_name == "H2":
-                    axs[0].annotate("H$_2$", fontsize=12, color='k', xy=(dist_array[2300], gas_out[:, i][2300] + 0.001),
+                    axs[0].annotate("H$_2$", fontsize=14, color='k', xy=(dist_array[2300], gas_out[:, i][2300] - 0.001),
                                     va='top', ha='center')
                 elif species_name == "CH4":
-                    axs[0].annotate("CH$_4$", fontsize=12, color='b',
+                    axs[0].annotate("CH$_4$", fontsize=14, color='b',
                                     xy=(dist_array[1200], gas_out[:, i][1200] + gas_out[:, i][1200] / 100.0),
                                     va='bottom', ha='center')
                 elif species_name == "H2O":
-                    axs[0].annotate("H$_2$O", fontsize=12, color='r',
-                                    xy=(dist_array[2200], gas_out[:, i][2200] + gas_out[:, i][2200] / 40.0), va='bottom',
+                    axs[0].annotate("H$_2$O", fontsize=14, color='r',
+                                    xy=(dist_array[2200], gas_out[:, i][2200] + gas_out[:, i][2200] / 40.0 + 0.001), va='bottom',
                                     ha='center')
                 else:
-                    axs[0].annotate(species_name, fontsize=12,
+                    axs[0].annotate(species_name, fontsize=14,
                                     xy=(dist_array[-1], gas_out[:, i][-1] + gas_out[:, i][-1] / 10.0), va='top',
                                     ha='center')
             else:
@@ -230,7 +230,9 @@ def plotZoom(a):
 
     axs[1].set_prop_cycle(cycler('color', ['m', 'g', 'b', 'y', 'c', 'r', 'k', 'g']))
     # Plot two temperatures (of gas-phase and surface vs only surface.)
-    axs[1].plot(dist_array, T_array, label="temperature")
+    # axs[1].plot(dist_array, T_array, label="temperature")
+    ax2 = axs[0].twinx()
+    ax2.plot(dist_array, T_array, label='temperature', color='r')
     #     axs[1].plot(dist_array, T2_array, "--", label="surface reactions only")
     axs[0].set_prop_cycle(cycler('color', ['m', 'g', 'b', 'y', 'c', 'r', 'k', 'g']))
 
@@ -242,25 +244,28 @@ def plotZoom(a):
     axs[1].annotate("catalyst", fontsize=13, xy=(dist_array[on_catalyst], 1800), va='bottom', ha='left')
 
     for item in (
-            axs[0].get_xticklabels() + axs[0].get_yticklabels() + axs[1].get_xticklabels() + axs[1].get_yticklabels()):
+            axs[0].get_xticklabels() + axs[0].get_yticklabels() + ax2.get_xticklabels() + ax2.get_yticklabels()):
         item.set_fontsize(18)
 
     #axs[1].legend(loc='upper center', bbox_to_anchor=(0.5, -0.2), fancybox=False, shadow=False, ncol=2)
     axs[0].legend(loc='upper center', bbox_to_anchor=(0.5, -0.2), fancybox=False, shadow=False, ncol=4)
-    axs[0].set_ylim(0., 0.1);
+    axs[0].set_ylim(0., 0.1)
     axs[1].set_ylim(600.0, 2000)
-    axs[0].set_xlim(8, 25);
+    axs[0].set_xlim(8, 25)
     axs[1].set_xlim(8, 25)
     axs[0].set_xlabel('Distance (mm)', fontsize=20)
     axs[1].set_xlabel('Distance (mm)', fontsize=20)  # axs[0,1].set_xlabel('time (s)'); axs[1,1].set_xlabel('time (s)')
     axs[0].set_ylabel('flow/ mol/min', fontsize=20)
-    axs[1].set_ylabel('Temperature (K)', fontsize=20)
+    # axs[1].set_ylabel('Temperature (K)', fontsize=20)
+    ax2.set_ylabel('Temperature (K)', fontsize=20)
+    ax2.set_ylim(600, 2000)
+    ax2.set_xlim(8, 25)
     # fig.tight_layout()
     # axs[1,0].ticklabel_format(axis='x', style='sci', scilimits=(0,0))
     # axs[0,1].ticklabel_format(axis='x', style='sci', scilimits=(0,0))
     # axs[1,1].ticklabel_format(axis='x', style='sci', scilimits=(0,0))
     fig.set_figheight(6)
-    fig.set_figwidth(18)
+    fig.set_figwidth(24)
 
     #     temperature = np.round(T_array[0],0)
     for n in range(len(gas_names)):
