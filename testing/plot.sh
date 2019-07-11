@@ -8,4 +8,4 @@
 #SBATCH --mem=50Gb
 #SBATCH --time=2:00:00
 
-jupyter nbconvert --ExecutePreprocessor.timeout=4000 --to notebook --execute plots.ipynb --output=plotsdone.ipynb
+jupyter nbconvert --ExecutePreprocessor.timeout=4000 --to notebook --execute plots2.ipynb --output=plotsdone.ipynb
