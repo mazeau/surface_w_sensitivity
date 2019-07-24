@@ -113,30 +113,30 @@ def plotflow(a):
                     else:
                         species_name = species_name[0:-4]
                 if species_name == "O2":
-                    axs[0].annotate("O$_2$", fontsize=12,
-                                    xy=(dist_array[3800], gas_out[:, i][3800] + gas_out[:, i][3800] / 100.0),
+                    axs[0].annotate("O$_2$", fontsize=14, color='y',
+                                    xy=(dist_array[500], gas_out[:, i][500] + gas_out[:, i][500] / 100.0),
                                     va='bottom', ha='center')
                 elif species_name == "CO2":
-                    axs[0].annotate("CO$_2$", fontsize=12,
-                                    xy=(dist_array[3800], gas_out[:, i][3800] + gas_out[:, i][3800] / 10.0), va='top',
+                    axs[0].annotate("CO$_2$", fontsize=14, color='c',
+                                    xy=(dist_array[2300], gas_out[:, i][5000] + gas_out[:, i][5000] / 10.0), va='bottom',
                                     ha='center')
                 elif species_name == "CO":
-                    axs[0].annotate("CO", fontsize=12, xy=(dist_array[3800], gas_out[:, i][3800] + 0.001),
+                    axs[0].annotate("CO", fontsize=14, color='g', xy=(dist_array[6000], gas_out[:, i][6000] + 0.001),
                                     va='bottom', ha='center')
-                elif species_name == "CH2O":
-                    axs[0].annotate("CH$_2$O", fontsize=12, xy=(dist_array[3800], gas_out[:, i][3800] + 0.001),
-                                    va='bottom', ha='center')
+                elif species_name == "H2":
+                    axs[0].annotate("H$_2$", fontsize=14, color='k', xy=(dist_array[6000], gas_out[:, i][6000] - 0.001),
+                                    va='top', ha='center')
                 elif species_name == "CH4":
-                    axs[0].annotate("CH$_4$", fontsize=12,
-                                    xy=(dist_array[3800], gas_out[:, i][3800] + gas_out[:, i][3800] / 100.0),
+                    axs[0].annotate("CH$_4$", fontsize=14, color='b',
+                                    xy=(dist_array[500], gas_out[:, i][500] + gas_out[:, i][500] / 100.0),
                                     va='bottom', ha='center')
                 elif species_name == "H2O":
-                    axs[0].annotate("H$_2$O", fontsize=12,
-                                    xy=(dist_array[3800], gas_out[:, i][3800] + gas_out[:, i][3800] / 40.0), va='top',
+                    axs[0].annotate("H$_2$O", fontsize=14, color='r',
+                                    xy=(dist_array[5000], gas_out[:, i][5000] + gas_out[:, i][5000] / 40.0 + 0.001), va='bottom',
                                     ha='center')
                 else:
-                    axs[0].annotate(species_name, fontsize=12,
-                                    xy=(dist_array[3800], gas_out[:, i][-1] + gas_out[:, i][-1] / 10.0), va='top',
+                    axs[0].annotate(species_name, fontsize=14,
+                                    xy=(dist_array[-1], gas_out[:, i][-1] + gas_out[:, i][-1] / 10.0), va='top',
                                     ha='center')
             else:
                 axs[0].plot(0, 0)
@@ -201,25 +201,25 @@ def plotZoom(a):
                         species_name = species_name[0:-4]
                 if species_name == "O2":
                     axs[0].annotate("O$_2$", fontsize=14, color='y',
-                                    xy=(dist_array[1200], gas_out[:, i][1200] + gas_out[:, i][1200] / 100.0),
+                                    xy=(dist_array[1100], gas_out[:, i][1100] + gas_out[:, i][1100] / 100.0),
                                     va='bottom', ha='center')
                 elif species_name == "CO2":
                     axs[0].annotate("CO$_2$", fontsize=14, color='c',
-                                    xy=(dist_array[2300], gas_out[:, i][2300] + gas_out[:, i][2300] / 10.0), va='bottom',
+                                    xy=(dist_array[2400], gas_out[:, i][2400] + gas_out[:, i][2400] / 10.0), va='bottom',
                                     ha='center')
                 elif species_name == "CO":
-                    axs[0].annotate("CO", fontsize=14, color='g', xy=(dist_array[2200], gas_out[:, i][2200] + 0.001),
+                    axs[0].annotate("CO", fontsize=14, color='g', xy=(dist_array[2100], gas_out[:, i][2100] + 0.001),
                                     va='bottom', ha='center')
                 elif species_name == "H2":
-                    axs[0].annotate("H$_2$", fontsize=14, color='k', xy=(dist_array[2300], gas_out[:, i][2300] - 0.001),
+                    axs[0].annotate("H$_2$", fontsize=14, color='k', xy=(dist_array[2200], gas_out[:, i][2200] - 0.001),
                                     va='top', ha='center')
                 elif species_name == "CH4":
                     axs[0].annotate("CH$_4$", fontsize=14, color='b',
-                                    xy=(dist_array[1200], gas_out[:, i][1200] + gas_out[:, i][1200] / 100.0),
+                                    xy=(dist_array[1100], gas_out[:, i][1100] + gas_out[:, i][1100] / 100.0),
                                     va='bottom', ha='center')
                 elif species_name == "H2O":
                     axs[0].annotate("H$_2$O", fontsize=14, color='r',
-                                    xy=(dist_array[2200], gas_out[:, i][2200] + gas_out[:, i][2200] / 40.0 + 0.001), va='bottom',
+                                    xy=(dist_array[2100], gas_out[:, i][2100] + gas_out[:, i][2100] / 40.0 + 0.001), va='bottom',
                                     ha='center')
                 else:
                     axs[0].annotate(species_name, fontsize=14,
