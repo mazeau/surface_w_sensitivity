@@ -4,7 +4,8 @@
 #SBATCH -n1
 #SBATCH --output=output.log
 #SBATCH --exclusive
-#SBATCH --partition=general
+#SBATCH --partition=general,west
+#SBATCH --exclude=c5003
 #SBATCH --mem=50Gb
 #SBATCH --time=2:00:00
 

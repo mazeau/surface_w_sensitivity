@@ -832,6 +832,8 @@ def sensitivity(gas, surf, old_data, temp, dk, thermo=False):
 
     # run the simulations
     if thermo is True:
+        dH = 1e3 # J/mol
+        dk = dH / 8.314  # for the thermo loop, 'dk' is in fact (delta H / R)
         for m in range(surf.n_species):
             s = surf.species(m)
             original_coeffs = s.thermo.coeffs

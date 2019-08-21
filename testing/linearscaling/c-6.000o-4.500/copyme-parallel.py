@@ -201,25 +201,25 @@ def plotZoom(a):
                         species_name = species_name[0:-4]
                 if species_name == "O2":
                     axs[0].annotate("O$_2$", fontsize=14, color='y',
-                                    xy=(dist_array[1200], gas_out[:, i][1200] + gas_out[:, i][1200] / 100.0),
+                                    xy=(dist_array[1100], gas_out[:, i][1100] + gas_out[:, i][1100] / 100.0),
                                     va='bottom', ha='center')
                 elif species_name == "CO2":
                     axs[0].annotate("CO$_2$", fontsize=14, color='c',
-                                    xy=(dist_array[2300], gas_out[:, i][2300] + gas_out[:, i][2300] / 10.0), va='bottom',
+                                    xy=(dist_array[2400], gas_out[:, i][2400] + gas_out[:, i][2400] / 10.0), va='bottom',
                                     ha='center')
                 elif species_name == "CO":
-                    axs[0].annotate("CO", fontsize=14, color='g', xy=(dist_array[2200], gas_out[:, i][2200] + 0.001),
+                    axs[0].annotate("CO", fontsize=14, color='g', xy=(dist_array[2100], gas_out[:, i][2100] + 0.001),
                                     va='bottom', ha='center')
                 elif species_name == "H2":
-                    axs[0].annotate("H$_2$", fontsize=14, color='k', xy=(dist_array[2300], gas_out[:, i][2300] - 0.001),
+                    axs[0].annotate("H$_2$", fontsize=14, color='k', xy=(dist_array[2200], gas_out[:, i][2200] - 0.001),
                                     va='top', ha='center')
                 elif species_name == "CH4":
                     axs[0].annotate("CH$_4$", fontsize=14, color='b',
-                                    xy=(dist_array[1200], gas_out[:, i][1200] + gas_out[:, i][1200] / 100.0),
+                                    xy=(dist_array[1100], gas_out[:, i][1100] + gas_out[:, i][1100] / 100.0),
                                     va='bottom', ha='center')
                 elif species_name == "H2O":
                     axs[0].annotate("H$_2$O", fontsize=14, color='r',
-                                    xy=(dist_array[2200], gas_out[:, i][2200] + gas_out[:, i][2200] / 40.0 + 0.001), va='bottom',
+                                    xy=(dist_array[2100], gas_out[:, i][2100] + gas_out[:, i][2100] / 40.0 + 0.001), va='bottom',
                                     ha='center')
                 else:
                     axs[0].annotate(species_name, fontsize=14,
@@ -832,6 +832,8 @@ def sensitivity(gas, surf, old_data, temp, dk, thermo=False):
 
     # run the simulations
     if thermo is True:
+        dH = 1e3 # J/mol
+        dk = dH / 8.314  # for the thermo loop, 'dk' is in fact (delta H / R)
         for m in range(surf.n_species):
             s = surf.species(m)
             original_coeffs = s.thermo.coeffs
