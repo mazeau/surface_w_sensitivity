@@ -38,4 +38,4 @@ for f in array:
     thermodata = []
     for ratio in ratios:
         import_sensitivities(ratio, file_location=f)
-	#import_sensitivities(ratio, file_location=f, thermo=True)
+	import_sensitivities(ratio, file_location=f, thermo=True)
