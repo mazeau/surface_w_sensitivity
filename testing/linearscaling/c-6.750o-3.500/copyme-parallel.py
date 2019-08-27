@@ -435,7 +435,7 @@ def monolithFull(gas, surf, temp, mol_in, verbose=False, sens=False):
 
     # set relative and absolute tolerances on the simulation
     sim.rtol = 1.0e-10
-    sim.atol = 1.0e-20
+    sim.atol = 1.0e-22
 
     gas_names = gas.species_names
     surf_names = surf.species_names
@@ -832,7 +832,7 @@ def sensitivity(gas, surf, old_data, temp, dk, thermo=False):
 
     # run the simulations
     if thermo is True:
-        dH = 1e3 # J/mol
+        dH = 1e4 # J/mol
         dk = dH / 8.314  # for the thermo loop, 'dk' is in fact (delta H / R)
         for m in range(surf.n_species):
             s = surf.species(m)
