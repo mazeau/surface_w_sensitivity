@@ -17,8 +17,7 @@ plt.switch_backend('agg')  # needed for saving figures
 import csv
 from pydas.dassl import DASSL
 import os
-import rmgpy
-import rmg
+
 import re
 import operator
 import pandas as pd
@@ -54,13 +53,13 @@ t_in = 353  # K, uniform temperature profile
 t_cat = t_in
 length = 30.5 * cm  # Reactor length- m
 diam = 8.46 * mm  # Reactor diameter - in m
-area = (diam/2.0)**2*np.pi  # Reactor cross section area (area of tube) in m^2
+area = (diam/2.0)**2 * np.pi  # Reactor cross section area (area of tube) in m^2
 porosity = 0.3  # Monolith channel porosity, unknown
 # cat_area_per_vol = 1600.  # Catalyst particle surface area per unit volume in m-1
 cat_area_per_vol = 1000  # in m-1, made up
 flow_rate = 80.2 # mL/min
-flow_rate = flow_rate*1e-6/60  # m^3/s
-velocity = flow_rate/area  # m/s
+flow_rate = flow_rate * 1e-6 / 60  # m^3/s
+velocity = flow_rate / area  # m/s
 pressure = 31.  # bar
 pressure = pressure * 1e5  # Pa
 
@@ -422,10 +421,12 @@ def monolithFull(gas, surf, temp, mol_in, verbose=False, sens=False):
     for n in range(NReactors):
         # Set the state of the reservoir to match that of the previous reactor
         # gas.TDY = r.thermo.TDY
-        gas.TDY = temp, r.thermo.TDY[1], r.thermo.TDY[2]
+        # gas.TDY = temp, r.thermo.TDY[1], r.thermo.TDY[2]
+        gas.TDY = TDY
         upstream.syncState()
-        if n == on_catalyst:
-            surf.set_multiplier(1.0)
+        if n >= on_catalyst:
+            print "Turning on reaction {} {}".format(n-on_catalyst, surf.reaction_equations()[n-on_catalyst])
+            surf.set_multiplier(1.0, n-on_catalyst)
             if sens is not False:
                 surf.set_multiplier(1.0 + sens[0], sens[1])
         if n == off_catalyst:
@@ -435,7 +436,14 @@ def monolithFull(gas, surf, temp, mol_in, verbose=False, sens=False):
         #     print 'start of catalyst'
         #     sim.advance(5e7)
 
-        sim.advance_to_steady_state()
+        try:
+            sim.advance_to_steady_state()
+            surf()
+        except ct.CanteraError:
+            #print sim.component_name(13)
+            raise
+
+
         dist = n * reactor_len * 1.0e3  # distance in mm
         dist_array.append(dist)
         T_array.append(surf.T)
@@ -1108,6 +1116,8 @@ def sensitivityThermoWorker(data):
         # print('Unable to run thermo sensitivity simulation at a C/O ratio of {:.1f}'.format(data[0]))
         # pass
 
+import rmgpy
+import rmg
 
 species_dict = rmgpy.data.kinetics.KineticsLibrary().getSpecies('species_dictionary.txt')
 keys = species_dict.keys()
