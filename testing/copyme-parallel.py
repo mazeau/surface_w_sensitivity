@@ -436,7 +436,14 @@ def monolithFull(gas, surf, temp, mol_in, verbose=False, sens=False):
         #     print 'start of catalyst'
         #     sim.advance(5e7)
 
-        sim.advance_to_steady_state()
+        try:
+            sim.advance_to_steady_state()
+            surf()
+        except ct.CanteraError:
+            #print sim.component_name(13)
+            raise
+
+
         dist = n * reactor_len * 1.0e3  # distance in mm
         dist_array.append(dist)
         T_array.append(surf.T)
