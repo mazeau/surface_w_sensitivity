@@ -421,7 +421,8 @@ def monolithFull(gas, surf, temp, mol_in, verbose=False, sens=False):
     for n in range(NReactors):
         # Set the state of the reservoir to match that of the previous reactor
         # gas.TDY = r.thermo.TDY
-        gas.TDY = temp, r.thermo.TDY[1], r.thermo.TDY[2]
+        # gas.TDY = temp, r.thermo.TDY[1], r.thermo.TDY[2]
+        gas.TDY = TDY
         upstream.syncState()
         if n == on_catalyst:
             surf.set_multiplier(1.0)
