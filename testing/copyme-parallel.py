@@ -53,13 +53,13 @@ t_in = 353  # K, uniform temperature profile
 t_cat = t_in
 length = 30.5 * cm  # Reactor length- m
 diam = 8.46 * mm  # Reactor diameter - in m
-area = (diam/2.0)**2*np.pi  # Reactor cross section area (area of tube) in m^2
+area = (diam/2.0)**2 * np.pi  # Reactor cross section area (area of tube) in m^2
 porosity = 0.3  # Monolith channel porosity, unknown
 # cat_area_per_vol = 1600.  # Catalyst particle surface area per unit volume in m-1
 cat_area_per_vol = 1000  # in m-1, made up
 flow_rate = 80.2 # mL/min
-flow_rate = flow_rate*1e-6/60  # m^3/s
-velocity = flow_rate/area  # m/s
+flow_rate = flow_rate * 1e-6 / 60  # m^3/s
+velocity = flow_rate / area  # m/s
 pressure = 31.  # bar
 pressure = pressure * 1e5  # Pa
 
