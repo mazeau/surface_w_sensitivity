@@ -17,8 +17,7 @@ plt.switch_backend('agg')  # needed for saving figures
 import csv
 from pydas.dassl import DASSL
 import os
-import rmgpy
-import rmg
+
 import re
 import operator
 import pandas as pd
@@ -1108,6 +1107,8 @@ def sensitivityThermoWorker(data):
         # print('Unable to run thermo sensitivity simulation at a C/O ratio of {:.1f}'.format(data[0]))
         # pass
 
+import rmgpy
+import rmg
 
 species_dict = rmgpy.data.kinetics.KineticsLibrary().getSpecies('species_dictionary.txt')
 keys = species_dict.keys()
