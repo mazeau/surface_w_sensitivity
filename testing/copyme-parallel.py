@@ -424,8 +424,9 @@ def monolithFull(gas, surf, temp, mol_in, verbose=False, sens=False):
         # gas.TDY = temp, r.thermo.TDY[1], r.thermo.TDY[2]
         gas.TDY = TDY
         upstream.syncState()
-        if n == on_catalyst:
-            surf.set_multiplier(1.0)
+        if n >= on_catalyst:
+            print "Turning on reaction {} {}".format(n-on_catalyst, surf.reaction_equations()[n-on_catalyst])
+            surf.set_multiplier(1.0, n-on_catalyst)
             if sens is not False:
                 surf.set_multiplier(1.0 + sens[0], sens[1])
         if n == off_catalyst:
