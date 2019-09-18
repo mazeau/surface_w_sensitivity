@@ -19,7 +19,7 @@ for x in files:
         os.remove(x + '/error.log')
     except:
         pass
-    for file in glob.glob(x + '/figures/*.png'):  # remove old plots
+    for file in glob.glob(x + '/figures/*.pdf'):  # remove old plots
         os.remove(file)
     for file in glob.glob(x + '/rxnpath/rxnpath*'):  # remove old rxn path diagrams
         os.remove(file)
@@ -27,9 +27,16 @@ for x in files:
         os.remove(file)
     for file in glob.glob(x + '/*.csv'):  # remove old conversions and selectivities csv
 	os.remove(file)
-#for file in glob.glob('/figures/*.png'):
+
+#for file in glob.glob('/figures/*.pdf'):
 #    os.remove(file)
 #for file in glob.glob('/rxnpath/rxnpath*'):
 #    os.remove(file)
-#for file in glob.glob('sensivitivies/*.png'):
-#    os.remove(file)
+
+# deleting old lsr plots and sensitivities
+# for file in glob.glob('lsr/base_no_interpolation/*.pdf'):
+#      os.remove(file)
+# for file in glob.glob('lsr/rxnsensitivities_nointerpolation/*.pdf'):
+#      os.remove(file)
+# for file in glob.glob('lsr/thermosensitivities_nointerpolation/*.pdf'):
+#      os.remove(file)
