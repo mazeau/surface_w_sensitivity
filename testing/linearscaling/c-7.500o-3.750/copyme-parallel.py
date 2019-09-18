@@ -211,7 +211,7 @@ def plotflow(a):
 
     out_dir = 'figures'
     os.path.exists(out_dir) or os.makedirs(out_dir)
-    fig.savefig(out_dir + '/' + str(ratio) + 'ratio.png', bbox_inches='tight')
+    fig.savefig(out_dir + '/' + str(ratio) + 'ratio.pdf', bbox_inches='tight')
 
 
 def plotZoom(a):
@@ -310,7 +310,7 @@ def plotZoom(a):
 
     out_dir = 'figures'
     os.path.exists(out_dir) or os.makedirs(out_dir)
-    fig.savefig(out_dir + '/' + str(ratio) + 'ratioZoom.png', bbox_inches='tight')
+    fig.savefig(out_dir + '/' + str(ratio) + 'ratioZoom.pdf', bbox_inches='tight')
 
 
 def plotSurf(a):
@@ -405,7 +405,7 @@ def plotSurf(a):
 
     out_dir = 'figures'
     os.path.exists(out_dir) or os.makedirs(out_dir)
-    fig.savefig(out_dir + '/' + str(ratio) + 'surf.png', bbox_inches='tight')
+    fig.savefig(out_dir + '/' + str(ratio) + 'surf.pdf', bbox_inches='tight')
 
 def monolithFull(gas, surf, temp, mol_in, verbose=False, sens=False):
     """
@@ -467,7 +467,7 @@ def monolithFull(gas, surf, temp, mol_in, verbose=False, sens=False):
 
     # set relative and absolute tolerances on the simulation
     sim.rtol = 1.0e-10
-    sim.atol = 1.0e-21
+    sim.atol = 1.0e-20
 
     gas_names = gas.species_names
     surf_names = surf.species_names
@@ -671,7 +671,7 @@ fig.set_figheight(6)
 fig.set_figwidth(16)
 out_dir = 'figures'
 os.path.exists(out_dir) or os.makedirs(out_dir)
-fig.savefig(out_dir + '/' + 'conversion&selectivity.png', bbox_inches='tight')
+fig.savefig(out_dir + '/' + 'conversion&selectivity.pdf', bbox_inches='tight')
 
 # plot all on one
 temps = []
@@ -732,7 +732,7 @@ fig.set_figheight(14)
 fig.set_figwidth(8)
 out_dir = 'figures'
 os.path.exists(out_dir) or os.makedirs(out_dir)
-fig.savefig(out_dir + '/' + 'flows.png', bbox_inches='tight')
+fig.savefig(out_dir + '/' + 'flows.pdf', bbox_inches='tight')
 
 
 ###################
