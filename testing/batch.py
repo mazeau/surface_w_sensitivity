@@ -36,8 +36,13 @@ print("This mechanism contains {} gas reactions and {} surface reactions".format
 
 i_c2h4 = gas.species_index('C2H4(2)')
 i_nheptane = gas.species_index('n-heptane')
-i_c4h8_1 = gas.species_index('C4H8-1(3)') # 1 butene
-i_c4h8_2 = gas.species_index('C4H8-2(4)')
+i_c4h8_1 = gas.species_index('C4H8-1(3)')  # 1 butene
+i_c4h8_2 = gas.species_index('C4H8-2(4)')  # 2 butene
+i_c6h12_1 = gas.species_index('C6H12-1(7)')
+i_c6h12_2 = gas.species_index('C6H12-2(8)')
+i_c6h12_3 = gas.species_index('C6H12-3(9)')
+# i_c6h12_1_3 = gas.species_index('C6H12-1-3(10)')
+# i_c6h12_2_3 = gas.species_index('C6H12-2-3(11)')
 
 # unit conversion factors to SI
 mm = 0.001
@@ -45,78 +50,22 @@ cm = 0.01
 ms = mm
 minute = 60.0
 
-#######################################################################
-# Input Parameters
-#######################################################################
-t_in = 423  # K, uniform temperature profile
-t_cat = t_in
 cat_area_per_vol = 5.9e8  # in m-1
 
-def batch(gas, surf, temp, mol_in, verbose=False, sens=False):
-    volume = 0.3 # L or m^3
-    cat_area = cat_area_per_vol * volume
-    T0 = temp
-    pressure = 35  # bar
-    pressure = pressure * 1e6  # Pascal
-    P0 = pressure  # Pa
-    c2h4, nh = mol_in
-    c2h4 = str(c2h4)
-    nh = str(nh)
-    X = str('C2H4(2):' + c2h4 + ', n-heptane:' + nh)  # gas concentrations
 
-    gas.TPX = temp, P0, X
-    temp_cat = temp
-    surf.TP = temp_cat, P0
-    surf.coverages = 'X(1):1.0'
+def semibatch(gas, surf, temp, pressure, volume, mol_in, verbose=False, sens=False):
+    """
 
-    gas_names = gas.species_names
-    surf_names = surf.species_names
-
-    r = ct.IdealGasConstPressureReactor(gas, energy='off')
-    r.volume = volume
-    rsurf = ct.ReactorSurface(surf, r, A=cat_area)
-
-    sim = ct.ReactorNet([r])
-    sim.max_err_test_fails = 12
-
-    # set relative and absolute tolerances on the simulation
-    sim.rtol = 1.0e-12
-    sim.atol = 1.0e-18
-
-    # rxn_time = np.linspace(1E-12, 5, 10001)
-    rxn_time = np.logspace(-5, np.log10(3600), 1000001) #from 0s to 3600s (1 hour), log spacing\n",
-    gas_mole_fracs = np.zeros([gas.n_species, len(rxn_time)])
-    surf_site_fracs = np.zeros([surf.n_species, len(rxn_time)])
-    temperature = np.zeros(len(rxn_time))
-    pressure = np.zeros(len(rxn_time))
-
-    if verbose is True:
-        print('  distance(mm)   X_C2H4       X_C4H8-1')
-
-    surf.set_multiplier(1.0)
-    if sens is not False:
-        surf.set_multiplier(1.0 + sens[0], sens[1])
-    for i in range(len(rxn_time)):
-        time = rxn_time[i] #define time in the reactor
-        sim.advance(time) #Advance the simulation to next set time\n",
-        temperature[i] = gas.T
-        pressure[i] = gas.P/ct.one_atm
-        gas_mole_fracs[:,i] = gas.X
-        surf_site_fracs[:,i] = surf.coverages
-
-        if verbose is True:
-            if not i % 1000:
-                print('  {0:10f}  {1:10f} '.format(time, *gas[
-                    'C2H4(2)', 'C4H8-1(3)'].X))
-
-    surf.set_multiplier(1.0)  # resetting things
-
-    return gas_mole_fracs, surf_site_fracs, gas_names, surf_names, rxn_time, temperature
-
-def semibatch(gas, surf, temp, mol_in, verbose=False, sens=False):
-    p = 35  # bar
-    pressure = p * 1e6 # Pascal
-    volume = 0.3  # Liter or m^3
+    :param gas: from cti
+    :param surf: from cti
+    :param temp: Kelvin
+    :param pressure: Pa
+    :param volume: m^3
+    :param mol_in: ratio
+    :param verbose:
+    :param sens:
+    :return:
+    """
     cat_area = cat_area_per_vol * volume
 
     c2h4, nh = mol_in
@@ -124,17 +73,14 @@ def semibatch(gas, surf, temp, mol_in, verbose=False, sens=False):
     nh = str(nh)
     X = str('C2H4(2):' + c2h4 + ', n-heptane:' + nh)  # gas concentrations
 
-    gas.TPX = temp, pressure, 'C2H4(2):1'  # pure ethylene for the reservoir
     surf.TP = temp, pressure
     surf.coverages = 'X(1):1.0'
 
-    gas_names = gas.species_names
-    surf_names = surf.species_names
-
-    # create an upstream reservoir that will supply the sreactor. The temperature,
-    # pressure, and composition of the upstream reservoir are set to those of the
-    # 'gas' object at the time the reservoir is created.
-    upstream = ct.Reservoir(gas)  # only ethylene
+    # create an upstream reservoir that will supply the reactor. The temperature
+    #  and pressure of the upstream reservoir of pure ethylene
+    gas.TPX = temp, pressure, 'C2H4(2):1'
+    upstream = ct.Reservoir(gas)
+    exhaust = ct.Reservoir(gas)
 
     # set the gas to the specified input concentrations
     gas.TPX = temp, pressure, X
@@ -147,14 +93,19 @@ def semibatch(gas, surf, temp, mol_in, verbose=False, sens=False):
     # the initial volume is the volume at all later times.
     r.volume = volume
 
-    # Add the reacting surface to the reactor. The area is set to the desired
+    # Add the reacting surface to the react or. The area is set to the desired
     # catalyst area in the reactor.
     rsurf = ct.ReactorSurface(surf, r, A=cat_area)
 
-    # create a valve to feed in ethylene from the reservoir to the reactor
+    # create a valve to feed in ethylene from the reservoir to the reactor if the pressure drops
     pressureRegulator = ct.Valve(upstream=upstream,
                                  downstream=r,
-                                 K=1e-4)
+                                 K=1e-2)  # CVODES at 2e-2 when the second valve is on
+
+    # trying to keep pressure from building up
+    pressureRegulator2 = ct.Valve(upstream=r,
+                                  downstream=exhaust,
+                                  K=1e-4)
 
     sim = ct.ReactorNet([r])
     sim.max_err_test_fails = 12
@@ -163,113 +114,164 @@ def semibatch(gas, surf, temp, mol_in, verbose=False, sens=False):
     sim.rtol = 1.0e-10
     sim.atol = 1.0e-20
 
-    # rxn_time = np.linspace(1E-12, 5, 10001)
-    rxn_time = np.logspace(-5, np.log10(3600), 1000001) #from 0s to 3600s (1 hour), log spacing\n",
+    # rxn_time = np.linspace(1E-5, np.log10(3600), 1000001)  # from 0s to 3600s (1 hour)
+    rxn_time = np.logspace(-5, np.log10(3600), 1000001)  # from 0s to 3600s (1 hour), log spacing
     gas_mole_fracs = np.zeros([gas.n_species, len(rxn_time)])
     surf_site_fracs = np.zeros([surf.n_species, len(rxn_time)])
-    pressure = np.zeros(len(rxn_time))
+    p = np.zeros(len(rxn_time))
+    temperature = np.zeros(len(rxn_time))
+    v = np.zeros(len(rxn_time))
 
     if verbose is True:
-        print('  distance(mm)   X_C2H4       X_C4H8-1')
+        print('     time        X_C2H4       X_C4H8-1')
 
     surf.set_multiplier(1.0)
     if sens is not False:
         surf.set_multiplier(1.0 + sens[0], sens[1])
     for i in range(len(rxn_time)):
-        time = rxn_time[i] #define time in the reactor
-        sim.advance(time) #Advance the simulation to next set time\n",
-        pressure[i] = gas.P/ct.one_atm
-        gas_mole_fracs[:,i] = gas.X
-        surf_site_fracs[:,i] = surf.coverages
+        time = rxn_time[i]  # define time in the reactor
+        sim.advance(time)  # Advance the simulation to next set time
+        # p[i] = gas.P / ct.one_atm
+        p[i] = gas.P / 1e6  # MPa
+        gas_mole_fracs[:, i] = gas.X
+        surf_site_fracs[:, i] = surf.coverages
+        temperature[i] = gas.T
+        v[i] = r.volume
 
         if verbose is True:
             if not i % 1000:
                 print('  {0:10f}  {1:10f} '.format(time, *gas[
                     'C2H4(2)', 'C4H8-1(3)'].X))
 
-    surf.set_multiplier(1.0)  # resetting things
-    return gas_mole_fracs, surf_site_fracs, gas_names, surf_names, rxn_time
+    # check to see if the pressure stays the same throughout
+    maxPressureRiseAllowed = 1e-2  # MPa
+    pressureDifferential = np.amax(p) - np.amin(p)
+    if abs(pressureDifferential) > maxPressureRiseAllowed:
+        print("WARNING: Non-trivial pressure change of {0:3f} MPa in reactor!".format(pressureDifferential))
 
-def plot(gas, surf, gas_mole_fracs, surf_site_fracs, gas_names, surf_names, rxn_time):
+    surf.set_multiplier(1.0)  # resetting things, just incase sensitivity was running
+    return gas_mole_fracs, surf_site_fracs, rxn_time, p, temperature, v
+
+
+def plot(data, log=False):
+    gas_mole_fracs, surf_site_fracs, rxn_time, pressure, temperature, v = data
+
     #Plot out simulations results
-    fig = pylab.figure(dpi=300,figsize=(8,8))
+    fig = pylab.figure(dpi=300, figsize=(12, 8))
     gs = gridspec.GridSpec(2, 1)
     ax0 = plt.subplot(gs[0])
     ax1 = plt.subplot(gs[1])
 
-    y_min = 1E-4
+    y_min = 1E-2
 
     for i in range(gas.n_species):
         if np.max(gas_mole_fracs[i,:]) > y_min:
-            ax0.loglog(rxn_time, gas_mole_fracs[i,:], label=gas.species_name(i) )
+            if log is True:
+                ax0.loglog(rxn_time, gas_mole_fracs[i, :], label=gas.species_name(i))
+                ax0.set_xlim(1e-5, max(rxn_time))
+                ax0.set_ylim(1e-4, 2)
+            else:
+                # ax0.semilogy(rxn_time, gas_mole_fracs[i,:], label=gas.species_name(i) )
+                ax0.plot(rxn_time, gas_mole_fracs[i, :], label=gas.species_name(i))
+                ax0.set_xlim(0., max(rxn_time))
+                ax0.set_ylim(y_min, 1.1)
 
     for i in range(surf.n_species):
         if np.max(surf_site_fracs[i,:]) > y_min:
-            ax1.loglog(rxn_time, surf_site_fracs[i,:], label=surf.species_name(i) )
+            if log is True:
+                ax1.loglog(rxn_time, surf_site_fracs[i, :], label=surf.species_name(i))
+                ax1.set_xlim(1e-5, max(rxn_time))
+                ax1.set_ylim(1e-4, 2)
+            else:
+                # ax1.semilogy(rxn_time, surf_site_fracs[i,:], label=surf.species_name(i) )
+                ax1.plot(rxn_time, surf_site_fracs[i, :], label=surf.species_name(i))
+                ax1.set_xlim(0.,max(rxn_time))
+                ax1.set_ylim(y_min, 1.1)
 
-    ax0.legend(loc='lower left', fontsize = 12)
-    ax1.legend(loc='lower left', fontsize = 12)
+    # putting legend on the outside of the plot for now because it's really long
+    box = ax0.get_position()
+    ax0.set_position([box.x0, box.y0, box.width * 0.5, box.height])
+    ax0.legend(loc='upper left', bbox_to_anchor=(1, 1), ncol=2, shadow=False,)
+    box2 = ax1.get_position()
+    ax1.set_position([box2.x0, box2.y0, box2.width * 0.5, box2.height])
+    ax1.legend(loc='upper left', bbox_to_anchor=(1, 1), ncol=2, shadow=False,)
 
-    ax0.set_ylabel("gas-phase mole fraction")
-    ax0.set_ylim(y_min,1.)
-    ax0.set_xlim(1.0E-4,max(rxn_time))
-    ax1.set_xlim(1.0E-4,max(rxn_time))
-    ax0.set_xlabel("Time(s)")
-    ax1.set_ylabel("surface site fraction")
+    ax0.set_ylabel("gas-phase mole fraction", fontsize=14)
+    ax0.set_ylim(y_min, 1.)
+
+    # ax0.set_xlabel("Time(s)", fontsize=20)
+    ax1.set_ylabel("surface site fraction", fontsize=14)
     #ax0.xaxis.set_major_locator(MaxNLocator(6))
     #ax0.yaxis.set_major_locator(LogLocator(base=10.0, numticks=3))
     #ax0.tick_params(axis='both', which='major', labelsize=10)
-    ax1.set_ylim(y_min, 2)
-    ax1.set_xlabel("Time(s)")
-    fig.savefig('./figures/batch.pdf', bbox_inches='tight')
+    ax1.set_xlabel("Time(s)", fontsize=14)
+    if log is True:
+        fig.savefig('./figures/batch-log.pdf', bbox_inches='tight')
+    else:
+        fig.savefig('./figures/batch.pdf', bbox_inches='tight')
+    plt.close()
 
 
-f_ethylene = 0.67
-f_nheptane = 0.33
+#######################################################################
+# Input Parameters
+#######################################################################
+
+t_in = 423.15  # K, uniform temperature profile
+gas_names = gas.species_names
+surf_names = surf.species_names
+
+p = 35  # bar or 3.5 MPa
+pressure = p * 1e5  # Pa
+volume = 0.3e-3  # m^3
+
+f_ethylene = 2
+f_nheptane = 1
 ratio_in = [f_ethylene, f_nheptane]
 
-# a = batch(gas, surf, t_in, ratio_in)
-# gas_mole_fracs, surf_site_fracs, gas_names, surf_names, rxn_time, temperature = a
-# plot(gas, surf, gas_mole_fracs, surf_site_fracs, gas_names, surf_names, rxn_time, temperature)
+a = semibatch(gas, surf, t_in, pressure, volume, ratio_in)
+gas_mole_fracs, surf_site_fracs, rxn_time, pressure, temperature, v = a
+plot(a, log=True)
+plot(a)
 
-a = semibatch(gas, surf, t_in, ratio_in)
-gas_mole_fracs, surf_site_fracs, gas_names, surf_names, rxn_time = a
-plot(gas, surf, gas_mole_fracs, surf_site_fracs, gas_names, surf_names, rxn_time)
+plt.semilogx(rxn_time, pressure)
+plt.savefig('pressure.pdf')
 
-# sys.exit("Stop here")
+# sensitivity reference at the end of an hour
+# paper reported in wt %, so I will as well
 
-# # for sens at end of time
-# ethylene_in_ref = gas_mole_fracs[i_c2h4,:0]
-# ethylene_out_ref = gas_mole_fracs[i_c2h4,:-1]
-# etylene_depletion_ref = ethylene_in_ref - ethylene_out_ref
-# ethylene_conv_ref = ethylene_depletion_ref / ethylene_in_ref
-# butene1_out_ref = gas_mole_fracs[i_c4h8_1,:-1]
-# butene1_sel_ref = butene1_out_ref / (ethylene_depletion_ref * 0.5)  # todo: check to make sure this is correct
-# butene2_out_ref = gas_mole_fracs[i_c4h8_2,:-1]
-# butene2_sel_ref = butene2_out_ref / (ethylene_depletion_ref * 0.5)  # todo: check to make sure this is correct
-# ## c6, c8 etc
-#
-# # for sens the way it was defined in
-# # https://raw.githubusercontent.com/mazeau/surface_w_sensitivity/ethylene/batch_surface_w_sensitivity_v0.ipynb
-# ethylene_ref = gas_mole_fracs[i_c2h4,:]
-#
-# # set the value of the perturbation
-# dk = 1.0e-2
-# sensitivity1 = []  # ethylene conversion, 1-butene selectivity, ...
-# sensitivity2 = []
-#
-# for m in range(surf.n_reactions):
-#     sens = [dk, m]
-#     b = batch(gas, surf, t_in, ratio_in, sens)
-#     gas_mole_fracs_new, surf_site_fracs_new, gas_names, surf_names, rxn_time, temperature_new = b
-#
-#     ethylene_in = gas_mole_fracs_new[i_c2h4,:0]
-#     ethylene_out = gas_mole_fracs_new[i_c2h4,:-1]
-#     ethylene_depletion = (ethylene_in - ethylene_out)
-#     ethylene_conv = ethylene_depletion / ethylene_in
-#     butene1_out = gas_mole_fracs_new[i_c4h8_1,:-1]
-#     butene1_sel = butene1_out / (ethylene_depletion * 0.5)  # todo: check to make sure this is correct
-#     butene2_out = gas_mole_fracs_new[i_c4h8_2,:-1]
-#     butene2_sel = butene2_out / (ethylene_depletion * 0.5)  # todo: check to make sure this is correct
-#
-#     # for the old sensitivity def
+mw = gas.molecular_weights
+gas_out = gas_mole_fracs[:, -1]  # gas at the end of time
+
+# C4 wt at end
+# print gas_out[i_c2h4]
+# print mw[i_c2h4]
+
+print gas_out * mw
+print gas_out[i_c2h4] * mw[i_c2h4]
+
+## c6, c8 etc
+
+
+sys.exit("Stop here")
+
+
+# set the value of the perturbation
+dk = 1.0e-2
+sensitivity1 = []  # ethylene conversion, 1-butene selectivity, ...
+sensitivity2 = []
+
+for m in range(surf.n_reactions):
+    sens = [dk, m]
+    b = batch(gas, surf, t_in, ratio_in, sens)
+    gas_mole_fracs_new, surf_site_fracs_new, gas_names, surf_names, rxn_time, temperature_new = b
+
+    ethylene_in = gas_mole_fracs_new[i_c2h4,:0]
+    ethylene_out = gas_mole_fracs_new[i_c2h4,:-1]
+    ethylene_depletion = (ethylene_in - ethylene_out)
+    ethylene_conv = ethylene_depletion / ethylene_in
+    butene1_out = gas_mole_fracs_new[i_c4h8_1,:-1]
+    butene1_sel = butene1_out / (ethylene_depletion * 0.5)
+    butene2_out = gas_mole_fracs_new[i_c4h8_2,:-1]
+    butene2_sel = butene2_out / (ethylene_depletion * 0.5)
+
+    # for the old sensitivity def
