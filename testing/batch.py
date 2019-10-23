@@ -147,17 +147,17 @@ def semibatch(gas, surf, temp, pressure, volume, mol_in, verbose=False, sens=Fal
         out_dir = 'rxnpath'
         os.path.exists(out_dir) or os.makedirs(out_dir)
         elements = ['H', 'C']
-        locations_of_interest = [0, 1e3, 1e5, 1e6]
+        locations_of_interest = [0, 1e2, 1e3, 1e4, 1e5, 1e6]
         if sens is False:
             for l in locations_of_interest:
                 if i == l:
-                    location = str(l)
+                    location = str(int(l))
 
                     diagram = ct.ReactionPathDiagram(surf, 'X')
                     diagram.title = 'rxn path'
                     diagram.label_threshold = 1e-9
-                    dot_file = out_dir + '/rxnpath-x-' + location + '.dot'
-                    img_file = out_dir + '/rxnpath-x-' + location + '.png'
+                    dot_file = out_dir + '/x-' + location + '.dot'
+                    img_file = out_dir + '/x-' + location + '.png'
                     img_path = os.path.join(out_dir, img_file)
                     diagram.write_dot(dot_file)
                     os.system('dot {0} -Tpng -o{1} -Gdpi=200'.format(dot_file, img_file))
@@ -166,8 +166,8 @@ def semibatch(gas, surf, temp, pressure, volume, mol_in, verbose=False, sens=Fal
                         diagram = ct.ReactionPathDiagram(surf, element)
                         diagram.title = element + 'rxn path'
                         diagram.label_threshold = 1e-9
-                        dot_file = out_dir + '/rxnpath-surf-' + location + '-' + element + '.dot'
-                        img_file = out_dir + '/rxnpath-surf-' + location + '-' + element + '.png'
+                        dot_file = out_dir + '/surf-' + location + '-' + element + '.dot'
+                        img_file = out_dir + '/surf-' + location + '-' + element + '.png'
                         img_path = os.path.join(out_dir, img_file)
                         diagram.write_dot(dot_file)
                         os.system('dot {0} -Tpng -o{1} -Gdpi=200'.format(dot_file, img_file))
@@ -259,7 +259,6 @@ volume = 0.3e-3  # m^3
 f_ethylene = 2
 f_nheptane = 1
 ratio_in = [f_ethylene, f_nheptane]
-
 a = semibatch(gas, surf, t_in, pressure, volume, ratio_in)
 gas_mole_fracs, surf_site_fracs, rxn_time, pressure1 = a
 plot(a, log=True)
@@ -400,7 +399,7 @@ def export(data, title, column_headers=False, outdir=False):
         out_dir = out_dir + '/'
 
     else:
-        out_dir = '.'
+        out_dir = ''
 
     k.to_csv(out_dir + title + '.csv', header=header)
 
@@ -412,7 +411,6 @@ reference_selectivities = selectivities(carbon_count_amts)
 # export carbon count amounts to a csv
 column_titles = ['Number of Carbons', 'Species', 'End Weight', 'End mol fraction']
 export(carbon_count_amts, 'CarbonCount', column_headers=column_titles)
-
 
 
 def sensitivities(reference_selectivities, new_selectivities, sens):
@@ -452,7 +450,7 @@ rxns = []
 
 for m in range(surf.n_reactions):
     sens = [dk, m]
-    b = semibatch(gas, surf, t_in, ratio_in, sens=sens)
+    b = semibatch(gas, surf, t_in, pressure, volume, ratio_in, sens=sens)
     gas_mole_fracs_new, surf_site_fracs_new, rxn_time, p2 = b
 
     new_carbon_count_amts = carbon_ct_amounts(gas_mole_fracs_new)
