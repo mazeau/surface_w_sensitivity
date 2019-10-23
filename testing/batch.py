@@ -443,23 +443,56 @@ def sensitivities(reference_selectivities, new_selectivities, sens):
     return sensitivities, rxn
 
 
-# set the value of the perturbation
-dk = 1.0e-2
-sen = []
-rxns = []
+# # set the value of the perturbation
+# dk = 1.0e-2
+# sen = []
+# rxns = []
+#
+# for m in range(surf.n_reactions):
+#     sens = [dk, m]
+#     b = semibatch(gas, surf, t_in, pressure, volume, ratio_in, sens=sens)
+#     gas_mole_fracs_new, surf_site_fracs_new, rxn_time, p2 = b
+#
+#     new_carbon_count_amts = carbon_ct_amounts(gas_mole_fracs_new)
+#     new_selectivities = selectivities(carbon_count_amts)
+#
+#     sens, rxn = sensitivities(reference_selectivities, new_selectivities, sens)
+#     sen.append(sens)  # the last 2 columns are nested lists for C4 and C6 mol percents
+#     rxns.append(rxn)
 
-for m in range(surf.n_reactions):
+
+## MULTIPROCESSING ##
+
+def sensworker(m):
+    dk = 1.0e-2  # set the value of the perturbation
     sens = [dk, m]
-    b = semibatch(gas, surf, t_in, pressure, volume, ratio_in, sens=sens)
-    gas_mole_fracs_new, surf_site_fracs_new, rxn_time, p2 = b
 
-    new_carbon_count_amts = carbon_ct_amounts(gas_mole_fracs_new)
-    new_selectivities = selectivities(carbon_count_amts)
+    try:
+        b = semibatch(gas, surf, t_in, pressure, volume, ratio_in, sens=sens)
+        gas_mole_fracs_new, surf_site_fracs_new, rxn_time, p2 = b
 
-    sens, rxn = sensitivities(reference_selectivities, new_selectivities, sens)
-    sen.append(sens)  # the last 2 columns are nested lists for C4 and C6 mol percents
-    rxns.append(rxn)
+        new_carbon_count_amts = carbon_ct_amounts(gas_mole_fracs_new)
+        new_selectivities = selectivities(carbon_count_amts)
 
+        sens, rxn = sensitivities(reference_selectivities, new_selectivities, sens)
+        # sen.append(sens)  # the last 2 columns are nested lists for C4 and C6 mol percents
+        # rxns.append(rxn)
+
+        return sens, rxn
+    except:
+        print('Unable to run simulation for %d %s'.format(m, surf.reaction_equations()[m]))
+        pass
+
+num_threads = multiprocessing.cpu_count()
+m_list = []
+for x in range(surf.n_reactions):
+    m_list.append(x)
+pool = multiprocessing.Pool(processes=num_threads)
+sen, rxns = pool.map(sensworker, m_list, 1)
+pool.close()
+pool.join()
+
+##########
 
 # translate the surface reactions to SMILES
 rxns_translated = []
@@ -471,8 +504,7 @@ for x in rxns:
 
 # first, output the mol percents sensitivities (C4 index 5 and C6 index 6)
 output = []
-header_titles = []
-header_titles.append('Reaction')
+header_titles = ['Reaction']
 for x in range(sen):
     mol_percents = sen[x][5]  # species, mol percents
     s = []
@@ -484,8 +516,7 @@ export(output, 'C4molpercents', column_headers=header_titles, outdir='sensitivit
 
 #output the mol percents of C6
 output = []
-header_titles = []
-header_titles.append('Reaction')
+header_titles = ['Reaction']
 for x in range(sen):
     mol_percents = sen[x][6]  # species, mol percents
     s = []
