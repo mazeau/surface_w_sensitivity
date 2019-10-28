@@ -35,10 +35,10 @@ surf = ct.Interface('./chem_annotated.cti', 'surface1', [gas])
 print("This mechanism contains {} gas reactions and {} surface reactions".format(gas.n_reactions, surf.n_reactions))
 
 i_ar = gas.species_index('Ar')
-i_c2h4 = gas.species_index('C2H4(11)')
-i_he = gas.species_index('He(2)')
-i_c4h8 = gas.species_index('C4H8(10)') # 1 butene
-# i_c4h8_2 = gas.species_index('C4H8(281)')  # trans 2 butene
+i_c2h4 = gas.species_index('C2H4(2)')
+i_nheptane = gas.species_index('n-heptane')
+i_c4h8_1 = gas.species_index('C4H8-1(3)') # 1 butene
+i_c4h8_2 = gas.species_index('C4H8-2(4)')
 
 # unit conversion factors to SI
 mm = 0.001
@@ -56,7 +56,7 @@ diam = 8.46 * mm  # Reactor diameter - in m
 area = (diam/2.0)**2 * np.pi  # Reactor cross section area (area of tube) in m^2
 porosity = 0.3  # Monolith channel porosity, unknown
 # cat_area_per_vol = 1600.  # Catalyst particle surface area per unit volume in m-1
-cat_area_per_vol = 1000  # in m-1, made up
+cat_area_per_vol = 1.0e8  # in m-1, made up
 flow_rate = 80.2 # mL/min
 flow_rate = flow_rate * 1e-6 / 60  # m^3/s
 velocity = flow_rate / area  # m/s
@@ -143,27 +143,21 @@ def plotflow(a):
 
     axs[1].legend(loc='upper center', bbox_to_anchor=(0.5, -0.2), fancybox=False, shadow=False, ncol=2)
     axs[0].legend(loc='upper center', bbox_to_anchor=(0.5, -0.2), fancybox=False, shadow=False, ncol=4)
-    axs[0].set_ylim(0., 0.15)
-    axs[1].set_ylim(400.0, 2400)
+    axs[0].set_ylim(0., 1.)
+    # axs[1].set_ylim(400.0, 2400)
     axs[0].set_xlim(0.0, length / mm)
     axs[1].set_xlim(0.0, length / mm)
     axs[0].set_xlabel('Distance (mm)', fontsize=13)
     axs[1].set_xlabel('Distance (mm)', fontsize=13)  # axs[0,1].set_xlabel('time (s)'); axs[1,1].set_xlabel('time (s)')
     axs[0].set_ylabel('flow/ mol/min', fontsize=13)
     axs[1].set_ylabel('Temperature (K)', fontsize=13)
+    fig.delaxes(axs[1])  # delete the temperature subplot
     fig.set_figheight(6)
     fig.set_figwidth(18)
 
-    for n in range(len(gas_names)):
-        if gas_names[n] == 'CH4(2)':
-            c_in = gas_out[0][n]
-        if gas_names[n] == 'O2(3)':
-            o_in = gas_out[0][n]
-    ratio = round(c_in / (o_in * 2), 1)
-
     out_dir = 'figures'
     os.path.exists(out_dir) or os.makedirs(out_dir)
-    fig.savefig(out_dir + '/' + str(ratio) + 'ratio.png', bbox_inches='tight')
+    fig.savefig(out_dir + '/fig.png', bbox_inches='tight')
 
 
 def plotZoom(a):
@@ -233,36 +227,28 @@ def plotZoom(a):
 
     #axs[1].legend(loc='upper center', bbox_to_anchor=(0.5, -0.2), fancybox=False, shadow=False, ncol=2)
     axs[0].legend(loc='upper center', bbox_to_anchor=(0.5, -0.2), fancybox=False, shadow=False, ncol=4)
-    axs[0].set_ylim(0., 0.1)
-    axs[1].set_ylim(600.0, 2000)
-    axs[0].set_xlim(8, 25)
-    axs[1].set_xlim(8, 25)
+    axs[0].set_ylim(0., 1.)
+    # axs[1].set_ylim(600.0, 2000)
+    axs[0].set_xlim(20, 85)
+    axs[1].set_xlim(20, 85)
     axs[0].set_xlabel('Distance (mm)', fontsize=20)
     axs[1].set_xlabel('Distance (mm)', fontsize=20)  # axs[0,1].set_xlabel('time (s)'); axs[1,1].set_xlabel('time (s)')
     axs[0].set_ylabel('flow/ mol/min', fontsize=20)
     # axs[1].set_ylabel('Temperature (K)', fontsize=20)
     ax2.set_ylabel('Temperature (K)', fontsize=20)
     ax2.set_ylim(600, 2000)
-    ax2.set_xlim(8, 25)
+    ax2.set_xlim(20, 85)
     # fig.tight_layout()
     # axs[1,0].ticklabel_format(axis='x', style='sci', scilimits=(0,0))
     # axs[0,1].ticklabel_format(axis='x', style='sci', scilimits=(0,0))
     # axs[1,1].ticklabel_format(axis='x', style='sci', scilimits=(0,0))
+    fig.delaxes(axs[1])  # delete the temperature subplot
     fig.set_figheight(6)
     fig.set_figwidth(24)
 
-    #     temperature = np.round(T_array[0],0)
-    for n in range(len(gas_names)):
-        if gas_names[n] == 'CH4(2)':
-            c_in = gas_out[0][n]
-        if gas_names[n] == 'O2(3)':
-            o_in = gas_out[0][n]
-    ratio = c_in / (o_in * 2)
-    ratio = round(ratio, 1)
-
     out_dir = 'figures'
     os.path.exists(out_dir) or os.makedirs(out_dir)
-    fig.savefig(out_dir + '/' + str(ratio) + 'ratioZoom.png', bbox_inches='tight')
+    fig.savefig(out_dir + '/figZoom.png', bbox_inches='tight')
 
 
 def plotSurf(a):
@@ -331,10 +317,10 @@ def plotSurf(a):
 
     axs[1].legend(loc='upper center', bbox_to_anchor=(0.5, -0.2), fancybox=False, shadow=False, ncol=2)
     axs[0].legend(loc='upper center', bbox_to_anchor=(0.5, -0.2), fancybox=False, shadow=False, ncol=4)
-    axs[0].set_ylim(0., 0.1)
-    axs[1].set_ylim(0, 1.2)
-    axs[0].set_xlim(5, 25)
-    axs[1].set_xlim(5, 25)
+    # axs[0].set_ylim(0., 0.1)
+    # axs[1].set_ylim(0, 1.2)
+    axs[0].set_xlim(20, 85)
+    axs[1].set_xlim(20, 85)
     axs[0].set_xlabel('Distance (mm)', fontsize=13)
     axs[1].set_xlabel('Distance (mm)', fontsize=13)  # axs[0,1].set_xlabel('time (s)'); axs[1,1].set_xlabel('time (s)')
     axs[0].set_ylabel('flow/ mol/min', fontsize=13)
@@ -345,6 +331,7 @@ def plotSurf(a):
     # axs[1,1].ticklabel_format(axis='x', style='sci', scilimits=(0,0))
     fig.set_figheight(6)
     fig.set_figwidth(18)
+    fig.delaxes(axs[0])  # delete the gas phase species subplot
 
     out_dir = 'figures'
     os.path.exists(out_dir) or os.makedirs(out_dir)
@@ -358,7 +345,7 @@ def monolithFull(gas, surf, temp, mol_in, verbose=False, sens=False):
     c2h4, he = mol_in
     c2h4 = str(c2h4)
     he = str(he)
-    X = str('C2H4(11):' + c2h4 + ', He(2):' + he)
+    X = str('C2H4(2):' + c2h4 + ', he:' + he)
     gas.TPX = 273.15, ct.one_atm, X  # need to initialize mass flow rate at STP
     # mass_flow_rate = velocity * gas.density_mass * area  # kg/s
     mass_flow_rate = flow_rate * gas.density_mass
@@ -372,7 +359,7 @@ def monolithFull(gas, surf, temp, mol_in, verbose=False, sens=False):
     cov = surf.coverages
 
     if verbose is True:
-        print('  distance(mm)   X_C2H4       X_C4H8      X_C4H8_2t')
+        print('  distance(mm)   X_C2H4       X_C4H8  ')
 
     # create a new reactor
     gas.TDY = TDY
@@ -403,10 +390,11 @@ def monolithFull(gas, surf, temp, mol_in, verbose=False, sens=False):
     v = ct.PressureController(r, downstream, master=m, K=1e-5)
 
     sim = ct.ReactorNet([r])
-    sim.max_err_test_fails = 12
+    sim.max_err_test_fails = 120
 
     # set relative and absolute tolerances on the simulation
-    sim.rtol = 1.0e-10
+    # sim.rtol = 1.0e-10
+    sim.rtol = 1.0e-7
     sim.atol = 1.0e-18
 
     gas_names = gas.species_names
@@ -421,12 +409,16 @@ def monolithFull(gas, surf, temp, mol_in, verbose=False, sens=False):
     for n in range(NReactors):
         # Set the state of the reservoir to match that of the previous reactor
         # gas.TDY = r.thermo.TDY
-        # gas.TDY = temp, r.thermo.TDY[1], r.thermo.TDY[2]
-        gas.TDY = TDY
+        gas.TDY = temp, r.thermo.TDY[1], r.thermo.TDY[2]
+        # gas.TDY = TDY
         upstream.syncState()
-        if n >= on_catalyst:
-            print "Turning on reaction {} {}".format(n-on_catalyst, surf.reaction_equations()[n-on_catalyst])
-            surf.set_multiplier(1.0, n-on_catalyst)
+        # if n >= on_catalyst:
+        #     print "Turning on reaction {} {}".format(n-on_catalyst, surf.reaction_equations()[n-on_catalyst])
+        #     surf.set_multiplier(1.0, n-on_catalyst)
+        #     if sens is not False:
+        #         surf.set_multiplier(1.0 + sens[0], sens[1])
+        if n == on_catalyst:
+            surf.set_multiplier(1.0)
             if sens is not False:
                 surf.set_multiplier(1.0 + sens[0], sens[1])
         if n == off_catalyst:
@@ -435,14 +427,13 @@ def monolithFull(gas, surf, temp, mol_in, verbose=False, sens=False):
         # if n >= 2070:
         #     print 'start of catalyst'
         #     sim.advance(5e7)
-
-        try:
-            sim.advance_to_steady_state()
-            surf()
-        except ct.CanteraError:
-            #print sim.component_name(13)
-            raise
-
+        sim.advance_to_steady_state()
+        # try:
+        #     sim.advance_to_steady_state()
+        #     surf()
+        # except ct.CanteraError:
+        #     #print sim.component_name(13)
+        #     raise
 
         dist = n * reactor_len * 1.0e3  # distance in mm
         dist_array.append(dist)
@@ -485,8 +476,8 @@ def monolithFull(gas, surf, temp, mol_in, verbose=False, sens=False):
 
         if verbose is True:
             if not n % 100:
-                print('  {0:10f}  {1:10f}  {2:10f} '.format(dist, *gas[
-                    'C2H4(11)', 'C4H8(10)', 'C4H8(281)'].X * 1000 * 60 * kmole_flow_rate))
+                print('  {0:10f}  {1:10f}  '.format(dist, *gas[
+                    'C2H4(2)', 'C4H8-1(3)'].X * 1000 * 60 * kmole_flow_rate))
                 # print(surf.T)
                 # print(gas.P)
                 # print(surf.coverages)
@@ -716,18 +707,7 @@ def sensitivity(gas, surf, old_data, temp, dk, thermo=False):
     written so that the other ways could be commented out.
     """
     rxns = []
-    sens1 = []
-    sens2 = []
-    sens3 = []
-    sens4 = []
-    sens5 = []
-    sens6 = []
-    sens7 = []
-    sens8 = []
-    sens9 = []
-    sens10 = []
-    sens11 = []
-    sens12 = []
+    sens = []
 
     gas_out_data, gas_names_data, dist_array_data, T_array_data = old_data
 
@@ -818,15 +798,6 @@ def sensitivity(gas, surf, old_data, temp, dk, thermo=False):
         # Sensitivity definition 9: H2O + CO2 yield
         reference_full_oxidation_yield = reference_full_oxidation_selectivity * reference_ch4_conv
 
-    # Sensitivity definition 10: exit temperature
-    reference_exit_temp = T_array_data[-1]
-
-    # Sensitivity definition 11: peak temperature
-    reference_peak_temp = max(T_array_data)
-
-    # Sensitivity definition 12: distance to peak temperautre
-    reference_peak_temp_dist = dist_array_data[T_array_data.index(max(T_array_data))]
-
     # run the simulations
     if thermo is True:
         for m in range(surf.n_species):
@@ -903,48 +874,20 @@ def sensitivity(gas, surf, old_data, temp, dk, thermo=False):
                 new_full_oxidation_yield = new_full_oxidation_selectivity * new_ch4_conv  # Sensitivity definition 9: C2O + CO2 yield
 
             Sens5 = (new_h2_sel - reference_h2_sel) / (reference_h2_sel * dk)
-            sens5.append(Sens5)
-
             Sens3 = (new_co_sel - reference_co_sel) / (reference_co_sel * dk)
-            sens3.append(Sens3)
-
             Sens1 = (new_syngas_selectivity - reference_syngas_selectivity) / (reference_syngas_selectivity * dk)
-            sens1.append(Sens1)
-
             Sens2 = (new_syngas_yield - reference_syngas_yield) / (reference_syngas_yield * dk)
-            sens2.append(Sens2)
-
             Sens4 = (new_co_yield - reference_co_yield) / (reference_co_yield * dk)
-            sens4.append(Sens4)
-
             Sens6 = (new_h2_yield - reference_h2_yield) / (reference_h2_yield * dk)
-            sens6.append(Sens6)
-
             Sens7 = (new_ch4_conv - reference_ch4_conv) / (
                         reference_ch4_conv * dk)
-            sens7.append(Sens7)
-
             Sens8 = (new_full_oxidation_selectivity - reference_full_oxidation_selectivity) / (
                         reference_full_oxidation_selectivity * dk)
-            sens8.append(Sens8)
-
             Sens9 = (new_full_oxidation_yield - reference_full_oxidation_yield) / (reference_full_oxidation_yield * dk)
-            sens9.append(Sens9)
 
-            new_exit_temp = T_array[-1]  # Sensitivity definition 10: exit temperature
-            Sens10 = (new_exit_temp - reference_exit_temp) / (reference_exit_temp * dk)
-            sens10.append(Sens10)
+            sens.append([Sens1, Sens2, Sens3, Sens4, Sens5, Sens6, Sens7, Sens8, Sens9])
 
-            new_peak_temp = max(T_array)  # Sensitivity definition 11: peak temperature
-            Sens11 = (new_peak_temp - reference_peak_temp) / (reference_peak_temp * dk)
-            sens11.append(Sens11)
-
-            new_peak_temp_dist = dist_array[
-                T_array.index(max(T_array))]  # Sensitivity definition 12: dist to peak temperature
-            Sens12 = (new_peak_temp_dist - reference_peak_temp_dist) / (reference_peak_temp_dist * dk)
-            sens12.append(Sens12)
-
-            print "%d %s %.3F %.3F" % (m, surf.species_name(m), Sens1, Sens2)
+            print "%d %s %.3F %.3F" % (m, surf.species_name(m), sens[-1][0], sens[-1][1])
             rxns.append(surf.species_name(m))
 
             # this step is essential, otherwise mechanism will have been altered
@@ -1011,50 +954,23 @@ def sensitivity(gas, surf, old_data, temp, dk, thermo=False):
                 new_full_oxidation_yield = new_full_oxidation_selectivity * new_ch4_conv  # Sensitivity definition 9: C2O + CO2 yield
 
             Sens5 = (new_h2_sel - reference_h2_sel) / (reference_h2_sel * dk)
-            sens5.append(Sens5)
-
             Sens3 = (new_co_sel - reference_co_sel) / (reference_co_sel * dk)
-            sens3.append(Sens3)
-
             Sens1 = (new_syngas_selectivity - reference_syngas_selectivity) / (reference_syngas_selectivity * dk)
-            sens1.append(Sens1)
-
             Sens2 = (new_syngas_yield - reference_syngas_yield) / (reference_syngas_yield * dk)
-            sens2.append(Sens2)
-
             Sens4 = (new_co_yield - reference_co_yield) / (reference_co_yield * dk)
-            sens4.append(Sens4)
-
             Sens6 = (new_h2_yield - reference_h2_yield) / (reference_h2_yield * dk)
-            sens6.append(Sens6)
-
             Sens7 = (new_ch4_conv - reference_ch4_conv) / (
                     reference_ch4_conv * dk)
-            sens7.append(Sens7)
-
             Sens8 = (new_full_oxidation_selectivity - reference_full_oxidation_selectivity) / (
                     reference_full_oxidation_selectivity * dk)
-            sens8.append(Sens8)
-
             Sens9 = (new_full_oxidation_yield - reference_full_oxidation_yield) / (reference_full_oxidation_yield * dk)
-            sens9.append(Sens9)
 
-            new_exit_temp = T_array[-1]  # Sensitivity definition 10: exit temperature
-            Sens10 = (new_exit_temp - reference_exit_temp) / (reference_exit_temp * dk)
-            sens10.append(Sens10)
+            sens.append([Sens1, Sens2, Sens3, Sens4, Sens5, Sens6, Sens7, Sens8, Sens9])
 
-            new_peak_temp = max(T_array)  # Sensitivity definition 11: peak temperature
-            Sens11 = (new_peak_temp - reference_peak_temp) / (reference_peak_temp * dk)
-            sens11.append(Sens11)
-
-            new_peak_temp_dist = dist_array[T_array.index(max(T_array))]  # Sensitivity definition 12: dist to peak temperature
-            Sens12 = (new_peak_temp_dist - reference_peak_temp_dist) / (reference_peak_temp_dist * dk)
-            sens12.append(Sens12)
-
-            print "%d %s %.3F %.3F" % (rxn, surf.reaction_equations()[rxn], Sens1, Sens2)
+            print "%d %s %.3F %.3F" % (rxn, surf.reaction_equations()[rxn], sens[-1][0], sens[-1][1])
             rxns.append(surf.reaction_equations()[rxn])
 
-    return rxns, sens1, sens2, sens3, sens4, sens5, sens6, sens7, sens8, sens9, sens10, sens11, sens12
+    return rxns,sens
 
 
 def export(rxns_translated, ratio, thermo=False):

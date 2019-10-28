@@ -38,9 +38,9 @@ i_c2h4 = gas.species_index('C2H4(2)')
 i_nheptane = gas.species_index('n-heptane')
 i_c4h8_1 = gas.species_index('C4H8-1(3)')  # 1 butene
 i_c4h8_2 = gas.species_index('C4H8-2(4)')  # 2 butene
-i_c6h12_1 = gas.species_index('C6H12-1(7)')
-i_c6h12_2 = gas.species_index('C6H12-2(8)')
-i_c6h12_3 = gas.species_index('C6H12-3(9)')
+# i_c6h12_1 = gas.species_index('C6H12-1(7)')
+# i_c6h12_2 = gas.species_index('C6H12-2(8)')
+# i_c6h12_3 = gas.species_index('C6H12-3(9)')
 # i_c6h12_1_3 = gas.species_index('C6H12-1-3(10)')
 # i_c6h12_2_3 = gas.species_index('C6H12-2-3(11)')
 
@@ -147,17 +147,34 @@ def semibatch(gas, surf, temp, pressure, volume, mol_in, verbose=False, sens=Fal
         out_dir = 'rxnpath'
         os.path.exists(out_dir) or os.makedirs(out_dir)
         elements = ['H', 'C']
-        locations_of_interest = [0, 1e2, 1e3, 1e4, 1e5, 1e6]
+        """
+        Times to generate rxnpath diagrams (times_of_interest):
+        [0, 116873, 233746, 350619, 467492, 584365, 792183, 909056, 1000000]
+
+        corresponds to:
+         - at the beginning of time, 1e-5 seconds
+         - just after 1e-4 seconds
+         - just after 1e-3 seconds
+         - just after 1e-2 seconds
+         - just after 1e-1 seconds
+         - just after 1 second
+         - just after 1 minute
+         - just after 10 minutes
+         - at an hour
+         
+        was running [0, 1e2, 1e3, 1e4, 1e5, 1e6] before
+        """
+        times_of_interest = [0, 116873, 233746, 350619, 467492, 584365, 792183, 909056, 1000000]
         if sens is False:
-            for l in locations_of_interest:
+            for l in times_of_interest:
                 if i == l:
-                    location = str(int(l))
+                    time = '{:0.1e}'.format(rxn_time[l])
 
                     diagram = ct.ReactionPathDiagram(surf, 'X')
                     diagram.title = 'rxn path'
                     diagram.label_threshold = 1e-9
-                    dot_file = out_dir + '/x-' + location + '.dot'
-                    img_file = out_dir + '/x-' + location + '.png'
+                    dot_file = out_dir + '/x-' + time + '.dot'
+                    img_file = out_dir + '/x-' + time + '.png'
                     img_path = os.path.join(out_dir, img_file)
                     diagram.write_dot(dot_file)
                     os.system('dot {0} -Tpng -o{1} -Gdpi=200'.format(dot_file, img_file))
@@ -166,8 +183,8 @@ def semibatch(gas, surf, temp, pressure, volume, mol_in, verbose=False, sens=Fal
                         diagram = ct.ReactionPathDiagram(surf, element)
                         diagram.title = element + 'rxn path'
                         diagram.label_threshold = 1e-9
-                        dot_file = out_dir + '/surf-' + location + '-' + element + '.dot'
-                        img_file = out_dir + '/surf-' + location + '-' + element + '.png'
+                        dot_file = out_dir + '/surf-' + time + '-' + element + '.dot'
+                        img_file = out_dir + '/surf-' + time + '-' + element + '.png'
                         img_path = os.path.join(out_dir, img_file)
                         diagram.write_dot(dot_file)
                         os.system('dot {0} -Tpng -o{1} -Gdpi=200'.format(dot_file, img_file))
@@ -259,7 +276,9 @@ volume = 0.3e-3  # m^3
 f_ethylene = 2
 f_nheptane = 1
 ratio_in = [f_ethylene, f_nheptane]
+print('Starting model simulation')
 a = semibatch(gas, surf, t_in, pressure, volume, ratio_in)
+print('Finished model simulation')
 gas_mole_fracs, surf_site_fracs, rxn_time, pressure1 = a
 plot(a, log=True)
 plot(a)
@@ -409,6 +428,7 @@ carbon_count_amts = carbon_ct_amounts(gas_mole_fracs)
 reference_selectivities = selectivities(carbon_count_amts)
 
 # export carbon count amounts to a csv
+print('Exporting data to csv')
 column_titles = ['Number of Carbons', 'Species', 'End Weight', 'End mol fraction']
 export(carbon_count_amts, 'CarbonCount', column_headers=column_titles)
 
@@ -439,8 +459,8 @@ def sensitivities(reference_selectivities, new_selectivities, sens):
             sensitivities.append(s)
 
     print "%d %s %.3F " % (m, surf.reaction_equations()[m], sensitivities[4])  # print the 1-butene weight selectivity
-    rxn = surf.reaction_equations()[m]
-    return sensitivities, rxn
+    # rxn = surf.reaction_equations()[m]
+    return sensitivities
 
 
 # # set the value of the perturbation
@@ -463,35 +483,47 @@ def sensitivities(reference_selectivities, new_selectivities, sens):
 
 ## MULTIPROCESSING ##
 
+
 def sensworker(m):
     dk = 1.0e-2  # set the value of the perturbation
     sens = [dk, m]
+    f_ethylene = 2
+    f_nheptane = 1
+    ratio_in = [f_ethylene, f_nheptane]
+    t_in = 423.15  # K, uniform temperature profile
+    p = 35  # bar or 3.5 MPa
+    pressure = p * 1e5  # Pa
+    volume = 0.3e-3  # m^3
 
     try:
         b = semibatch(gas, surf, t_in, pressure, volume, ratio_in, sens=sens)
         gas_mole_fracs_new, surf_site_fracs_new, rxn_time, p2 = b
 
         new_carbon_count_amts = carbon_ct_amounts(gas_mole_fracs_new)
-        new_selectivities = selectivities(carbon_count_amts)
+        new_selectivities = selectivities(new_carbon_count_amts)
 
-        sens, rxn = sensitivities(reference_selectivities, new_selectivities, sens)
+        sens = sensitivities(reference_selectivities, new_selectivities, sens)
         # sen.append(sens)  # the last 2 columns are nested lists for C4 and C6 mol percents
         # rxns.append(rxn)
 
-        return sens, rxn
+        return sens
     except:
         print('Unable to run simulation for %d %s'.format(m, surf.reaction_equations()[m]))
         pass
 
+
+print('Starting {} sensitivity simulations'.format(surf.n_reactions))
 num_threads = multiprocessing.cpu_count()
 m_list = []
 for x in range(surf.n_reactions):
     m_list.append(x)
+rxns = []
+for x in range(surf.n_reactions):
+    rxns.append(surf.reaction_equations()[x])
 pool = multiprocessing.Pool(processes=num_threads)
-sen, rxns = pool.map(sensworker, m_list, 1)
+sen = pool.map(sensworker, m_list, 1)
 pool.close()
 pool.join()
-
 ##########
 
 # translate the surface reactions to SMILES
@@ -501,29 +533,37 @@ for x in rxns:
         x = re.sub(re.escape(key), smile, x)
     rxns_translated.append(x)
 
-
+print('Exporting sensitivity data to a csv')
 # first, output the mol percents sensitivities (C4 index 5 and C6 index 6)
 output = []
 header_titles = ['Reaction']
-for x in range(sen):
+k = False
+for x in xrange(len(sen)):
     mol_percents = sen[x][5]  # species, mol percents
     s = []
     for y in mol_percents:
         s.append(y[1])  # sensitivity of mol percent
-        header_titles.append(y[0])
-    output.append([rxns_translated[x], s])
+        if k is False:
+            header_titles.append(y[0])
+    s.insert(0, rxns_translated[x])
+    output.append(s)
+    k = True
 export(output, 'C4molpercents', column_headers=header_titles, outdir='sensitivities')
 
-#output the mol percents of C6
+# output the mol percents of C6
 output = []
 header_titles = ['Reaction']
-for x in range(sen):
+k = False
+for x in xrange(len(sen)):
     mol_percents = sen[x][6]  # species, mol percents
     s = []
     for y in mol_percents:
         s.append(y[1])  # sensitivity of mol percent
-        header_titles.append(y[0])
-    output.append([rxns_translated[x], s])
+        if k is False:
+            header_titles.append(y[0])
+    s.insert(0, rxns_translated[x])
+    output.append(s)
+    k = True
 export(output, 'C6molpercents', column_headers=header_titles, outdir='sensitivities')
 
 # output everything else that wasn't a list
@@ -532,13 +572,16 @@ for x in xrange(len(reference_selectivities)):
     if type(reference_selectivities[x]) == list:  # it is either C4 or C6 mol percents
         delete_row.append(x)
 
+delete_row = delete_row[::-1]
 for row in sen:
     for index in delete_row:
         del row[index]
 
 output = []
-for x in range(sen):
-    output.append([rxns_translated[x], sen[x]])
+for x in xrange(len(sen)):
+    y = sen[x]
+    y.insert(0, rxns_translated[x])
+    output.append(y)
 header_titles = ['Reaction', 'C4 selectivity', 'C6 selectivity', 'C8 selectivity', 'C10+ selectivity',
                  '1-Butene selectivity']
-export(output, 'selectivities', column_headers=header_titles, outdir='sensitivities')
+export(sen, 'selectivities', column_headers=header_titles, outdir='sensitivities')
