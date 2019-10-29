@@ -38,6 +38,7 @@ i_c2h4 = gas.species_index('C2H4(2)')
 i_nheptane = gas.species_index('n-heptane')
 i_c4h8_1 = gas.species_index('C4H8-1(3)')  # 1 butene
 i_c4h8_2 = gas.species_index('C4H8-2(4)')  # 2 butene
+# i_hx = gas.species_index('HX(5)')
 # i_c6h12_1 = gas.species_index('C6H12-1(7)')
 # i_c6h12_2 = gas.species_index('C6H12-2(8)')
 # i_c6h12_3 = gas.species_index('C6H12-3(9)')
@@ -295,6 +296,9 @@ keys = species_dict.keys()
 # get the first listed smiles string for each molecule
 smile = []
 for s in species_dict:
+    if s == 'HX(80)':  # treating HX separately bc smiles translation drops the H
+        smile.append('H[Pt]')
+        continue
     smile.append(species_dict[s].molecule[0])
     if len(species_dict[s].molecule) is not 1:
         print 'There are %d dupllicate smiles for %s:' % (len(species_dict[s].molecule), s)
@@ -304,8 +308,14 @@ for s in species_dict:
 # translate the molecules from above into just smiles strings
 smiles = []
 for s in smile:
-    smiles.append(s.toSMILES())
+    try:
+        smiles.append(s.toSMILES())
+    except:
+        print("Cannot convert {} to SMILES, translating manually".format(s))
+        smiles.append(s)
+
 names = dict(zip(keys, smiles))
+print names
 
 translated_gas_names = []
 for x in gas_names:
@@ -432,6 +442,8 @@ print('Exporting data to csv')
 column_titles = ['Number of Carbons', 'Species', 'End Weight', 'End mol fraction']
 export(carbon_count_amts, 'CarbonCount', column_headers=column_titles)
 
+sys.exit("stop here")
+
 
 def sensitivities(reference_selectivities, new_selectivities, sens):
     """
@@ -468,6 +480,7 @@ def sensitivities(reference_selectivities, new_selectivities, sens):
 # sen = []
 # rxns = []
 #
+# print("starting sensitivity simulations")
 # for m in range(surf.n_reactions):
 #     sens = [dk, m]
 #     b = semibatch(gas, surf, t_in, pressure, volume, ratio_in, sens=sens)
@@ -481,7 +494,7 @@ def sensitivities(reference_selectivities, new_selectivities, sens):
 #     rxns.append(rxn)
 
 
-## MULTIPROCESSING ##
+#-----MULTIPROCESSING-----##
 
 
 def sensworker(m):
