@@ -1,7 +1,0 @@
-Traceback (most recent call last):
-  File "copyme-parallel.py", line 491, in <module>
-    a = monolithFull(gas, surf, t_in, ratio_in, verbose=True)
-  File "copyme-parallel.py", line 426, in monolithFull
-    sim.advance_to_steady_state()
-  File "interfaces/cython/cantera/reactor.pyx", line 1182, in cantera._cantera.ReactorNet.advance_to_steady_state (interfaces/cython/cantera/_cantera.cpp:71334)
-cantera._cantera.CanteraError: Maximum number of steps reached before convergence below maximum residual

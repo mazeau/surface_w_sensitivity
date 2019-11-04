@@ -1,0 +1,42 @@
+digraph reaction_paths {
+center=1;
+s29 -> s30[fontname="Helvetica", style="setlinewidth(6)", arrowsize=3, color="0.7, 1.5, 0.9"
+, label=" 1"];
+s29 -> s31[fontname="Helvetica", style="setlinewidth(4.98)", arrowsize=2.49, color="0.7, 0.76, 0.9"
+, label=" 0.26"];
+s29 -> s39[fontname="Helvetica", style="setlinewidth(3.74)", arrowsize=1.87, color="0.7, 0.55, 0.9"
+, label=" 0.0498"];
+s29 -> s38[fontname="Helvetica", style="setlinewidth(4.16)", arrowsize=2.08, color="0.7, 0.588, 0.9"
+, label=" 0.0878"];
+s32 -> s29[fontname="Helvetica", style="setlinewidth(2.07)", arrowsize=1.03, color="0.7, 0.505, 0.9"
+, label=" 0.00546"];
+s29 -> s42[fontname="Helvetica", style="setlinewidth(3.57)", arrowsize=1.78, color="0.7, 0.54, 0.9"
+, label=" 0.0398"];
+s29 -> s41[fontname="Helvetica", style="setlinewidth(3.04)", arrowsize=1.52, color="0.7, 0.52, 0.9"
+, label=" 0.0199"];
+s29 -> s40[fontname="Helvetica", style="setlinewidth(3.04)", arrowsize=1.52, color="0.7, 0.52, 0.9"
+, label=" 0.0199"];
+s30 -> s32[fontname="Helvetica", style="setlinewidth(2.1)", arrowsize=1.05, color="0.7, 0.506, 0.9"
+, label=" 0.0057"];
+s39 -> s38[fontname="Helvetica", style="setlinewidth(3.74)", arrowsize=1.87, color="0.7, 0.55, 0.9"
+, label=" 0.0498"];
+s42 -> s41[fontname="Helvetica", style="setlinewidth(3.57)", arrowsize=1.78, color="0.7, 0.54, 0.9"
+, label=" 0.0398"];
+s40 -> s41[fontname="Helvetica", style="setlinewidth(3.04)", arrowsize=1.52, color="0.7, 0.52, 0.9"
+, label=" 0.0199"];
+s35 -> s48[fontname="Helvetica", style="setlinewidth(2.08)", arrowsize=1.04, color="0.7, 0.506, 0.9"
+, label=" 0.00553"];
+s29 [ fontname="Helvetica", label="X(1)"];
+s30 [ fontname="Helvetica", label="HX(5)"];
+s31 [ fontname="Helvetica", label="C2H3X(37)"];
+s32 [ fontname="Helvetica", label="C2H5X(40)"];
+s35 [ fontname="Helvetica", label="C4H7X(43)"];
+s38 [ fontname="Helvetica", label="C4H5X(80)"];
+s39 [ fontname="Helvetica", label="C4H5X(81)"];
+s40 [ fontname="Helvetica", label="C6H7X(132)"];
+s41 [ fontname="Helvetica", label="C6H7X(133)"];
+s42 [ fontname="Helvetica", label="C6H7X(134)"];
+s48 [ fontname="Helvetica", label="SX(2002)"];
+ label = "Scale = 4.2e-07\l rxn path";
+ fontname = "Helvetica";
+}

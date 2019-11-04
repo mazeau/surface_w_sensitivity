@@ -1,0 +1,9 @@
+digraph reaction_paths {
+center=1;
+s10 -> s9[fontname="Helvetica", style="setlinewidth(2.1)", arrowsize=1.05, color="0.7, 0.506, 0.9"
+, label=" 0.00571"];
+s9 [ fontname="Helvetica", label="X(1)"];
+s10 [ fontname="Helvetica", label="HX(5)"];
+ label = "Scale = 1e-10\l rxn path";
+ fontname = "Helvetica";
+}

@@ -1,0 +1,25 @@
+Traceback (most recent call last):
+  File "batch.py", line 283, in <module>
+    a = semibatch(gas, surf, t_in, pressure, volume, ratio_in)
+  File "batch.py", line 134, in semibatch
+    sim.advance(time)  # Advance the simulation to next set time
+  File "interfaces/cython/cantera/reactor.pyx", line 926, in cantera._cantera.ReactorNet.advance (interfaces/cython/cantera/_cantera.cpp:68369)
+cantera._cantera.CanteraError: 
+***********************************************************************
+CanteraError thrown by CVodesIntegrator::integrate:
+CVodes error encountered. Error code: -4
+At t = 1318.61 and h = 3.33381e-07, the corrector convergence test failed repeatedly or with |h| = hmin.
+
+Components with largest weighted error estimates:
+8: 2.15032e+06
+14: 101.483
+17: 0.00770703
+3: -0.000217786
+0: 0.000191749
+11: -0.000172477
+13: 1.1971e-05
+25: -2.89844e-07
+12: -1.64927e-07
+27: -1.84309e-08
+***********************************************************************
+

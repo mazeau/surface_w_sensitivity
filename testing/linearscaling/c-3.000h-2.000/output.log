@@ -1,0 +1,61 @@
+This mechanism contains 23 gas reactions and 25 surface reactions
+Starting model simulation
+Finished model simulation
+There are 4 dupllicate smiles for C8H10(266):
+<Molecule "[CH2]C1=CCC[CH]C1=C">
+<Molecule "[CH2]C1=CCCC=C1[CH2]">
+<Molecule "C=C1[CH]CC[CH]C1=C">
+<Molecule "[CH2]C1=CCC[CH]C1=C">
+There are 6 dupllicate smiles for S(636):
+<Molecule "[CH2]C1C(=C)[CH]CCC=1C=C">
+<Molecule "[CH2]C1=CCCC(C=C)=C1[CH2]">
+<Molecule "C=C[C]1CC[CH]C(=C)C1=C">
+<Molecule "[CH2]C1=CCC[C](C=C)C1=C">
+<Molecule "[CH2]C=C1CC[CH]C(=C)C1=C">
+<Molecule "[CH2]C=C1CCC=C([CH2])C1=C">
+There are 9 dupllicate smiles for S(1770):
+<Molecule "[CH2]C(C=C)=C(C=C)CCC1C2=CCC(CC2)C=1[CH2]">
+<Molecule "[CH2]C(C=C)=C(C=C)CC[C]1C(=C)C2CC=C1CC2">
+<Molecule "[CH2]C1=C(CC[C](C=C)C(=C)C=C)C2=CCC1CC2">
+<Molecule "[CH2]C(C=C)=C(C=C)CCC1C(=C)C2C[CH]C=1CC2">
+<Molecule "C=C[C](CC[C]1C(=C)C2CC=C1CC2)C(=C)C=C">
+<Molecule "[CH2]C=C(CCC1C2=CCC(CC2)C=1[CH2])C(=C)C=C">
+<Molecule "C=C[C](CCC1C(=C)C2C[CH]C=1CC2)C(=C)C=C">
+<Molecule "[CH2]C=C(CC[C]1C(=C)C2CC=C1CC2)C(=C)C=C">
+<Molecule "[CH2]C=C(CCC1C(=C)C2C[CH]C=1CC2)C(=C)C=C">
+There are 3 dupllicate smiles for S(4612):
+<Molecule "C=CC(=C)C1(C=C)CC[C]2C3=CCC(CC3)=C2C1">
+<Molecule "C=CC(=C)C1(C=C)CCC2C3=CC[C](CC3)C=2C1">
+<Molecule "C=CC(=C)C1(C=C)CCC2=C3[CH]CC(CC3)=C2C1">
+There are 3 dupllicate smiles for S(14532):
+<Molecule "C=CC(=C)C1(C=C)CCC2[C](C1)C1=CCC=2CC1">
+<Molecule "C=CC(=C)C1(C=C)CCC2[C]3CC=C(CC3)C=2C1">
+<Molecule "C=CC(=C)C1(C=C)CCC2=C3C[CH]C(CC3)=C2C1">
+Exporting data to csv
+Starting 25 sensitivity simulations
+15 C8H10(114) + 2 X(1) <=> C8H9X(269) + HX(5) -99.988 
+23 SX(14579) <=> SX(16265) -99.910 
+5 C4H5X(80) <=> C4H5X(81) -17.122 
+8 C8H10(114) + 2 X(1) <=> 2 C4H5X(80) -100.024 
+3 C4H6(7) + 2 X(1) <=> C4H5X(80) + HX(5) -100.003 
+18 S(4612) + X(1) <=> SX(4758) -99.997 
+20 S(4612) + X(1) <=> SX(14577) -99.957 
+13 S(232) + 2 X(1) <=> C4H5X(80) + C6H7X(141) -100.014 
+6 C6H8(111) + 2 X(1) <=> C2H3X(37) + C4H5X(80) -99.991 
+22 SX(4758) <=> SX(4763) -99.997 
+1 C4H6(7) + 2 X(1) <=> 2 C2H3X(37) -100.005 
+10 C6H8(111) + 2 X(1) <=> C6H7X(143) + HX(5) -99.969 
+21 S(1793) + 2 X(1) <=> HX(5) + SX(4763) -100.046 
+24 S(14532) + X(1) <=> SX(16265) -100.004 
+7 C6H8(111) + 2 X(1) <=> C6H7X(141) + HX(5) -99.990 
+9 C8H10(114) + 2 X(1) <=> C2H3X(37) + C6H7X(141) -99.993 
+11 C6H7X(141) <=> C6H7X(143) -99.969 
+4 C4H6(7) + 2 X(1) <=> C4H5X(81) + HX(5) -99.989 
+16 C8H9X(267) <=> C8H9X(269) -100.028 
+14 S(232) + 2 X(1) <=> C2H3X(37) + C8H9X(267) -99.984 
+12 C8H10(114) + 2 X(1) <=> C8H9X(267) + HX(5) -99.992 
+2 H2(68) + 2 X(1) <=> 2 HX(5) -99.990 
+17 S(1793) + 2 X(1) <=> HX(5) + SX(4758) -100.043 
+19 S(4612) + X(1) <=> SX(14579) -100.047 
+0 C2H4(2) + 2 X(1) <=> C2H3X(37) + HX(5) -99.992 
+Exporting sensitivity data to a csv

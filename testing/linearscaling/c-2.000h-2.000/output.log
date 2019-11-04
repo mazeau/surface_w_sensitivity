@@ -1,0 +1,49 @@
+This mechanism contains 13 gas reactions and 21 surface reactions
+Starting model simulation
+Finished model simulation
+There are 9 dupllicate smiles for S(306):
+<Molecule "[CH2]C=C(C=C)CCC(C=C)=C[CH2]">
+<Molecule "[CH2]C=C(C=C)CC[C](C=C)C=C">
+<Molecule "[CH2]C=C(C=C)CC[C](C=C)C=C">
+<Molecule "[CH2]C=C(C=C)CCC(C=C)=C[CH2]">
+<Molecule "C=C[C](C=C)CC[C](C=C)C=C">
+<Molecule "[CH2]C=C(C=C)CCC(C=C)=C[CH2]">
+<Molecule "[CH2]C=C(C=C)CC[C](C=C)C=C">
+<Molecule "[CH2]C=C(C=C)CC[C](C=C)C=C">
+<Molecule "[CH2]C=C(C=C)CCC(C=C)=C[CH2]">
+There are 4 dupllicate smiles for C8H10(531):
+<Molecule "[CH2]C1=CCC[CH]C1=C">
+<Molecule "[CH2]C1=CCCC=C1[CH2]">
+<Molecule "C=C1[CH]CC[CH]C1=C">
+<Molecule "[CH2]C1=CCC[CH]C1=C">
+There are 3 dupllicate smiles for S(539):
+<Molecule "[CH2]CCC(C=C)=C([CH2])C=C">
+<Molecule "[CH2]CC[C](C=C)C(=C)C=C">
+<Molecule "[CH2]C=C(CC[CH2])C(=C)C=C">
+There are 2 dupllicate smiles for S(1339):
+<Molecule "[CH2]CCC1=C([CH2])C2CCC12">
+<Molecule "[CH2]CC[C]1C(=C)C2CCC12">
+Exporting data to csv
+Starting 21 sensitivity simulations
+15 C8H10(191) + 2 X(1) <=> C2H3X(37) + C6H7X(221) -0.142 
+10 C6H8(185) + 2 X(1) <=> C2H3X(37) + C4H5X(80) -0.057 
+16 C8H10(735) + 2 X(1) <=> HX(5) + SX(1719) -0.028 
+20 C8H9X(532) <=> C8H9X(534) -0.028 
+19 C8H10(191) + 2 X(1) <=> C8H9X(534) + HX(5) 0.016 
+8 C4H6(7) + 2 X(1) <=> C4H5X(81) + HX(5) -0.011 
+18 C8H10(191) + 2 X(1) <=> C8H9X(532) + HX(5) -0.029 
+3 C4H8-1(3) + 2 X(1) <=> C2H3X(37) + C2H5X(40) 0.973 
+13 C6H7X(221) <=> C6H7X(223) -0.028 
+9 C4H5X(80) <=> C4H5X(81) -0.034 
+2 H2(68) + 2 X(1) <=> 2 HX(5) -0.020 
+7 C4H6(7) + 2 X(1) <=> C4H5X(80) + HX(5) -0.023 
+1 C4H6(7) + 2 X(1) <=> 2 C2H3X(37) -0.526 
+5 C2H5(24) + X(1) <=> C2H5X(40) -0.018 
+14 C8H10(191) + 2 X(1) <=> 2 C4H5X(80) -0.026 
+6 C2H6(110) + 2 X(1) <=> C2H5X(40) + HX(5) -0.992 
+12 C6H8(185) + 2 X(1) <=> C6H7X(223) + HX(5) -0.018 
+4 C2H4(2) + HX(5) <=> C2H5X(40) 0.611 
+11 C6H8(185) + 2 X(1) <=> C6H7X(221) + HX(5) -0.027 
+17 C8H8(1886) + HX(5) <=> SX(1719) -0.002 
+0 C2H4(2) + 2 X(1) <=> C2H3X(37) + HX(5) -0.049 
+Exporting sensitivity data to a csv

@@ -1,0 +1,26 @@
+digraph reaction_paths {
+center=1;
+s5 -> s43[fontname="Helvetica", style="setlinewidth(5.17)", arrowsize=2.59, color="0.7, 0.833, 0.9"
+, label=" 0.333"];
+s5 -> s44[fontname="Helvetica", style="setlinewidth(6)", arrowsize=3, color="0.7, 1.5, 0.9"
+, label=" 1"];
+s43 -> s10[fontname="Helvetica", style="setlinewidth(4.67)", arrowsize=2.34, color="0.7, 0.672, 0.9"
+, label=" 0.172"];
+s44 -> s8[fontname="Helvetica", style="setlinewidth(5.47)", arrowsize=2.73, color="0.7, 0.995, 0.9"
+, label=" 0.495"];
+s44 -> s12[fontname="Helvetica", style="setlinewidth(2.53)", arrowsize=1.27, color="0.7, 0.51, 0.9"
+, label=" 0.0102"];
+s8 -> s46[fontname="Helvetica", style="setlinewidth(2.98)", arrowsize=1.49, color="0.7, 0.518, 0.9"
+, label=" 0.0184"];
+s46 -> s12[fontname="Helvetica", style="setlinewidth(2.92)", arrowsize=1.46, color="0.7, 0.517, 0.9"
+, label=" 0.0169"];
+s5 [ fontname="Helvetica", label="C2H4(2)"];
+s8 [ fontname="Helvetica", label="C4H6(7)"];
+s10 [ fontname="Helvetica", label="H2(68)"];
+s12 [ fontname="Helvetica", label="C6H8(111)"];
+s43 [ fontname="Helvetica", label="HX(5)"];
+s44 [ fontname="Helvetica", label="C2H3X(37)"];
+s46 [ fontname="Helvetica", label="C4H5X(80)"];
+ label = "Scale = 2.1e-09\l Hrxn path";
+ fontname = "Helvetica";
+}
