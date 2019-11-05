@@ -1,0 +1,52 @@
+digraph reaction_paths {
+center=1;
+s5 -> s86[fontname="Helvetica", style="setlinewidth(6)", arrowsize=3, color="0.7, 1.5, 0.9"
+, label=" 1"];
+s86 -> s8[fontname="Helvetica", style="setlinewidth(5.22)", arrowsize=2.61, color="0.7, 0.856, 0.9"
+, label=" 0.356"];
+s86 -> s9[fontname="Helvetica", style="setlinewidth(5.12)", arrowsize=2.56, color="0.7, 0.81, 0.9"
+, label=" 0.31"];
+s8 -> s97[fontname="Helvetica", style="setlinewidth(5.57)", arrowsize=2.79, color="0.7, 1.07, 0.9"
+, label=" 0.569"];
+s97 -> s98[fontname="Helvetica", style="setlinewidth(5.64)", arrowsize=2.82, color="0.7, 1.12, 0.9"
+, label=" 0.618"];
+s98 -> s9[fontname="Helvetica", style="setlinewidth(5.64)", arrowsize=2.82, color="0.7, 1.12, 0.9"
+, label=" 0.62"];
+s9 -> s105[fontname="Helvetica", style="setlinewidth(5.42)", arrowsize=2.71, color="0.7, 0.964, 0.9"
+, label=" 0.464"];
+s9 -> s104[fontname="Helvetica", style="setlinewidth(5.42)", arrowsize=2.71, color="0.7, 0.964, 0.9"
+, label=" 0.464"];
+s104 -> s105[fontname="Helvetica", style="setlinewidth(5.42)", arrowsize=2.71, color="0.7, 0.964, 0.9"
+, label=" 0.464"];
+s105 -> s109[fontname="Helvetica", style="setlinewidth(2.52)", arrowsize=1.26, color="0.7, 0.51, 0.9"
+, label=" 0.00993"];
+s109 -> s13[fontname="Helvetica", style="setlinewidth(2.49)", arrowsize=1.24, color="0.7, 0.51, 0.9"
+, label=" 0.00953"];
+s87 -> s131[fontname="Helvetica", style="setlinewidth(2)", arrowsize=1, color="0.7, 0.505, 0.9"
+, label=" 0.00503"];
+s131 -> s10[fontname="Helvetica", style="setlinewidth(2.04)", arrowsize=1.02, color="0.7, 0.505, 0.9"
+, label=" 0.00529"];
+s139 -> s24[fontname="Helvetica", style="setlinewidth(2.02)", arrowsize=1.01, color="0.7, 0.505, 0.9"
+, label=" 0.0051"];
+s100 -> s40[fontname="Helvetica", style="setlinewidth(2.02)", arrowsize=1.01, color="0.7, 0.505, 0.9"
+, label=" 0.00512"];
+s5 [ fontname="Helvetica", label="C2H4(2)"];
+s8 [ fontname="Helvetica", label="C4H6(7)"];
+s9 [ fontname="Helvetica", label="C6H8(9)"];
+s10 [ fontname="Helvetica", label="C3H6(24)"];
+s13 [ fontname="Helvetica", label="S(200)"];
+s24 [ fontname="Helvetica", label="C5H8c(355)"];
+s40 [ fontname="Helvetica", label="S(621)"];
+s86 [ fontname="Helvetica", label="C2H3X(27)"];
+s87 [ fontname="Helvetica", label="allylX(28)"];
+s97 [ fontname="Helvetica", label="C4H5X(56)"];
+s98 [ fontname="Helvetica", label="C4H5X(57)"];
+s100 [ fontname="Helvetica", label="C6H9X(72)"];
+s104 [ fontname="Helvetica", label="C6H7X(94)"];
+s105 [ fontname="Helvetica", label="C6H7X(95)"];
+s109 [ fontname="Helvetica", label="SX(132)"];
+s131 [ fontname="Helvetica", label="C3H5X(328)"];
+s139 [ fontname="Helvetica", label="C5H7X(473)"];
+ label = "Scale = 1e-10\l Crxn path";
+ fontname = "Helvetica";
+}
