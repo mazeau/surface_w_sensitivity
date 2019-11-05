@@ -1,0 +1,25 @@
+Traceback (most recent call last):
+  File "batch.py", line 283, in <module>
+    a = semibatch(gas, surf, t_in, pressure, volume, ratio_in)
+  File "batch.py", line 134, in semibatch
+    sim.advance(time)  # Advance the simulation to next set time
+  File "interfaces/cython/cantera/reactor.pyx", line 926, in cantera._cantera.ReactorNet.advance (interfaces/cython/cantera/_cantera.cpp:68369)
+cantera._cantera.CanteraError: 
+***********************************************************************
+CanteraError thrown by CVodesIntegrator::integrate:
+CVodes error encountered. Error code: -1
+At t = 1121.31, mxstep steps taken before reaching tout.
+
+Components with largest weighted error estimates:
+8: 1.19067
+15: 2.36304e-06
+36: 2.09475e-06
+54: 1.60081e-06
+39: 1.26522e-06
+19: 9.92425e-07
+13: 7.8071e-07
+61: 4.32397e-07
+21: 2.00676e-07
+62: 1.7401e-07
+***********************************************************************
+

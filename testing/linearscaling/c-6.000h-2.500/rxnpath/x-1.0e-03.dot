@@ -2,32 +2,48 @@ digraph reaction_paths {
 center=1;
 s32 -> s31[fontname="Helvetica", style="setlinewidth(6)", arrowsize=3, color="0.7, 1.5, 0.9"
 , label=" 1"];
-s31 -> s33[fontname="Helvetica", style="setlinewidth(3.91)", arrowsize=1.95, color="0.7, 0.563, 0.9"
-, label=" 0.0625"];
-s31 -> s41[fontname="Helvetica", style="setlinewidth(2.36)", arrowsize=1.18, color="0.7, 0.508, 0.9"
-, label=" 0.00807"];
-s31 -> s40[fontname="Helvetica", style="setlinewidth(3.22)", arrowsize=1.61, color="0.7, 0.525, 0.9"
-, label=" 0.0253"];
-s31 -> s44[fontname="Helvetica", style="setlinewidth(2.41)", arrowsize=1.2, color="0.7, 0.509, 0.9"
-, label=" 0.0086"];
-s31 -> s43[fontname="Helvetica", style="setlinewidth(2.4)", arrowsize=1.2, color="0.7, 0.508, 0.9"
-, label=" 0.00849"];
-s31 -> s42[fontname="Helvetica", style="setlinewidth(2.4)", arrowsize=1.2, color="0.7, 0.508, 0.9"
-, label=" 0.00849"];
-s41 -> s40[fontname="Helvetica", style="setlinewidth(2.18)", arrowsize=1.09, color="0.7, 0.506, 0.9"
-, label=" 0.00637"];
-s44 -> s43[fontname="Helvetica", style="setlinewidth(2.41)", arrowsize=1.2, color="0.7, 0.509, 0.9"
-, label=" 0.00859"];
-s42 -> s43[fontname="Helvetica", style="setlinewidth(2.4)", arrowsize=1.2, color="0.7, 0.508, 0.9"
-, label=" 0.00848"];
+s31 -> s33[fontname="Helvetica", style="setlinewidth(5.36)", arrowsize=2.68, color="0.7, 0.927, 0.9"
+, label=" 0.427"];
+s31 -> s45[fontname="Helvetica", style="setlinewidth(3.82)", arrowsize=1.91, color="0.7, 0.556, 0.9"
+, label=" 0.0557"];
+s31 -> s44[fontname="Helvetica", style="setlinewidth(4.67)", arrowsize=2.34, color="0.7, 0.672, 0.9"
+, label=" 0.172"];
+s31 -> s51[fontname="Helvetica", style="setlinewidth(3.97)", arrowsize=1.98, color="0.7, 0.568, 0.9"
+, label=" 0.0676"];
+s31 -> s50[fontname="Helvetica", style="setlinewidth(3.95)", arrowsize=1.98, color="0.7, 0.567, 0.9"
+, label=" 0.0666"];
+s31 -> s49[fontname="Helvetica", style="setlinewidth(3.95)", arrowsize=1.98, color="0.7, 0.567, 0.9"
+, label=" 0.0666"];
+s31 -> s128[fontname="Helvetica", style="setlinewidth(3.03)", arrowsize=1.51, color="0.7, 0.519, 0.9"
+, label=" 0.0195"];
+s31 -> s127[fontname="Helvetica", style="setlinewidth(2.71)", arrowsize=1.35, color="0.7, 0.513, 0.9"
+, label=" 0.0128"];
+s31 -> s126[fontname="Helvetica", style="setlinewidth(2.71)", arrowsize=1.35, color="0.7, 0.513, 0.9"
+, label=" 0.0128"];
+s31 -> s125[fontname="Helvetica", style="setlinewidth(2.71)", arrowsize=1.35, color="0.7, 0.513, 0.9"
+, label=" 0.0128"];
+s45 -> s44[fontname="Helvetica", style="setlinewidth(3.65)", arrowsize=1.83, color="0.7, 0.545, 0.9"
+, label=" 0.0446"];
+s51 -> s50[fontname="Helvetica", style="setlinewidth(3.97)", arrowsize=1.98, color="0.7, 0.568, 0.9"
+, label=" 0.0676"];
+s49 -> s50[fontname="Helvetica", style="setlinewidth(3.95)", arrowsize=1.98, color="0.7, 0.567, 0.9"
+, label=" 0.0665"];
+s128 -> s127[fontname="Helvetica", style="setlinewidth(3.03)", arrowsize=1.51, color="0.7, 0.52, 0.9"
+, label=" 0.0195"];
+s126 -> s127[fontname="Helvetica", style="setlinewidth(2.64)", arrowsize=1.32, color="0.7, 0.512, 0.9"
+, label=" 0.0117"];
 s31 [ fontname="Helvetica", label="X(1)"];
 s32 [ fontname="Helvetica", label="HX(5)"];
-s33 [ fontname="Helvetica", label="C2H3X(37)"];
-s40 [ fontname="Helvetica", label="C4H5X(80)"];
-s41 [ fontname="Helvetica", label="C4H5X(81)"];
-s42 [ fontname="Helvetica", label="C6H7X(132)"];
-s43 [ fontname="Helvetica", label="C6H7X(133)"];
-s44 [ fontname="Helvetica", label="C6H7X(134)"];
- label = "Scale = 9.8e-06\l rxn path";
+s33 [ fontname="Helvetica", label="C2H3X(27)"];
+s44 [ fontname="Helvetica", label="C4H5X(56)"];
+s45 [ fontname="Helvetica", label="C4H5X(57)"];
+s49 [ fontname="Helvetica", label="C6H7X(84)"];
+s50 [ fontname="Helvetica", label="C6H7X(85)"];
+s51 [ fontname="Helvetica", label="C6H7X(86)"];
+s125 [ fontname="Helvetica", label="SX(2891)"];
+s126 [ fontname="Helvetica", label="SX(2892)"];
+s127 [ fontname="Helvetica", label="SX(2893)"];
+s128 [ fontname="Helvetica", label="SX(2894)"];
+ label = "Scale = 1.4e-06\l rxn path";
  fontname = "Helvetica";
 }

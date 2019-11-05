@@ -1,95 +1,457 @@
-This mechanism contains 24 gas reactions and 24 surface reactions
+This mechanism contains 3 gas reactions and 225 surface reactions
 Starting model simulation
-WARNING: Non-trivial pressure change of 0.014222 MPa in reactor!
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
 Finished model simulation
-There are 9 dupllicate smiles for S(181):
-<Molecule "[CH2]C=CC=CCCC=CC=C[CH2]">
-<Molecule "[CH2]C=CC=CCCC=C[CH]C=C">
-<Molecule "[CH2]C=CC=CCCC=C[CH]C=C">
-<Molecule "[CH2]C=CC=CCC[CH]C=CC=C">
-<Molecule "C=C[CH]C=CCCC=C[CH]C=C">
-<Molecule "[CH2]C=CC=CCC[CH]C=CC=C">
-<Molecule "C=C[CH]C=CCC[CH]C=CC=C">
-<Molecule "C=C[CH]C=CCC[CH]C=CC=C">
-<Molecule "C=CC=C[CH]CC[CH]C=CC=C">
-There are 12 dupllicate smiles for S(332):
-<Molecule "[CH2]C=CC=CC=CCCC=CC=C[CH2]">
-<Molecule "[CH2]C=CC=CC=CCCC=C[CH]C=C">
-<Molecule "[CH2]C=CC=CCCC=CC=C[CH]C=C">
-<Molecule "[CH2]C=CC=CC=CCC[CH]C=CC=C">
-<Molecule "C=C[CH]C=CC=CCCC=C[CH]C=C">
-<Molecule "[CH2]C=CC=CCCC=C[CH]C=CC=C">
-<Molecule "C=C[CH]C=CC=CCC[CH]C=CC=C">
-<Molecule "C=C[CH]C=CCCC=C[CH]C=CC=C">
-<Molecule "[CH2]C=CC=CCC[CH]C=CC=CC=C">
-<Molecule "C=CC=C[CH]C=CCC[CH]C=CC=C">
-<Molecule "C=C[CH]C=CCC[CH]C=CC=CC=C">
-<Molecule "C=CC=C[CH]CC[CH]C=CC=CC=C">
-There are 16 dupllicate smiles for S(371):
-<Molecule "[CH2]C=CC=CC=CCCC=CC=CC=C[CH2]">
-<Molecule "[CH2]C=CC=CC=CCCC=CC=C[CH]C=C">
-<Molecule "[CH2]C=CC=CC=CCCC=CC=C[CH]C=C">
-<Molecule "[CH2]C=CC=CC=CCCC=C[CH]C=CC=C">
-<Molecule "C=C[CH]C=CC=CCCC=CC=C[CH]C=C">
-<Molecule "[CH2]C=CC=CC=CCCC=C[CH]C=CC=C">
-<Molecule "[CH2]C=CC=CC=CCC[CH]C=CC=CC=C">
-<Molecule "C=C[CH]C=CC=CCCC=C[CH]C=CC=C">
-<Molecule "C=C[CH]C=CC=CCCC=C[CH]C=CC=C">
-<Molecule "[CH2]C=CC=CC=CCC[CH]C=CC=CC=C">
-<Molecule "C=C[CH]C=CC=CCC[CH]C=CC=CC=C">
-<Molecule "C=CC=C[CH]C=CCCC=C[CH]C=CC=C">
-<Molecule "C=C[CH]C=CC=CCC[CH]C=CC=CC=C">
-<Molecule "C=CC=C[CH]C=CCC[CH]C=CC=CC=C">
-<Molecule "C=CC=C[CH]C=CCC[CH]C=CC=CC=C">
-<Molecule "C=CC=CC=C[CH]CC[CH]C=CC=CC=C">
 Exporting data to csv
-Starting 24 sensitivity simulations
-WARNING: Non-trivial pressure change of 0.014222 MPa in reactor!
-23 C8H10(113) + 2 X(1) <=> C8H9X(269) + HX(5) -0.000 
-WARNING: Non-trivial pressure change of 0.014222 MPa in reactor!
-21 C4H6(7) + HX(5) <=> C4H7X(42) -0.009 
-WARNING: Non-trivial pressure change of 0.014222 MPa in reactor!
-22 C4H7X(41) <=> C4H7X(42) -0.000 
-WARNING: Non-trivial pressure change of 0.014222 MPa in reactor!
-17 C4H8-1(3) + 2 X(1) <=> C4H7X(41) + HX(5) -0.000 
-WARNING: Non-trivial pressure change of 0.014222 MPa in reactor!
-18 C4H6(7) + HX(5) <=> C4H7X(41) -0.009 
-WARNING: Non-trivial pressure change of 0.014222 MPa in reactor!
-11 C8H10(113) + 2 X(1) <=> 2 C4H5X(81) -0.009 
-WARNING: Non-trivial pressure change of 0.014222 MPa in reactor!
-9 C2H6(209) + 2 X(1) <=> C2H5X(40) + HX(5) -0.000 
-WARNING: Non-trivial pressure change of 0.014222 MPa in reactor!
-6 C4H5X(81) <=> C4H5X(80) -0.000 
-WARNING: Non-trivial pressure change of 0.014222 MPa in reactor!
-19 C4H8-1(3) + 2 X(1) <=> C4H7X(42) + HX(5) -0.000 
-WARNING: Non-trivial pressure change of 0.014222 MPa in reactor!
-10 C6H8(9) + 2 X(1) <=> C6H7X(134) + HX(5) -0.079 
-WARNING: Non-trivial pressure change of 0.014222 MPa in reactor!
-16 C6H7X(133) <=> C6H7X(132) -0.000 
-WARNING: Non-trivial pressure change of 0.014222 MPa in reactor!
-12 C8H10(113) + 2 X(1) <=> C2H3X(37) + C6H7X(134) -0.036 
-WARNING: Non-trivial pressure change of 0.014222 MPa in reactor!
-15 C6H8(9) + 2 X(1) <=> C6H7X(132) + HX(5) 0.495 
-WARNING: Non-trivial pressure change of 0.014222 MPa in reactor!
-13 C6H8(9) + 2 X(1) <=> C6H7X(133) + HX(5) 0.495 
-WARNING: Non-trivial pressure change of 0.014222 MPa in reactor!
-14 C6H7X(134) <=> C6H7X(133) 0.002 
-WARNING: Non-trivial pressure change of 0.014227 MPa in reactor!
-3 C4H6(7) + 2 X(1) <=> C4H5X(81) + HX(5) -0.079 
-WARNING: Non-trivial pressure change of 0.014222 MPa in reactor!
-20 C2H3X(37) + C2H4(2) <=> C4H7X(42) -0.000 
-WARNING: Non-trivial pressure change of 0.014222 MPa in reactor!
-4 C6H8(9) + 2 X(1) <=> C2H3X(37) + C4H5X(81) 0.139 
-WARNING: Non-trivial pressure change of 0.014223 MPa in reactor!
-1 C4H6(7) + 2 X(1) <=> 2 C2H3X(37) -0.044 
-WARNING: Non-trivial pressure change of 0.014222 MPa in reactor!
-7 C4H8-1(3) + 2 X(1) <=> C2H3X(37) + C2H5X(40) 0.000 
-WARNING: Non-trivial pressure change of 0.014222 MPa in reactor!
-2 H2(68) + 2 X(1) <=> 2 HX(5) -0.000 
-WARNING: Non-trivial pressure change of 0.014352 MPa in reactor!
-0 C2H4(2) + 2 X(1) <=> C2H3X(37) + HX(5) -0.129 
-WARNING: Non-trivial pressure change of 0.014227 MPa in reactor!
-5 C4H6(7) + 2 X(1) <=> C4H5X(80) + HX(5) -0.002 
-WARNING: Non-trivial pressure change of 0.014222 MPa in reactor!
-8 C2H4(2) + HX(5) <=> C2H5X(40) -0.010 
+Starting 225 sensitivity simulations
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+15 C6H8(9) + 2 X(1) <=> C6H7X(84) + HX(5) 0.133 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+28 C8H9X(170) <=> C8H9X(169) 0.009 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+56 SX(411) <=> SX(409) 0.011 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+84 C5H8c(547) + 2 X(1) <=> C2H3X(27) + C3H5X(572) -0.018 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+116 S(326) + 2 X(1) <=> HX(5) + SX(1948) 0.012 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+140 C7H9X(966) <=> SX(2523) 0.013 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+168 C7H10(549) + 2 X(1) <=> C2H3X(27) + SX(1614) 0.131 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+196 C7H10(554) + 2 X(1) <=> HX(5) + SX(3275) 0.030 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+16 C6H7X(85) <=> C6H7X(84) 0.005 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+31 C4H8-1(3) + 2 X(1) <=> C4H7X(34) + HX(5) 0.013 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+59 C8H12(219) + 2 X(1) <=> HX(5) + SX(406) -0.033 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+96 C5H8g(543) + 2 X(1) <=> HX(5) + SX(1614) 0.030 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+115 SX(319) <=> SX(1948) 0.013 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+141 SX(2523) <=> SX(2557) 0.011 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+169 C7H10(549) + 2 X(1) <=> HX(5) + SX(2876) 0.014 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+198 C2H4(2) + C7H9X(969) <=> SX(2458) 0.281 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+11 C8H10(78) + 2 X(1) <=> 2 C4H5X(57) 0.085 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+35 C8H9X(169) <=> C8H9X(330) 0.012 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+70 C7H10(397) + 2 X(1) <=> C7H9X(970) + HX(5) 0.012 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+97 C2H4(2) + C8H9X(170) <=> SX(319) 0.324 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+127 SX(1137) <=> SX(2399) 0.010 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+155 S(312) + 2 X(1) <=> C4H7X(32) + C6H7X(85) 0.021 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+180 S(288) + 2 X(1) <=> HX(5) + SX(2703) 0.013 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+205 SX(212) <=> SX(2735) 0.012 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+23 C4H6(7) + HX(5) <=> C4H7X(32) -0.009 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+50 C4H8-2(4) + 2 X(1) <=> C3H5X(35) + CH3X(29) 0.012 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+64 SX(406) <=> SX(841) 0.012 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+99 S(326) + 2 X(1) <=> C4H7X(33) + C6H7X(86) 0.034 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+119 C2H4(2) + C8H9X(168) <=> SX(343) 0.272 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+150 S(288) + 2 X(1) <=> C4H7X(31) + C6H7X(85) 0.014 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+179 S(288) + 2 X(1) <=> HX(5) + SX(2704) 0.013 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+203 C9H14(834) + 2 X(1) <=> HX(5) + SX(3171) 0.010 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+20 C4H6(7) + HX(5) <=> C4H7X(31) -0.010 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+30 C8H9X(169) <=> C8H9X(168) -0.004 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+57 C8H12(219) + 2 X(1) <=> HX(5) + SX(408) -0.033 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+86 C5H8c(547) + 2 X(1) <=> C5H7X(967) + HX(5) 0.042 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+113 SX(1614) <=> SX(1613) 0.012 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+142 C7H9X(968) <=> SX(2489) 0.013 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+174 C9H14(834) + 2 X(1) <=> CH3X(29) + SX(409) -0.028 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+204 C9H14(834) + 2 X(1) <=> HX(5) + SX(3170) 0.013 
+WARNING: Non-trivial pressure change of 0.014241 MPa in reactor!
+5 C4H6(7) + 2 X(1) <=> C4H5X(56) + HX(5) 0.020 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+29 C8H10(78) + 2 X(1) <=> C8H9X(168) + HX(5) 0.027 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+58 SX(409) <=> SX(408) 0.010 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+85 C7H10(397) + 2 X(1) <=> C2H3X(27) + C5H7X(967) 0.128 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+117 S(326) + 2 X(1) <=> HX(5) + SX(1977) 0.013 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+144 SX(343) <=> SX(2273) 0.012 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+173 S(829) + 2 X(1) <=> CH3X(29) + SX(1128) 0.026 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+199 C9H14(834) + 2 X(1) <=> HX(5) + SX(2458) 0.013 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+21 C4H8-1(3) + 2 X(1) <=> C4H7X(32) + HX(5) 0.011 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+32 C2H4(2) + C6H7X(85) <=> SX(208) 1.548 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+62 SX(862) <=> SX(882) 0.013 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+89 C5H8c(547) + 2 X(1) <=> HX(5) + SX(1318) 0.052 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+114 SX(1559) <=> SX(1613) 0.013 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+146 SX(2273) <=> SX(2650) 0.003 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+172 SX(2876) <=> SX(1106) 0.013 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+201 C9H14(834) + 2 X(1) <=> HX(5) + SX(3167) 0.013 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+25 C8H10(78) + 2 X(1) <=> C8H9X(170) + HX(5) 0.026 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+33 C8H12(219) + 2 X(1) <=> C2H5X(30) + C6H7X(85) 0.239 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+63 SX(408) <=> SX(841) 0.013 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+92 C5H8g(543) + 2 X(1) <=> HX(5) + SX(1168) 0.010 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+118 S(326) + 2 X(1) <=> HX(5) + SX(1976) 0.013 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+147 S(351) + 2 X(1) <=> HX(5) + SX(2303) 0.010 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+171 C7H10(549) + 2 X(1) <=> HX(5) + SX(1106) 0.013 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+202 SX(2458) <=> SX(3167) 0.013 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+22 C2H3X(27) + C2H4(2) <=> C4H7X(32) 0.009 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+37 C4H8-1(3) + 2 X(1) <=> C4H7X(33) + HX(5) 0.011 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+71 C2H4(2) + SX(409) <=> SX(820) 0.171 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+107 C5H8c(547) + 2 X(1) <=> HX(5) + SX(1317) -0.020 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+121 S(351) + 2 X(1) <=> C2H3X(27) + SX(410) 0.018 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+157 S(312) + 2 X(1) <=> C7H9X(382) + allylX(28) 0.008 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+187 C8H12(236) + 2 X(1) <=> C2H3X(27) + C6H9X(883) 0.011 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+206 S(312) + 2 X(1) <=> HX(5) + SX(2735) 0.012 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+18 C8H10(78) + 2 X(1) <=> C8H9X(171) + HX(5) 0.013 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+40 C8H12(219) + 2 X(1) <=> C4H5X(57) + C4H7X(33) 0.280 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+60 SX(408) <=> SX(406) 0.013 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+87 C6H10(140) + 2 X(1) <=> CH3X(29) + SX(1204) 0.006 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+120 S(351) + 2 X(1) <=> C2H5X(30) + C8H9X(168) 0.019 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+145 S(351) + 2 X(1) <=> HX(5) + SX(2273) 0.013 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+177 C9H14(834) + 2 X(1) <=> C2H5X(30) + C7H9X(969) 0.008 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+200 SX(1128) <=> SX(3153) 0.013 
+WARNING: Non-trivial pressure change of 0.014364 MPa in reactor!
+0 C2H4(2) + 2 X(1) <=> C2H3X(27) + HX(5) 0.104 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+48 C8H12(219) + 2 X(1) <=> HX(5) + SX(411) 0.005 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+74 SX(820) <=> SX(1127) 0.012 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+102 S(326) + 2 X(1) <=> HX(5) + SX(319) 0.021 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+132 S(870) + 2 X(1) <=> HX(5) + SX(2017) 0.009 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+158 S(312) + 2 X(1) <=> HX(5) + SX(212) 0.012 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+186 C8H12(236) + 2 X(1) <=> HX(5) + SX(882) 0.085 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+207 SX(2758) <=> SX(2735) 0.006 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+27 C8H10(78) + 2 X(1) <=> C8H9X(169) + HX(5) 0.027 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+46 SX(208) <=> SX(381) 0.012 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+80 C6H10(140) + 2 X(1) <=> C2H5X(30) + C4H5X(56) 0.018 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+94 C5H8g(543) + 2 X(1) <=> HX(5) + SX(1560) 0.012 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+126 SX(2398) <=> SX(2404) 0.013 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+154 SX(213) <=> SX(212) 0.012 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+181 S(288) + 2 X(1) <=> HX(5) + SX(2702) 0.010 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+210 C7H10(549) + 2 X(1) <=> HX(5) + SX(1105) 0.053 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+17 C6H7X(84) <=> C6H7X(223) 0.013 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+52 allylX(28) <=> C3H5X(572) 0.001 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+65 C8H12(219) + 2 X(1) <=> C7H9X(382) + CH3X(29) 0.017 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+91 C5H8g(543) + 2 X(1) <=> C2H3X(27) + C3H5X(35) 0.112 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+122 S(351) + 2 X(1) <=> C2H3X(27) + SX(882) -0.000 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+153 C4H6(7) + C6H7X(85) <=> SX(212) 0.085 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+178 C9H14(834) + 2 X(1) <=> HX(5) + SX(1128) 0.012 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+211 SX(1106) <=> SX(1105) 0.032 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+6 C4H5X(57) <=> C4H5X(56) 0.010 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+41 C2H6(135) + 2 X(1) <=> 2 CH3X(29) 0.011 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+61 SX(406) <=> SX(862) 0.011 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+90 C5H8g(543) + 2 X(1) <=> C4H5X(57) + CH3X(29) 0.020 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+125 SX(1137) <=> SX(2398) 0.012 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+152 S(288) + 2 X(1) <=> HX(5) + SX(213) 0.020 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+176 C9H14(834) + 2 X(1) <=> C4H7X(33) + C5H7X(967) 0.029 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+208 C7H9X(970) <=> SX(1105) 0.017 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+24 C4H7X(31) <=> C4H7X(32) 0.011 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+42 CH4(142) + 2 X(1) <=> CH3X(29) + HX(5) 0.022 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+67 C7H10(397) + 2 X(1) <=> C3H5X(572) + C4H5X(57) 0.091 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+100 S(326) + 2 X(1) <=> C2H3X(27) + SX(411) -0.004 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+124 S(829) + 2 X(1) <=> HX(5) + SX(1137) -0.020 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+149 C4H6(7) + C6H7X(85) <=> SX(213) 0.012 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+175 C9H14(834) + 2 X(1) <=> C3H5X(572) + C6H9X(407) 0.024 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+209 S(2283) + 2 X(1) <=> C3H5X(35) + SX(1105) 0.013 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+14 C6H7X(86) <=> C6H7X(85) 0.017 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+36 C8H9X(168) <=> C8H9X(330) 0.013 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+66 C7H10(397) + 2 X(1) <=> C6H7X(85) + CH3X(29) 0.406 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+101 S(326) + 2 X(1) <=> C4H5X(57) + C6H9X(407) 0.013 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+133 SX(2017) <=> SX(2438) 0.012 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+165 SX(1204) <=> SX(1515) 0.013 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+193 C7H10(554) + 2 X(1) <=> HX(5) + SX(2523) 0.123 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+222 C6H10(140) + 2 X(1) <=> HX(5) + SX(1206) 0.016 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+26 C8H9X(171) <=> C8H9X(170) 0.013 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+39 C4H7X(34) <=> C4H7X(33) 0.012 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+77 C7H9X(382) <=> C7H9X(941) 0.012 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+108 C5H7X(967) <=> SX(1317) 0.011 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+136 C7H10(397) + 2 X(1) <=> C7H9X(968) + HX(5) 0.147 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+163 S(312) + 2 X(1) <=> HX(5) + SX(2758) 0.011 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+185 C8H12(236) + 2 X(1) <=> HX(5) + SX(862) 0.048 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+212 C7H10(549) + 2 X(1) <=> HX(5) + SX(2877) 0.054 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+12 C8H10(78) + 2 X(1) <=> C2H3X(27) + C6H7X(86) 0.048 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+45 C3H6(24) + 2 X(1) <=> HX(5) + allylX(28) 0.011 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+72 S(829) + 2 X(1) <=> C2H5X(30) + SX(409) 0.018 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+95 SX(1168) <=> SX(1560) 0.008 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+129 S(870) + 2 X(1) <=> HX(5) + SX(2001) 0.012 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+160 SX(212) <=> SX(2675) 0.013 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+192 C7H10(554) + 2 X(1) <=> C2H3X(27) + SX(1560) 0.007 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+215 SX(2877) <=> SX(2878) 0.010 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+8 C2H4(2) + HX(5) <=> C2H5X(30) 0.815 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+44 C3H6(24) + 2 X(1) <=> C2H3X(27) + CH3X(29) 0.662 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+75 S(829) + 2 X(1) <=> HX(5) + SX(1127) 0.012 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+105 S(870) + 2 X(1) <=> C2H5X(30) + SX(862) 0.009 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+128 SX(884) <=> SX(2001) 0.013 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+159 SX(213) <=> SX(2675) 0.012 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+191 C7H10(554) + 2 X(1) <=> C2H3X(27) + SX(1318) 0.094 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+218 SX(2878) <=> SX(2879) 0.013 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+19 C4H8-1(3) + 2 X(1) <=> C4H7X(31) + HX(5) 0.011 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+51 C3H6(24) + 2 X(1) <=> C3H5X(35) + HX(5) 0.061 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+81 C6H10(140) + 2 X(1) <=> C2H3X(27) + C4H7X(33) 0.023 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+111 SX(1560) <=> SX(1559) 0.012 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+135 C7H9X(971) <=> C7H9X(969) 0.011 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+164 S(312) + 2 X(1) <=> HX(5) + SX(2757) 0.010 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+188 S(2175) + 2 X(1) <=> C3H5X(35) + SX(1559) 0.018 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+217 SX(2880) <=> SX(2879) 0.014 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+2 H2(47) + 2 X(1) <=> 2 HX(5) 0.012 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+49 C8H12(219) + 2 X(1) <=> HX(5) + SX(410) 0.013 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+79 S(829) + 2 X(1) <=> C4H7X(33) + C6H9X(407) 0.043 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+98 S(326) + 2 X(1) <=> C2H5X(30) + C8H9X(170) 0.005 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+130 S(870) + 2 X(1) <=> HX(5) + SX(2022) 0.013 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+156 S(312) + 2 X(1) <=> C2H3X(27) + SX(208) 0.010 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+184 C8H12(236) + 2 X(1) <=> C2H5X(30) + C6H7X(84) 0.070 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+213 SX(1105) <=> SX(2877) 0.011 
+WARNING: Non-trivial pressure change of 0.014236 MPa in reactor!
+1 C4H6(7) + 2 X(1) <=> 2 C2H3X(27) 0.084 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+34 C8H12(219) + 2 X(1) <=> HX(5) + SX(208) 0.061 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+73 S(829) + 2 X(1) <=> HX(5) + SX(820) 0.021 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+104 S(870) + 2 X(1) <=> C2H5X(30) + SX(406) 0.010 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+134 C7H10(397) + 2 X(1) <=> C7H9X(969) + HX(5) 0.146 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+162 S(312) + 2 X(1) <=> HX(5) + SX(2759) 0.009 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+190 C7H10(554) + 2 X(1) <=> C6H7X(84) + CH3X(29) 0.248 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+219 S(2175) + 2 X(1) <=> CH3X(29) + SX(3393) -0.006 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+10 C6H8(9) + 2 X(1) <=> C6H7X(86) + HX(5) -0.014 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+38 C4H7X(31) <=> C4H7X(33) 0.013 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+69 C7H10(397) + 2 X(1) <=> C7H9X(971) + HX(5) 0.011 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+88 C5H8c(547) + 2 X(1) <=> HX(5) + SX(1204) 0.011 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+112 C5H8g(543) + 2 X(1) <=> HX(5) + SX(1613) 0.011 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+143 C7H9X(966) <=> SX(2489) 0.012 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+170 C7H9X(970) <=> SX(1106) 0.015 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+197 SX(3275) <=> SX(3757) 0.013 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+224 C8H12(236) + 2 X(1) <=> C2H3X(27) + SX(1206) 0.018 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+13 C6H8(9) + 2 X(1) <=> C6H7X(85) + HX(5) 0.152 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+55 C8H12(219) + 2 X(1) <=> HX(5) + SX(409) -0.034 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+83 C5H8c(547) + 2 X(1) <=> C4H5X(56) + CH3X(29) 0.175 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+109 SX(1318) <=> SX(1559) 0.013 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+139 C7H9X(968) <=> C7H9X(966) 0.012 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+167 C7H10(549) + 2 X(1) <=> C3H5X(35) + C4H5X(57) 0.254 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+195 C8H12(236) + 2 X(1) <=> CH3X(29) + SX(3275) 0.022 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+223 C6H9X(883) <=> SX(1206) 0.017 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+7 C4H8-1(3) + 2 X(1) <=> C2H3X(27) + C2H5X(30) 0.006 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+54 C3H5X(35) <=> C3H5X(572) 0.003 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+68 C7H10(397) + 2 X(1) <=> C7H9X(382) + HX(5) 0.011 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+93 SX(1318) <=> SX(1560) 0.013 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+123 S(351) + 2 X(1) <=> HX(5) + SX(343) 0.021 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+151 S(288) + 2 X(1) <=> C2H3X(27) + SX(381) 0.011 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+183 S(351) + 2 X(1) <=> C4H5X(57) + C6H9X(883) 0.016 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+216 C7H10(549) + 2 X(1) <=> HX(5) + SX(2879) 0.049 
+WARNING: Non-trivial pressure change of 0.014241 MPa in reactor!
+3 C4H6(7) + 2 X(1) <=> C4H5X(57) + HX(5) -0.083 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+53 C3H6(24) + 2 X(1) <=> C3H5X(572) + HX(5) 0.010 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+76 S(829) + 2 X(1) <=> HX(5) + SX(1138) 0.013 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+110 C5H8g(543) + 2 X(1) <=> HX(5) + SX(1559) 0.012 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+137 C7H9X(969) <=> C7H9X(968) 0.012 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+161 S(312) + 2 X(1) <=> HX(5) + SX(2675) 0.011 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+189 C7H10(549) + 2 X(1) <=> HX(5) + SX(2880) 0.013 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+220 SX(2877) <=> SX(3393) 0.012 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+9 C2H6(135) + 2 X(1) <=> C2H5X(30) + HX(5) 0.013 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+43 C4H8-1(3) + 2 X(1) <=> CH3X(29) + allylX(28) -0.520 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+78 C8H12(219) + 2 X(1) <=> C2H3X(27) + C6H9X(407) 0.034 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+103 C2H4(2) + SX(862) <=> SX(884) 0.128 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+138 C7H10(397) + 2 X(1) <=> C7H9X(966) + HX(5) 0.147 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+166 C7H10(549) + 2 X(1) <=> C6H7X(86) + CH3X(29) 0.117 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+194 C7H10(554) + 2 X(1) <=> HX(5) + SX(2557) 0.234 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+221 SX(2878) <=> SX(3393) 0.011 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+4 C6H8(9) + 2 X(1) <=> C2H3X(27) + C4H5X(57) 0.443 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+47 C8H12(219) + 2 X(1) <=> HX(5) + SX(381) 0.013 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+82 C6H10(140) + 2 X(1) <=> C6H9X(407) + HX(5) 0.021 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+106 S(870) + 2 X(1) <=> HX(5) + SX(884) 0.016 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+131 S(870) + 2 X(1) <=> HX(5) + SX(2021) 0.012 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+148 S(351) + 2 X(1) <=> HX(5) + SX(2302) 0.013 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+182 S(870) + 2 X(1) <=> C4H7X(33) + C6H9X(883) 0.021 
+WARNING: Non-trivial pressure change of 0.014235 MPa in reactor!
+214 C7H10(549) + 2 X(1) <=> HX(5) + SX(2878) 0.054 
 Exporting sensitivity data to a csv

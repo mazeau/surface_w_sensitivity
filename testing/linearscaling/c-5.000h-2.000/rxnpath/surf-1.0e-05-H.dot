@@ -1,21 +1,21 @@
 digraph reaction_paths {
 center=1;
-s5 -> s37[fontname="Helvetica", style="setlinewidth(5.17)", arrowsize=2.59, color="0.7, 0.833, 0.9"
+s5 -> s72[fontname="Helvetica", style="setlinewidth(5.17)", arrowsize=2.59, color="0.7, 0.833, 0.9"
 , label=" 0.333"];
-s5 -> s38[fontname="Helvetica", style="setlinewidth(6)", arrowsize=3, color="0.7, 1.5, 0.9"
+s5 -> s73[fontname="Helvetica", style="setlinewidth(6)", arrowsize=3, color="0.7, 1.5, 0.9"
 , label=" 1"];
-s37 -> s10[fontname="Helvetica", style="setlinewidth(4.65)", arrowsize=2.33, color="0.7, 0.668, 0.9"
-, label=" 0.168"];
-s38 -> s8[fontname="Helvetica", style="setlinewidth(5.48)", arrowsize=2.74, color="0.7, 1, 0.9"
+s72 -> s11[fontname="Helvetica", style="setlinewidth(4.66)", arrowsize=2.33, color="0.7, 0.669, 0.9"
+, label=" 0.169"];
+s73 -> s8[fontname="Helvetica", style="setlinewidth(5.48)", arrowsize=2.74, color="0.7, 1, 0.9"
 , label=" 0.5"];
-s8 -> s39[fontname="Helvetica", style="setlinewidth(2.86)", arrowsize=1.43, color="0.7, 0.516, 0.9"
+s8 -> s84[fontname="Helvetica", style="setlinewidth(2.86)", arrowsize=1.43, color="0.7, 0.516, 0.9"
 , label=" 0.0156"];
 s5 [ fontname="Helvetica", label="C2H4(2)"];
 s8 [ fontname="Helvetica", label="C4H6(7)"];
-s10 [ fontname="Helvetica", label="H2(68)"];
-s37 [ fontname="Helvetica", label="HX(5)"];
-s38 [ fontname="Helvetica", label="C2H3X(37)"];
-s39 [ fontname="Helvetica", label="C4H5X(80)"];
+s11 [ fontname="Helvetica", label="H2(47)"];
+s72 [ fontname="Helvetica", label="HX(5)"];
+s73 [ fontname="Helvetica", label="C2H3X(27)"];
+s84 [ fontname="Helvetica", label="C4H5X(56)"];
  label = "Scale = 9.4e-07\l Hrxn path";
  fontname = "Helvetica";
 }

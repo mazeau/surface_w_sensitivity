@@ -1,0 +1,5 @@
+Using Theano backend.
+Traceback (most recent call last):
+  File "batch.py", line 557, in <module>
+    mol_percents = sen[x][5]  # species, mol percents
+TypeError: 'NoneType' object has no attribute '__getitem__'

@@ -1,1 +1,25 @@
-slurmstepd: error: *** JOB 7605667 ON c0758 CANCELLED AT 2019-11-03T00:02:27 ***
+Traceback (most recent call last):
+  File "batch.py", line 283, in <module>
+    a = semibatch(gas, surf, t_in, pressure, volume, ratio_in)
+  File "batch.py", line 134, in semibatch
+    sim.advance(time)  # Advance the simulation to next set time
+  File "interfaces/cython/cantera/reactor.pyx", line 926, in cantera._cantera.ReactorNet.advance (interfaces/cython/cantera/_cantera.cpp:68369)
+cantera._cantera.CanteraError: 
+***********************************************************************
+CanteraError thrown by CVodesIntegrator::integrate:
+CVodes error encountered. Error code: -1
+At t = 2289.03, mxstep steps taken before reaching tout.
+
+Components with largest weighted error estimates:
+8: 6.24194
+88: 0.174085
+17: -0.0255253
+29: -0.0250157
+86: -0.0249096
+16: -0.0243824
+89: 0.0235451
+78: -0.0217173
+56: -0.0214916
+45: -0.0205009
+***********************************************************************
+
