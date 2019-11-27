@@ -68,68 +68,38 @@ minute = 60.0
 #######################################################################
 t_in = 700  # K - in the paper, it was ~698.15K at the start of the cat surface and ~373.15 for the gas inlet temp
 t_cat = t_in
-length = 70 * mm  # Reactor length- m
-diam = 16.5*mm  # Reactor diameter - in m
-area = (diam/2.0)**2*np.pi  # Reactor cross section area (area of tube) in m^2
+length = 70 * mm  # Reactor length- m, as seen in doi:10.1016/j.jcat.2007.05.011, Horn 2007
+diam = 16.5*mm  # Reactor diameter - in m, as seen in doi:10.1016/j.jcat.2007.05.011, Horn 2007
+area = (diam/2.0)**2*np.pi  # Reactor cross section area (area of tube) in m^2, as seen in doi:10.1016/j.jcat.2007.05.011, Horn 2007
 porosity = 0.81  # Monolith channel porosity, from Horn ref 17 sec 2.2.2
-# cat_area_per_vol = 1600.  # Catalyst particle surface area per unit volume in m-1
-cat_area_per_vol = 10000  # I made this up, in m-1. 4500 is lowest that "work" for all base
-flow_rate = 4.7  # slpm
-flow_rate = flow_rate*.001/60  # m^3/s
+# todo: come up with a reason for this
+cat_area_per_vol = 10000  # By inspection...
+flow_rate = 4.7  # slpm, as seen in as seen in doi:10.1016/j.jcat.2007.05.011, Horn 2007
+flow_rate = flow_rate*.001/60  # m^3/s, as seen in as seen in doi:10.1016/j.jcat.2007.05.011, Horn 2007
 tot_flow = 0.208  # from Horn 2007, constant inlet flow rate in mol/min, equivalent to 4.7 slpm
-velocity = flow_rate/area  # m/s
+velocity = flow_rate/area  # m/s, by inspection
 
 # The PFR will be simulated by a chain of 'NReactors' stirred reactors.
 NReactors = 7001
 
-on_catalyst = 1000  # catalyst length 10mm, but it doesn't say where.  let's guess at 1 cm?
-off_catalyst = 2000
+on_catalyst = 1000  # catalyst length 10mm, but it doesn't say where.  starts at 1 cm
+off_catalyst = 2000  # catalyst ends at 2 cm (lasts 20 mm)
 dt = 1.0
 
-reactor_len = length/(NReactors-1)
-rvol = area * reactor_len * porosity
+reactor_len = length/(NReactors-1)  # find the length of each individual reactor, not including the last one
+rvol = area * reactor_len * porosity  # each reactor's volume
 
 # catalyst area in one reactor
-cat_area = cat_area_per_vol * rvol
-
-# def adjust_thermo(changes_dict):
-#     """
-#     Give it a dictionary of species names and Delta H (kJ/mol) changes.
-#     """
-# #     original_dict = dict()
-#     for species_name, dH in changes_dict.items():
-        
-# #         print species_name
-#         dk = dH*1000 / 8.314  # for the thermo loop, 'dk' is in fact (delta H / R)
-
-#         m = surf.species_index(species_name)
-#         s = surf.species(m)
-# #         print "was", s.thermo.h(300)
-#         original_coeffs = s.thermo.coeffs
-#         perturbed_coeffs = np.ones_like(original_coeffs)
-#         perturbed_coeffs[:] = original_coeffs
-#         perturbed_coeffs[6] = original_coeffs[6] + dk
-#         perturbed_coeffs[13] = original_coeffs[13] + dk
-
-#         s.thermo = ct.NasaPoly2(100.000, 5000.000, ct.one_atm, perturbed_coeffs)
-#         surf.modify_species(m, s)
-        
-#         original_dict[species_name] = original_coeffs
-# #         print "now", s.thermo.h(300)
-# #     return original_dict
-
-# original_dict = adjust_thermo({
-#      'HX(19)': 0,
-#      'OCX(25)': 60,  # was good
-#      'OX(20)': 0,
-#      'H2OX(23)': 0,
-#      'HOX(22)': 0})
+cat_area = cat_area_per_vol * rvol  # the amount of catalyst per reactor volume
 
 def plotflow(a):
+    """
+    Given the output of a simulation, plot the species profiles through the PFR
+    """
     gas_out, surf_out, gas_names, surf_names, dist_array, T_array = a
 
     # Plot in mol/min
-    fig, axs = plt.subplots(1, 2)
+    fig, axs = plt.subplots(1, 2)  # two plots
 
     axs[0].set_prop_cycle(cycler('color', ['m', 'g', 'b', 'y', 'c', 'r', 'k', 'g']))
 
@@ -202,6 +172,7 @@ def plotflow(a):
     fig.set_figheight(6)
     fig.set_figwidth(18)
 
+    # getting the input gas ratios
     for n in range(len(gas_names)):
         if gas_names[n] == 'CH4(2)':
             c_in = gas_out[0][n]
@@ -215,6 +186,9 @@ def plotflow(a):
 
 
 def plotZoom(a):
+    """
+    A zoomed in version of plotFlow, takes all the same inputs
+    """
     gas_out, surf_out, gas_names, surf_names, dist_array, T_array = a
 
     fig, axs = plt.subplots(1, 2)
@@ -292,14 +266,9 @@ def plotZoom(a):
     ax2.set_ylabel('Temperature (K)', fontsize=20)
     ax2.set_ylim(600, 2000)
     ax2.set_xlim(8, 25)
-    # fig.tight_layout()
-    # axs[1,0].ticklabel_format(axis='x', style='sci', scilimits=(0,0))
-    # axs[0,1].ticklabel_format(axis='x', style='sci', scilimits=(0,0))
-    # axs[1,1].ticklabel_format(axis='x', style='sci', scilimits=(0,0))
     fig.set_figheight(6)
     fig.set_figwidth(24)
 
-    #     temperature = np.round(T_array[0],0)
     for n in range(len(gas_names)):
         if gas_names[n] == 'CH4(2)':
             c_in = gas_out[0][n]
@@ -314,6 +283,9 @@ def plotZoom(a):
 
 
 def plotSurf(a):
+    """
+    Plot the surface species' profiles throughout the PFR
+    """
     gas_out, surf_out, gas_names, surf_names, dist_array, T_array = a
 
     fig, axs = plt.subplots(1, 2)
@@ -411,8 +383,10 @@ def monolithFull(gas, surf, temp, mol_in, verbose=False, sens=False):
     """
     Verbose prints out values as you go along
     Sens is for sensitivity, in the form [perturbation, reaction #]
+    
+    This runs each individual simulation
     """
-    ch4, o2, ar = mol_in
+    ch4, o2, ar = mol_in  # unpacking the starting gas ratios
     ratio = ch4/(2*o2)
     ratio = round(ratio, 1)
     ch4 = str(ch4)
@@ -431,7 +405,7 @@ def monolithFull(gas, surf, temp, mol_in, verbose=False, sens=False):
     TDY = gas.TDY
     cov = surf.coverages
 
-    if verbose is True:
+    if verbose is True:  # setting up how things will print out if it is wanted
         print('  distance(mm)   X_CH4        X_O2        X_H2       X_CO       X_H2O       X_CO2')
 
     # create a new reactor
@@ -466,34 +440,35 @@ def monolithFull(gas, surf, temp, mol_in, verbose=False, sens=False):
     sim.max_err_test_fails = 12
 
     # set relative and absolute tolerances on the simulation
+    # these vary on the type of computer used and are super annoying so good luck
     sim.rtol = 1.0e-10
     sim.atol = 1.0e-20
 
-    gas_names = gas.species_names
-    surf_names = surf.species_names
-    gas_out = []  # in
-
+    gas_names = gas.species_names  # save the gas species names
+    surf_names = surf.species_names  # save the surface species' names
+    gas_out = []  # save the gas species concentrations
+    
+    # arrays to store the useful information in
     surf_out = []
     dist_array = []
     T_array = []
 
-    surf.set_multiplier(0.0)  # no surface reactions until the gauze
+    surf.set_multiplier(0.0)  # no surface reactions until the gauze/catalyst
     for n in range(NReactors):
         # Set the state of the reservoir to match that of the previous reactor
         gas.TDY = r.thermo.TDY
         upstream.syncState()
-        if n == on_catalyst:
+        if n == on_catalyst:  # turn the catalyst `on'
             surf.set_multiplier(1.0)
             if sens is not False:
                 surf.set_multiplier(1.0 + sens[0], sens[1])
-        if n == off_catalyst:
+        if n == off_catalyst:  # turn the catalyst `off'
             surf.set_multiplier(0.0)
         sim.reinitialize()
         sim.advance_to_steady_state()
         dist = n * reactor_len * 1.0e3  # distance in mm
         dist_array.append(dist)
         T_array.append(surf.T)
-        # print "mass_flow_rate", mass_flow_rate,  v.mdot(sim.time), "kg/s"
         kmole_flow_rate = mass_flow_rate / gas.mean_molecular_weight  # kmol/s
         gas_out.append(1000 * 60 * kmole_flow_rate * gas.X.copy())  # molar flow rate in moles/minute
         surf_out.append(surf.X.copy())
@@ -529,14 +504,12 @@ def monolithFull(gas, surf, temp, mol_in, verbose=False, sens=False):
         # else:
         #     pass
 
-        if verbose is True:
+        if verbose is True:  # print out gas profiles at certain times if the user so desires
             if not n % 100:
                 print('  {0:10f}  {1:10f}  {2:10f}  {3:10f} {4:10f} {5:10f} {6:10f}'.format(dist, *gas[
                     'CH4(2)', 'O2(3)', 'H2(6)', 'CO(7)', 'H2O(5)', 'CO2(4)'].X * 1000 * 60 * kmole_flow_rate))
-                # print(surf.T)
-                # print(gas.P)
-                # print(surf.coverages)
-
+    
+    # save the things at the end or each reactor
     gas_out = np.array(gas_out)
     surf_out = np.array(surf_out)
     gas_names = np.array(gas_names)
@@ -546,12 +519,15 @@ def monolithFull(gas, surf, temp, mol_in, verbose=False, sens=False):
 
 
 def simulationWorker(ratio):
+    """
+    Start all of the simulations all at once using multiprocessing
+    """
     fo2 = 1 / (2. * ratio + 1 + 79 / 21)
     fch4 = 2 * fo2 * ratio
     far = 79 * fo2 / 21
     ratio_in = [fch4, fo2, far]  # mol fractions
 
-    try:
+    try:  # make a try loop because of CVODES errors
         a = monolithFull(gas, surf, t_in, ratio_in)
         print("Finished simulation at a C/O ratio of {:.1f}".format(ratio))
         gas_out, surf_out, gas_names, surf_names, dist_array, T_array = a
@@ -568,11 +544,12 @@ ratios = [.6, .7, .8, .9, 1., 1.1, 1.2, 1.3, 1.4, 1.6, 1.8, 2., 2.2, 2.4, 2.6]  
 data = []
 num_threads = len(ratios)
 pool = multiprocessing.Pool(processes=num_threads)
-data = pool.map(simulationWorker, ratios, 1)
+data = pool.map(simulationWorker, ratios, 1)  # start the simulations in parallel
 pool.close()
 pool.join()
 
 # finding exit conversions
+# this is a horrible, inefficient way to do this but it works for now.  Let's hope I fix it before this code is published
 end_temp = []
 max_temp = []
 dist_max_temp = []
@@ -645,8 +622,9 @@ for x in range(len(ratios_real)):
     output.append([ratios_real[x], ch4_in[x], ch4_out[x], co_out[x], h2_out[x], h2o_out[x], co2_out[x], end_temp[x], max_temp[x], dist_max_temp[x], o2_conv[x]])
 k = (pd.DataFrame.from_dict(data=output, orient='columns'))
 k.columns = ['C/O ratio', 'CH4 in', 'CH4 out', 'CO out', 'H2 out', 'H2O out', 'CO2 out', 'Exit temp', 'Max temp', 'Dist to max temp', 'O2 conv']
-k.to_csv('dict_conversions_selectivities.csv', header=True)
+k.to_csv('dict_conversions_selectivities.csv', header=True)  # export the original simulation results to a csv in case things go wrong
 
+# plot the simulation results over different ratios
 fig, axs = plt.subplots(1, 2)
 # plot exit conversion and temp
 axs[0].plot(ratios_real, ch4_conv, 'bo-', label='CH4', color='limegreen')
@@ -673,7 +651,7 @@ out_dir = 'figures'
 os.path.exists(out_dir) or os.makedirs(out_dir)
 fig.savefig(out_dir + '/' + 'conversion&selectivity.pdf', bbox_inches='tight')
 
-# plot all on one
+# comparing all species profiles, all in one
 temps = []
 o2 = []
 co = []
@@ -705,29 +683,19 @@ for r in range(len(ratios)):
 axs[0].plot([dist_array[on_catalyst], dist_array[on_catalyst]], [-0.02, 0.2], linestyle='--', color='xkcd:grey')
 axs[0].plot([dist_array[off_catalyst], dist_array[off_catalyst]], [-0.02, 0.2], linestyle='--', color='xkcd:grey')
 axs[0].annotate("catalyst", fontsize=13, xy=(dist_array[on_catalyst], 0.08), va='bottom', ha='left')
-# axs[1].plot([dist_array[on_catalyst], dist_array[on_catalyst]],[-0.02,.2], linestyle='--', color='xkcd:grey')
-# axs[1].plot([dist_array[off_catalyst], dist_array[off_catalyst]],[-.02,0.2], linestyle='--', color='xkcd:grey')
-# axs[1].annotate("catalyst", fontsize=13, xy=(dist_array[on_catalyst], .08), va =('bottom'), ha = ('left'))
-# axs[2].plot([dist_array[on_catalyst], dist_array[on_catalyst]],[-.02,.2], linestyle='--', color='xkcd:grey')
-# axs[2].plot([dist_array[off_catalyst], dist_array[off_catalyst]],[-.02,.2], linestyle='--', color='xkcd:grey')
-# axs[2].annotate("catalyst", fontsize=13, xy=(dist_array[on_catalyst], .08), va =('bottom'), ha = ('left'))
 axs[0].legend(loc='center left')
-# axs[1].legend(loc='center left')
 axs[0].set_ylabel('O2 Flow (mol/mm)', fontsize=13)
 ax2.set_ylabel('Temperature (K)', fontsize=13)
-# ax2.legend(loc='center right')
 axs[0].set_xlabel('Position (mm)', fontsize=13)
 axs[1].set_ylabel('H2 Flow (mol/min)', fontsize=13)
 axs[2].set_ylabel('CO Flow (mol/min)', fontsize=13)
 axs[1].set_xlabel('Position (mm)', fontsize=13)
 axs[2].set_xlabel('Position (mm)', fontsize=13)
-# axs[0].set_title('O2');axs[1].set_title('H2');axs[2].set_title('CO')
 ax2.set_ylim(200, 2000)
 axs[0].set_ylim(0, .1)
 axs[0].set_xlim(5, 25)
 axs[1].set_xlim(5, 25)
 axs[2].set_xlim(5, 25)
-# plt.tight_layout()
 fig.set_figheight(14)
 fig.set_figwidth(8)
 out_dir = 'figures'
@@ -748,7 +716,7 @@ def sensitivity(gas, surf, old_data, temp, dk, thermo=False):
     old_data is an array with the original simulation output.
 
     Has multiple ways to calculate sensitivity.  You can use all at once, but was
-    written so that the other ways could be commented out.
+    written so that the other ways could be commented out.  I apologize
     """
     rxns = []
     sens1 = []
@@ -765,7 +733,7 @@ def sensitivity(gas, surf, old_data, temp, dk, thermo=False):
     sens12 = []
     sens13 = []
 
-    gas_out_data, gas_names_data, dist_array_data, T_array_data = old_data
+    gas_out_data, gas_names_data, dist_array_data, T_array_data = old_data  # unpacking
 
     reference = []
     for a in range(len(gas_names_data)):
@@ -781,7 +749,8 @@ def sensitivity(gas, surf, old_data, temp, dk, thermo=False):
             ar_in = x[1][0][0]
     ratio = ch4_in / (2 * o2_in)
     moles_in = [ch4_in, o2_in, ar_in]
-
+    
+    # calculating things from the original simulations
     for x in reference:
         if x[0] == 'CH4(2)':
             ch4_in = x[1][0][0]
@@ -817,7 +786,8 @@ def sensitivity(gas, surf, old_data, temp, dk, thermo=False):
             h2o_out = x[1][0][-1]
         if x[0] == 'CO2(4)':
             co2_out = x[1][0][-1]
-
+    
+    # if things are to small to make a difference, make them basically zero but also not give a divide by zero error
     if reference_ch4_conv <= 1.0e-8:
         reference_h2_sel = 1.0e-8
         reference_co_sel = 1.0e-8
@@ -872,7 +842,8 @@ def sensitivity(gas, surf, old_data, temp, dk, thermo=False):
     reference_peak_temp_dist = dist_array_data[T_array_data.index(max(T_array_data))]
 
     # run the simulations
-    if thermo is True:
+    if thermo is True:  # thermo sensitivity stuff, all off by default and was not referenced in the paper
+        # this should also be rewritten to be less repetitive
         dH = 1e4 # J/mol
         dk = dH / 8.314  # for the thermo loop, 'dk' is in fact (delta H / R)
         for m in range(surf.n_species):
@@ -883,15 +854,13 @@ def sensitivity(gas, surf, old_data, temp, dk, thermo=False):
             perturbed_coeffs[1:6] = original_coeffs[1:6]
             perturbed_coeffs[7:13] = original_coeffs[7:13]
             perturbed_coeffs[14] = original_coeffs[14]
-            #         perturbed_coeffs[6] = original_coeffs[6] + original_coeffs[6]*dk
-            #         perturbed_coeffs[13] = original_coeffs[13] + original_coeffs[13]*dk
             perturbed_coeffs[6] = original_coeffs[6] + dk
             perturbed_coeffs[13] = original_coeffs[13] + dk
             s.thermo = ct.NasaPoly2(100.000, 5000.000, ct.one_atm, perturbed_coeffs)
             surf.modify_species(m, s)
-            c = monolithFull(gas, surf, temp, moles_in)
+            c = monolithFull(gas, surf, temp, moles_in)  # run the simulation
 
-            gas_out, surf_out, gas_names, surf_names, dist_array, T_array = c
+            gas_out, surf_out, gas_names, surf_names, dist_array, T_array = c  # unpack
 
             new_amts = []
             for a in range(len(gas_names)):
@@ -1006,10 +975,10 @@ def sensitivity(gas, surf, old_data, temp, dk, thermo=False):
             # this step is essential, otherwise mechanism will have been altered
             s.thermo = ct.NasaPoly2(100.000, 5000.000, ct.one_atm, original_coeffs)
             surf.modify_species(m, s)
-    else:
+    else:  # reaction sensitivity analysis, the DEFAULT
         for rxn in range(surf.n_reactions):
             c = monolithFull(gas, surf, temp, moles_in, sens=[dk, rxn])
-            gas_out, surf_out, gas_names, surf_names, dist_array, T_array = c
+            gas_out, surf_out, gas_names, surf_names, dist_array, T_array = c  # unpack
 
             new_amts = []
             for a in range(len(gas_names)):
@@ -1051,7 +1020,7 @@ def sensitivity(gas, surf, old_data, temp, dk, thermo=False):
                 if x[0] == 'CO2(4)':
                     new_co2_out = x[1][0][-1]
 
-            if new_ch4_conv <= 1e-8:
+            if new_ch4_conv <= 1e-8:  # if basically nothing happens, sub in close to zeros so there are no divide by zero errors
                 new_h2_sel = 1.0e-8
                 new_co_sel = 1.0e-8
                 new_syngas_selectivity = 1.0e-8
@@ -1123,7 +1092,7 @@ def sensitivity(gas, surf, old_data, temp, dk, thermo=False):
     return rxns, sens1, sens2, sens3, sens4, sens5, sens6, sens7, sens8, sens9, sens10, sens11, sens12, sens13
 
 
-def export(rxns_translated, ratio, thermo=False):
+def export(rxns_translated, ratio, thermo=False):  # export all of the sensitivity simulations to a csv
     k = (pd.DataFrame.from_dict(data=rxns_translated, orient='columns'))
     k.columns = ['Reaction', 'SYNGAS Selec', 'SYNGAS Yield', 'CO Selectivity', 'CO % Yield', 'H2 Selectivity', 'H2 % Yield',
                  'CH4 Conversion', 'H2O+CO2 Selectivity', 'H2O+CO2 yield', 'Exit Temp', 'Peak Temp',
@@ -1136,7 +1105,7 @@ def export(rxns_translated, ratio, thermo=False):
         k.to_csv(out_dir + '/{:.1f}RxnSensitivity.csv'.format(ratio), header=True)
 
 
-def sensitivityWorker(data):
+def sensitivityWorker(data):  # actually run all of the sensitivity simulations
     print('Starting sensitivity simulation for a C/O ratio of {:.1f}'.format(data[0]))
     old_data = data[1][0]
     ratio = data[0]
@@ -1144,7 +1113,7 @@ def sensitivityWorker(data):
         reactions, sensitivity1, sensitivity2, sensitivity3, sensitivity4, sensitivity5, sensitivity6, sensitivity7, sensitivity8, sensitivity9, sensitivity10, sensitivity11, sensitivity12, sensitivity13 = sensitivity(gas, surf, old_data, t_in, dk)
         print('Finished sensitivity simulation for a C/O ratio of {:.1f}'.format(ratio))
         rxns_translated = []
-        for x in reactions:
+        for x in reactions:  # translate reactions into smiles to make them easier to compare with eachother
             for key, smile in names.iteritems():
                 x = re.sub(re.escape(key), smile, x)
             rxns_translated.append(x)
@@ -1160,7 +1129,7 @@ def sensitivityWorker(data):
         # pass
 
 
-def sensitivityThermoWorker(data):
+def sensitivityThermoWorker(data):  # sensitivity for thermo parameters
     print('Starting thermo sensitivity simulation for a C/O ratio of {:.1f}'.format(data[0]))
     old_data = data[1][0]
     ratio = data[0]
@@ -1168,7 +1137,7 @@ def sensitivityThermoWorker(data):
         species_on_surface, sensitivity1, sensitivity2, sensitivity3, sensitivity4, sensitivity5, sensitivity6, sensitivity7, sensitivity8, sensitivity9, sensitivity10, sensitivity11, sensitivity12, sensitivity13 = sensitivity(gas, surf, old_data, t_in, dk, thermo=True)
         print('Finished thermo sensitivity simulation for a C/O ratio of {:.1f}'.format(ratio))
         species_translated = []
-        for x in species_on_surface:
+        for x in species_on_surface:  # translating into smiles to make it easier to compare
             for key, smile in names.iteritems():
                 x = re.sub(re.escape(key), smile, x)
             species_translated.append(x)
@@ -1183,7 +1152,7 @@ def sensitivityThermoWorker(data):
         # pass
 
 
-species_dict = rmgpy.data.kinetics.KineticsLibrary().getSpecies('species_dictionary.txt')
+species_dict = rmgpy.data.kinetics.KineticsLibrary().getSpecies('species_dictionary.txt')  # import the species dictionary 
 keys = species_dict.keys()
 # get the first listed smiles string for each molecule
 smile = []
@@ -1199,6 +1168,7 @@ for s in smile:
     smiles.append(s.toSMILES())
 names = dict(zip(keys, smiles))
 
+# actually run the reaction sensitivity analyses
 worker_input = []
 dk = 1.0e-2
 num_threads = len(data)
@@ -1210,6 +1180,8 @@ pool.map(sensitivityWorker, worker_input, 1)
 pool.close()
 pool.join()
 
+
+# actually run the thermo sensitivity analyses
 worker_input = []
 sens_thermo = []
 dk = 1.0e-2
