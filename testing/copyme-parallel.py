@@ -98,7 +98,7 @@ cat_area = cat_area_per_vol * rvol
 #     """
 # #     original_dict = dict()
 #     for species_name, dH in changes_dict.items():
-        
+
 # #         print species_name
 #         dk = dH*1000 / 8.314  # for the thermo loop, 'dk' is in fact (delta H / R)
 
@@ -113,7 +113,7 @@ cat_area = cat_area_per_vol * rvol
 
 #         s.thermo = ct.NasaPoly2(100.000, 5000.000, ct.one_atm, perturbed_coeffs)
 #         surf.modify_species(m, s)
-        
+
 #         original_dict[species_name] = original_coeffs
 # #         print "now", s.thermo.h(300)
 # #     return original_dict
@@ -976,7 +976,7 @@ def sensitivity(gas, surf, old_data, temp, dk, thermo=False):
             Sens7 = (new_ch4_conv - reference_ch4_conv) / (
                         reference_ch4_conv * dk)
             sens7.append(Sens7)
-            
+
             Sens13 = (new_o2_conv - reference_o2_conv) / (reference_o2_conv * dk)
             sens13.append(Sens13)
 
@@ -1000,7 +1000,7 @@ def sensitivity(gas, surf, old_data, temp, dk, thermo=False):
             Sens12 = (new_peak_temp_dist - reference_peak_temp_dist) / (reference_peak_temp_dist * dk)
             sens12.append(Sens12)
 
-            print "%d %s %.3F %.3F" % (m, surf.species_name(m), Sens1, Sens2)
+            print("%d %s %.3F %.3F" % (m, surf.species_name(m), Sens1, Sens2))
             rxns.append(surf.species_name(m))
 
             # this step is essential, otherwise mechanism will have been altered
@@ -1094,7 +1094,7 @@ def sensitivity(gas, surf, old_data, temp, dk, thermo=False):
             Sens7 = (new_ch4_conv - reference_ch4_conv) / (
                     reference_ch4_conv * dk)
             sens7.append(Sens7)
-            
+
             Sens13 = (new_o2_conv - reference_o2_conv) / (reference_o2_conv * dk)
             sens13.append(Sens13)
 
@@ -1117,7 +1117,7 @@ def sensitivity(gas, surf, old_data, temp, dk, thermo=False):
             Sens12 = (new_peak_temp_dist - reference_peak_temp_dist) / (reference_peak_temp_dist * dk)
             sens12.append(Sens12)
 
-            print "%d %s %.3F %.3F" % (rxn, surf.reaction_equations()[rxn], Sens1, Sens2)
+            print("%d %s %.3F %.3F" % (rxn, surf.reaction_equations()[rxn], Sens1, Sens2))
             rxns.append(surf.reaction_equations()[rxn])
 
     return rxns, sens1, sens2, sens3, sens4, sens5, sens6, sens7, sens8, sens9, sens10, sens11, sens12, sens13
@@ -1155,7 +1155,7 @@ def sensitivityWorker(data):
                            sensitivity5[x], sensitivity6[x], sensitivity7[x], sensitivity8[x], sensitivity9[x],
                            sensitivity10[x], sensitivity11[x], sensitivity12[x], sensitivity13[x]])
         export(output, ratio)
-    except Exception, e: print str(e)
+    except Exception as e: print(str(e))
         # print('Unable to run sensitivity simulation at a C/O ratio of {:.1f}'.format(data[0]))
         # pass
 
@@ -1178,25 +1178,25 @@ def sensitivityThermoWorker(data):
                            sensitivity5[x], sensitivity6[x], sensitivity7[x], sensitivity8[x], sensitivity9[x],
                            sensitivity10[x], sensitivity11[x], sensitivity12[x], sensitivity13[x]])
         export(output, ratio, thermo=True)
-    except Exception, e: print str(e)
+    except Exception as e: print(str(e))
         # print('Unable to run thermo sensitivity simulation at a C/O ratio of {:.1f}'.format(data[0]))
         # pass
 
 
-species_dict = rmgpy.data.kinetics.KineticsLibrary().getSpecies('species_dictionary.txt')
+species_dict = rmgpy.data.kinetics.KineticsLibrary().get_species('species_dictionary.txt')
 keys = species_dict.keys()
 # get the first listed smiles string for each molecule
 smile = []
 for s in species_dict:
     smile.append(species_dict[s].molecule[0])
     if len(species_dict[s].molecule) is not 1:
-        print 'There are %d dupllicate smiles for %s:' % (len(species_dict[s].molecule), s)
+        print('There are %d dupllicate smiles for %s:' % (len(species_dict[s].molecule), s))
         for a in range(len(species_dict[s].molecule)):
-            print '%s' % (species_dict[s].molecule[a])
+            print('%s' % (species_dict[s].molecule[a]))
 # translate the molecules from above into just smiles strings
 smiles = []
 for s in smile:
-    smiles.append(s.toSMILES())
+    smiles.append(s.to_smiles())
 names = dict(zip(keys, smiles))
 
 worker_input = []
@@ -1210,11 +1210,11 @@ pool.map(sensitivityWorker, worker_input, 1)
 pool.close()
 pool.join()
 
-worker_input = []
-sens_thermo = []
-dk = 1.0e-2
-num_threads = len(data)
-pool = multiprocessing.Pool(processes=num_threads)
-for r in range(len(data)):
-    worker_input.append([data[r][0], [data[r][1]]])
-pool.map(sensitivityThermoWorker, worker_input, 1)
+# worker_input = []
+# sens_thermo = []
+# dk = 1.0e-2
+# num_threads = len(data)
+# pool = multiprocessing.Pool(processes=num_threads)
+# for r in range(len(data)):
+#     worker_input.append([data[r][0], [data[r][1]]])
+# pool.map(sensitivityThermoWorker, worker_input, 1)
