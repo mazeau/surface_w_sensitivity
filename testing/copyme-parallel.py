@@ -684,7 +684,6 @@ def calculate(data, type='sens'):
 
 
 def calc_sensitivities(reference, new, index=None):
-    print(index)
     reference_syngas_selectivity, reference_syngas_yield, reference_co_sel, reference_co_yield, reference_h2_sel, reference_h2_yield, reference_ch4_conv, reference_full_oxidation_selectivity, reference_full_oxidation_yield, reference_exit_temp, reference_peak_temp, reference_peak_temp_dist, reference_o2_conv = reference
     new_syngas_selectivity, new_syngas_yield, new_co_sel, new_co_yield, new_h2_sel, new_h2_yield, new_ch4_conv, new_full_oxidation_selectivity, new_full_oxidation_yield, new_exit_temp, new_peak_temp, new_peak_temp_dist, new_o2_conv = new
 
@@ -707,7 +706,7 @@ def calc_sensitivities(reference, new, index=None):
     if index is not None:
         # assert index is int
         # print("%d %s %.3F %.3F" % (index, surf.species_name(index), Sens1, Sens2))
-        rxn = surf.species_name(index)
+        rxn = surf.reaction_equations()[index]
         return rxn, Sens1, Sens2, Sens3, Sens4, Sens5, Sens6, Sens7, Sens8, Sens9, Sens10, Sens11, Sens12, Sens13
     else:
         return Sens1, Sens2, Sens3, Sens4, Sens5, Sens6, Sens7, Sens8, Sens9, Sens10, Sens11, Sens12, Sens13
@@ -881,7 +880,6 @@ def sensitivity(gas, surf, old_data, temp, dk, thermo=False):
             c = [gas_out, gas_names, dist_array, T_array]
             new_data = calculate(c, type='sens')
             sensitivities = calc_sensitivities(reference_data, new_data, index=rxn)
-            print('finished comparing')
             sensitivity_results.append(sensitivities)
     return sensitivity_results
 
