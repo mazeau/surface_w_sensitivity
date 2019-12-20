@@ -125,7 +125,7 @@ cat_area = cat_area_per_vol * rvol
 #      'H2OX(23)': 0,
 #      'HOX(22)': 0})
 
-def plotflow(a):
+def plot_flow(a):
     gas_out, surf_out, gas_names, surf_names, dist_array, T_array = a
 
     # Plot in mol/min
@@ -214,7 +214,7 @@ def plotflow(a):
     fig.savefig(out_dir + '/' + str(ratio) + 'ratio.pdf', bbox_inches='tight')
 
 
-def plotZoom(a):
+def plot_zoom(a):
     gas_out, surf_out, gas_names, surf_names, dist_array, T_array = a
 
     fig, axs = plt.subplots(1, 2)
@@ -313,7 +313,7 @@ def plotZoom(a):
     fig.savefig(out_dir + '/' + str(ratio) + 'ratioZoom.pdf', bbox_inches='tight')
 
 
-def plotSurf(a):
+def plot_surf(a):
     gas_out, surf_out, gas_names, surf_names, dist_array, T_array = a
 
     fig, axs = plt.subplots(1, 2)
@@ -555,9 +555,9 @@ def simulationWorker(ratio):
         a = monolithFull(gas, surf, t_in, ratio_in)
         print("Finished simulation at a C/O ratio of {:.1f}".format(ratio))
         gas_out, surf_out, gas_names, surf_names, dist_array, T_array = a
-        plotflow(a)
-        plotZoom(a)
-        plotSurf(a)
+        plot_flow(a)
+        plot_zoom(a)
+        plot_surf(a)
         return [ratio, [gas_out, gas_names, dist_array, T_array]]
     except:
         print('Unable to run simulation at a C/O ratio of {:.1f}'.format(ratio))
@@ -897,7 +897,7 @@ def export(rxns_translated, ratio, thermo=False):
         k.to_csv(out_dir + '/{:.1f}RxnSensitivity.csv'.format(ratio), header=True)
 
 
-def sensitivityWorker(data):
+def sensitivity_worker(data):
     print('Starting sensitivity simulation for a C/O ratio of {:.1f}'.format(data[0]))
     old_data = data[1][0]
     ratio = data[0]
@@ -908,7 +908,7 @@ def sensitivityWorker(data):
         reactions = [d[0] for d in sensitivities]  # getting the reactions
         rxns_translated = []
         for x in reactions:
-            for key, smile in names.iteritems():
+            for key, smile in names.items():
                 x = re.sub(re.escape(key), smile, x)
             rxns_translated.append(x)
         print('Finished translating for C/O ratio of {:.1f}'.format(ratio))
@@ -922,7 +922,7 @@ def sensitivityWorker(data):
         # pass
 
 
-def sensitivityThermoWorker(data):
+def sensitivity_thermo_worker(data):
     print('Starting thermo sensitivity simulation for a C/O ratio of {:.1f}'.format(data[0]))
     old_data = data[1][0]
     ratio = data[0]
@@ -931,7 +931,7 @@ def sensitivityThermoWorker(data):
         print('Finished thermo sensitivity simulation for a C/O ratio of {:.1f}'.format(ratio))
         species_translated = []
         for x in species_on_surface:
-            for key, smile in names.iteritems():
+            for key, smile in names.items():
                 x = re.sub(re.escape(key), smile, x)
             species_translated.append(x)
         output = []
@@ -968,7 +968,7 @@ pool = multiprocessing.Pool(processes=num_threads)
 worker_input = []
 for r in range(len(data)):
     worker_input.append([data[r][0], [data[r][1]]])
-pool.map(sensitivityWorker, worker_input, 1)
+pool.map(sensitivity_worker, worker_input, 1)
 pool.close()
 pool.join()
 
@@ -979,4 +979,4 @@ pool.join()
 # pool = multiprocessing.Pool(processes=num_threads)
 # for r in range(len(data)):
 #     worker_input.append([data[r][0], [data[r][1]]])
-# pool.map(sensitivityThermoWorker, worker_input, 1)
+# pool.map(sensitivity_thermo_worker, worker_input, 1)
