@@ -1,0 +1,13 @@
+digraph reaction_paths {
+center=1;
+s4 -> s21[fontname="Helvetica", penwidth=5.75, arrowsize=2.88, color="0.7, 1.22, 0.9"
+, label=" 0.72"];
+s2 -> s32[fontname="Helvetica", penwidth=6, arrowsize=3, color="0.7, 1.5, 0.9"
+, label=" 1"];
+s2 [ fontname="Helvetica", label="CH3OH(2)"];
+s4 [ fontname="Helvetica", label="O2(4)"];
+s21 [ fontname="Helvetica", label="OX(20)"];
+s32 [ fontname="Helvetica", label="CH4OX(51)"];
+ label = "Scale = 0.034\l Orxn path";
+ fontname = "Helvetica";
+}
