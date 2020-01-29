@@ -72,10 +72,11 @@ length = 70 * mm  # Reactor length- m
 diam = 16.5*mm  # Reactor diameter - in m
 area = (diam/2.0)**2*np.pi  # Reactor cross section area (area of tube) in m^2
 porosity = 0.81  # Monolith channel porosity, from Horn ref 17 sec 2.2.2
-# cat_area_per_vol = 1600.  # Catalyst particle surface area per unit volume in m-1
-cat_area_per_vol = 10000  # I made this up, in m-1. 4500 is lowest that "work" for all base
-flow_rate = 4.7  # slpm
-flow_rate = flow_rate*.001/60  # m^3/s
+#       4500 is lowest that "work" for all base.
+cat_area_per_vol = 16000  # m2/m3, which is 160 cm2/cm3, as used in Horn 2006
+# Area/volume now 1.6e4/m. This matches Horn 2006
+flow_rate = 4.7  # slpm, as seen in as seen in doi:10.1016/j.jcat.2007.05.011, Horn 2007
+flow_rate = flow_rate*.001/60  # m^3/s, as seen in as seen in doi:10.1016/j.jcat.2007.05.011, Horn 2007
 tot_flow = 0.208  # from Horn 2007, constant inlet flow rate in mol/min, equivalent to 4.7 slpm
 velocity = flow_rate/area  # m/s
 
