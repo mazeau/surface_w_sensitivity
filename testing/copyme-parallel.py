@@ -72,8 +72,9 @@ length = 70 * mm  # Reactor length- m, as seen in doi:10.1016/j.jcat.2007.05.011
 diam = 16.5*mm  # Reactor diameter - in m, as seen in doi:10.1016/j.jcat.2007.05.011, Horn 2007
 area = (diam/2.0)**2*np.pi  # Reactor cross section area (area of tube) in m^2, as seen in doi:10.1016/j.jcat.2007.05.011, Horn 2007
 porosity = 0.81  # Monolith channel porosity, from Horn ref 17 sec 2.2.2
-# todo: come up with a reason for this
-cat_area_per_vol = 10000  # By inspection...
+# todo: re-run with this cat_area_per_vol value, because previously used 10000 m2/m3.
+#       4500 is lowest that "work" for all base.
+cat_area_per_vol = 16000  # m2/m3, which is 160 cm2/cm3, as used in Horn 2006
 flow_rate = 4.7  # slpm, as seen in as seen in doi:10.1016/j.jcat.2007.05.011, Horn 2007
 flow_rate = flow_rate*.001/60  # m^3/s, as seen in as seen in doi:10.1016/j.jcat.2007.05.011, Horn 2007
 tot_flow = 0.208  # from Horn 2007, constant inlet flow rate in mol/min, equivalent to 4.7 slpm
