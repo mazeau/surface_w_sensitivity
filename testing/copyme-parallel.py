@@ -523,7 +523,7 @@ def simulationWorker(ratio):
     """
     Start all of the simulations all at once using multiprocessing
     """
-    fo2 = 1 / (2. * ratio + 1 + 79 / 21)
+    fo2 = 1 / (2. * ratio + 1 + 79. / 21.)
     fch4 = 2 * fo2 * ratio
     far = 79 * fo2 / 21
     ratio_in = [fch4, fo2, far]  # mol fractions
