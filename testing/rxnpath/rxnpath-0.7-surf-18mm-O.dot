@@ -1,16 +1,20 @@
 digraph reaction_paths {
 center=1;
-s4 -> s24[fontname="Helvetica", style="setlinewidth(5.59)", arrowsize=2.79, color="0.7, 1.08, 0.9"
-, label=" 0.581"];
-s24 -> s26[fontname="Helvetica", style="setlinewidth(4.63)", arrowsize=2.31, color="0.7, 0.662, 0.9"
-, label=" 0.162"];
-s24 -> s29[fontname="Helvetica", style="setlinewidth(6)", arrowsize=3, color="0.7, 1.5, 0.9"
-, label=" 1"];
-s26 -> s6[fontname="Helvetica", style="setlinewidth(4.58)", arrowsize=2.29, color="0.7, 0.652, 0.9"
-, label=" 0.152"];
-s26 -> s18[fontname="Helvetica", style="setlinewidth(2.23)", arrowsize=1.12, color="0.7, 0.507, 0.9"
-, label=" 0.00679"];
-s29 -> s8[fontname="Helvetica", style="setlinewidth(6)", arrowsize=3, color="0.7, 1.5, 0.9"
+s4 -> s24[fontname="Helvetica", penwidth=5.11, arrowsize=2.55, color="0.7, 0.806, 0.9"
+, label=" 0.306"];
+s26 -> s24[fontname="Helvetica", penwidth=5.72, arrowsize=2.86, color="0.7, 1.19, 0.9"
+, label=" 0.691"];
+s24 -> s29[fontname="Helvetica", penwidth=6, arrowsize=3, color="0.7, 1.5, 0.9"
+, label=" 0.998"];
+s6 -> s26[fontname="Helvetica", penwidth=5.49, arrowsize=2.75, color="0.7, 1.01, 0.9"
+, label=" 0.51"];
+s18 -> s26[fontname="Helvetica", penwidth=4.68, arrowsize=2.34, color="0.7, 0.675, 0.9"
+, label=" 0.175"];
+s27 -> s26[fontname="Helvetica", penwidth=2.06, arrowsize=1.03, color="0.7, 0.505, 0.9"
+, label=" 0.00541"];
+s6 -> s27[fontname="Helvetica", penwidth=2.06, arrowsize=1.03, color="0.7, 0.505, 0.9"
+, label=" 0.00541"];
+s29 -> s8[fontname="Helvetica", penwidth=6, arrowsize=3, color="0.7, 1.5, 0.9"
 , label=" 1"];
 s4 [ fontname="Helvetica", label="O2(3)"];
 s6 [ fontname="Helvetica", label="H2O(5)"];
@@ -18,7 +22,8 @@ s8 [ fontname="Helvetica", label="CO(7)"];
 s18 [ fontname="Helvetica", label="OH(17)"];
 s24 [ fontname="Helvetica", label="OX(20)"];
 s26 [ fontname="Helvetica", label="HOX(22)"];
+s27 [ fontname="Helvetica", label="H2OX(23)"];
 s29 [ fontname="Helvetica", label="OCX(25)"];
- label = "Scale = 0.0007\l Orxn path";
+ label = "Scale = 2.5e-06\l Orxn path";
  fontname = "Helvetica";
 }

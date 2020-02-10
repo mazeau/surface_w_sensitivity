@@ -26,7 +26,7 @@ for x in files:
     for file in glob.glob(x + '/sensitivities/*.csv'):  # remove old sensitivities
         os.remove(file)
     for file in glob.glob(x + '/*.csv'):  # remove old conversions and selectivities csv
-	os.remove(file)
+        os.remove(file)
 
 #for file in glob.glob('/figures/*.pdf'):
 #    os.remove(file)

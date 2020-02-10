@@ -10,6 +10,6 @@
 #SBATCH --mem-per-cpu=4Gb
 #SBATCH --time=5:00:00
 
-source activate rmg_env3
+source activate rmg_env
 python copyme-parallel.py
 #python copymetest.py
