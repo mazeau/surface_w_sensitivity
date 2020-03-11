@@ -152,31 +152,31 @@ def plot_gas(data, x_lim=None):
                     else:
                         species_name = species_name[0:-4]
                 if species_name == "O2":
-                    axs.annotate("O$_2$", fontsize=12, color='y',
+                    axs.annotate("O$_2$", fontsize=18, color='y',
                                     xy=(dist_array[900], gas_out[:, i][900] + gas_out[:, i][900] / 100.0),
                                     va='bottom', ha='center')
                 elif species_name == "CO2":
-                    axs.annotate("CO$_2$", fontsize=12, color='c',
+                    axs.annotate("CO$_2$", fontsize=18, color='c',
                                     xy=(dist_array[2300], gas_out[:, i][2300] + gas_out[:, i][2300] / 10.0), va='bottom',
                                     ha='center')
                 elif species_name == "CO":
-                    axs.annotate("CO", fontsize=12, color='m',
+                    axs.annotate("CO", fontsize=18, color='m',
                                     xy=(dist_array[1500], gas_out[:, i][1500] + 0.001),
                                     va='top', ha='center')
                 elif species_name == "H2":
-                    axs.annotate("H$_2$", fontsize=12, color='g',
+                    axs.annotate("H$_2$", fontsize=18, color='g',
                                     xy=(dist_array[2200], gas_out[:, i][2200] - 0.001),
                                     va='top', ha='center')
                 elif species_name == "CH4":
-                    axs.annotate("CH$_4$", fontsize=12, color='b',
+                    axs.annotate("CH$_4$", fontsize=18, color='b',
                                     xy=(dist_array[900], gas_out[:, i][900] + gas_out[:, i][900] / 100.0),
                                     va='bottom', ha='center')
                 elif species_name == "H2O":
-                    axs.annotate("H$_2$O", fontsize=12, color='k',
+                    axs.annotate("H$_2$O", fontsize=18, color='k',
                                     xy=(dist_array[1800], gas_out[:, i][1800] + gas_out[:, i][1800] / 40.0 + 0.001), va='bottom',
                                     ha='center')
                 else:
-                    axs.annotate(species_name, fontsize=12,
+                    axs.annotate(species_name, fontsize=18,
                                     xy=(dist_array[-1], gas_out[:, i][-1] + gas_out[:, i][-1] / 10.0), va='top',
                                     ha='center')
             else:
@@ -189,11 +189,11 @@ def plot_gas(data, x_lim=None):
 
     axs.plot([dist_array[on_catalyst], dist_array[on_catalyst]], [0, 0.15], linestyle='--', color='xkcd:grey')
     axs.plot([dist_array[off_catalyst], dist_array[off_catalyst]], [0, 0.15], linestyle='--', color='xkcd:grey')
-    axs.annotate("catalyst", fontsize=13, xy=(dist_array[1500], 0.14), va='center', ha='center')
+    axs.annotate("catalyst", fontsize=18, xy=(dist_array[1500], 0.14), va='center', ha='center')
 
     for item in (
             axs.get_xticklabels() + axs.get_yticklabels() + ax2.get_xticklabels() + ax2.get_yticklabels()):
-        item.set_fontsize(13)
+        item.set_fontsize(18)
 
     axs.legend(loc='upper center', bbox_to_anchor=(0.5, -0.2), fancybox=False, shadow=False, ncol=4)
 
@@ -206,9 +206,9 @@ def plot_gas(data, x_lim=None):
         ax2.set_xlim(0.0, length / mm)
     axs.set_ylim(0., 0.15)
     ax2.set_ylim(600, 2400)
-    axs.set_xlabel('Position (mm)', fontsize=16)
-    axs.set_ylabel('Flow (mol/min)', fontsize=16)
-    ax2.set_ylabel('Temperature (K)', fontsize=16)
+    axs.set_xlabel('Position (mm)', fontsize=22)
+    axs.set_ylabel('Flow (mol/min)', fontsize=22)
+    ax2.set_ylabel('Temperature (K)', fontsize=22)
 
     for n in range(len(gas_names)):
         if gas_names[n] == 'CH4(2)':
@@ -239,17 +239,17 @@ def plot_surf(data):
             axs.plot(dist_array, surf_out[:, i], label=surf_names[i])
     axs.plot([dist_array[on_catalyst], dist_array[on_catalyst]], [0, 1.2], linestyle='--', color='xkcd:grey')
     axs.plot([dist_array[off_catalyst], dist_array[off_catalyst]], [0, 1.2], linestyle='--', color='xkcd:grey')
-    axs.annotate("catalyst", fontsize=13, xy=(dist_array[1500], 1.1), va='center', ha='center')
+    axs.annotate("catalyst", fontsize=18, xy=(dist_array[1500], 1.1), va='center', ha='center')
 
     for item in (
             axs.get_xticklabels() + axs.get_yticklabels()):
-        item.set_fontsize(13)
+        item.set_fontsize(18)
 
     axs.legend(loc='upper center', bbox_to_anchor=(0.5, -0.2), fancybox=False, shadow=False, ncol=4)
     axs.set_ylim(0, 1.2)
     axs.set_xlim(8, 22)
-    axs.set_xlabel('Position (mm)', fontsize=16)
-    axs.set_ylabel('Site fraction', fontsize=16)
+    axs.set_xlabel('Position (mm)', fontsize=22)
+    axs.set_ylabel('Site fraction', fontsize=22)
 
     #     temperature = np.round(T_array[0],0)
     for n in range(len(gas_names)):
@@ -364,7 +364,7 @@ def monolithFull(gas, surf, temp, mol_in, verbose=False, sens=False):
         #     for l in locations_of_interest:
         #         if n == l:
         #             location = str(int(n / 100))
-        # 
+        #
         #             diagram = ct.ReactionPathDiagram(surf, 'X')
         #             diagram.title = 'rxn path'
         #             diagram.label_threshold = 1e-9
@@ -411,19 +411,6 @@ def simulationWorker(ratio):
     far = 79 * fo2 / 21
     ratio_in = [fch4, fo2, far]  # mol fractions
 
-    # try:
-    #     a = monolithFull(gas, surf, t_in, ratio_in)
-    #     print("Finished simulation at a C/O ratio of {:.1f}".format(ratio))
-    #     gas_out, surf_out, gas_names, surf_names, dist_array, T_array = a
-    #     plot_gas(a)
-    #     plot_zoom(a, x_lim=(8,25))
-    #     plot_surf(a)
-    #     return [ratio, [gas_out, gas_names, dist_array, T_array]]
-    # except:
-    #     print('Unable to run simulation at a C/O ratio of {:.1f}'.format(ratio))
-    #     pass
-
-
     a = monolithFull(gas, surf, t_in, ratio_in)
     print("Finished simulation at a C/O ratio of {:.1f}".format(ratio))
     gas_out, surf_out, gas_names, surf_names, dist_array, T_array = a
@@ -462,9 +449,9 @@ def calculate(data, type='sens'):
             if ch4_out < 0:
                 ch4_out = 0.
             ch4_depletion = ch4_in - ch4_out
-            if ch4_depletion <= 1.0e-8:
-                ch4_depletion = 1.0e-8
-                reference_ch4_conv = 1.0e-8
+            if ch4_depletion <= 0:
+                ch4_depletion = 1.0e-21
+                reference_ch4_conv = ch4_depletion / ch4_in
             else:
                 reference_ch4_conv = ch4_depletion / ch4_in  # Sensitivity definition 7: CH4 conversion
         if x[0] == 'Ar':
@@ -477,9 +464,9 @@ def calculate(data, type='sens'):
             elif o2_out > o2_in:
                 o2_out = o2_in  # O2 can't be created, to make it equal to O2 in
             o2_depletion = o2_in - o2_out
-            if o2_depletion <= 1.0e-8:
-                o2_depletion = 1.0e-8
-                reference_o2_conv = 1.0e-8
+            if o2_depletion <= 0:
+                o2_depletion = 1.0e-21
+                reference_o2_conv = o2_depletion / o2_in
             else:
                 reference_o2_conv = o2_depletion / o2_in  # Sensitivity definition 13: O2 conversion
         if x[0] == 'CO(7)':
@@ -575,8 +562,6 @@ def calc_sensitivities(reference, new, index=None):
     Sens12 = (new_peak_temp_dist - reference_peak_temp_dist) / (reference_peak_temp_dist * dk)
 
     if index is not None:
-        # assert index is int
-        # print("%d %s %.3F %.3F" % (index, surf.species_name(index), Sens1, Sens2))
         rxn = surf.reaction_equations()[index]
         return rxn, Sens1, Sens2, Sens3, Sens4, Sens5, Sens6, Sens7, Sens8, Sens9, Sens10, Sens11, Sens12, Sens13
     else:
@@ -586,8 +571,6 @@ def calc_sensitivities(reference, new, index=None):
 output = []
 for r in data:
     output.append(calculate(r[1], type='calc'))
-# for x in range(len(ratios_real)):
-#     output.append([ratios_real[x], ch4_in[x], ch4_out[x], co_out[x], h2_out[x], h2o_out[x], co2_out[x], end_temp[x], max_temp[x], dist_max_temp[x], o2_conv[x]])
 k = (pd.DataFrame.from_dict(data=output, orient='columns'))
 k.columns = ['C/O ratio', 'CH4 in', 'CH4 out', 'CO out', 'H2 out', 'H2O out', 'CO2 out', 'Exit temp', 'Max temp', 'Dist to max temp', 'O2 conv']
 k.to_csv('dict_conversions_selectivities.csv', header=True)
@@ -697,11 +680,11 @@ def plot_ratio_comparisions(data):
     # os.path.exists(out_dir) or os.makedirs(out_dir)
     # fig.savefig(out_dir + '/' + 'flows.pdf', bbox_inches='tight')
 
-# ratio_comparison = []
-# for r in data:
-#     ratio_comparison.append([r[0], calculate(r[1], type='ratio')])
-#
-# plot_ratio_comparisions(ratio_comparison)
+ratio_comparison = []
+for r in data:
+    ratio_comparison.append([r[0], calculate(r[1], type='ratio')])
+
+plot_ratio_comparisions(ratio_comparison)
 
 ###################
 # SENSITIVITY
