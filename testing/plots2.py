@@ -19,6 +19,9 @@ import re
 import cantera as ct
 from matplotlib import animation
 
+max_cpus = multiprocessing.cpu_count()
+# max_cpus = 28
+
 # set up the LSR grid, for the smaller, more interesting one
 carbon_range = (-7.5, -5.5)
 oxygen_range = (-5.25, -3.25)
@@ -53,6 +56,7 @@ carbon_range2 = (carbon_range[0]-c_step/2, carbon_range[1]+c_step/2)
 oxygen_range2 = (oxygen_range[0]-c_step/2, oxygen_range[1]+c_step/2)
 extent2 = carbon_range2 + oxygen_range2
 
+
 def calculate(data):
     # with the import data, calculate the things we actually are interested in
     ratio = data[1]
@@ -68,7 +72,7 @@ def calculate(data):
     o2_conv = data[11]
 
     ch4_depletion = ch4_in - ch4_out
-    if ch4_depletion <= 1e-3:  # basically nothing happened, so put placeholder 0s in
+    if ch4_depletion <= 1e-8:  # basically nothing happened, so put placeholder 0s in
         ch4_conv = 0.
         h2_sel = 0.
         h2_yield = 0.
@@ -98,6 +102,7 @@ def calculate(data):
 
     return syngas_sel, syngas_yield, co_sel, co_yield, h2_sel, h2_yield, ch4_conv, fullox_sel, fullox_yield, exit_T, max_T, dist_Tmax, o2_conv
 
+
 def import_data(ratio, file_location=False):
     """
     This imports dict_conversions_celectivities from the original simulation
@@ -107,7 +112,7 @@ def import_data(ratio, file_location=False):
     else:
         data = pd.read_csv('./linearscaling/' + file_location + '/dict_conversions_selectivities.csv')
 
-    data = data.get_values()
+    data = data.values
     for x in range(len(data)):
         r = round(data[x][1],1)
         if r == ratio:
@@ -121,7 +126,7 @@ abildpedersen_energies = { # Carbon, then Oxygen
 'Rh': ( -6.5681818181818175, -4.609771721406942),
 'Ni': ( -6.045454545454545, -4.711681807593758),
 'Pd': ( -6, -3.517877940833916),
-'Pt': ( -6.363636363636363, -3.481481481481482),
+# 'Pt': ( -6.363636363636363, -3.481481481481482),
 'Pt': ( -6.750, -3.586),  # from rmg's hard coded lsr values
 }
 
@@ -169,15 +174,18 @@ def lavaPlot(overall_rate, title, axis=False, folder=False, interpolation=True):
     plt.xlim(carbon_range)
     plt.ylim(oxygen_range)
     plt.yticks(np.arange(-5.25,-3.,0.5))
-    plt.xlabel('$\Delta E^C$ (eV)')
-    plt.ylabel('$\Delta E^O$ (eV)')
+    plt.xlabel('$\Delta E^C$ (eV)', fontsize=22)
+    plt.ylabel('$\Delta E^O$ (eV)', fontsize=22)
+    plt.xticks(fontsize=18)
+    plt.yticks(fontsize=18)
 #     plt.title(str(title))
-    plt.colorbar()
+    plt.colorbar().ax.tick_params(labelsize=18)
     out_dir = 'lsr'
     os.path.exists(out_dir) or os.makedirs(out_dir)
     if folder is False:
         plt.savefig(out_dir + '/' + str(title) +'.pdf', bbox_inches='tight')
     else:
+        # os.path.exists(out_dir + '/' + str(folder)) or os.makedirs(out_dir + '/' + str(folder))
         plt.savefig(out_dir + '/' + str(folder) + '/' + str(title) +'.pdf', bbox_inches='tight')
     plt.show()
     plt.clf()
@@ -229,16 +237,19 @@ def lavaPlotAnimate(overall_rate, title, axis=False, folder=False, interpolation
     plt.xlim(carbon_range)
     plt.ylim(oxygen_range)
     plt.yticks(np.arange(-5.25,-3.,0.5))
-    plt.xlabel('$\Delta E^C$')
-    plt.ylabel('$\Delta E^O$')
-    plt.colorbar()
+    plt.xlabel('$\Delta E^C$ (eV)', fontsize=22)
+    plt.ylabel('$\Delta E^O$ (eV)', fontsize=22)
+    plt.xticks(fontsize=18)
+    plt.yticks(fontsize=18)
+    plt.colorbar().ax.tick_params(labelsize=18)
+    plt.tight_layout()
     ani = animation.ArtistAnimation(fig, ims, interval=100, repeat_delay=400, blit=True)
     out_dir = 'lsr'
     os.path.exists(out_dir) or os.makedirs(out_dir)
     if folder is False:
         ani.save(out_dir + '/' + str(title) + '.gif')
     else:
-        os.path.exists(out_dir + '/' + str(folder)) or os.makedirs(out_dir + '/' + str(folder))
+        # os.path.exists(out_dir + '/' + str(folder)) or os.makedirs(out_dir + '/' + str(folder))
         ani.save(out_dir + '/' + str(folder) + '/' + str(title) + '.gif', writer='animation.PillowWriter', fps=10)
 
 array = os.listdir('./linearscaling/')  # find the LSR folders
@@ -255,52 +266,54 @@ for x in array:
     c_s.append(c)
     o_s.append(o)
 
-# the input gas ratios
 ratios = [0.6, 0.7, 0.8, 0.9, 1.0, 1.1, 1.2, 1.3, 1.4, 1.6, 1.8, 2.0, 2.2, 2.4, 2.6]
+sens_types = ['SynGasSelec', 'SynGasYield', 'COSelec', 'COYield',
+              'H2Selec', 'H2Yield', 'CH4Conv', 'FullOxSelec',
+              'FullOxYield', 'ExitT', 'MaxT',
+              'DistToMaxT', 'O2Conv']
 
-# the things we are doing sensitivity for
-sens_types = ['SynGas Selectivity', 'SynGas Yield', 'CO Selectivity', 'CO Yield',
-              'H2 Selectivity', 'H2 Yield', 'CH4 Conversion', 'CO2+H2O Selectivity',
-              'CO2+H2O Yield', 'Exit Temperature', 'Maximum Temperature',
-              'Dist to Max Temperature', 'O2 Conversion']
-all_data = []
-for ratio in ratios:
+def loadWorker(ratio):
     ans = []
     for f in array:
         ans.append(import_data(ratio, file_location=f))
-    all_data.append(ans)
+    return ans
 
-# to normalize colors across ratios
-spans = []
-for m in range(len(all_data[0][0])):  # for each sens definition
+# load data
+num_threads = len(ratios)
+pool = multiprocessing.Pool(processes=num_threads)
+all_data = pool.map(loadWorker, ratios, 1)
+pool.close()
+pool.join()
+
+
+def spansWorker(sens):
     all_sens_data = []
     for x in range(len(all_data)):  # for each ratio
         for y in range(len(all_data[0])):
             # x has len 15 and is each of the ratios
             # y has len 81 and is each of the lsr binding energies
             # the last number is the type of sensitivity definition and is 0-12
-            all_sens_data.append(all_data[x][y][m])
+            all_sens_data.append(all_data[x][y][sens])
     vmax = max(all_sens_data)
     vmin = min(all_sens_data)
-    spans.append([vmin, vmax])
-    print(sens_types[m], vmin, vmax)
+    return [vmin, vmax]
 
-max_yield = []
-# plots without interpolation
-for z in range(len(all_data)):
-    ans = all_data[z]
-    for s in range(len(ans[0])):
+
+def basePlotWorker(ratio):
+    # plots without interpolation
+    for s in range(len(all_data[ratio][0])):
         data_to_plot = []
-        for x in range(len(ans)):
-            data_to_plot.append(ans[x][s])
-        title = sens_types[s] + ' ' + str(ratios[z])
-        if s == 1:
-            max_yield.append(max(data_to_plot))
-        # print('Max ' + sens_types[s] + ' at ' + str(ratios[z]) + ' is ' + str(max(data_to_plot)))
-        lavaPlot(data_to_plot, title, axis=spans[s], folder='base_no_interpolation', interpolation=False)  # making plots
+        for x in range(len(all_data[ratio])):
+            data_to_plot.append(all_data[ratio][x][s])
+        title = sens_types[s] + str(ratios[ratio])
+        # if s == 1:  # if the sensitivity is synthesis gas yield
+            # max_yield.append(max(data_to_plot))
+        lavaPlot(data_to_plot, title, axis=spans[s], folder='base-no-interpolation', interpolation=False)
+    # return max(data_to_plot)
 
-# make gifs
-for sens in range(len(all_data[0][0])):
+
+def baseAnimateWorker(sens):
+    # make gifs
     data_to_plot = []
     for ratio in range(len(all_data)):
         tmp = []
@@ -310,6 +323,25 @@ for sens in range(len(all_data[0][0])):
     title = sens_types[sens]
     lavaPlotAnimate(data_to_plot, title, spans[sens], folder='base-animate', interpolation=False)
 
+
+sens_index = list(range(len(sens_types)))
+pool = multiprocessing.Pool(processes=13)
+spans = pool.map(spansWorker, sens_index, 1) # 13
+pool.close()
+pool.join()
+
+ratios_index = list(range(len(all_data)))
+if max_cpus >= 28:
+    num_threads = 28
+    lump = 1
+else:
+    num_threads = max_cpus
+    lump = int(28./max_cpus)+1
+pool = multiprocessing.Pool(processes=num_threads)
+pool.map_async(basePlotWorker, ratios_index, lump) # 15
+pool.map_async(baseAnimateWorker, sens_index, lump) # 13
+pool.close()
+pool.join()
 
 def import_sensitivities(ratio, file_location=False, thermo=False):
     """
@@ -329,7 +361,7 @@ def import_sensitivities(ratio, file_location=False, thermo=False):
                 data = pd.read_csv('./linearscaling/' + file_location + '/sensitivities/' + str(ratio) + 'RxnSensitivity.csv')
             else:
                 data = pd.read_csv('./linearscaling/' + file_location + '/sensitivities/' + str(ratio) + 'ThermoSensitivity.csv')
-        data = data.get_values()
+        data = data.values
         data = data.tolist()
         return data
     except:
@@ -351,7 +383,7 @@ def import_sensitivities(ratio, file_location=False, thermo=False):
                         data = pd.read_csv('./linearscaling/' + file_location + '/sensitivities/' + str(r) + 'RxnSensitivity.csv')
                     else:
                         data = pd.read_csv('./linearscaling/' + file_location + '/sensitivities/' + str(r) + 'ThermoSensitivity.csv')
-                data = data.get_values()
+                data = data.values
                 fakedata = data
 #                 fakedata = np.zeros_like(data, dtype=float)
                 for x in range(len(data)):
@@ -362,16 +394,20 @@ def import_sensitivities(ratio, file_location=False, thermo=False):
             except:
                 continue
 
-allrxndata = []  # where all rxn sensitivities will be stored
-# allthermodata = []  # where all thermo sensitivities will be stored
-for f in array:
+def loadSensDataWorker(array):
     rxndata = []
-    thermodata = []
     for ratio in ratios:
-        rxndata.append(import_sensitivities(ratio, file_location=f))
+        rxndata.append(import_sensitivities(ratio, file_location=array))
         # thermodata.append(import_sensitivities(ratio, file_location=f, thermo=True))
-    allrxndata.append(rxndata)
-    # allthermodata.append(thermodata)
+    return rxndata
+
+
+num_threads = max_cpus
+lump = int(381./max_cpus)+1
+pool = multiprocessing.Pool(processes=num_threads)
+allrxndata = pool.map(loadSensDataWorker, array, lump)
+pool.close()
+pool.join()
 
 reactions = set()  # create list of unique reactions
 for f in range(len(allrxndata)):  # for each lsr binding energy
@@ -417,10 +453,11 @@ def sensPlot(overall_rate, title, axis=False, folder=False):
     plt.xlim(carbon_range)
     plt.ylim(oxygen_range)
     plt.yticks(np.arange(-5.25,-3,0.5))
-    plt.xlabel('$\Delta E^C$ (eV)')
-    plt.ylabel('$\Delta E^O$ (eV)')
-#     plt.title(str(title))
-    plt.colorbar()
+    plt.xlabel('$\Delta E^C$ (eV)', fontsize=22)
+    plt.ylabel('$\Delta E^O$ (eV)', fontsize=22)
+    plt.xticks(fontsize=18)
+    plt.yticks(fontsize=18)
+    plt.colorbar().ax.tick_params(labelsize=18)
     out_dir = 'lsr'
     os.path.exists(out_dir) or os.makedirs(out_dir)
     if folder is False:
@@ -428,61 +465,59 @@ def sensPlot(overall_rate, title, axis=False, folder=False):
     else:
         os.path.exists(out_dir + '/' + str(folder)) or os.makedirs(out_dir + '/' + str(folder))
         plt.savefig(out_dir + '/' + str(folder) + '/' + str(title) +'.pdf', bbox_inches='tight')
-    plt.show()  # comment out to save fig
     plt.clf()
 
 
-def plot_sensitivities(all_data):
-    """
-    all_data is either allrxndata or allthermodata
-    """
+def sensPlotWorker(rxn):
+    tmp_sens = []
     most_sens = []
-    sum_sens = []
-    for rxn in reactions:  # for a certain reaction
-        # sensitivity type, range(2,14) to plot all sens defs
-        tmp_sens = []
-        for s in range(2,15):  # skipping last def bc so sensitive
-            tot_sens = 0.
-            if s == 13:
-                continue
-            for r in range(len(all_data[0])):  # for a single ratio
-                sensitivities = []
-                for f in range(len(array)):  # for lsr binding energies
-                    got_value = False
-                    for p in range(len(all_data[f][r])):  # matching the reaction
-                        if all_data[f][r][p][1] == np.str(rxn):
-                            sensitivities.append(all_data[f][r][p][s])
-                            got_value = True
-                    if got_value is False:  # put a placeholder in
-                        sensitivities.append(0.)
-                MAX = 0
-                skip = None
+    for s in range(2,15):
+        tot_sens = 0.
+        if s == 13:
+            continue
+        for r in range(len(allrxndata[0])):  # for a single ratio
+            sensitivities = []
+            for f in range(len(array)):  # for lsr binding energies
+                got_value = False
+                for p in range(len(allrxndata[f][r])):  # matching the reaction
+                    if allrxndata[f][r][p][1] == np.str(rxn):
+                        sensitivities.append(allrxndata[f][r][p][s])
+                        got_value = True
+                if got_value is False:  # put a placeholder in
+                    sensitivities.append(0.)
+            MAX = 0
+            skip = None
 
-                tot_sens += sum(abs(np.array(sensitivities)))
+            tot_sens += sum(abs(np.array(sensitivities)))
 
-                m = max(abs(np.array(sensitivities)))
-                if m > MAX:
-                    MAX = m
-                if sum(abs(np.array(sensitivities))>1e-1) < 5:
-                    if skip is not False:
-                        skip = True
-                    else:
-                        skip = False
-
-                if skip is True:
-                    print("skipping {} {} because it's boring".format(rxn, sens_types[s-2]))
-                    continue
+            m = max(abs(np.array(sensitivities)))
+            if m > MAX:
+                MAX = m
+            if sum(abs(np.array(sensitivities))>1e-1) < 5:
+                if skip is not False:
+                    skip = True
                 else:
-                    print("plotting {} {} because it's interesting".format(rxn, sens_types[s-2]))
-                    most_sens.append([MAX, rxn, sens_types[s-2]])
-                    title = rxn + ' '+ sens_types[s-2] + ' ' + str(ratios[r])
-                    sensPlot(sensitivities, title, folder='rxnsensitivities_nointerpolation', axis=[-1*MAX, MAX])
+                    skip = False
 
-            tmp_sens.append([tot_sens, sens_types[s-2]])
-        sum_sens.append([rxn, tmp_sens])
-    return most_sens, sum_sens
+            if skip is True:
+                print("skipping {} {} because it's boring".format(rxn, sens_types[s-2]))
+                continue
+            else:
+                print("plotting {} {} because it's interesting".format(rxn, sens_types[s-2]))
+                most_sens.append([MAX, rxn, sens_types[s-2]])
+                title = rxn + ' '+ sens_types[s-2] + ' ' + str(ratios[r])
+                sensPlot(sensitivities, title, folder='rxnsensitivities', axis=[-1*MAX, MAX])
 
-most, sum_sens = plot_sensitivities(allrxndata)
+        tmp_sens.append([tot_sens, sens_types[s-2]])
+    return most_sens, [rxn, tmp_sens]
+
+
+num_threads = max_cpus
+lump = int(381./max_cpus)+1
+pool = multiprocessing.Pool(processes=num_threads)
+most, sum_sens = pool.map(sensPlotWorker, reactions, lump)
+
+most = [item for sublist in most for item in sublist]
 
 most = sorted(most)
 for x in most:
