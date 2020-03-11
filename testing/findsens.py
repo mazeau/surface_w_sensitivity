@@ -20,7 +20,7 @@ def import_sensitivities(ratio, file_location=False, thermo=False):
                 data = pd.read_csv('./linearscaling/' + file_location + '/sensitivities/' + str(ratio) + 'RxnSensitivity.csv')
             else:
                 data = pd.read_csv('./linearscaling/' + file_location + '/sensitivities/' + str(ratio) + 'ThermoSensitivity.csv')
-        data = data.get_values()
+        data = data.values
         data = data.tolist()
         return data
     except:
@@ -42,7 +42,7 @@ def import_sensitivities(ratio, file_location=False, thermo=False):
                         data = pd.read_csv('./linearscaling/' + file_location + '/sensitivities/' + str(r) + 'RxnSensitivity.csv')
                     else:
                         data = pd.read_csv('./linearscaling/' + file_location + '/sensitivities/' + str(r) + 'ThermoSensitivity.csv')
-                data = data.get_values()
+                data = data.values
                 fakedata = data
 #                 fakedata = np.zeros_like(data, dtype=float)
                 for x in range(len(data)):
@@ -66,6 +66,6 @@ for f in array:
     thermodata = []
     for ratio in ratios:
         rxndata.append(import_sensitivities(ratio, file_location=f))
-        thermodata.append(import_sensitivities(ratio, file_location=f, thermo=True))
+        # thermodata.append(import_sensitivities(ratio, file_location=f, thermo=True))
     allrxndata.append(rxndata)
-    allthermodata.append(thermodata)
+    # allthermodata.append(thermodata)
