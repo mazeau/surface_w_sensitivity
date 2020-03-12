@@ -1,10 +1,11 @@
 import os, glob
 import shutil
+import multiprocessing
 
 array = os.listdir('./linearscaling')
 files = ['./linearscaling/' + x for x in array]
 
-for x in files:
+def copy(x):
     # copying the copyme file and pasting into each linearscaling folder
     shutil.copy('copyme-parallel.py', x)
     shutil.copy('runparallel.sh', x)
@@ -40,3 +41,11 @@ for x in files:
 #      os.remove(file)
 # for file in glob.glob('lsr/thermosensitivities_nointerpolation/*.pdf'):
 #      os.remove(file)
+
+def worker(x):
+    copy(x)
+
+pool = multiprocessing.Pool(processes=56)
+data = pool.map(worker, files, 1)
+pool.close()
+pool.join()
