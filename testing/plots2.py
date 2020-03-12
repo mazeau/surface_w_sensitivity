@@ -252,6 +252,7 @@ def lavaPlotAnimate(overall_rate, title, axis=False, folder=False, interpolation
     else:
         # os.path.exists(out_dir + '/' + str(folder)) or os.makedirs(out_dir + '/' + str(folder))
         ani.save(out_dir + '/' + str(folder) + '/' + str(title) + '.gif', writer='animation.PillowWriter', fps=10)
+        ani.save(out_dir + '/' + str(folder) + '/' + str(title) + '.mpeg', writer='animation.FFMpegFileWriter', fps=12)
 
 array = os.listdir('./linearscaling/')  # find the LSR folders
 array = sorted(array)
@@ -522,65 +523,111 @@ pool.close()
 pool.join()
 
 
-# def sensPlotAnimate(overall_rate, title, axis=False, folder=False):
-#     """
-#     overall sensitivity data to plot
-#     title is a string for what definition is used
-#     to normalize colors across many plots, False doesn't normalize axes
-#     folder specifies where to save the images
-#     """
-#     fig = plt.figure()
-#     ims = []
-#
-#     cmap = plt.get_cmap("Spectral_r")
-#     # cmap.set_bad(color='k', alpha=None)
-#     cmaplist = list(map(cmap,range(256)))
-#     cmaplist[0]=(0,0,0,0.3)
-#     newcmap = cmap.from_list('newcmap',cmaplist, N=256)
-#     cmap = newcmap
-#
-#     overall_rate = np.array(overall_rate)
-#     rates = overall_rate
-#
-#     rates_grid = np.reshape(rates, (grid_size,grid_size))
-#     for i in range(0,18):  # transpose by second diagnol
-#         for j in range(0, 18 - i):
-#             rates_grid[i][j], rates_grid[18 - j][18 - i] = rates_grid[18 - j][18 - i], rates_grid[i][j]
-#     if axis is False:  # no normalizing
-#         plt.imshow(rates_grid, origin='lower',
-#                    extent=extent2, aspect='equal', cmap="Spectral_r",)
-#     else:
-#         plt.imshow(rates_grid, origin='lower',
-#                extent=extent2, aspect='equal', cmap="Spectral_r",
-#                vmin=axis[0], vmax=axis[1],)
-#
-#     # adding metal values to the plot
-#     for metal, coords in abildpedersen_energies.items():
-#         color = {'Ag':'k','Au':'k','Cu':'k'}.get(metal,'k')
-#         plt.plot(coords[0], coords[1], 'o'+color)
-#         plt.text(coords[0], coords[1]-0.1, metal, color=color)
-#     plt.xlim(carbon_range)
-#     plt.ylim(oxygen_range)
-#     plt.yticks(np.arange(-5.25,-3,0.5))
-#     plt.xlabel('$\Delta E^C$ (eV)', fontsize=22)
-#     plt.ylabel('$\Delta E^O$ (eV)', fontsize=22)
-#     plt.xticks(fontsize=18)
-#     plt.yticks(fontsize=18)
-#     plt.colorbar().ax.tick_params(labelsize=18)
-#     out_dir = 'lsr'
-#     os.path.exists(out_dir) or os.makedirs(out_dir)
-#     if folder is False:
-#         plt.savefig(out_dir + '/' + str(title) +'.pdf', bbox_inches='tight')
-#     else:
-#         os.path.exists(out_dir + '/' + str(folder)) or os.makedirs(out_dir + '/' + str(folder))
-#         plt.savefig(out_dir + '/' + str(folder) + '/' + str(title) +'.pdf', bbox_inches='tight')
-#     plt.clf()
+def sensPlotAnimate(overall_rate, title, axis=False, folder=False):
+    """
+    overall sensitivity data to plot
+    title is a string for what definition is used
+    to normalize colors across many plots, False doesn't normalize axes
+    folder specifies where to save the images
+    """
+    fig = plt.figure()
+    ims = []
 
-most = [item for sublist in most for item in sublist]
+    for ratio in range(len(overall_rate)):
 
-most = sorted(most)
-for x in most:
-    print(x)
+        cmap = plt.get_cmap("Spectral_r")
+        # cmap.set_bad(color='k', alpha=None)
+        cmaplist = list(map(cmap,range(256)))
+        cmaplist[0]=(0,0,0,0.3)
+        newcmap = cmap.from_list('newcmap',cmaplist, N=256)
+        cmap = newcmap
+
+        rates = np.array(overall_rate[ratio])
+
+        rates_grid = np.reshape(rates, (grid_size,grid_size))
+        for i in range(0,18):  # transpose by second diagnol
+            for j in range(0, 18 - i):
+                rates_grid[i][j], rates_grid[18 - j][18 - i] = rates_grid[18 - j][18 - i], rates_grid[i][j]
+        if axis is False:  # no normalizing
+            im = plt.imshow(rates_grid, origin='lower',
+                       extent=extent2, aspect='equal', cmap="Spectral_r",)
+        else:
+            im = plt.imshow(rates_grid, origin='lower',
+                   extent=extent2, aspect='equal', cmap="Spectral_r",
+                   vmin=axis[0], vmax=axis[1],)
+        ims.append([im])
+
+    # adding metal values to the plot
+    for metal, coords in abildpedersen_energies.items():
+        color = {'Ag':'k','Au':'k','Cu':'k'}.get(metal,'k')
+        plt.plot(coords[0], coords[1], 'o'+color)
+        plt.text(coords[0], coords[1]-0.1, metal, color=color)
+    plt.xlim(carbon_range)
+    plt.ylim(oxygen_range)
+    plt.yticks(np.arange(-5.25,-3,0.5))
+    plt.xlabel('$\Delta E^C$ (eV)', fontsize=22)
+    plt.ylabel('$\Delta E^O$ (eV)', fontsize=22)
+    plt.xticks(fontsize=18)
+    plt.yticks(fontsize=18)
+    plt.colorbar().ax.tick_params(labelsize=18)
+    plt.tight_layout()
+    ani = animation.ArtistAnimation(fig, ims, interval=100, repeat_delay=300, blit=True)
+    out_dir = 'lsr'
+    os.path.exists(out_dir) or os.makedirs(out_dir)
+    if folder is False:
+        ani.save(out_dir + '/' + str(title) + '.gif', writer='animation.PillowWriter', fps=10)
+        # plt.savefig(out_dir + '/' + str(title) +'.pdf', bbox_inches='tight')
+    else:
+        os.path.exists(out_dir + '/' + str(folder)) or os.makedirs(out_dir + '/' + str(folder))
+        ani.save(out_dir + '/' + str(folder) + '/' + str(title) + '.gif', writer='animation.PillowWriter', fps=10)
+        ani.save(out_dir + '/' + str(folder) + '/' + str(title) + '.mpeg', writer='animation.FFMpegFileWriter', fps=12)
+        # plt.savefig(out_dir + '/' + str(folder) + '/' + str(title) +'.pdf', bbox_inches='tight')
+    plt.clf()
+
+
+def sensPlotAnimateWorker(rxn):
+    tmp_sens = []
+    most_sens = []
+    for s in range(2,15):
+        if s == 13:
+            continue
+        sensitivities = []
+        for r in range(len(ratios)):  # for a single ratio
+            tmp_sens = []
+            for f in range(len(array)):  # for lsr binding energies
+                for p in range(len(allrxndata[f][r])):  # matching the reaction
+                    if allrxndata[f][r][p][1] == np.str(rxn):
+                        tmp_sens.append(allrxndata[f][r][p][s])
+            sensitivities.append(tmp_sens)
+        # standardizing the colors across all ratios
+        flat = [item for sublist in sensitivities for item in sublist]
+        MAX = max(abs(np.array(flat)))
+        AVG = (sum(abs(np.array(flat)))/len(flat))*1.5  # cutoff the color plot at x times the average sensitivity
+        title = str(rxn) + str(sens_types[s-2])
+        sensPlotAnimate(sensitivities, title, axis=[-1*MAX,MAX], folder='rxnsensitivities-animate')
+        sensPlotAnimate(sensitivities, title, axis=[-1*AVG,AVG], folder='rxnsensitivities-animate-avg')
+        most_sens.append([rxn, sens_types[s-2], MAX])
+    return most_sens
+
+
+num_threads = max_cpus
+lump = int(381./max_cpus)+1
+pool = multiprocessing.Pool(processes=num_threads)
+max_sens = pool.map(sensPlotAnimateWorker, reactions, lump)
+pool.close()
+pool.join()
+
+sorted_max_sens = sorted(max_sens, key=lambda l:l[2], reverse=True)
+
+k = (pd.DataFrame.from_dict(data=sorted_max_sens, orient='columns'))
+k.columns = ['Reaction', 'Sens Type', 'Maximum']
+k.to_csv('maxsens.csv', header=True)
+
+# most = [item for sublist in most for item in sublist]
+#
+# most = sorted(most)
+# for x in most:
+#     print(x)
 
 for s in range(len(sens_types)-1):
     values = []
