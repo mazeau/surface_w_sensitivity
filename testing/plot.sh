@@ -1,13 +1,13 @@
 #!/bin/bash
-#SBATCH --job-name=sensitivity
+#SBATCH --job-name=plot
 #SBATCH --error=error.log
 #SBATCH -n1
+#SBATCH -N 1
 #SBATCH --output=output.log
-#SBATCH --partition=west,short
-#SBATCH --exclude=c5003
-#SBATCH --mem=40Gb
-#SBATCH --time=2:00:00
+#SBATCH --exclude=c[5003]
+#SBATCH -c 56
+#SBATCH --partition=short,large, express
+#SBATCH --time=0:30:00
 
-#jupyter nbconvert --ExecutePreprocessor.timeout=4000 --to notebook --execute plots2.ipynb --output=plotsdone.ipynb
 source activate rmg_env
 python plots2.py
