@@ -1,9 +1,9 @@
-# This is the master branch
+# This is cpox branch for a 19x19 grid
 All things happen in the testing folder.
 
 1. Run whatever in linear-scaling-tests on discovery
-2. Run scratchfiles.py to copy all species dictionaries and cantera files from the most recent run of linear-scaling-tests
-3. Run runmefirst.py to make sure runparallel.sh and copyme-parallel.py are up to date as well as remove old outputs from previous trials
+2. Run copyfiles.sh to run scratchfiles.py to copy all species dictionaries and cantera files from the most recent run of linear-scaling-tests
+3. Run runfirst.sh to run runmefirst.py to make sure runparallel.sh and copyme-parallel.py are up to date as well as remove old outputs from previous trials
 4. Run ./start_all.sh to start all simulations
 
 This file level is the "base" case.
