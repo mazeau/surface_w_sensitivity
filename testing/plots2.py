@@ -7,7 +7,6 @@ import seaborn as sns
 sns.set_style("ticks")
 sns.set_context("paper", font_scale=1.5, rc={"lines.linewidth": 2.0})
 
-# import a bunch of stuff
 import os
 import re
 import pandas as pd
@@ -19,9 +18,9 @@ import re
 import cantera as ct
 from matplotlib import animation
 import sys
+import statistics
 
 max_cpus = multiprocessing.cpu_count()
-# max_cpus = 28
 
 # set up the LSR grid, for the smaller, more interesting one
 carbon_range = (-7.5, -5.5)
@@ -69,26 +68,10 @@ def calculate(data):
     co2_out = data[7]
     exit_T = data[8]
     max_T = data[9]
-    dist_Tmax = data[10]  # currently is 70 if nothing happens, might want to make it blank
+    dist_Tmax = data[10]
     o2_conv = data[11]
 
     ch4_depletion = ch4_in - ch4_out
-    # if ch4_depletion <= 1e-8:  # basically nothing happened, so put placeholder 0s in
-    #     ch4_conv = 0.
-    #     h2_sel = 0.
-    #     h2_yield = 0.
-    #     co_sel = 0.
-    #     co_yield = 0.
-    #     syngas_sel = 0.
-    #     syngas_yield = 0.
-    #     co2_sel = 0.
-    #     h2o_sel = 0.
-    #     fullox_sel = 0.
-    #     fullox_yield = 0.
-    #     o2_conv = 0.
-    #
-    #     return syngas_sel, syngas_yield, co_sel, co_yield, h2_sel, h2_yield, ch4_conv, fullox_sel, fullox_yield, exit_T, max_T, dist_Tmax, o2_conv
-
     ch4_conv = ch4_depletion / ch4_in
     h2_sel = h2_out / (ch4_depletion * 2)
     h2_yield = h2_out / ( ch4_in * 2)
@@ -179,7 +162,6 @@ def lavaPlot(overall_rate, title, axis=False, folder=False, interpolation=True):
     plt.ylabel('$\Delta E^O$ (eV)', fontsize=22)
     plt.xticks(fontsize=18)
     plt.yticks(fontsize=18)
-#     plt.title(str(title))
     plt.colorbar().ax.tick_params(labelsize=18)
     out_dir = 'lsr'
     os.path.exists(out_dir) or os.makedirs(out_dir)
@@ -244,15 +226,15 @@ def lavaPlotAnimate(overall_rate, title, axis=False, folder=False, interpolation
     plt.yticks(fontsize=18)
     plt.colorbar().ax.tick_params(labelsize=18)
     plt.tight_layout()
-    ani = animation.ArtistAnimation(fig, ims, interval=100, repeat_delay=400, blit=True)
+    ani = animation.ArtistAnimation(fig, ims, interval=100, repeat_delay=300, blit=True)
     out_dir = 'lsr'
     os.path.exists(out_dir) or os.makedirs(out_dir)
     if folder is False:
-        ani.save(out_dir + '/' + str(title) + '.gif')
+        ani.save(out_dir + '/' + str(title) + '.gif', writer='pillow', fps=5)
     else:
         # os.path.exists(out_dir + '/' + str(folder)) or os.makedirs(out_dir + '/' + str(folder))
-        ani.save(out_dir + '/' + str(folder) + '/' + str(title) + '.gif', writer='animation.PillowWriter', fps=10)
-        ani.save(out_dir + '/' + str(folder) + '/' + str(title) + '.mpeg', writer='animation.FFMpegFileWriter', fps=12)
+        ani.save(out_dir + '/' + str(folder) + '/' + str(title) + '.gif', writer='pillow', fps=5)
+        # ani.save(out_dir + '/' + str(folder) + '/' + str(title) + '.mpg', writer='ffmpeg', fps=5)
 
 array = os.listdir('./linearscaling/')  # find the LSR folders
 array = sorted(array)
@@ -308,10 +290,7 @@ def basePlotWorker(ratio):
         for x in range(len(all_data[ratio])):
             data_to_plot.append(all_data[ratio][x][s])
         title = sens_types[s] + str(ratios[ratio])
-        # if s == 1:  # if the sensitivity is synthesis gas yield
-            # max_yield.append(max(data_to_plot))
         lavaPlot(data_to_plot, title, axis=spans[s], folder='base-nocutoff', interpolation=False)
-    # return max(data_to_plot)
 
 
 def baseAnimateWorker(sens):
@@ -473,7 +452,7 @@ def sensPlot(overall_rate, title, axis=False, folder=False):
 
 def sensPlotWorker(rxn):
     tmp_sens = []
-    most_sens = []
+    # most_sens = []
     for s in range(2,15):
         tot_sens = 0.
         if s == 13:
@@ -503,24 +482,38 @@ def sensPlotWorker(rxn):
                     skip = False
 
             if skip is True:
-                print("skipping {} {} because it's boring".format(rxn, sens_types[s-2]))
+                # print("skipping {} {} because it's boring".format(rxn, sens_types[s-2]))
                 continue
             else:
-                print("plotting {} {} because it's interesting".format(rxn, sens_types[s-2]))
-                most_sens.append([MAX, rxn, sens_types[s-2]])
+                # print("plotting {} {} because it's interesting".format(rxn, sens_types[s-2]))
+                # most_sens.append([MAX, rxn, sens_types[s-2]])
                 title = rxn + ' '+ sens_types[s-2] + ' ' + str(ratios[r])
                 sensPlot(sensitivities, title, folder='rxnsensitivities', axis=[-1*MAX, MAX])
 
         tmp_sens.append([tot_sens, sens_types[s-2]])
-    return most_sens, [rxn, tmp_sens]
+    return rxn, tmp_sens
 
 
 num_threads = max_cpus
-lump = int(381./max_cpus)+1
+lump = int(len(reactions)/max_cpus)+1
 pool = multiprocessing.Pool(processes=num_threads)
 sum_sens = pool.map(sensPlotWorker, reactions, lump)
 pool.close()
 pool.join()
+
+for s in range(len(sens_types)-1):
+    values = []
+    for r in sum_sens:
+        rxn = r[0]
+        sens_value = r[1][s][0]  # tot_sens
+        values.append([sens_value, rxn])
+    values = sorted(values)
+    print(sens_types[s])
+    print(values)
+
+# k = (pd.DataFrame.from_dict(data=sorted_max_sens, orient='columns'))
+# k.columns = ['Reaction', 'Sens Type', 'Maximum']
+# k.to_csv('maxsens.csv', header=True)
 
 
 def sensPlotAnimate(overall_rate, title, axis=False, folder=False):
@@ -533,15 +526,14 @@ def sensPlotAnimate(overall_rate, title, axis=False, folder=False):
     fig = plt.figure()
     ims = []
 
+    cmap = plt.get_cmap("Spectral_r")
+    # cmap.set_bad(color='k', alpha=None)
+    cmaplist = list(map(cmap,range(256)))
+    cmaplist[0]=(0,0,0,0.3)
+    newcmap = cmap.from_list('newcmap',cmaplist, N=256)
+    cmap = newcmap
+
     for ratio in range(len(overall_rate)):
-
-        cmap = plt.get_cmap("Spectral_r")
-        # cmap.set_bad(color='k', alpha=None)
-        cmaplist = list(map(cmap,range(256)))
-        cmaplist[0]=(0,0,0,0.3)
-        newcmap = cmap.from_list('newcmap',cmaplist, N=256)
-        cmap = newcmap
-
         rates = np.array(overall_rate[ratio])
 
         rates_grid = np.reshape(rates, (grid_size,grid_size))
@@ -575,66 +567,54 @@ def sensPlotAnimate(overall_rate, title, axis=False, folder=False):
     out_dir = 'lsr'
     os.path.exists(out_dir) or os.makedirs(out_dir)
     if folder is False:
-        ani.save(out_dir + '/' + str(title) + '.gif', writer='animation.PillowWriter', fps=10)
+        ani.save(out_dir + '/' + str(title) + '.gif', writer='animation.PillowWriter', fps=5)
         # plt.savefig(out_dir + '/' + str(title) +'.pdf', bbox_inches='tight')
     else:
         os.path.exists(out_dir + '/' + str(folder)) or os.makedirs(out_dir + '/' + str(folder))
-        ani.save(out_dir + '/' + str(folder) + '/' + str(title) + '.gif', writer='animation.PillowWriter', fps=10)
-        ani.save(out_dir + '/' + str(folder) + '/' + str(title) + '.mpeg', writer='animation.FFMpegFileWriter', fps=12)
-        # plt.savefig(out_dir + '/' + str(folder) + '/' + str(title) +'.pdf', bbox_inches='tight')
+        ani.save(out_dir + '/' + str(folder) + '/' + str(title) + '.gif', writer='pillow', fps=5)
+        # ani.save(out_dir + '/' + str(folder) + '/' + str(title) + '.mpg', writer='ffmpeg', fps=5)
     plt.clf()
 
 
 def sensPlotAnimateWorker(rxn):
-    tmp_sens = []
     most_sens = []
     for s in range(2,15):
-        if s == 13:
-            continue
         sensitivities = []
-        for r in range(len(ratios)):  # for a single ratio
+        for r in range(len(allrxndata[0])):  # for a single ratio
             tmp_sens = []
             for f in range(len(array)):  # for lsr binding energies
+                got_value = False
                 for p in range(len(allrxndata[f][r])):  # matching the reaction
                     if allrxndata[f][r][p][1] == np.str(rxn):
                         tmp_sens.append(allrxndata[f][r][p][s])
+                        got_value = True
+                if got_value is False:
+                    # this reaction didn't show up on this metal, so it isn't
+                    # sensitive, so put a placeholder in
+                    tmp_sens.append(0.)
             sensitivities.append(tmp_sens)
         # standardizing the colors across all ratios
         flat = [item for sublist in sensitivities for item in sublist]
         MAX = max(abs(np.array(flat)))
-        AVG = (sum(abs(np.array(flat)))/len(flat))*1.5  # cutoff the color plot at x times the average sensitivity
+        STDEV = statistics.stdev(flat)
+        # AVG = (sum(abs(np.array(flat)))/len(flat))*1.5  # cutoff the color plot at x times the average sensitivity
         title = str(rxn) + str(sens_types[s-2])
         sensPlotAnimate(sensitivities, title, axis=[-1*MAX,MAX], folder='rxnsensitivities-animate')
-        sensPlotAnimate(sensitivities, title, axis=[-1*AVG,AVG], folder='rxnsensitivities-animate-avg')
+        sensPlotAnimate(sensitivities, title, axis=[-1*STDEV*2,STDEV*2], folder='rxnsensitivities-animate-stdev')
         most_sens.append([rxn, sens_types[s-2], MAX])
     return most_sens
 
 
 num_threads = max_cpus
-lump = int(381./max_cpus)+1
+lump = int(len(reactions)/max_cpus)+1
 pool = multiprocessing.Pool(processes=num_threads)
 max_sens = pool.map(sensPlotAnimateWorker, reactions, lump)
 pool.close()
 pool.join()
 
 sorted_max_sens = sorted(max_sens, key=lambda l:l[2], reverse=True)
+print(max_sens)
 
-k = (pd.DataFrame.from_dict(data=sorted_max_sens, orient='columns'))
-k.columns = ['Reaction', 'Sens Type', 'Maximum']
-k.to_csv('maxsens.csv', header=True)
-
-# most = [item for sublist in most for item in sublist]
-#
-# most = sorted(most)
-# for x in most:
-#     print(x)
-
-for s in range(len(sens_types)-1):
-    values = []
-    for r in sum_sens:
-        rxn = r[0]
-        sens_value = r[1][s][0]  # tot_sens
-        values.append([sens_value, rxn])
-    values = sorted(values)
-    print(sens_types[s])
-    print(values)
+# k = (pd.DataFrame.from_dict(data=sorted_max_sens, orient='columns'))
+# k.columns = ['Reaction', 'Sens Type', 'Maximum']
+# k.to_csv('maxsens.csv', header=True)
