@@ -18,6 +18,7 @@ import multiprocessing
 import re
 import cantera as ct
 from matplotlib import animation
+import sys
 
 max_cpus = multiprocessing.cpu_count()
 # max_cpus = 28
@@ -72,21 +73,21 @@ def calculate(data):
     o2_conv = data[11]
 
     ch4_depletion = ch4_in - ch4_out
-    if ch4_depletion <= 1e-8:  # basically nothing happened, so put placeholder 0s in
-        ch4_conv = 0.
-        h2_sel = 0.
-        h2_yield = 0.
-        co_sel = 0.
-        co_yield = 0.
-        syngas_sel = 0.
-        syngas_yield = 0.
-        co2_sel = 0.
-        h2o_sel = 0.
-        fullox_sel = 0.
-        fullox_yield = 0.
-        o2_conv = 0.
-
-        return syngas_sel, syngas_yield, co_sel, co_yield, h2_sel, h2_yield, ch4_conv, fullox_sel, fullox_yield, exit_T, max_T, dist_Tmax, o2_conv
+    # if ch4_depletion <= 1e-8:  # basically nothing happened, so put placeholder 0s in
+    #     ch4_conv = 0.
+    #     h2_sel = 0.
+    #     h2_yield = 0.
+    #     co_sel = 0.
+    #     co_yield = 0.
+    #     syngas_sel = 0.
+    #     syngas_yield = 0.
+    #     co2_sel = 0.
+    #     h2o_sel = 0.
+    #     fullox_sel = 0.
+    #     fullox_yield = 0.
+    #     o2_conv = 0.
+    #
+    #     return syngas_sel, syngas_yield, co_sel, co_yield, h2_sel, h2_yield, ch4_conv, fullox_sel, fullox_yield, exit_T, max_T, dist_Tmax, o2_conv
 
     ch4_conv = ch4_depletion / ch4_in
     h2_sel = h2_out / (ch4_depletion * 2)
@@ -308,7 +309,7 @@ def basePlotWorker(ratio):
         title = sens_types[s] + str(ratios[ratio])
         # if s == 1:  # if the sensitivity is synthesis gas yield
             # max_yield.append(max(data_to_plot))
-        lavaPlot(data_to_plot, title, axis=spans[s], folder='base-no-interpolation', interpolation=False)
+        lavaPlot(data_to_plot, title, axis=spans[s], folder='base-nocutoff', interpolation=False)
     # return max(data_to_plot)
 
 
@@ -321,7 +322,7 @@ def baseAnimateWorker(sens):
             tmp.append(all_data[ratio][metal][sens])
         data_to_plot.append(tmp)
     title = sens_types[sens]
-    lavaPlotAnimate(data_to_plot, title, spans[sens], folder='base-animate', interpolation=False)
+    lavaPlotAnimate(data_to_plot, title, spans[sens], folder='base-animate-nocutoff', interpolation=False)
 
 
 sens_index = list(range(len(sens_types)))
@@ -342,6 +343,7 @@ pool.map_async(basePlotWorker, ratios_index, lump) # 15
 pool.map_async(baseAnimateWorker, sens_index, lump) # 13
 pool.close()
 pool.join()
+
 
 def import_sensitivities(ratio, file_location=False, thermo=False):
     """
@@ -515,7 +517,64 @@ def sensPlotWorker(rxn):
 num_threads = max_cpus
 lump = int(381./max_cpus)+1
 pool = multiprocessing.Pool(processes=num_threads)
-most, sum_sens = pool.map(sensPlotWorker, reactions, lump)
+sum_sens = pool.map(sensPlotWorker, reactions, lump)
+pool.close()
+pool.join()
+
+
+# def sensPlotAnimate(overall_rate, title, axis=False, folder=False):
+#     """
+#     overall sensitivity data to plot
+#     title is a string for what definition is used
+#     to normalize colors across many plots, False doesn't normalize axes
+#     folder specifies where to save the images
+#     """
+#     fig = plt.figure()
+#     ims = []
+#
+#     cmap = plt.get_cmap("Spectral_r")
+#     # cmap.set_bad(color='k', alpha=None)
+#     cmaplist = list(map(cmap,range(256)))
+#     cmaplist[0]=(0,0,0,0.3)
+#     newcmap = cmap.from_list('newcmap',cmaplist, N=256)
+#     cmap = newcmap
+#
+#     overall_rate = np.array(overall_rate)
+#     rates = overall_rate
+#
+#     rates_grid = np.reshape(rates, (grid_size,grid_size))
+#     for i in range(0,18):  # transpose by second diagnol
+#         for j in range(0, 18 - i):
+#             rates_grid[i][j], rates_grid[18 - j][18 - i] = rates_grid[18 - j][18 - i], rates_grid[i][j]
+#     if axis is False:  # no normalizing
+#         plt.imshow(rates_grid, origin='lower',
+#                    extent=extent2, aspect='equal', cmap="Spectral_r",)
+#     else:
+#         plt.imshow(rates_grid, origin='lower',
+#                extent=extent2, aspect='equal', cmap="Spectral_r",
+#                vmin=axis[0], vmax=axis[1],)
+#
+#     # adding metal values to the plot
+#     for metal, coords in abildpedersen_energies.items():
+#         color = {'Ag':'k','Au':'k','Cu':'k'}.get(metal,'k')
+#         plt.plot(coords[0], coords[1], 'o'+color)
+#         plt.text(coords[0], coords[1]-0.1, metal, color=color)
+#     plt.xlim(carbon_range)
+#     plt.ylim(oxygen_range)
+#     plt.yticks(np.arange(-5.25,-3,0.5))
+#     plt.xlabel('$\Delta E^C$ (eV)', fontsize=22)
+#     plt.ylabel('$\Delta E^O$ (eV)', fontsize=22)
+#     plt.xticks(fontsize=18)
+#     plt.yticks(fontsize=18)
+#     plt.colorbar().ax.tick_params(labelsize=18)
+#     out_dir = 'lsr'
+#     os.path.exists(out_dir) or os.makedirs(out_dir)
+#     if folder is False:
+#         plt.savefig(out_dir + '/' + str(title) +'.pdf', bbox_inches='tight')
+#     else:
+#         os.path.exists(out_dir + '/' + str(folder)) or os.makedirs(out_dir + '/' + str(folder))
+#         plt.savefig(out_dir + '/' + str(folder) + '/' + str(title) +'.pdf', bbox_inches='tight')
+#     plt.clf()
 
 most = [item for sublist in most for item in sublist]
 
