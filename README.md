@@ -1,4 +1,7 @@
-# This is the master branch
+# This is the cpox-mini3 branch
+
+This is for a new rerun of RMG-Py master (9572ed4a01e2495a7c60f639434fb4000c1c0209) and RMG-database (d626e2bd535faf1cb4c3c1618cfff8ad1bbe3dd9), with rerun cantera simulations making NO cutoffs (may run into divide by zero errors).
+
 All things happen in the testing folder.
 
 1. Run whatever in linear-scaling-tests on discovery
