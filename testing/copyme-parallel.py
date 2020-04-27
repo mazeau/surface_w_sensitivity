@@ -100,7 +100,7 @@ def plot_gas(data, x_lim=None):
 
     xlim is either None or a tuple (x_min, x_max)
     """
-    gas_out, surf_out, gas_names, surf_names, dist_array, T_array, i_ar = data
+    gas_out, surf_out, gas_names, surf_names, dist_array, T_array, i_ar, n_surf_reactions= data
 
     # Plot in mol/min
     fig, axs = plt.subplots()
@@ -194,7 +194,7 @@ def plot_gas(data, x_lim=None):
 
 def plot_surf(data):
     """Plots surface site fractions through the PFR."""
-    gas_out, surf_out, gas_names, surf_names, dist_array, T_array, i_ar = data
+    gas_out, surf_out, gas_names, surf_names, dist_array, T_array, i_ar, n_surf_reactions = data
 
     fig, axs = plt.subplots()
     axs.set_prop_cycle(cycler('color', ['m', 'g', 'b', 'y', 'c', 'r', 'k', 'g']))
@@ -255,6 +255,7 @@ def monolith_simulation(path_to_cti, temp, mol_in, verbose=False, sens=False):
     """
     sols_dict = setup_ct_solution(path_to_cti)
     gas, surf, i_ar, n_surf_reactions= sols_dict['gas'], sols_dict['surf'], sols_dict['i_ar'],sols_dict['n_surf_reactions']
+    print(f"Running monolith simulation with CH4 and O2 concs {mol_in[0], mol_in[1]} on thread {threading.get_ident()}")
     ch4, o2, ar = mol_in
     ratio = ch4 / (2 * o2)
 
@@ -388,6 +389,7 @@ def monolith_simulation(path_to_cti, temp, mol_in, verbose=False, sens=False):
     gas_names = np.array(gas_names)
     surf_names = np.array(surf_names)
     data_out = gas_out, surf_out, gas_names, surf_names, dist_array, T_array, i_ar, n_surf_reactions
+    print(f"Finished monolith simulation for CH4 and O2 concs {mol_in[0], mol_in[1]} on thread {threading.get_ident()}")
     return data_out
 
 
@@ -427,7 +429,7 @@ def calculate(data, type='sens'):
                  'ratio' for plotting
     :return:
     """
-    gas_out_data, gas_names_data, dist_array_data, T_array_data = data
+    gas_out_data, gas_names_data, dist_array_data, T_array_data, n_surf_reactions = data
 
     reference = []
     for a in range(len(gas_names_data)):
@@ -694,7 +696,7 @@ def sensitivity(path_to_cti, old_data, temp, dk, thermo=False):
     original simulation (data) to get a numerical value for sensitivity.
     """
     sensitivity_results = []
-    gas_out_data, gas_names_data, dist_array_data, T_array_data, n_surf_reactions = old_data
+    gas_out_data, gas_names_data, dist_array_data, T_array_data, i_ar, n_surf_reactions = old_data
 
     reference = []
     for a in range(len(gas_names_data)):
